@@ -1,4 +1,4 @@
-<?
+<?php
 class DocuwikiToMarkdownExtra {
 	/**
 	 * Convert docuwiki syntax to markdown
