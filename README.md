@@ -14,4 +14,13 @@ This is a temporary repository for developer documentation about the SilverStrip
 
 ## Usage
 
-	php scripts/TranslateSSDocs.php
+### Import DokuWiki files
+
+Note: This is only possible by SilverStripe staff.
+
+	scp -P 2222 -R <username>@doc.silverstripe.org:/sites/ss2doc/www/assets/data/pages/ input/
+
+### Convert to Markdown files
+
+	cd scripts
+	php TranslateSSDocs.php
