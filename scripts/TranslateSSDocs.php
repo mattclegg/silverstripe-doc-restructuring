@@ -24,9 +24,10 @@ foreach($objects as $name => $object) {
 
 	if (!file_exists($outputDir)) mkdir($outputDir, 0777, true);
 
+	$outFilename = preg_replace('/\.txt$/', '.md', $filename);
 	$converter->convertFile(
 		"{$inputDir}/{$filename}",
-		"{$outputDir}/{$filename}"
+		"{$outputDir}/{$outFilename}"
 	);
 }
 
