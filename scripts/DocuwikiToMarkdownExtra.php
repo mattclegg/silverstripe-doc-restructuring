@@ -21,11 +21,17 @@ class DocuwikiToMarkdownExtra {
 	static $inlineRules = array(
 		// Headings
 		'/^= (.*) =$/'				=>	array("rewrite" => '###### \1'),
+		'/^=([^=]*)=*$/'			=>	array("rewrite" => '###### \1'),
 		'/^== (.*) ==$/'			=>	array("rewrite" => '##### \1'),
+		'/^==([^=]*)=*$/'			=>	array("rewrite" => '##### \1'),
 		'/^=== (.*) ===$/'			=>	array("rewrite" => '#### \1'),
+		'/^===([^=]*)=*$/'			=>	array("rewrite" => '#### \1'),
 		'/^==== (.*) ====$/'		=>	array("rewrite" => '### \1'),
+		'/^====([^=]*)=*$/'			=>	array("rewrite" => '### \1'),
 		'/^===== (.*) =====$/'		=>	array("rewrite" => '## \1'),
+		'/^=====([^=]*)=*$/'		=>	array("rewrite" => '## \1'),
 		'/^====== (.*) ======$/'	=>	array("rewrite" => '# \1'),
+		'/^======([^=]*)=*$/'		=>	array("rewrite" => '# \1'),
 
 		// Link syntaxes, most specific first
 		'/\[\[.*?\|\{\{.*?\}\}\]\]/U' =>
@@ -40,7 +46,7 @@ class DocuwikiToMarkdownExtra {
 
 		// Misc checks
 		'/^\d*\.\s/'				=>	array("notice" => "Possible numbered list item that is not docuwiki format, not handled"),
-
+		'/^=+\s*.*$/'				=>	array("notice" => "Line starts with an =. Possibly an untranslated heading. Check for = in the heading text")	
 		// <x@y.xom>						email
 	);
 
