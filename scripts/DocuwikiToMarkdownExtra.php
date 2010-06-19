@@ -204,13 +204,13 @@ class DocuwikiToMarkdownExtra {
 			$s = substr($s, 2); // remove leading space
 
 			// force exactly 2 spaces after bullet to make things line up nicely.
-			if (substr($s, 1, 1) != " ") $s = "* " . substr($s, 1);
-			if (substr($s, 2, 1) != " ") $s = "*  " . substr($s, 2);
+			if (substr($s, 1, 1) != " ") $s = "\n* " . substr($s, 1);
+			if (substr($s, 2, 1) != " ") $s = "\n*  " . substr($s, 2);
 		}
 		else if (substr($s, 0, 3) == "  -") {
 			if ($this->listItemType != "ordered") $this->listItemCount = 1;
 			$this->listItemType = "ordered";
-			$s = $this->listItemCount . ". " . substr($s, 3);
+			$s = " " . $this->listItemCount . ". " . substr($s, 3);
 			$this->listItemCount++;
 		}
 		else if (substr($s, 0, 3) == "   ") {
