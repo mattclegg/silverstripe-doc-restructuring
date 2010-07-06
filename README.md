@@ -4,8 +4,8 @@ This is a temporary repository for developer documentation about the SilverStrip
 
 *Note: This repository is used for collaboration during the restructuring phase, and will move elsewhere afterwards*
 
- * [http://groups.google.com/group/silverstripe-documentation](Mailinglist)
- * [http://doc.silverstripe.org/tmp:documentation-restructuring](Planning wiki page)
+ * [Mailinglist](http://groups.google.com/group/silverstripe-documentation)
+ * [Planning wiki page](http://doc.silverstripe.org/tmp:documentation-restructuring)
 
 ## Contact
 
