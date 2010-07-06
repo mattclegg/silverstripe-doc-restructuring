@@ -6,6 +6,7 @@ This is a temporary repository for developer documentation about the SilverStrip
 
  * [Mailinglist](http://groups.google.com/group/silverstripe-documentation)
  * [Planning wiki page](http://doc.silverstripe.org/tmp:documentation-restructuring)
+ * [TODO list and bugtracker](http://open.silverstripe.org/query?status=inprogress&status=new&status=replyneeded&status=reviewed&component=Documentation&order=priority&col=id&col=summary&col=status&col=type&col=priority&col=milestone&col=component)
 
 ## Contact
 
