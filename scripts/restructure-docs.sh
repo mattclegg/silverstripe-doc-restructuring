@@ -11,11 +11,11 @@
 
 cd ../output/
 
-mkdir -p ../master/cms/docs/{tutorials,guides,reference}
-mkdir -p ../master/sapphire/docs/{tutorials,guides,reference}
+mkdir -p ../master/cms/docs/{tutorials,topics/{installation,testing},upgrading,reference,misc}
+mkdir -p ../master/sapphire/docs/{tutorials,topics,reference,misc}
 
 # Content staying on the wiki (remove)
-rm *.lock
+git rm *.lock
 git rm modules.md
 git rm -r module
 git rm -r modules
@@ -87,63 +87,62 @@ git rm security-statement.md
 git rm silverstripe-on-mamp.md
 git rm silverstripe-book-errata.md
 git rm windmill-testing.md
-git rm test-page.md
 
 # Moves to ../master/cms/
-git mv upgrading ../master/cms/docs/guides/upgrading
+git mv upgrading ../master/cms/docs/upgrading/
 git mv tutorial/* ../master/cms/docs/tutorials/
 git mv installation.md ../master/cms/docs/
-git mv installation-*.md ../master/cms/docs/guides/
+git mv installation-*.md ../master/cms/docs/topics/topics/installation/
 git mv arraydata.md ../master/cms/docs/reference/
 git mv autocompletefield.md ../master/cms/docs/reference/
 git mv autocompletetextfield.md ../master/cms/docs/reference/
 git mv bbcode.md ../master/cms/docs/reference/
-git mv building-for-modularity.md ../master/cms/docs/guides/
+git mv building-for-modularity.md ../master/cms/docs/topics/
 git mv built-in-page-controls.md ../master/cms/docs/reference/
 git mv cache-control.md ../master/cms/docs/reference/
-git mv casting.md ../master/cms/docs/guides/
+git mv casting.md ../master/cms/docs/topics/
 git mv checkboxfield.md ../master/cms/docs/reference/
 git mv checkboxsetfield.md ../master/cms/docs/reference/
-git mv cmsmain.md ../master/cms/docs/guides/
+git mv cmsmain.md ../master/cms/docs/topics/extending-the-cms.md
 git mv cmsmenu.md ../master/cms/docs/reference/
-git mv common-problems.md ../master/cms/docs/guides/
+git mv common-problems.md ../master/cms/docs/topics/
 git mv complextablefield.md ../master/cms/docs/reference/
 git mv compositefield.md ../master/cms/docs/reference/
-git mv configuration.md ../master/cms/docs/guides/
+git mv configuration.md ../master/cms/docs/topics/
 git mv confirmedpasswordfield.md ../master/cms/docs/reference/
-git mv controller.md ../master/cms/docs/guides/
-git mv controllers.md ../master/cms/docs/guides/
-git mv creating-modules.md ../master/cms/docs/guides/
+git mv controller.md ../master/cms/docs/topics/
+git mv controllers.md ../master/cms/docs/topics/
+git mv creating-modules.md ../master/cms/docs/topics/module-development.md
 git mv css.md ../master/cms/docs/reference/
 git mv csvbulkloader.md ../master/cms/docs/reference/
 git mv currencyfield.md ../master/cms/docs/reference/
 git mv customrequiredfields.md ../master/cms/docs/reference/
-git mv data-types.md ../master/cms/docs/guides/
+git mv data-types.md ../master/cms/docs/topics/
 git mv database-abstraction.md ../master/cms/docs/reference/
 git mv database-structure.md ../master/cms/docs/reference/
 git mv database-troubleshooting.md ../master/cms/docs/reference/
-git mv datamodel.md ../master/cms/docs/guides/
+git mv datamodel.md ../master/cms/docs/topics/
 git mv dataobject.md ../master/cms/docs/reference/
 git mv dataobjectdecorator.md ../master/cms/docs/reference/
 git mv dataobjectset.md ../master/cms/docs/reference/
 git mv datefield.md ../master/cms/docs/reference/
 git mv datepickerfield.md ../master/cms/docs/reference/
 git mv db-build.md ../master/cms/docs/reference/
-git mv debugging.md ../master/cms/docs/guides/
+git mv debugging.md ../master/cms/docs/topics/
 git mv director.md ../master/cms/docs/reference/
-git mv directory-structure.md ../master/cms/docs/guides/
+git mv directory-structure.md ../master/cms/docs/topics/
 git mv dropdownfield.md ../master/cms/docs/reference/
-git mv email.md ../master/cms/docs/guides/
+git mv email.md ../master/cms/docs/topics/
 git mv emailfield.md ../master/cms/docs/reference/
-git mv environment-management.md ../master/cms/docs/guides/
-git mv error-handling.md ../master/cms/docs/guides/
+git mv environment-management.md ../master/cms/docs/topics/
+git mv error-handling.md ../master/cms/docs/topics/
 git mv escape-types.md ../master/cms/docs/reference/
 git mv execution-pipeline.md ../master/cms/docs/reference/
 git mv fieldgroup.md ../master/cms/docs/reference/
 git mv filefield.md ../master/cms/docs/reference/
 git mv form-field-types.md ../master/cms/docs/reference/
-git mv form-validation.md ../master/cms/docs/guides/
-git mv form.md ../master/cms/docs/guides/
+git mv form-validation.md ../master/cms/docs/topics/
+git mv form.md ../master/cms/docs/topics/forms.md
 git mv formaction.md ../master/cms/docs/reference/
 git mv formresponse.md ../master/cms/docs/reference/
 git mv functionaltest.md ../master/cms/docs/reference/
@@ -154,15 +153,15 @@ git mv hasonecomplextablefield.md ../master/cms/docs/reference/
 git mv headerfield.md ../master/cms/docs/reference/
 git mv hiddenfield.md ../master/cms/docs/reference/
 git mv hierarchy.md ../master/cms/docs/reference/
-git mv how-page-security-works.md ../master/cms/docs/guides/
+git mv how-page-security-works.md ../master/cms/docs/topics/security.md
 git mv html.md ../master/cms/docs/reference/
 git mv htmleditorconfig.md ../master/cms/docs/reference/
 git mv htmleditorfield.md ../master/cms/docs/reference/
-git mv i18n.md ../master/cms/docs/guides/
+git mv i18n.md ../master/cms/docs/topics/
 git mv image.md ../master/cms/docs/reference/
 git mv imagefield.md ../master/cms/docs/reference/
 git mv inlineformaction.md ../master/cms/docs/reference/
-git mv installing-modules.md ../master/cms/docs/guides/
+git mv installing-modules.md ../master/cms/docs/topics/
 git mv javascript.md ../master/cms/docs/reference/
 git mv labelfield.md ../master/cms/docs/reference/
 git mv languagedropdownfield.md ../master/cms/docs/reference/
@@ -177,12 +176,12 @@ git mv member_groupset.md ../master/cms/docs/reference/
 git mv membertablefield.md ../master/cms/docs/reference/
 git mv migrationtask.md ../master/cms/docs/reference/
 git mv modeladmin.md ../master/cms/docs/reference/
-git mv multilingualcontent.md ../master/cms/docs/guides/
+git mv multilingualcontent.md ../master/cms/docs/topics/translation.md
 git mv numericfield.md ../master/cms/docs/reference/
 git mv object.md ../master/cms/docs/reference/
-git mv objectmodel.md ../master/cms/docs/guides/
+git mv objectmodel.md ../master/cms/docs/topics/
 git mv optionsetfield.md ../master/cms/docs/reference/
-git mv page-types.md ../master/cms/docs/guides/
+git mv page-types.md ../master/cms/docs/topics/
 git mv page.md ../master/cms/docs/reference/
 git mv pagecomment.md ../master/cms/docs/reference/
 git mv pageless-controller.md ../master/cms/docs/reference/
@@ -225,16 +224,16 @@ git mv tablelistfield.md ../master/cms/docs/reference/
 git mv tabset.md ../master/cms/docs/reference/
 git mv template-encoding.md ../master/cms/docs/reference/
 git mv templates.md ../master/cms/docs/reference/
-git mv testing-guide-glossary.md ../master/cms/docs/guides/
-git mv testing-guide-intro.md ../master/cms/docs/guides/
-git mv testing-guide-troubleshooting.md ../master/cms/docs/guides/
-git mv testing-guide.md ../master/cms/docs/guides/
-git mv testing-howto/create-functional-test.md ../master/cms/docs/guides/
-git mv testing-howto/create-sapphire-test.md ../master/cms/docs/guides/
-git mv testing-howto/test-email-sending.md ../master/cms/docs/guides/
+git mv testing-guide-glossary.md ../master/cms/docs/topics/
+git mv testing-guide-intro.md ../master/cms/docs/topics/testing/
+git mv testing-guide-troubleshooting.md ../master/cms/docs/topics/testing/
+git mv testing-guide.md ../master/cms/docs/topics/testing/
+git mv testing-howto/create-functional-test.md ../master/cms/docs/topics/testing/
+git mv testing-howto/create-sapphire-test.md ../master/cms/docs/topics/testing/
+git mv testing-howto/test-email-sending.md ../master/cms/docs/topics/testing/
 git mv textareafield.md ../master/cms/docs/reference/
 git mv textfield.md ../master/cms/docs/reference/
-git mv themes.md ../master/cms/docs/guides/
+git mv themes.md ../master/cms/docs/topics/
 git mv translatable.md ../master/cms/docs/reference/
 git mv treedropdownfield.md ../master/cms/docs/reference/
 git mv treemultiselectfield.md ../master/cms/docs/reference/
@@ -247,7 +246,7 @@ git mv validator.md ../master/cms/docs/reference/
 git mv versioned.md ../master/cms/docs/reference/
 git mv virtualpage.md ../master/cms/docs/reference/
 git mv widgets.md ../master/cms/docs/reference/
-git mv themes/developing.md ../master/cms/docs/guides/theme-development.md
+git mv themes/developing.md ../master/cms/docs/topics/theme-development.md
 
 # Cleanup afterwards
 rm -rf tutorial/
