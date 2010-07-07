@@ -99,7 +99,7 @@ git mv autocompletetextfield.md ../master/cms/docs/reference/
 git mv bbcode.md ../master/cms/docs/reference/
 git mv building-for-modularity.md ../master/cms/docs/topics/
 git mv built-in-page-controls.md ../master/cms/docs/reference/
-git mv cache-control.md ../master/cms/docs/reference/
+git mv cache-control.md ../master/cms/docs/howto/
 git mv casting.md ../master/cms/docs/topics/
 git mv checkboxfield.md ../master/cms/docs/reference/
 git mv checkboxsetfield.md ../master/cms/docs/reference/
@@ -247,6 +247,20 @@ git mv versioned.md ../master/cms/docs/reference/
 git mv virtualpage.md ../master/cms/docs/reference/
 git mv widgets.md ../master/cms/docs/reference/
 git mv themes/developing.md ../master/cms/docs/topics/theme-development.md
+git mv recipes/adding-a-file-to-a-page.md ../master/cms/docs/howto/file-to-page-linking.md
+git mv recipes/adding-print-stylesheet.md ../master/cms/docs/howto/print-stylesheets.md
+git rm recipes/ajax_basics.md
+git mv recipes/alphabetical-dataobjectset.md ../master/cms/docs/howto/alphabetized-dataobjectset.md
+git rm recipes/amazing_looking_forms_using_silverstripe_form_default_rendering.md
+git rm recipes/changingfields.md
+git rm recipes/combining_files.md
+git rm recipes/controllers.md
+git rm recipes/example_config_file.md
+git rm recipes/forms.md
+git rm recipes/css.md
+git mv recipes/dataobjectsearch.md ../master/cms/docs/howto/search-dataobjects.md
+
+
 
 # Cleanup afterwards
 rm -rf tutorial/
