@@ -1,10 +1,11 @@
-====== Introduction ====== 
+# Forms
+
 Form is the base class of all forms in a sapphire application. Forms in your application can be created either by instantiating the Form class itself, or by subclassing it. See [our form recipes](recipes/forms) for more specific information.
 
-====== Creating a form =======
+## Instantiating a form
 
-## By instantiation
 Creating a form is a matter of defining a method to represent that form.  This method should return a form object.  The constructor takes the following arguments:
+
 *  ''$controller'': This must be the controller that contains the form.
 *  ''$name'': This must be the name of the method on that controller that is called to return the form.  The first two fields allow the form object to be re-created after submission.  **It's vital that they are properly set - if you ever have problems with form action handler not working, check that these values are correct.*
 *  ''$fields'': A [FieldSet](http://api.silverstripe.org/trunk/forms/core/FieldSet.html) containing all the [Form](http://api.silverstripe.org/trunk/forms/core/Form.html)s that make up the editable portion of the form.
@@ -22,7 +23,7 @@ function MyCustomForm() {
 }
 ~~~
 
-## By subclassing
+## Subclassing a form
 It's the reponsibility of your subclass' constructor to call 
 ~~~ {php}
 parent::__construct()
