@@ -95,6 +95,7 @@ The Debug class contains a number of static methods
 On development sites, we deal harshly with any warnings or errors: a full call-stack is shown and execution stops.  This is basically so that we deal with them promptly, since most warnings are indication that **something** is broken.
 
 On live sites, all errors are emailed to the address specified in Debug::sendLiveErrorsTo($email)
+
 ## Debugging techniques
 
 Since we don't have a decent interactive debugger going, we use the following debugging techniques:
@@ -108,4 +109,9 @@ Since we don't have a decent interactive debugger going, we use the following de
 *  You can also use //$Debug// with //ViewableData// in templates.
 
 ### Unit Testing
+
 A good way to avoid writing the same test stubs and var_dump() commands over and over again is to codify them as [unit tests](testing-guide). This way you integrate the debugging process right into your quality control, and eventually in the development effort itself as "test-driven development".
+
+### Profiling
+
+Silverstripe includes a profiling suite called [Profiler](http://www.adepteo.net/profiler/manual.html) from Carl Taylor at Adepteo.  You can use this withing your installation during development to find bottlenecks and more. You can enable the profiler by adding `?debug_profile=1` to your URL.
