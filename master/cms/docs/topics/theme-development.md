@@ -97,6 +97,92 @@ You can add more stylesheets using the template tag <% require themedCSS(filenam
 
 Note: If you're using a default install of Silverstripe and notice that you're getting layout.css, typography.css and forms.css included without asking for them, they may be being called on lines 21-23 in mysite/code/Page.php. Remove these three Requirements::themedCSS lines, and you will be free to add your own styles.
 
+## Dividing your site the correct way!
+
+
+Most Web page designers 10 years ago used a table-based layout to achieve a consistent look. Now, (Thankfully) there's a different way to achieve the same look.
+
+Using **[CSS](css)** and tags (including ''DIV''s) reduces markup code, speeds up page downloads, separates content from it's visual presentation, and brings your code closer to web standards compliance--all while making your website more appealing to search engine spiders.
+
+For layout we tend to use ''DIV'' tags as the ''DIV'' tag defines a division/section in a document.
+
+Let's have a look at part of a Page.ss for the main layout elements defining a 2 column layout.
+
+~~~ {html}
+<div id="Container">
+ <div id="Header">
+   <!-- Header -->
+ </div>
+
+ <div id="Navigation">
+   <!-- The Main Site Nav -->
+ </div>
+
+ <div id="Layout">
+   <!-- The whole site content Has to sit inside here! Anything you want to sub template (eg each page will be different, needs to be contained in $Layout. This calls the file /Layout/Page.ss or anyother sub page template -->
+   $Layout
+ </div>
+
+ <div id="Footer">
+ </div>
+</div>
+~~~
+
+### HTML naming conventions
+
+*  Class names should be lowercase, or lowerCamelCase starting with a lowercase letter, for example, latestNews
+*  IDs should be UpperCamelCase and remember ID's can only be used once per page.
+
+~~~ {html}
+<div id="Container"><!-- markup goes here --></div>
+~~~
+
+As you can see we normally wrap the site in a container. For this we use the ID 'Container'. Then we divide the main template into sections.
+
+~~~ {html}
+<div id="Header"><!-- markup goes here --></div>
+~~~
+
+We have the Header section which includes things like any banner images/ mastheads/ logos or any stuff that belongs at the top of the page, This might vary on the design of the page
+
+~~~ {html}
+<div id="Navigation"><!-- markup goes here --></div>
+~~~
+
+Next is a division for the main navigation. This may contain something like:
+
+~~~ {html}
+<div id="Navigation">
+  <% if Menu(1) %>
+  <ul>
+    <% control Menu(1) %>	  
+      <li><a href="$Link" title="Go to the $Title page" class="$LinkingMode">$MenuTitle</a></li>
+    <% end_control %>
+ </ul>
+ <% end_if %>
+</div>
+~~~
+
+This is the standard for creating the main Navigation. As you can see it outputs the Menu 1 in a unordered list.
+
+Before stepping into a control (a foreach loop) it's good practise to check if it exists first. This is not only important in manipulating SilverStripe templates, but in any programming language!
+
+~~~ {html}
+<% if MyFunction %>
+  <% control MyFunction %>
+    $Title
+  <% end_control %>
+<% end_if %>
+~~~
+
+Last and probably least is the Footer division. Here is where you put all the Footer related stuff for your website. Maybe even a nice link saying Website Powered by SilverStripe to show your support.
+
+~~~ {html}
+<div id="Footer">
+<!-- markup goes here -->
+</div>
+~~~
+
 # Resources
 
 A bunch of resources feel free to use to make your template awesome
