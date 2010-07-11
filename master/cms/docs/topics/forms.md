@@ -211,13 +211,12 @@ class MyForm extends Form {
 
 To find more methods, have a look at the Form class, as there is a lot of different methods of customising the form templates, for example, you could use ''<% control Fields %>'' instead of specifying each field manually, as we've done above.
 
-### Form Security
+## Securing forms against Cross-Site Request Forgery (CSRF)
+
 SilverStripe tries to protect users against //Cross-Site Request Forgery (CSRF)// by adding a hidden //SecurityID// parameter to each form. See [secure-development](secure-development) for details.
 
-# Best Practices
+## Remove existing fields
 
-
-## Remove existing Form Fields
 If you want to remove certain fields from your subclass:
 
 ~~~ {php}
@@ -234,39 +233,12 @@ class MyCustomForm extends MyForm {
 }
 ~~~
 
-## Add single field to existing tab
+## Working with tabs
+
 Adds a new text field called FavouriteColour next to the Content field in the CMS
 ~~~ {php}
 $fields->addFieldToTab('Root.Content.Main', new TextField('FavouriteColour'), 'Content');
 ~~~
-
-
-## Add a Dropdown to Page-class
-Here is an example of adding a drop-down to your page allowing choosing of colors:
-
-~~~ {php}
-class Page extends SiteTree {
-
-   static $db = array(
-      'PageColor' => 'Varchar(6)'
-   );
-
-   protected static $colors = array(
-      'FFCC66' => 'Orange',
-      '9999CC' => 'Blue',
-   );
-
-   function getCMSFields() {
-      $fields = parent::getCMSFields();
-      $fields->addFieldToTab('Root.Content.Main', new DropdownField('PageColor',
- 'Page Color', self::$colors), $this->PageColor);
-      return $fields;
-   }
-
-}
-~~~
-
-Instead of putting the array directly into the arguments for the new DropdownField object, we have a static array which can be easily modified later on if necessary. You then call ''self::$colors'' to fetch this array for the DropdownField object when created. Storing any dropdown-maps directly on a class can be adviseable if you might need to access those values somewhere else. It is also easier to document, and overwrite from external functionality.
 
 
 # Related
