@@ -163,7 +163,7 @@ Now that we have created our page types, let's add some content. Go into the CMS
 
 {{tutorial:news-cms.png}}
 
-====== Creating the templates =======
+#  Creating the templates
 
 We can already look at the content of news pages on our site, because the article holder page and the article pages inherit their templates from Page. But we're not getting the author and date fields displayed in either case.
 

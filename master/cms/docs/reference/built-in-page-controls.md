@@ -65,10 +65,10 @@ This will return the parent page.  The $ variable format lets us reference an at
 ##### <% control Breadcrumbs %>
 This will return a breadcrumbs widgets for the given page.  You can call this on any data-object, so, for example, you could display the breadcrumbs of every search result if you wanted.  It has a few options.
 
-== <% control Breadcrumbs(3) %> == 
+#####  <% control Breadcrumbs(3) %>
 Will return a maximum of 3 pages in the breadcrumb list, this can be handy if you're wanting to put breadcrumbs in a place without spilling
 
-== <% control Breadcrumbs(3, true) %> == 
+#####  <% control Breadcrumbs(3, true) %>
 Will return the same, but without any links. This is handy if you're wanting to put the breadcrumb list into another link tag.
 
 
@@ -129,7 +129,7 @@ This returns the part of the URL of the page you're currently on. Could be handy
 <body class="$URLSegment">
 ~~~
 
-== $ClassName == 
+#####  $ClassName
 Returns the ClassName of the PHP object. Eg if you have a custom HomePage page type with $ClassName in the template, it will return "HomePage"
 
 ##### $BaseHref
@@ -190,7 +190,7 @@ $URLSegment
 <% end_control %>
 ~~~
 
-====== Properties of a datafeed itself, rather than one of its items =======
+#  Properties of a datafeed itself, rather than one of its items
 If we have a control such as <% control SearchResults %>, there are some properties, such as $SearchResults.NextLink, that aren't accessible within <% control SearchResults %>.  These can be used on any datafeed.
 
 ##### <% if SearchResults.MoreThanOnePage %>
@@ -231,5 +231,5 @@ $ID, $ClassName, $Created, $LastEdited, $URLSegment, $Title, $MenuTitle, $Conten
 ### All methods available in Page
 $Link, $LinkOrCurrent, $LinkOrSection, $LinkingMode, $ElementName, $InSection, $Comments, $Breadcrumbs, $NestedTitle, $MetaTags, $ContentSource, $MultipleParents, $TreeTitle, $CMSTreeClasses, $Now, $LinkTo, $AbsoluteLink, $CurrentMember, $PastVisitor, $PastMember, $XML_val, $RAW_val, $SQL_val, $JS_val, $ATT_val, $First, $Last, $FirstLast, $MiddleString, $Middle, $Even, $Odd, $EvenOdd, $Pos, $TotalItems, $BaseHref, $CurrentPage, $Top
 
-==== All fields available in Page ==== 
+###  All fields available in Page
 $ID, $ClassName, $Created, $LastEdited, $URLSegment, $Title, $MenuTitle, $Content, $MetaTitle, $MetaDescription, $MetaKeywords, $ShowInMenus, $ShowInSearch, $HomepageForDomain, $ProvideComments, $Sort, $LegacyURL, $HasBrokenFile, $HasBrokenLink, $Status, $ReportClass, $ParentID, $Version, $EmailTo, $EmailOnSubmit, $SubmitButtonText, $OnCompleteMessage, $Subscribe, $AllNewsletters, $Subject, $ErrorCode, $LinkedPageID, $RedirectionType, $ExternalURL, $LinkToID, $VersionID, $CopyContentFromID, $RecordClassName

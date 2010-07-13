@@ -17,7 +17,7 @@ If we want to add an File to our database we need to add it in the $has_one arra
 
 Now visit yoursite.com/db/build?flush=1 and recreate our database. 
 
-==== Step 2: Add a file uploader to the CMS ==== 
+###  Step 2: Add a file uploader to the CMS
 
 We need to add a field to the CMS so that we can upload a file. So underneath that $db array we need to add this getCMSFields function which overloads the CMS so we can add our field
 

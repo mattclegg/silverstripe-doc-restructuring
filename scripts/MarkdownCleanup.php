@@ -8,11 +8,11 @@ class MarkdownCleanup {
 	
 	function process($content) {
 		$content = $this->convertUnbalancedHeadlines($content);
-		$content = $this->convertCodeBlocks($content);
-		$content = $this->newlinesAfterHeadlines($content);
-		$content = $this->newlinesBeforeLists($content);
-		$content = $this->convertApiLinks($content);
-		$content = $this->convertEmphasis($content);
+		// $content = $this->convertCodeBlocks($content);
+		// $content = $this->newlinesAfterHeadlines($content);
+		// $content = $this->newlinesBeforeLists($content);
+		// $content = $this->convertApiLinks($content);
+		// $content = $this->convertEmphasis($content);
 		
 		return $content;
 	}

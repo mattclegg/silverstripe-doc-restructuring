@@ -32,7 +32,7 @@ Usually an update or upgrade your SilverStripe installation just means overwriti
 *  Check if you need to adapt your code to changed CSS/HTML/JS
 *  See [common-problems](common-problems) for a list of likely mistakes that could happen during an upgrade.
 
-====== Decision Helpers =======
+#  Decision Helpers
 How easy will it be to update my project? It's a fair question, and sometimes a difficult one to answer.  This page is intended to help you work out how hard it will be to upgrade your site.
 
 *  If you've made custom branches of the core, or of a module, it's going to be harder to upgrade.

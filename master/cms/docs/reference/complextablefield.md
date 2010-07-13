@@ -1,4 +1,4 @@
-===== Introduction ===== 
+##  Introduction
 Shows a group of DataObjects as a (readonly) tabular list (similiar to [TableListField](http://api.silverstripe.org/trunk/forms/fields-relational/TableListField.html)). Its most useful when you want to display a relationship (e.g. one-to-many), subset, or collection of DataObjects via a simple interface with the ability to edit context specific information in a javascript-popup ("Lightbox").  
 
 You can specify limits and filters for the resultset by customizing query-settings (mostly the ID-field on the other side of a one-to-many-relationship).

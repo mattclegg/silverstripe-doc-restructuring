@@ -286,7 +286,7 @@ php_flag engine off
 Options -ExecCGI -Includes -Indexes 
 ~~~
 
-====== Related =======
+#  Related
 
  * [http://silverstripe.org/security-releases/](http://silverstripe.org/security-releases/)
 

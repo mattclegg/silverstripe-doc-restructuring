@@ -17,7 +17,7 @@ If we want to add an Image to our database we need to add it in the $has_one arr
 
 Now visit yoursite.com/dev/build and recreate our database. 
 
-==== Step 2: Add an image form to the CMS ==== 
+###  Step 2: Add an image form to the CMS
 
 We need to add a field to the CMS so that we can upload a image. So underneath that $db array we need to add this getCMSFields function which overloads the CMS so we can add our field
 

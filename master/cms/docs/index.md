@@ -4,7 +4,7 @@ This wiki documents high-level features of the [SilverStripe open source platfor
 If you would like to contribute, you can [register](http://doc.silverstripe.com/doku.php?id=start&do=register) and then [login](http://doc.silverstripe.com/doku.php?do=login&id=start).
 
 
-==== Getting support ===
+###  Getting support
 *  Use our [support forum](http://www.silverstripe.com/silverstripe-forum/) and [irc-channel](IRC)
 *  See [userhelp](http://userhelp.silverstripe.com) for end-user documentation
 *  Visit some of the [community run third party websites](community run third party websites)
@@ -25,14 +25,14 @@ If you would like to contribute, you can [register](http://doc.silverstripe.com/
 
 
 
-==== Books =====
+###  Books
 [{{ :silverstripe-cms-book-front-cover-design-june2009preview.png?100}}](http://www.silverstripe.org/silverstripe-book)
 
 *  [Official book on SilverStripe in English](http://www.silverstripe.org/silverstripe-book) ([Errata](silverstripe-book-errata)).
 *  [Official book on SilverStripe in German](http://www.silverstripe.org/das-silverstripe-buch).
 
 
-==== Installation ===
+###  Installation
 *  **[Installing](installation)** and [Upgrading](Upgrading) 
 *  [Server-requirements](Server-requirements)
 *  [Suggested-web-hosts](Suggested-web-hosts)

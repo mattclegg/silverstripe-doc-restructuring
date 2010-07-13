@@ -1,4 +1,4 @@
-==== How To Create a Sapphire Test ===
+###  How To Create a Sapphire Test
 
 A unit test class will test the behaviour of one of your DataObjects.  This simple fragment of SiteTreeTest provides us the basics of creating unit tests.
 

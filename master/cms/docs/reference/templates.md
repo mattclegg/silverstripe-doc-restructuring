@@ -45,14 +45,14 @@ If a Variable returns a string, that string will be inserted into the template. 
 
 Note you also cannot past a variable into a variable, so using $Property($Value) within your template will not work
 
-===== Includes ====
+##  Includes
 You can perform includes using the Requirements Class via the template controls.  See the section on [Includes in Templates](requirements#including_inside_template_files) for more details and examples.
 
 ~~~ {html}
 <% require themedCSS(LeftNavMenu) %>
 ~~~
 
-===== Controls ====
+##  Controls
 ~~~ {html}
 <% control Property %>
 ... content ...

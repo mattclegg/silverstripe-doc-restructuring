@@ -233,7 +233,7 @@ Note: The necessary controller actions are only present in subclasses of [Page_C
 
 See an [alternative recipe for SilverStripe 2.3 or earlier](/recipes/widget-forms-2.3).
 
-===== But what if I have widgets on my blog currently?? ====
+##  But what if I have widgets on my blog currently??
 
 If you currently have a blog installed, the widget fields are going to double up on those pages (as the blog extends the Page class). One way to fix this is to comment out line 30 in BlogHolder.php and remove the DB entry by running a /db/build.
 

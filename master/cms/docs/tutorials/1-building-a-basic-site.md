@@ -7,21 +7,21 @@ Hey, and welcome to the first in this series of tutorials on the SilverStripe Co
 
 
 
-====== What are we working towards? =======
+#  What are we working towards?
 
 We are going to create a site in which all the content can be edited in the SilverStripe CMS. It will have a two-level navigation system, which will be generated on the fly to include all pages you add in the CMS. We will use two different templates - one for the home page, and one for the rest of the site.
 
 {{tutorial:home-small.png}}{{tutorial:menu-two-level-small.png}}
 
 
-====== Installation =======
+#  Installation
 
 You need to [download the SilverStripe software](http://www.silverstripe.com/downloads) and install it to your local machine or to a webserver. 
 
 For more infomation about installing and configuring a webserver read the [Installation instructions and videos](//installation). 
 
 If you want to follow this tutorial please choose "empty template" when installing SilverStripe. If you want a fully featured theme then select the 'BlackCandy' option.
-====== Exploring the installation =======
+#  Exploring the installation
 
 After installation, open up the folder where you installed SilverStripe. If you installed on windows with WAMP, it will likely be at //c:\wamp\wwww//. Let's have a look at the folder structure.
 
@@ -35,7 +35,7 @@ After installation, open up the folder where you installed SilverStripe. If you 
       
 When designing your site you should only need to modify the //mysite// //themes//  and //assets// folders. The rest of the folders contain files and data that are not specific to any site.
 
-====== Using the CMS =======
+#  Using the CMS
 
 The CMS is the area in which you can manage your site content. You can access the cms at http://localhost/admin. You will be presented with a login screen. You can login with the details you provided at installation. After logging in you should be greeted with the CMS, pictured below (we've entered some test content).
 
@@ -125,7 +125,7 @@ Your page should now look something like this (with your own content of course):
 
 {{tutorial:title.png}}
 
-====== Making a Navigation System =======
+#  Making a Navigation System
 
 So far we have made several pages, but we have no way to navigate between them. We can create a menu for our site using a **control block**. Control blocks allow us to iterate over a data set, and render each item using a sub-template. The **page control** //Menu(1)// returns the set of the first level menu items. We can then use the template variable //$MenuTitle// to show the title of the page we are linking to.
 

@@ -21,7 +21,7 @@ Every object of this class **or any of its subclasses** will have an entry in th
 
 When a new record is created, we don't use the database's built-in auto-numbering system.  Instead, we generate a new ID by adding 1 to the current maximum ID.
 
-==== Subclass tables =====
+###  Subclass tables
 
 At SilverStripe's heart is an object-relational model.  And a component of object-oriented data is **inheritance**.  Unfortunately, there is no native way of representing inheritance in a relational database.  What we do is store the data sub-classed objects across **multiple tables**.
 

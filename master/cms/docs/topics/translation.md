@@ -34,14 +34,14 @@ Warning: If you're upgrading from a SilverStripe version prior to 2.3.2, please 
 # Usage
 
 =====Configuration=====
-====Through Object::add_extension()====
+### ThroughObject::add_extension()====
 Enabling Translatable through //Object::add_extension()// in your //mysite/_config.php//:
 ~~~ {php}
 Object::add_extension('SiteTree', 'Translatable');
 Object::add_extension('SiteConfig', 'Translatable'); // 2.4 or newer only
 ~~~
 
-====Through $extensions====
+### Through$extensions====
 ~~~ {php}
 class Page extends SiteTree {
   static $extensions = array(
@@ -54,7 +54,7 @@ Make sure to rebuild the database through /dev/build after enabling translatable
 Use the correct set_default_locale() before building the database
 for the first time, as this locale will be written on all new records.
 
-====Setting the default locale====
+### Setting the defaultlocale====
 
 Important: If the "default language" of your site is not english (en_US), 
 please ensure to set the appropriate default language for
@@ -98,7 +98,7 @@ $translatedObj = $obj->createTranslation('de_DE');
 ~~~
 
 
-=====Usage for SiteTree=====
+## Usage forSiteTree=====
 
 Translatable can be used for subclasses of SiteTree as well. 
 If a child page translation is requested without the parent
@@ -164,13 +164,13 @@ class Page extends SiteTree {
 ~~~
 
 
-=====Translating the Homepage=====
+## Translating theHomepage=====
 
 Every homepage has a distinct URL, the default language is /home, a German translation by default would be /home-de_DE. They can be accessed like any other translated page. If you want to access different homepages from the "root" without a URL, add a "locale" GET parameter. The German homepage would also be accessible through /?locale=de_DE. 
 
 For this to work, please ensure that the translated homepage is a direct translation of the default homepage, and not a new page created through "Create page...".
 
-=====Translation groups=====
+## Translationgroups=====
 
 Each translation can have an associated "master" object in another language which it is based on,
 as defined by the "MasterTranslationID" property. This relation is optional, meaning you can
@@ -195,13 +195,13 @@ SiteTree_translationgroups database table
  | 99                 | 2          | 
  | 199                | 3          | 
  *
-=====Character Sets=====
+## CharacterSets=====
 
 Caution: Does not apply any character-set conversion, it is assumed that all content
 is stored and represented in UTF-8 (Unicode). Please make sure your database and
 HTML-templates adjust to this.
 
-====="Default" languages=====
+## "Default"languages=====
 
 Important: If the "default language" of your site is not english (en_US), 
 please ensure to set the appropriate default language for
@@ -210,7 +210,7 @@ your content before building the database with Translatable enabled:
 Translatable::set_default_locale(<locale>);
 ~~~
  *
-=====Locales and language tags=====
+## Locales and languagetags=====
 For the Translatable class, a "locale" consists of a language code plus a region code separated by an underscore, 
 for example "de_AT" for German language ("de") in the region Austria ("AT").
 See http://www.w3.org/International/articles/language-tags/ for a detailed description.

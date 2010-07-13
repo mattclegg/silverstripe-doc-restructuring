@@ -73,7 +73,7 @@ You can set an URL to redirect back to after a [Security](security) action.  See
  | %%http://yoursite.com%%**/admin/publishall/**    | Publish all pages on the site                                                                                         | 
  | %%http://yoursite.com%%**/anypage/images/flush** | Creates new images for the page by deleting the resized ones and going back to the original to create new resized one | 
 
-===== /dev/build ====
+##  /dev/build
  | URL Variable  | Values | Description                                                                                                             | 
  | ------------  | ------ | -----------                                                                                                             | 
  | quiet         | 1      | Don't show messages during build                                                                                        | 

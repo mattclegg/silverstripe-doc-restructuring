@@ -115,7 +115,7 @@ $form = new Form(
 );
 ~~~
 
-====== Readonly =====
+#  Readonly
 
 Readonly on a Form
 ~~~ {php}
@@ -247,5 +247,5 @@ $fields->addFieldToTab('Root.Content.Main', new TextField('FavouriteColour'), 'C
 *  [recipes:forms](recipes/forms)
 *  [modules:multiform](modules/multiform)
 
-====== API Documentation =======
+#  API Documentation
 [Click here for the API documentation](http://api.silverstripe.org/trunk/sapphire/forms/Form.html)

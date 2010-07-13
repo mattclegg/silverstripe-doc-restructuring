@@ -141,7 +141,7 @@ Both the CMS and the site's data controls will make use of this, so navigation, 
 **TO DO:** Work out this representation.
 
 
-==== Custom Children Getters =====
+###  Custom Children Getters
 
 Returning custom children for a specific ''SiteTree'' subclass can be handy to influence the tree display within the CMS. An example of custom children might be products which belong to multiple categories. One category would get its products from a ''$many_many'' join rather than the default relations.
 
