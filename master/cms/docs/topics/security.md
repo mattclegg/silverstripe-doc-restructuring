@@ -35,47 +35,50 @@ As a rule of thumb, whenever you're creating raw queries (or just chunks of SQL)
 *  Director::urlParams()
 *  Controller->requestParams, Controller->urlParams
 *  GET/POST data passed to a Form-method
-~~~ {php}
-class MyForm extends Form {
-  function save($RAW_data, $form) {
-    $SQL_data = Convert::raw2sql($RAW_data); // works recursively on an array
-    $objs = DataObject::get('Player', "Name = '{$SQL_data[name]}'");
-    // ...
-  }
-}
-~~~
+
+	:::php
+	class MyForm extends Form {
+	  function save($RAW_data, $form) {
+	    $SQL_data = Convert::raw2sql($RAW_data); // works recursively on an array
+	    $objs = DataObject::get('Player', "Name = '{$SQL_data[name]}'");
+	    // ...
+	  }
+	}
+
 
 *  FormField->Value()
 *  URLParams passed to a Controller-method
-~~~ {php}
-class MyController extends Controller {
-  function myurlaction($RAW_urlParams) {
-    $SQL_urlParams = Convert::raw2sql($RAW_urlParams); // works recursively on an array
-    $objs = DataObject::get('Player', "Name = '{$SQL_data[OtherID]}'");
-    // ...
-  }
-}
-~~~
+
+	:::php
+	class MyController extends Controller {
+	  function myurlaction($RAW_urlParams) {
+	    $SQL_urlParams = Convert::raw2sql($RAW_urlParams); // works recursively on an array
+	    $objs = DataObject::get('Player', "Name = '{$SQL_data[OtherID]}'");
+	    // ...
+	  }
+	}
+
 
 As a rule of thumb, you should escape your data **as close to querying as possible**.
 This means if you've got a chain of functions passing data through, escaping should happen at the end of the chain.
-~~~ {php}
-class MyController extends Controller {
-  /**
 
-   * @param array $RAW_data All names in an indexed array (not SQL-safe)
-   */
-  function saveAllNames($RAW_data) {
-    // $SQL_data = Convert::raw2sql($RAW_data); // premature escaping
-    foreach($RAW_data as $item) $this->saveName($item);
-  }
+	:::php
+	class MyController extends Controller {
+	  /**
+	
+	   * @param array $RAW_data All names in an indexed array (not SQL-safe)
+	   */
+	  function saveAllNames($RAW_data) {
+	    // $SQL_data = Convert::raw2sql($RAW_data); // premature escaping
+	    foreach($RAW_data as $item) $this->saveName($item);
+	  }
+	
+	  function saveName($RAW_name) {
+	    $SQL_name = Convert::raw2sql($RAW_name);
+	    DB::query("UPDATE Player SET Name = '{$SQL_name}'");
+	  }
+	}
 
-  function saveName($RAW_name) {
-    $SQL_name = Convert::raw2sql($RAW_name);
-    DB::query("UPDATE Player SET Name = '{$SQL_name}'");
-  }
-}
-~~~
 
 This might not be applicable in all cases - especially if you are building an API thats likely to be customized. If you're passing unescaped data, make sure to be explicit about it by writing //phpdoc//-documentation and //prefixing// your variables ($RAW_data instead of $data).
 
@@ -94,22 +97,24 @@ See [http://shiflett.org/articles/foiling-cross-site-attacks](http://shiflett.or
 [SSViewer](SSViewer) (the SilverStripe template engine) automatically takes care of escaping HTML tags from specific object-properties by [casting](casting) its string value into a [DBField](http://api.silverstripe.org/current/sapphire/model/DBField.html) object.
 
 PHP:
-~~~ {php}
-class MyObject extends DataObject {
-  public static $db = array(
-    'MyEscapedValue' => 'Text', // Example value: <b>not bold</b>
-    'MyUnescapedValue' => 'HTMLText' // Example value: <b>bold</b>
-  );
-}
-~~~
+
+	:::php
+	class MyObject extends DataObject {
+	  public static $db = array(
+	    'MyEscapedValue' => 'Text', // Example value: <b>not bold</b>
+	    'MyUnescapedValue' => 'HTMLText' // Example value: <b>bold</b>
+	  );
+	}
+
 
 Template:
-~~~ {php}
-<ul>
-  <li>$MyEscapedValue</li> // output: &lt;b&gt;not bold&lt;b&gt;
-  <li>$MyUnescapedValue</li> // output: <b>bold</b>
-</ul>
-~~~
+
+	:::php
+	<ul>
+	  <li>$MyEscapedValue</li> // output: &lt;b&gt;not bold&lt;b&gt;
+	  <li>$MyUnescapedValue</li> // output: <b>bold</b>
+	</ul>
+
 
 The example below assumes that data wasn't properly filtered when saving to the database, but are escaped before outputting through SSViewer.
 
@@ -118,45 +123,48 @@ The example below assumes that data wasn't properly filtered when saving to the 
 You can force escaping on a casted value/object by using an [escape type](escape-types) method in your template, e.g. "XML" or "ATT". 
 
 Template (see above):
-~~~ {php}
-<ul>
-  // output: <a href="#" title="foo &amp; &#quot;bar&quot;">foo &amp; "bar"</a>
-  <li><a href="#" title="$Title.ATT">$Title</a></li>
-  <li>$MyEscapedValue</li> // output: &lt;b&gt;not bold&lt;b&gt;
-  <li>$MyUnescapedValue</li> // output: <b>bold</b>
-  <li>$MyUnescapedValue.XML</li> // output: &lt;b&gt;bold&lt;b&gt;
-</ul>
-~~~
+
+	:::php
+	<ul>
+	  // output: <a href="#" title="foo &amp; &#quot;bar&quot;">foo &amp; "bar"</a>
+	  <li><a href="#" title="$Title.ATT">$Title</a></li>
+	  <li>$MyEscapedValue</li> // output: &lt;b&gt;not bold&lt;b&gt;
+	  <li>$MyUnescapedValue</li> // output: <b>bold</b>
+	  <li>$MyUnescapedValue.XML</li> // output: &lt;b&gt;bold&lt;b&gt;
+	</ul>
+
 
 ## Escaping custom attributes and getters
 
 Every object attribute or getter method used for template purposes should have its escape type defined through the static //$casting// array. Caution: Casting only applies when using values in a template, not in PHP.
 
 PHP:
-~~~ {php}
-class MyObject extends DataObject {
-	public $Title = '<b>not bold</b>'; // will be escaped due to Text casting
-     
-	$casting = array(
-		"Title" => "Text", // forcing a casting
-		'TitleWithHTMLSuffix' => 'HTMLText' // optional, as HTMLText is the default casting
-	);
-	
-	function TitleWithHTMLSuffix($suffix) {
-		// $this->Title is not casted in PHP
-		return $this->Title . '<small>(' . $suffix. ')</small>';
+
+	:::php
+	class MyObject extends DataObject {
+		public $Title = '<b>not bold</b>'; // will be escaped due to Text casting
+	     
+		$casting = array(
+			"Title" => "Text", // forcing a casting
+			'TitleWithHTMLSuffix' => 'HTMLText' // optional, as HTMLText is the default casting
+		);
+		
+		function TitleWithHTMLSuffix($suffix) {
+			// $this->Title is not casted in PHP
+			return $this->Title . '<small>(' . $suffix. ')</small>';
+		}
 	}
-}
-~~~
+
 
 Template:
-~~~ {php}
-<ul>
-  <li>$Title</li> // output: &lt;b&gt;not bold&lt;b&gt;
-  <li>$Title.RAW</li> // output: <b>not bold</b>
-  <li>$TitleWithHTMLSuffix</li> // output: <b>not bold</b>: <small>(...)</small>
-</ul>
-~~~
+
+	:::php
+	<ul>
+	  <li>$Title</li> // output: &lt;b&gt;not bold&lt;b&gt;
+	  <li>$Title.RAW</li> // output: <b>not bold</b>
+	  <li>$TitleWithHTMLSuffix</li> // output: <b>not bold</b>: <small>(...)</small>
+	</ul>
+
 
 Note: Avoid generating HTML by string concatenation in PHP wherever possible to minimize risk and separate your presentation from business logic.
 
@@ -167,22 +175,24 @@ When using //customise()// or //renderWith()// calls in your controller, or othe
 The [Convert](Convert) class has utilities for this, mainly //Convert::raw2xml()// and //Convert::raw2att()// (which is also used by //XML// and //ATT// in template code).
 
 PHP:
-~~~ {php}
-class MyController extends Controller {
-	function search($request) {
-		$htmlTitle = '<p>Your results for:' . Convert::raw2xml($request->getVar('Query')) . '</p>';
-		return $this->customise(array(
-			'Query' => DBField::create('Text', $request->getVar('Query')),
-			'HTMLTitle' => DBField::create('HTMLText', $htmlTitle)
-		));
+
+	:::php
+	class MyController extends Controller {
+		function search($request) {
+			$htmlTitle = '<p>Your results for:' . Convert::raw2xml($request->getVar('Query')) . '</p>';
+			return $this->customise(array(
+				'Query' => DBField::create('Text', $request->getVar('Query')),
+				'HTMLTitle' => DBField::create('HTMLText', $htmlTitle)
+			));
+		}
 	}
-}
-~~~
+
 
 Template:
-~~~ {php}
-<h2 title="Searching for $Query.ATT">$HTMLTitle</h2>
-~~~
+
+	:::php
+	<h2 title="Searching for $Query.ATT">$HTMLTitle</h2>
+
 
 Whenever you insert a variable into an HTML attribute within a template, use $VarName.ATT, no not $VarName.
 
@@ -193,22 +203,24 @@ You can also use the built-in casting in PHP by using the //obj()// wrapper, see
 Whenever you are generating a URL that contains querystring components based on user data, use urlencode() to escape the user data, not //Convert::raw2att()//.  Use raw ampersands in your URL, and cast the URL as a "Text" DBField:
 
 PHP:
-~~~ {php}
-class MyController extends Controller {
-	function search($request) {
-		$rssRelativeLink = "/rss?Query=" . urlencode($_REQUEST['query']) . "&sortOrder=asc";
-		$rssLink = Controller::join_links($this->Link(), $rssRelativeLink);
-		return $this->customise(array(
-			"RSSLink" => DBField::create("Text", $rssLink),
-		));
+
+	:::php
+	class MyController extends Controller {
+		function search($request) {
+			$rssRelativeLink = "/rss?Query=" . urlencode($_REQUEST['query']) . "&sortOrder=asc";
+			$rssLink = Controller::join_links($this->Link(), $rssRelativeLink);
+			return $this->customise(array(
+				"RSSLink" => DBField::create("Text", $rssLink),
+			));
+		}
 	}
-}
-~~~
+
 
 Template:
-~~~ {php}
-<a href="$RSSLink.ATT">RSS feed</a>
-~~~
+
+	:::php
+	<a href="$RSSLink.ATT">RSS feed</a>
+
 
 Some rules of thumb:
 
@@ -221,9 +233,10 @@ Some rules of thumb:
 SilverStripe has built-in countermeasures against this type of identity theft for all form submissions. A form object will automatically contain a //SecurityID// parameter which is generated as a secure hash on the server, connected to the currently active session of the user. If this form is submitted without this parameter, or if the parameter doesn't match the hash stored in the users session, the request is discarded.
 
 If you know what you're doing, you can disable this behaviour:
-~~~ {php}
-$myForm->disableSecurityToken();
-~~~
+
+	:::php
+	$myForm->disableSecurityToken();
+
 
 See [http://shiflett.org/articles/cross-site-request-forgeries](http://shiflett.org/articles/cross-site-request-forgeries)
 
@@ -239,22 +252,22 @@ For example: a page with the URL paramaters //mysite.com/home/add/1// requires t
 
 Below is an example with different ways you would use this casting technique:
 
-~~~ {php}
-function CaseStudies() {
+	:::php
+	function CaseStudies() {
+	
+	   // cast an ID from URL parameters e.g. (mysite.com/home/action/ID)
+	   $anotherID = (int)Director::urlParams['ID'];
+	
+	   // perform a calculation, the prerequisite being $anotherID must be an integer
+	   $calc = $anotherID + (5 - 2) / 2;
+	
+	   // cast the 'category' GET variable as an integer
+	   $categoryID = (int)$_GET['category'];
+	
+	   // perform a get_by_id, ensure the ID is an integer before querying
+	   return DataObject::get_by_id('CaseStudy', $categoryID);
+	}
 
-   // cast an ID from URL parameters e.g. (mysite.com/home/action/ID)
-   $anotherID = (int)Director::urlParams['ID'];
-
-   // perform a calculation, the prerequisite being $anotherID must be an integer
-   $calc = $anotherID + (5 - 2) / 2;
-
-   // cast the 'category' GET variable as an integer
-   $categoryID = (int)$_GET['category'];
-
-   // perform a get_by_id, ensure the ID is an integer before querying
-   return DataObject::get_by_id('CaseStudy', $categoryID);
-}
-~~~
 
 The same technique can be employed anywhere in your PHP code you know something must be of a certain type. A list of PHP cast types can be found here:
 
@@ -277,23 +290,25 @@ Note that there is also a 'SilverStripe' way of casting fields on a class, this 
 As all uploaded files are stored by default on the /assets-directory, you should disallow script-execution for this folder. This is just an additional security-measure to making sure you avoid directory-traversal, check for filesize and disallow certain filetypes.
 
 Example configuration for Apache2:
-~~~
-<VirtualHost *:80>
-  ...
-  <LocationMatch assets/>
-    php_flag engine off
-    Options -ExecCGI -Includes -Indexes
-  </LocationMatch>
-</VirtualHost>
-~~~
+
+	
+	<VirtualHost *:80>
+	  ...
+	  <LocationMatch assets/>
+	    php_flag engine off
+	    Options -ExecCGI -Includes -Indexes
+	  </LocationMatch>
+	</VirtualHost>
+
 
 If you are using shared hosting or in a situation where you cannot alter your Vhost definitions, you can use a .htaccess file in the assets directory.  This requires PHP to be loaded as an Apache module (not CGI or FastCGI).
 
 **/assets/.htaccess**
-~~~
-php_flag engine off
-Options -ExecCGI -Includes -Indexes 
-~~~
+
+	
+	php_flag engine off
+	Options -ExecCGI -Includes -Indexes 
+
 
 #  Related
 

@@ -9,11 +9,12 @@ First we need to add an image field to our page so we have somewhere to store ou
 If we want to add an Image to our database we need to add it in the $has_one array (at the top) of a type 'Image'
 
 ** mysite/code/Page.php **
-~~~ {php}
- static $has_one = array(
-   'BannerImage' => 'Image'
- );
-~~~
+
+	:::php
+	 static $has_one = array(
+	   'BannerImage' => 'Image'
+	 );
+
 
 Now visit yoursite.com/dev/build and recreate our database. 
 
@@ -22,13 +23,14 @@ Now visit yoursite.com/dev/build and recreate our database.
 We need to add a field to the CMS so that we can upload a image. So underneath that $db array we need to add this getCMSFields function which overloads the CMS so we can add our field
 
 ** mysite/code/Page.php **
-~~~ {php}
-function getCMSFields() {
-  $fields = parent::getCMSFields();
-  $fields->addFieldToTab("Root.MyBannerImage", new ImageField("BannerImage"));
-  return $fields;
-}
-~~~
+
+	:::php
+	function getCMSFields() {
+	  $fields = parent::getCMSFields();
+	  $fields->addFieldToTab("Root.MyBannerImage", new ImageField("BannerImage"));
+	  return $fields;
+	}
+
 
 Now reload the admin panel and you should be able to click a page and you should have a MyImage Tab
 
@@ -37,11 +39,12 @@ Now reload the admin panel and you should be able to click a page and you should
 If you upload the image at the correct size all you need to do to output that image is to add a $MyImage varible to the template file.
 
 ** themes/blackcandy/templates/Page.ss **
-~~~ {php}
-..
-$BannerImage
-..
-~~~
+
+	:::php
+	..
+	$BannerImage
+	..
+
 
 Thats all you need to do to create an image upload form and to output it in your template. But perhaps you want to do some more fancy stuff with that image? Like dynamically resize it? Read on
 
@@ -56,28 +59,30 @@ We defined the Image field in the $has_one array as a type of Image. Now we can 
 How does that work? well we created a Image field in the Page class called 'BannerImage' so in Page.php we can define another class called Page_BannerImage which extends Image. This enables us to add methods to image. Eg generate different versions of that same image!. In the example below we want our banner to be a set size without touching the original image.
 
 ** mysite/code/Page.php **
-~~~ {php}
-class Page_Controller extends ContentController {
-  ...
-}
-class Page_BannerImage extends Image {
 
-  function generatePageBanner($gd) {
-    $gd->setQuality(100);
-    return $gd->paddedResize(619,154);
-  }
+	:::php
+	class Page_Controller extends ContentController {
+	  ...
+	}
+	class Page_BannerImage extends Image {
+	
+	  function generatePageBanner($gd) {
+	    $gd->setQuality(100);
+	    return $gd->paddedResize(619,154);
+	  }
+	
+	}
 
-}
-~~~
 
 Now, we need to change the has_one relation for the image:
 
 ** mysite/code/Page.php **
-~~~ {php}
- static $has_one = array(
-   'BannerImage' => 'Page_BannerImage'
- );
-~~~
+
+	:::php
+	 static $has_one = array(
+	   'BannerImage' => 'Page_BannerImage'
+	 );
+
 
 Lets step through this:
 
@@ -91,15 +96,15 @@ return $gd->paddedResize is telling the GD libraries to resize at this size, pad
 
 ## Using it in your template
 
-~~~ {html}
-<% if BannerImage.PageBanner %>
- <img class="headerImage" src="$BannerImage.PageBanner.URL" alt="Header banner" />
-<% else %>
- <% control Page(home) %>
-  <img class="headerImage" src="$BannerImage.PageBanner.URL" alt="Header banner" />
- <% end_control %>
-<% end_if %>
-~~~
+	:::html
+	<% if BannerImage.PageBanner %>
+	 <img class="headerImage" src="$BannerImage.PageBanner.URL" alt="Header banner" />
+	<% else %>
+	 <% control Page(home) %>
+	  <img class="headerImage" src="$BannerImage.PageBanner.URL" alt="Header banner" />
+	 <% end_control %>
+	<% end_if %>
+
 
 Above is an example of using the BannerImage code that I wrote above in the Page.ss template.
 
@@ -113,15 +118,15 @@ You may also notice that there is else logic in this statement. What this does i
 
 You can also call [GD functions](http://doc.silverstripe.com/doku.php?id=gd) from the template, which will call the same image generation functions.
 
-~~~ {html}
-<div id"Image">
-<% control Image %>
-  <% control ResizedImage(150,50) %>
-   <img src="$URL" alt="My resized Image" width="150px" height"50px" />
-  <% end_control %>
- <% end_control %>
-</div>
-~~~
+	:::html
+	<div id"Image">
+	<% control Image %>
+	  <% control ResizedImage(150,50) %>
+	   <img src="$URL" alt="My resized Image" width="150px" height"50px" />
+	  <% end_control %>
+	 <% end_control %>
+	</div>
+
 
 ## Template Image Resizing Functions
 

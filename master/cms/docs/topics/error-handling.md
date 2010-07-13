@@ -44,45 +44,49 @@ An HTTP 500 error will be sent when there has been a fatal error on either a tes
 You can indicate a log file relative to the site root. The named file will have a terse log sent to it, and the full log (an encoded file containing backtraces and things) will go to a file of a similar name, but with the suffix ".full" added.
 
 <mysite>/_config.php:
-~~~ {php}
-// log errors and warnings
-SS_Log::add_writer(new SS_LogFileWriter('/my/logfile/path'), SS_Log::WARN, '<=');
-// or just errors
-SS_Log::add_writer(new SS_LogFileWriter('/my/logfile/path'), SS_Log::ERR);
-~~~
+
+	:::php
+	// log errors and warnings
+	SS_Log::add_writer(new SS_LogFileWriter('/my/logfile/path'), SS_Log::WARN, '<=');
+	// or just errors
+	SS_Log::add_writer(new SS_LogFileWriter('/my/logfile/path'), SS_Log::ERR);
+
 
 #### Deprecated method (SS 2.3 ?)
 
 <mysite>/_config.php:
-~~~ {php}
-Debug::log_errors_to("/my/logfile/path");
-~~~
+
+	:::php
+	Debug::log_errors_to("/my/logfile/path");
+
 
 ### From PHP
 
 In addition to SilverStripe-integrated logging, it is adviseable to fall back to PHPs native logging functionality. A script might terminate before it reaches the SilverStripe errorhandling, for example in the case of a fatal error.
 
 <mysite>/_config.php:
-~~~ {php}
-ini_set("log_errors", "On");
-ini_set("error_log", "/my/logfile/path");
-~~~
+
+	:::php
+	ini_set("log_errors", "On");
+	ini_set("error_log", "/my/logfile/path");
+
 
 
 ## Email Logs
 
 You can send both fatal errors and warnings in your code to a specified email-address.
 <mysite>/_config.php:
-~~~ {php}
-// log errors and warnings
-SS_Log::add_writer(new SS_LogEmailWriter('admin@domain.com'), SS_Log::WARN, '<=');
-// or just errors
-SS_Log::add_writer(new SS_LogEmailWriter('admin@domain.com'), SS_Log::ERR);
-~~~
+
+	:::php
+	// log errors and warnings
+	SS_Log::add_writer(new SS_LogEmailWriter('admin@domain.com'), SS_Log::WARN, '<=');
+	// or just errors
+	SS_Log::add_writer(new SS_LogEmailWriter('admin@domain.com'), SS_Log::ERR);
+
 
 #### Deprecated method (SS 2.3 ?)
 
-~~~ {php}
-Debug::send_errors_to("developer@example.org");
-Debug::send_warnings_to("developer@example.org"); // Optional, implied by send_errors_to()
-~~~
+	:::php
+	Debug::send_errors_to("developer@example.org");
+	Debug::send_warnings_to("developer@example.org"); // Optional, implied by send_errors_to()
+

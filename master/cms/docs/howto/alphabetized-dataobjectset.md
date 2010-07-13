@@ -21,21 +21,22 @@ Batman\\
 The solution has 2 components, a function we've called Letters that looks like this:
 
 ----
-~~~ {php}
-function Letters() { 
-      $set = new DataObjectSet(); 
-      $letters = range('A','Z');
-      foreach($letters as $letter) { 
-         $filter = "Title Like '$letter%'"; 
-         $set->push(new ArrayData(array( 
-            'Letter' => $letter, 
-            'Listings' => $this->Films($filter,"Title ASC") 
-            )) 
-         ); 
-      } 
-      return $set; 
-}
-~~~
+
+	:::php
+	function Letters() { 
+	      $set = new DataObjectSet(); 
+	      $letters = range('A','Z');
+	      foreach($letters as $letter) { 
+	         $filter = "Title Like '$letter%'"; 
+	         $set->push(new ArrayData(array( 
+	            'Letter' => $letter, 
+	            'Listings' => $this->Films($filter,"Title ASC") 
+	            )) 
+	         ); 
+	      } 
+	      return $set; 
+	}
+
 ----
 
 
@@ -55,7 +56,8 @@ And a corresponding template that looks like this:
 ----
 
 Note: if you don't have a relationship available to grab films using $this->Films() you can always do it the old fashioned way using this instead
-~~~ {php}
-'Listings' => DataObject::get('Films',$filter,'Title ASC');
-~~~
+
+	:::php
+	'Listings' => DataObject::get('Films',$filter,'Title ASC');
+
 

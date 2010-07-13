@@ -8,15 +8,15 @@ In some cases, it can be easier to completely replace the used class throughout 
 
 Your Decorator will nee to be a subclass of DataObjectDecorator or the Extension class.
 
-~~~ {php}
-<?php
+	:::php
+	<?php
+	
+	// mysite/code/CustomMember.php
+	
+	class CustomMember extends DataObjectDecorator {
+	
+	}
 
-// mysite/code/CustomMember.php
-
-class CustomMember extends DataObjectDecorator {
-
-}
-~~~
 
 This defines your own extension where you can add your own functions, database fields or other properties you want. After you create this extension however it does not yet apply it to your object. Next you need to tell SilverStripe what class you want to extend.
 
@@ -25,44 +25,44 @@ This defines your own extension where you can add your own functions, database f
 Sometimes you will want to add decorators to classes that you didn't make.  For example, you might want to add the ForumRole decorator to the Member object.
 
 
-~~~ {php}
-Object::add_extension('Class You Want To Override', 'Your Class Name');
-~~~
+	:::php
+	Object::add_extension('Class You Want To Override', 'Your Class Name');
+
 
 For example above we want to override Member with a Custom Member so we would write the following
 
-~~~ {php}
-// add to mysite/_config.php
-
-Object::add_extension('Member', 'CustomMember');</code>
-
-
-
-##  Implementation
-
-
-###  Adding extra database fields
-
-Extra database fields can be added with a decorator by defining an **extraStatics()** method.  These will be added to the table of the base object - the decorator will actually edit the $db, $has_one, etc static variables on load.
-
-The function should return a map where the keys are the names of the static variables to update:
-<code php>
-<?php
-
-class CustomMember extends DataObjectDecorator {
-
-	function extraStatics() {
-		return array(
-			'db' => array(
-				'AvatarURL' => 'Varchar',
-			),
-			'has_one' => array(
-				'RelatedMember' => 'Member',
-			),
-		);
+	:::php
+	// add to mysite/_config.php
+	
+	Object::add_extension('Member', 'CustomMember');</code>
+	
+	
+	
+	##  Implementation
+	
+	
+	###  Adding extra database fields
+	
+	Extra database fields can be added with a decorator by defining an **extraStatics()** method.  These will be added to the table of the base object - the decorator will actually edit the $db, $has_one, etc static variables on load.
+	
+	The function should return a map where the keys are the names of the static variables to update:
+	<code php>
+	<?php
+	
+	class CustomMember extends DataObjectDecorator {
+	
+		function extraStatics() {
+			return array(
+				'db' => array(
+					'AvatarURL' => 'Varchar',
+				),
+				'has_one' => array(
+					'RelatedMember' => 'Member',
+				),
+			);
+		}
 	}
-}
-~~~
+
 
 #### NOTE
 
@@ -73,22 +73,22 @@ If you want to add has_one or db items to a particular class, then that class **
 
 The member class demonstrates an extension that allows you to update the default CMS fields for an object in a decorator:
 
-~~~ {php}
-public function getCMSFields() {
-   ...
-   $this->extend('updateCMSFields', $fields);
-   return $fields;
-}
-~~~
+	:::php
+	public function getCMSFields() {
+	   ...
+	   $this->extend('updateCMSFields', $fields);
+	   return $fields;
+	}
+
 
 The $fields parameter is passed by reference, as it is an object.
 
-~~~ {php}
-public function updateCMSFields(FieldSet $fields) {
-   $fields->push(new TextField('Position', 'Position Title'));
-   $fields->push(new ImageField('Image', 'Profile Image'));
-}
-~~~
+	:::php
+	public function updateCMSFields(FieldSet $fields) {
+	   $fields->push(new TextField('Position', 'Position Title'));
+	   $fields->push(new ImageField('Image', 'Profile Image'));
+	}
+
 
 
 ## Custom database generation
@@ -123,35 +123,35 @@ This is as simple as defining a method called publish() on your decorator.  Bear
 
 If you want to add your own internal properties, you can add this to the DataObjectDecorator, and these will be referred to as $this->propertyName.  Every DataObject has an associated DataObjectDecorator instance for each class that it is decorated by.
 
-~~~ {php}
-class Customer extends DataObject {
+	:::php
+	class Customer extends DataObject {
+	
+	 static $has_one = array('Account'=>'Account');
+	
+	 static $extensions = array(
+	    'CustomerWorkflow'
+	 );
+	
+	}
+	
+	class Account extends DataObject {
+	
+	 static $db = array(
+	     'IsMarkedForDeletion'=>'Boolean'
+	 );
+	
+	 static $has_many = array('Customers'=>'Customer');
+	
+	}
+	
+	class CustomerWorkflow extends DataObjectDecorator {
+	
+	 function IsMarkedForDeletion() {
+	     return ($this->owner->Account()->IsMarkedForDeletion == 1) ? true : false;
+	 }
+	
+	}
 
- static $has_one = array('Account'=>'Account');
-
- static $extensions = array(
-    'CustomerWorkflow'
- );
-
-}
-
-class Account extends DataObject {
-
- static $db = array(
-     'IsMarkedForDeletion'=>'Boolean'
- );
-
- static $has_many = array('Customers'=>'Customer');
-
-}
-
-class CustomerWorkflow extends DataObjectDecorator {
-
- function IsMarkedForDeletion() {
-     return ($this->owner->Account()->IsMarkedForDeletion == 1) ? true : false;
- }
-
-}
-~~~
 
 # API Documentation
 

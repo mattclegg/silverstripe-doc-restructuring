@@ -40,15 +40,16 @@ These are defined in the data-object and so can be used as nested page controls.
 ## Conditional Logic
 
 SilverStripe supports a simple set of conditional logic
-~~~ {html}
-<% if Foo %>
-// if Foo is true or an object do this
-<% else_if Bar %>
-// if Bar is true or an object do this
-<% else %>
-// then do this by default
-<% end_if %>
-~~~
+
+	:::html
+	<% if Foo %>
+	// if Foo is true or an object do this
+	<% else_if Bar %>
+	// if Bar is true or an object do this
+	<% else %>
+	// then do this by default
+	<% end_if %>
+
 
 See more information on conditional logic on http://doc.silverstripe.org/doku.php?id=templates#if_blocks
 
@@ -97,27 +98,29 @@ These return different linking modes.  $LinkingMode provides the greatest contro
 
 A useful way of using this is in your menus. You can use the following code below to generate an class="current" or class="section" on your links. Take the following code
 
-~~~ {html}
-<li><a href="$Link" class="$LinkingMode">$Title</a></li>
-~~~
+	:::html
+	<li><a href="$Link" class="$LinkingMode">$Title</a></li>
+
 
 When viewed on the Home page it will render like this
-~~~ {html}
-<li><a href="home/" class="current">Home</a></li>
-~~~
+
+	:::html
+	<li><a href="home/" class="current">Home</a></li>
+
 
 $LinkOrCurrent ignores the section status, returning link instead.  $LinkOrSection ingores the current status, returning section instead.  Both of these options can simplify your CSS when you only have 2 different cases to consider.
 
 ##### <% if LinkOrCurrent = current %>
 
 This is an alternative way to set up your menus - if you want different HTML for the current menu item, you can do something like this:
-~~~ {html}
-<% if LinkOrCurrent = current %>
-<strong>$Title</strong>
-<% else %>
-<a href="$Link">$Title</a>
-<% end_if %>
-~~~
+
+	:::html
+	<% if LinkOrCurrent = current %>
+	<strong>$Title</strong>
+	<% else %>
+	<a href="$Link">$Title</a>
+	<% end_if %>
+
 
 ##### <% if LinkOrSection = section %>
 
@@ -140,16 +143,17 @@ This is the title that you should put into navigation menus.  CMS authors can ch
 ##### $Title
 
 This is the title of the page which displays in the browser window and usually is the title of the page.
-~~~ {html}
-<h1>$Title</h1>
-~~~
+
+	:::html
+	<h1>$Title</h1>
+
 ##### $URLSegment
 
 This returns the part of the URL of the page you're currently on. Could be handy to use as an id on your body-tag. ( when doing this, watch out that it doesn't create invalid id-attributes though.). This is useful for adding a class to the body so you can target certain pages. Watch out for pages named clear or anything you might have used in your CSS file
 
-~~~ {html}
-<body class="$URLSegment">
-~~~
+	:::html
+	<body class="$URLSegment">
+
 
 #####  $ClassName
 
@@ -164,16 +168,18 @@ Returns the base URL for the current site. This is used to populate the ''<base>
 ##### <% control CurrentMember %>, <% if CurrentMember %> or $CurrentMember.FirstName
 
 CurrentMember returns the currently logged in member, if there is one.  All of their details or any special Member page controls can be called on this.  Alternately, you can use <% if CurrentMember %> to detect whether someone has logged in. To Display a welcome message you can do
-~~~ {html}
-<% if CurrentMember %>
-  Welcome Back, $CurrentMember.FirstName
-<% end_if %>
-~~~
+
+	:::html
+	<% if CurrentMember %>
+	  Welcome Back, $CurrentMember.FirstName
+	<% end_if %>
+
 
 If the user is logged in this will print out
-~~~ {html}
-Welcome Back, Admin
-~~~
+
+	:::html
+	Welcome Back, Admin
+
  
 ##### <% if PastMember %>, <% if PastVisitor %>
 
@@ -216,13 +222,13 @@ $TotalItems will return the number of items on this page of the datafeed, and Po
 
 When you're inside a control loop in your template, and want to reference methods on the current controller you're on, breaking out of the loop to get it, you can use $Top to do so. For example:
 
-~~~ {html}
-$URLSegment
-<% control News %>
-   $URLSegment <!-- may not return anything, as you're requesting URLSegment on the News objects -->
-   $Top.URLSegment <!-- returns the same as $URLSegment above -->
-<% end_control %>
-~~~
+	:::html
+	$URLSegment
+	<% control News %>
+	   $URLSegment <!-- may not return anything, as you're requesting URLSegment on the News objects -->
+	   $Top.URLSegment <!-- returns the same as $URLSegment above -->
+	<% end_control %>
+
 
 #  Properties of a datafeed itself, rather than one of its items
 

@@ -38,20 +38,21 @@ Warning: If you're upgrading from a SilverStripe version prior to 2.3.2, please 
 ### ThroughObject::add_extension()====
 
 Enabling Translatable through //Object::add_extension()// in your //mysite/_config.php//:
-~~~ {php}
-Object::add_extension('SiteTree', 'Translatable');
-Object::add_extension('SiteConfig', 'Translatable'); // 2.4 or newer only
-~~~
+
+	:::php
+	Object::add_extension('SiteTree', 'Translatable');
+	Object::add_extension('SiteConfig', 'Translatable'); // 2.4 or newer only
+
 
 ### Through$extensions====
 
-~~~ {php}
-class Page extends SiteTree {
-  static $extensions = array(
-    "Translatable"
-  );
-}
-~~~
+	:::php
+	class Page extends SiteTree {
+	  static $extensions = array(
+	    "Translatable"
+	  );
+	}
+
 
 Make sure to rebuild the database through /dev/build after enabling translatable.
 Use the correct set_default_locale() before building the database
@@ -62,11 +63,12 @@ for the first time, as this locale will be written on all new records.
 Important: If the "default language" of your site is not english (en_US), 
 please ensure to set the appropriate default language for
 your content before building the database with Translatable enabled:
-~~~ {php}
-Translatable::set_default_locale(<locale>);
-// Important: Call add_extension() after setting the default locale
-Object::add_extension('SiteTree', 'Translatable');
-~~~
+
+	:::php
+	Translatable::set_default_locale(<locale>);
+	// Important: Call add_extension() after setting the default locale
+	Object::add_extension('SiteTree', 'Translatable');
+
 
 For the Translatable class, a "locale" consists of a language code plus a region code separated by an underscore, 
 for example "de_AT" for German language ("de") in the region Austria ("AT").
@@ -75,30 +77,34 @@ See http://www.w3.org/International/articles/language-tags/ for a detailed descr
 =====Usage=====
 
 Getting a translation for an existing instance: 
-~~~ {php}
-$translatedObj = Translatable::get_one_by_locale('MyObject', 'de_DE');
-~~~
+
+	:::php
+	$translatedObj = Translatable::get_one_by_locale('MyObject', 'de_DE');
+
 
 Getting a translation for an existing instance: 
-~~~ {php}
-$obj = DataObject::get_by_id('MyObject', 99); // original language
-$translatedObj = $obj->getTranslation('de_DE');
-~~~
+
+	:::php
+	$obj = DataObject::get_by_id('MyObject', 99); // original language
+	$translatedObj = $obj->getTranslation('de_DE');
+
 
 Getting translations through Translatable::set_reading_locale().
 This is *not* a recommended approach, but sometimes inavoidable (e.g. for Versioned methods).
-~~~ {php}
-$origLocale = Translatable::get_reading_locale();
-Translatable::set_reading_locale('de_DE');
-$obj = Versioned::get_one_by_stage('MyObject', "ID = 99");
-Translatable::set_reading_locale($origLocale);
-~~~
+
+	:::php
+	$origLocale = Translatable::get_reading_locale();
+	Translatable::set_reading_locale('de_DE');
+	$obj = Versioned::get_one_by_stage('MyObject', "ID = 99");
+	Translatable::set_reading_locale($origLocale);
+
 
 Creating a translation: 
-~~~ {php}
-$obj = new MyObject();
-$translatedObj = $obj->createTranslation('de_DE');
-~~~
+
+	:::php
+	$obj = new MyObject();
+	$translatedObj = $obj->createTranslation('de_DE');
+
 
 
 ## Usage forSiteTree=====
@@ -117,14 +123,14 @@ through the Versioned extension.
 Note: You can't get Children() for a parent page in a different language
 through set_reading_locale(). Get the translated parent first.
 
-~~~ {php}
-// wrong
-Translatable::set_reading_lang('de_DE');
-$englishParent->Children(); 
-// right
-$germanParent = $englishParent->getTranslation('de_DE');
-$germanParent->Children();
-~~~
+	:::php
+	// wrong
+	Translatable::set_reading_lang('de_DE');
+	$englishParent->Children(); 
+	// right
+	$germanParent = $englishParent->getTranslation('de_DE');
+	$germanParent->Children();
+
 
 
 
@@ -135,36 +141,36 @@ Keep in mind that the Translatable extension currently doesn't support the exclu
 
 The Translatable decorator applies only to the getCMSFields() method on DataObject or SiteTree, not to any fields added in overloaded getCMSFields() implementations. See Translatable->updateCMSFields() for details. By default, custom fields in the CMS won't show an original readonly value on a translated record, although they will save correctly. You can attach this behaviour to custom fields by using Translatable_Transformation as shown below.
 
-~~~ {php}
-class Page extends SiteTree {
-	
-	public static $db = array(
-		'AdditionalProperty' => 'Text', 
-	);
-	
-	function getCMSFields() {
-		$fields = parent::getCMSFields();
-
-		// Add fields as usual
-		$additionalField = new TextField('AdditionalProperty');
-		$fields->addFieldToTab('Root.Content.Main', $additionalField);
+	:::php
+	class Page extends SiteTree {
 		
-		// If a translation exists, exchange them with 
-		// original/translation field pairs
-		$translation = $this->getTranslation(Translatable::default_locale());
-		if($translation) {
-			$transformation = new Translatable_Transformation($translation);
-			$fields->replaceByName(
-				'AdditionalProperty',
-				$transformation->transformFormField($additionalField)
-			);
-		}
-
-		return $fields;
-	}
+		public static $db = array(
+			'AdditionalProperty' => 'Text', 
+		);
+		
+		function getCMSFields() {
+			$fields = parent::getCMSFields();
 	
-}
-~~~
+			// Add fields as usual
+			$additionalField = new TextField('AdditionalProperty');
+			$fields->addFieldToTab('Root.Content.Main', $additionalField);
+			
+			// If a translation exists, exchange them with 
+			// original/translation field pairs
+			$translation = $this->getTranslation(Translatable::default_locale());
+			if($translation) {
+				$transformation = new Translatable_Transformation($translation);
+				$fields->replaceByName(
+					'AdditionalProperty',
+					$transformation->transformFormField($additionalField)
+				);
+			}
+	
+			return $fields;
+		}
+		
+	}
+
 
 
 ## Translating theHomepage=====
@@ -210,9 +216,10 @@ HTML-templates adjust to this.
 Important: If the "default language" of your site is not english (en_US), 
 please ensure to set the appropriate default language for
 your content before building the database with Translatable enabled:
-~~~ {php}
-Translatable::set_default_locale(<locale>);
-~~~
+
+	:::php
+	Translatable::set_default_locale(<locale>);
+
 
  *
 ## Locales and languagetags=====
@@ -238,19 +245,20 @@ A widget now exists to switch between languages, and is [available here](http://
 
 ### By URL
 
-~~~ {php}
-http://<mysite>/mypage/?locale=de_DE
-~~~
+	:::php
+	http://<mysite>/mypage/?locale=de_DE
+
 
 ### By User Preference
 
 Place this in your Page_Controller->init() method:
-~~~ {php}
-$member = Member::currentUser();
-if($member && $member->Locale) {
-	Translatable::set_reading_locale($member->Locale);
-}
-~~~
+
+	:::php
+	$member = Member::currentUser();
+	if($member && $member->Locale) {
+		Translatable::set_reading_locale($member->Locale);
+	}
+
 
 
 ### Templates
@@ -258,20 +266,20 @@ if($member && $member->Locale) {
 As every page has its own unique URL, language selection mostly happens explicitly: A user requests a page, which always has only one language. But how does a user coming to your English default language know that there's a Japanese version of this page? 
 By default, SilverStripe core doesn't provide any switching of languages through sessions or browser cookies. As a SEO-friendly CMS, it contains all this information in the URL. Each page in SilverStripe is aware of its translations through the //getTranslations()// method. We can use this method in our template to build a simple language switcher. It shows all available translations in an unordered list with links to the same page in a different language. The example below can be inserted in any of your templates, for example //themes/blackcandy/templates/Layout/Page.ss//.
 
-~~~ {php}
-<% if Translations %>
-<ul class="translations">
-<% control Translations %>
-  <li class="$Locale.RFC1766">
-    <a href="$Link" hreflang="$Locale.RFC1766" 
-title="$Title">
-    <% sprintf(_t('SHOWINPAGE','Show page in %s'),$Locale.Nice) %>
-   </a>
-  </li>
-<% end_control %>
-</ul>
-<% end_if %>
-~~~
+	:::php
+	<% if Translations %>
+	<ul class="translations">
+	<% control Translations %>
+	  <li class="$Locale.RFC1766">
+	    <a href="$Link" hreflang="$Locale.RFC1766" 
+	title="$Title">
+	    <% sprintf(_t('SHOWINPAGE','Show page in %s'),$Locale.Nice) %>
+	   </a>
+	  </li>
+	<% end_control %>
+	</ul>
+	<% end_if %>
+
 
 Keep in mind that this will only show you available translations for the current page. The $Locale.Nice casting will just work if your locale value is registered in i18n::get_common_locales().
 
@@ -279,30 +287,33 @@ Keep in mind that this will only show you available translations for the current
 
 If you want to put static links in your template, which link to a site by their url, normally you can use the <% control Page(page-url) %>. For sites which use Translatable, this is not possible for more than one language, because the url's of different pages differ.
 For this case place the following function in your Page_Controller:
-~~~ {php}
-public function PageByLang($url, $lang) {
-    $SQL_url = Convert::raw2sql($url);
-    $SQL_lang = Convert::raw2sql($lang);
 
-    $page = Translatable::get_one_by_lang('SiteTree', $SQL_lang, "URLSegment = '$SQL_url'");
+	:::php
+	public function PageByLang($url, $lang) {
+	    $SQL_url = Convert::raw2sql($url);
+	    $SQL_lang = Convert::raw2sql($lang);
+	
+	    $page = Translatable::get_one_by_lang('SiteTree', $SQL_lang, "URLSegment = '$SQL_url'");
+	
+	    if ($page->Locale != Translatable::get_current_locale()) {
+	        $page = $page->getTranslation(Translatable::get_current_locale());
+	    }
+	    return $page;
+	}
 
-    if ($page->Locale != Translatable::get_current_locale()) {
-        $page = $page->getTranslation(Translatable::get_current_locale());
-    }
-    return $page;
-}
-~~~
 So, for example if you have a german page "Kontakt", which should be translated to english as "Contact", you may use:
-~~~
-<% control PageByLang(Kontakt,de_DE) %>
-~~~
+
+	
+	<% control PageByLang(Kontakt,de_DE) %>
+
 The control displays the link in the right language, depending on the current locale.\\
 Example:
-~~~
-<% control PageByLang(Kontakt,de_DE) %>
- <h2><a href="$Link" title="$Title">$Title</a></h2>
-<% end_control %>
-~~~
+
+	
+	<% control PageByLang(Kontakt,de_DE) %>
+	 <h2><a href="$Link" title="$Title">$Title</a></h2>
+	<% end_control %>
+
 
 ### Language Chooser Widget
 
@@ -334,24 +345,25 @@ Please see the [class documentation](http://api.silverstripe.org/trunk/sapphire/
 
 You can set the i18n locale value which is used to format dates, currencies and other regionally different values to the same as your current page locale. 
 
-~~~ {php}
-class Page_Controller extends ContentController {
-	public function init() {
-		parent::init();
-	
-		if($this->dataRecord->hasExtension('Translatable')) {
-			i18n::set_locale($this->dataRecord->Locale);
+	:::php
+	class Page_Controller extends ContentController {
+		public function init() {
+			parent::init();
+		
+			if($this->dataRecord->hasExtension('Translatable')) {
+				i18n::set_locale($this->dataRecord->Locale);
+			}
 		}
 	}
-}
-~~~
+
 
 ## Add new locales
 
 The i18n logic has lookup tables for common locales in i18n::$common_locales, which is a subset of i18n::$all_locales. If your locale is not present here, you can simply add it through mysite/_config.php:
-~~~ {php}
-i18n::$common_locales['de_AT'] = 'Deutsch (Oestereich)';
-~~~
+
+	:::php
+	i18n::$common_locales['de_AT'] = 'Deutsch (Oestereich)';
+
 This should e.g. enable you to use ''$Locale.Nice'' in template code.
 
 

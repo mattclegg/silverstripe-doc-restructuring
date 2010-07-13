@@ -20,54 +20,55 @@ We will be creating a form for a poll on the home page.
 The poll will ask the user's name and favourite web browser, and then collate the results into a bar graph. We create the form in a method on //HomePage_Controller//.
 
 //mysite/code/HomePage.php//
-~~~ {php}
-...
 
-class HomePage_Controller extends Page_Controller {
-   ...
+	:::php
+	...
+	
+	class HomePage_Controller extends Page_Controller {
+	   ...
+	
+	   function BrowserPollForm() {
+	      // Create fields
+	      $fields = new FieldSet(
+	         new TextField('Name'),
+	         new OptionsetField('Browser', 'Your Favourite Browser', array(
+	            'Firefox' => 'Firefox',
+	            'Internet Explorer' => 'Internet Explorer',
+	            'Safari' => 'Safari',
+	            'Opera' => 'Opera',
+	            'Lynx' => 'Lynx'
+	         ))
+	      );
+	
+	      // Create actions
+	      $actions = new FieldSet(
+	         new FormAction('doBrowserPoll', 'Submit')
+	      );
+	
+	      return new Form($this, 'BrowserPollForm', $fields, $actions);
+	   }
+	
+	   ...
+	}
+	
+	...
 
-   function BrowserPollForm() {
-      // Create fields
-      $fields = new FieldSet(
-         new TextField('Name'),
-         new OptionsetField('Browser', 'Your Favourite Browser', array(
-            'Firefox' => 'Firefox',
-            'Internet Explorer' => 'Internet Explorer',
-            'Safari' => 'Safari',
-            'Opera' => 'Opera',
-            'Lynx' => 'Lynx'
-         ))
-      );
-
-      // Create actions
-      $actions = new FieldSet(
-         new FormAction('doBrowserPoll', 'Submit')
-      );
-
-      return new Form($this, 'BrowserPollForm', $fields, $actions);
-   }
-
-   ...
-}
-
-...
-~~~
 
 Let's step through this code.
 
-~~~ {php}
-      // Create fields
-      $fields = new FieldSet(
-         new TextField('Name'),
-         new OptionsetField('Browser', 'Your Favourite Browser', array(
-            'Firefox' => 'Firefox',
-            'Internet Explorer' => 'Internet Explorer',
-            'Safari' => 'Safari',
-            'Opera' => 'Opera',
-            'Lynx' => 'Lynx'
-         ))
-      );
-~~~
+	:::php
+	      // Create fields
+	      $fields = new FieldSet(
+	         new TextField('Name'),
+	         new OptionsetField('Browser', 'Your Favourite Browser', array(
+	            'Firefox' => 'Firefox',
+	            'Internet Explorer' => 'Internet Explorer',
+	            'Safari' => 'Safari',
+	            'Opera' => 'Opera',
+	            'Lynx' => 'Lynx'
+	         ))
+	      );
+
 
 First we create our form fields.
 
@@ -77,11 +78,11 @@ There is a second argument when creating a field which specifies the text on the
 
 The second field we create is an [:OptionsetField](/OptionsetField). This is a dropdown, and takes a third argument - an array mapping the values to the options listed in the dropdown.
 
-~~~ {php}
-$actions = new FieldSet(
-   new FormAction('doBrowserPoll', 'Submit');
-);
-~~~
+	:::php
+	$actions = new FieldSet(
+	   new FormAction('doBrowserPoll', 'Submit');
+	);
+
 
 After creating the fields, we create the form actions. Form actions appear as buttons at the bottom of the form.
 
@@ -91,9 +92,9 @@ Here we create a 'Submit' button which calls the 'doBrowserPoll' method, which w
 
 All the form actions (in this case only one) are collected into a [:FieldSet](/FieldSet) object the same way we did with the fields.
 
-~~~ {php}
-return new Form($this, 'BrowserPollForm', $fields, $actions);
-~~~
+	:::php
+	return new Form($this, 'BrowserPollForm', $fields, $actions);
+
 
 Finally we create the [:Form](/Form) object and return it.
 
@@ -104,17 +105,18 @@ After creating the form function, we need to add the form to our home page templ
 Add the following code to the home page template, just before the ''</div>'' that ends the ContentContainer DIV element:
 
 //themes/tutorial/templates/Layout/HomePage.ss//
-~~~ {html}
-...
-<div id="ContentContainer">
-...
 
-  <div id="BrowserPoll">
-    <h2>Browser Poll</h2>
-    $BrowserPollForm
-  </div>
-</div>
-~~~
+	:::html
+	...
+	<div id="ContentContainer">
+	...
+	
+	  <div id="BrowserPoll">
+	    <h2>Browser Poll</h2>
+	    $BrowserPollForm
+	  </div>
+	</div>
+
 
 The CSS files will ensure that it is formatted and positioned correctly. All going according to plan, if you visit [http://localhost/home?flush=1](http://localhost/home?flush=1) it should look something like below.
 
@@ -130,41 +132,43 @@ First, we need some way of saving the poll submissions to the database, so we ca
 If you recall, in tutorial two we said that all objects that inherit from DataObject and that add fields are stored in the database. Also recall that all pages extend DataObject indirectly through [:SiteTree](/SiteTree). Here instead of extending SiteTree (or [:Page](/Page)) to create a page type, we extend DataObject directly.
 
 //mysite/code/BrowserPollSubmission.php//
-~~~ {php}
-<?php
 
-class BrowserPollSubmission extends DataObject {
-   static $db = array(
-      'Name' => 'Text',
-      'Browser' => 'Text'
-   );
-}
+	:::php
+	<?php
+	
+	class BrowserPollSubmission extends DataObject {
+	   static $db = array(
+	      'Name' => 'Text',
+	      'Browser' => 'Text'
+	   );
+	}
+	
+	?>
 
-?>
-~~~
 
 If we then rebuild the database ([http://localhost/db/build?flush=1](http://localhost/db/build?flush=1)), we will see that the //BrowserPollSubmission// table is created. Now we just need to define 'doBrowserPoll' on //HomePage_Controller//.
 
 //mysite/code/HomePage.php//
-~~~ {php}
-...
 
-class HomePage_Controller extends Page_Controller {
-   ...
-
-   function doBrowserPoll($data, $form) {
-      $submission = new BrowserPollSubmission();
-      $form->saveInto($submission);
-      $submission->write();
+	:::php
+	...
 	
-      Director::redirectBack();
-   }
+	class HomePage_Controller extends Page_Controller {
+	   ...
+	
+	   function doBrowserPoll($data, $form) {
+	      $submission = new BrowserPollSubmission();
+	      $form->saveInto($submission);
+	      $submission->write();
+		
+	      Director::redirectBack();
+	   }
+	
+	   ...
+	}
+	
+	...
 
-   ...
-}
-
-...
-~~~
 
 A function that processes a form submission takes two arguments - the first is the data in the form, the second is the [:Form](/Form) object.
 
@@ -182,16 +186,17 @@ SilverStripe provides the //RequiredFields// validator, which ensures that the f
 Change the end of the 'BrowserPollForm' function so it looks like this:
 
 ** mysite/code/HomePage.php **
-~~~ {php}
-function BrowserPollForm() {
-   ...
 
-   // Create validator
-   $validator = new RequiredFields('Name', 'Browser');
+	:::php
+	function BrowserPollForm() {
+	   ...
+	
+	   // Create validator
+	   $validator = new RequiredFields('Name', 'Browser');
+	
+	   return new Form($this, 'BrowserPollForm', $fields, $actions, $validator);
+	}
 
-   return new Form($this, 'BrowserPollForm', $fields, $actions, $validator);
-}
-~~~
 
 If we then open the homepage and attempt to submit the form without filling in the required fields an error will be shown.
 
@@ -208,36 +213,37 @@ The first thing to do is make it so a user can only vote once per session. If th
 We can do this using a session variable. The [:Session](/Session) class handles all session variables in SilverStripe. First modify the 'doBrowserPoll' to set the session variable 'BrowserPollVoted' when a user votes.
 
 //mysite/code/HomePage.php//
-~~~ {php}
-...
 
-HomePage_Controller extends Page_Controller {
-   ...
-
-   function doBrowserPoll($data, $form) {
-      $submission = new BrowserPollSubmission();
-      $form->saveInto($submission);
-      $submission->write();
+	:::php
+	...
 	
-      Session::set('BrowserPollVoted', true);
+	HomePage_Controller extends Page_Controller {
+	   ...
+	
+	   function doBrowserPoll($data, $form) {
+	      $submission = new BrowserPollSubmission();
+	      $form->saveInto($submission);
+	      $submission->write();
+		
+	      Session::set('BrowserPollVoted', true);
+	
+	      Director::redirectBack();
+	   }
+	
+	   ...
+	}
 
-      Director::redirectBack();
-   }
-
-   ...
-}
-~~~
 
 Then we simply need to check if the session variable has been set in 'BrowserPollForm()', and to not return the form if it is.
 
-~~~ {php}
-function BrowserPollForm() {
-   if(Session::get('BrowserPollVoted')) {
-      return false;
-   }
+	:::php
+	function BrowserPollForm() {
+	   if(Session::get('BrowserPollVoted')) {
+	      return false;
+	   }
+	
+	   ...
 
-   ...
-~~~
 
 If you visit the home page now you will see you can only vote once per session; after that the form won't be shown. You can start a new session by closing and reopening your browser (or if you're using Firefox and have installed the [Web Developer](http://chrispederick.com/work/web-developer/) extension, you can use its Clear Session Cookies command).
 
@@ -250,80 +256,81 @@ In the second tutorial we got the latest news articles for the home page by usin
 A [:DataObjectSet](/DataObjectSet) is a set of not just DataObjects, but of ViewableData, which the majority of SilverStripe's classes (including DataObject) inherit from. We can create a DataObjectSet, fill it with our data, and then create our graph using a page control in the template. Create the function 'BrowserPollResults' on the //HomePage_Controller// class.
 
 ** mysite/code/HomePage.php **
-~~~ {php}
-function BrowserPollResults() {
-   $submissions = DataObject::get('BrowserPollSubmission');
-   $total = $submissions->Count();
 
-   $doSet = new DataObjectSet();
-   foreach($submissions->groupBy('Browser') as $browser => $data) {
-      $percentage = (int) ($data->Count() / $total * 100);
-      $record = array(
-         'Browser' => $browser,
-         'Percentage' => $percentage
-      );
-      $doSet->push(new ArrayData($record));
-   }
+	:::php
+	function BrowserPollResults() {
+	   $submissions = DataObject::get('BrowserPollSubmission');
+	   $total = $submissions->Count();
 	
-   return $doSet;
-}
-~~~
+	   $doSet = new DataObjectSet();
+	   foreach($submissions->groupBy('Browser') as $browser => $data) {
+	      $percentage = (int) ($data->Count() / $total * 100);
+	      $record = array(
+	         'Browser' => $browser,
+	         'Percentage' => $percentage
+	      );
+	      $doSet->push(new ArrayData($record));
+	   }
+		
+	   return $doSet;
+	}
+
 
 This introduces a few new concepts, so let's step through it.
 
-~~~ {php}
-$submissions = DataObject::get('BrowserPollSubmission');
-~~~
+	:::php
+	$submissions = DataObject::get('BrowserPollSubmission');
+
 
 First we get all of the //BrowserPollSubmission//s from the database. This returns the submissions as a [:DataObjectSet](/DataObjectSet), which contains the submissions as //BrowserPollSubmission// objects.
 
-~~~ {php}
-$total = $submissions->Count();
-~~~
+	:::php
+	$total = $submissions->Count();
+
 
 We get the total number of submissions, which is needed to calculate the percentages.
 
-~~~ {php}
-$doSet = new DataObjectSet();
-foreach($submissions->groupBy('Browser') as $browser => $data) {
-   $percentage = (int) ($data->Count() / $total * 100);
-   $record = array(
-      'Browser' => $browser,
-      'Percentage' => $percentage
-   );
-   $doSet->push(new ArrayData($record));
-}
-~~~
+	:::php
+	$doSet = new DataObjectSet();
+	foreach($submissions->groupBy('Browser') as $browser => $data) {
+	   $percentage = (int) ($data->Count() / $total * 100);
+	   $record = array(
+	      'Browser' => $browser,
+	      'Percentage' => $percentage
+	   );
+	   $doSet->push(new ArrayData($record));
+	}
+
 
 Now we create an empty [:DataObjectSet](/DataObjectSet) to hold our data. The 'groupBy' method of [:DataObjectSet](/DataObjectSet) splits our [:DataObjectSet](/DataObjectSet) by the field passed to it, in this case the 'Browser' field. It puts these new [:DataObjectSet](/DataObjectSet)s into an array indexed by the value of the field, which we can then iterate over. We can then calculate the percentage for each browser using the size of the [:DataObjectSet](/DataObjectSet).
 
 The [:ArrayData](/ArrayData) class wraps an array into a ViewableData object, so we simply put our data in an array and create a new [:ArrayData](/ArrayData) object, which we can add to our [:DataObjectSet](/DataObjectSet) of results.
 
-~~~ {php}
-return $doSet;
-~~~
+	:::php
+	return $doSet;
+
 
 After we have iterated through all the browsers, the [:DataObjectSet](/DataObjectSet) contains all the results, which is returned.
 
 The final step is to create the template to display our data. Change the 'BrowserPoll' div in //themes/tutorial/templates/Layout/HomePage.ss// to the below.
 
-~~~ {html}
-<div id="BrowserPoll">
-  <h2>Browser Poll</h2>
-  <% if BrowserPollForm %>
-    $BrowserPollForm
-  <% else %>
-    <ul>
-      <% control BrowserPollResults %>
-        <li>
-          <div class="browser">$Browser: $Percentage%</div>
-          <div class="bar" style="width:$Percentage%">&nbsp;</div>
-        </li>
-      <% end_control %>
-    </ul>
-  <% end_if %>
-</div>
-~~~
+	:::html
+	<div id="BrowserPoll">
+	  <h2>Browser Poll</h2>
+	  <% if BrowserPollForm %>
+	    $BrowserPollForm
+	  <% else %>
+	    <ul>
+	      <% control BrowserPollResults %>
+	        <li>
+	          <div class="browser">$Browser: $Percentage%</div>
+	          <div class="bar" style="width:$Percentage%">&nbsp;</div>
+	        </li>
+	      <% end_control %>
+	    </ul>
+	  <% end_if %>
+	</div>
+
 
 Here we first check if the //BrowserPollForm// is returned, and if it is display it. Otherwise the user has already voted, and the poll results need to be displayed.
 

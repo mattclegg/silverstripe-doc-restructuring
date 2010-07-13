@@ -15,43 +15,45 @@ See [TableListField](http://api.silverstripe.org/trunk/forms/fields-relational/T
 ## Setting Parent/Child-Relations
 
 ComplexTableField tries to determine the parent-relation automatically by looking at the $has_one property on the listed child, or the record loaded into the surrounding form (see getParentClass() and getParentIdName()). You can force a specific parent relation:
-~~~ {php}
-$myCTF->setParentClass('ProductGroup');
-~~~
+
+	:::php
+	$myCTF->setParentClass('ProductGroup');
+
 
 ## Customizing Popup
 
 By default, getCMSFields() is called on the listed DataObject.
 You can override this behaviour in various ways:
-~~~ {php}
-// option 1: implicit (left out of the constructor), chooses based on Object::useCustomClass or specific instance
-$myCTF = new ComplexTableField(
-  $this,
-  'MyName',
-  'Product',
-  array('Price','Code')
-)
 
-// option 2: constructor
-$myCTF = new ComplexTableField(
-  $this,
-  'MyName',
-  'Product',
-  array('Price','Code'),
-  new FieldSet(
-    new TextField('Price')
-  )
-)
+	:::php
+	// option 1: implicit (left out of the constructor), chooses based on Object::useCustomClass or specific instance
+	$myCTF = new ComplexTableField(
+	  $this,
+	  'MyName',
+	  'Product',
+	  array('Price','Code')
+	)
+	
+	// option 2: constructor
+	$myCTF = new ComplexTableField(
+	  $this,
+	  'MyName',
+	  'Product',
+	  array('Price','Code'),
+	  new FieldSet(
+	    new TextField('Price')
+	  )
+	)
+	
+	// option 3: constructor function
+	$myCTF = new ComplexTableField(
+	  $this,
+	  'MyName',
+	  'Product',
+	  array('Price','Code'),
+	  'getCustomCMSFields'
+	)
 
-// option 3: constructor function
-$myCTF = new ComplexTableField(
-  $this,
-  'MyName',
-  'Product',
-  array('Price','Code'),
-  'getCustomCMSFields'
-)
-~~~
 
 ## Customizing Display & Functionality
 
@@ -84,24 +86,24 @@ Sometimes you'll want to have a nice table on the front end, so you can move awa
 
 You'll have to do something like this in your form:
 
-~~~ {php}
-$tableField = new ComplexTableField(
-   $controller,
-   'Works',
-   'Work',
-   array(
-      'MyField' => 'My awesome field name'
-   ),
-   'getPopupFields'
-);
+	:::php
+	$tableField = new ComplexTableField(
+	   $controller,
+	   'Works',
+	   'Work',
+	   array(
+	      'MyField' => 'My awesome field name'
+	   ),
+	   'getPopupFields'
+	);
+	
+	$tableField->setParentClass(false);
+			
+	$fields = new FieldSet(
+	   new HiddenField('ID', ''),
+	   $tableField
+	);
 
-$tableField->setParentClass(false);
-		
-$fields = new FieldSet(
-   new HiddenField('ID', ''),
-   $tableField
-);
-~~~
 
 You have to hack in an ID on the form, as the CMS forms have this, and front end forms usually do not.
 

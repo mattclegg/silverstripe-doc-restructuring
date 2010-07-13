@@ -9,11 +9,12 @@ First we need to add a file field to our page so we have somewhere to store our 
 If we want to add an File to our database we need to add it in the $has_one array (at the top) of a type 'File'
 
 ** mysite/code/Page.php **
-~~~ {php}
- static $has_one = array(
-   'Document' => 'File'
- );
-~~~
+
+	:::php
+	 static $has_one = array(
+	   'Document' => 'File'
+	 );
+
 
 Now visit yoursite.com/db/build?flush=1 and recreate our database. 
 
@@ -22,13 +23,14 @@ Now visit yoursite.com/db/build?flush=1 and recreate our database.
 We need to add a field to the CMS so that we can upload a file. So underneath that $db array we need to add this getCMSFields function which overloads the CMS so we can add our field
 
 ** mysite/code/Page.php **
-~~~ {php}
-function getCMSFields() {
-  $fields = parent::getCMSFields();
-  $fields->addFieldToTab("Root.Content.Main", new FileIFrameField("Document"));
-  return $fields;
-}
-~~~
+
+	:::php
+	function getCMSFields() {
+	  $fields = parent::getCMSFields();
+	  $fields->addFieldToTab("Root.Content.Main", new FileIFrameField("Document"));
+	  return $fields;
+	}
+
 
 Now reload the admin panel and you should be able to click a page and see a document uploader.
 
@@ -38,11 +40,12 @@ Now reload the admin panel and you should be able to click a page and see a docu
 If you upload the file inside the CMS, all you need to do to output that file is to add a $Document variable to the template file.
 
 ** themes/blackcandy/templates/Page.ss **
-~~~ {php}
-..
-<a href="$Document.Link">$Document.Title</a>
-..
-~~~
+
+	:::php
+	..
+	<a href="$Document.Link">$Document.Title</a>
+	..
+
 
 Thats all you need to do to create an file upload form and to output it in your template.
 

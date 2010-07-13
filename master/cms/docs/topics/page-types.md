@@ -30,18 +30,18 @@ Adding database fields is a simple process. You define them in an array of the s
 
 For example, you may want an additional field on a StaffPage class which extends Page, called Author. Author is a standard text field, and can be [casted](objectmodel) as a variable character object in php (VARCHAR in SQL). In the following example, our Author field is casted as a variable character object with maximum characters of 50. This is especially useful if you know how long your source data needs to be.
 
-~~~ {php}
-class StaffPage extends Page {
+	:::php
+	class StaffPage extends Page {
+	
+	   static $db = array(
+	      'Author' => 'Varchar(50)'
+	   );
+	
+	}
+	class StaffPage_Controller extends Page_Controller {
+	
+	}
 
-   static $db = array(
-      'Author' => 'Varchar(50)'
-   );
-
-}
-class StaffPage_Controller extends Page_Controller {
-
-}
-~~~
 
 See [datamodel](datamodel) for a more detailed explanation on adding database fields, and how the SilverStripe data model works.
 
@@ -55,83 +55,83 @@ See [form](form) and [tutorial:2-extending-a-basic-site](tutorial/2-extending-a-
 
 Overloading ''getCMSFields()'' you can call ''removeFieldFromTab()'' on a ''FieldSet'' object. For example, if you don't want the MenuTitle field to show on your page, which is inherited from SiteTree.
 
-~~~ {php}
-class StaffPage extends Page {
+	:::php
+	class StaffPage extends Page {
+	
+	   function getCMSFields() {
+	      $fields = parent::getCMSFields();
+	      $fields->removeFieldFromTab('Root.Content.Main', 'MenuTitle');
+	      return $fields;
+	   }
+	
+	}
+	class StaffPage_Controller extends Page_Controller {
+	
+	}
 
-   function getCMSFields() {
-      $fields = parent::getCMSFields();
-      $fields->removeFieldFromTab('Root.Content.Main', 'MenuTitle');
-      return $fields;
-   }
-
-}
-class StaffPage_Controller extends Page_Controller {
-
-}
-~~~
 
 
 ### removeByName()
 
 ''removeByName()'' for normal form fields is useful for breaking inheritance where you know a field in your form isn't required on a certain page-type.
 
-~~~ {php}
-class MyForm extends Form {
+	:::php
+	class MyForm extends Form {
+	
+	   function __construct($controller, $name) {
+	      // add a default FieldSet of form fields
+	      $member = singleton('Member');
+	
+	      $fields = $member->formFields();
+	
+	      // We don't want the Country field from our default set of fields, so we remove it.
+	      $fields->removeByName('Country');
+	
+	      $actions = new FieldSet(
+	         new FormAction('submit', 'Submit')
+	      );
+	
+	      parent::__construct($controller, $name, $fields, $actions);
+	   }
+	
+	}
 
-   function __construct($controller, $name) {
-      // add a default FieldSet of form fields
-      $member = singleton('Member');
-
-      $fields = $member->formFields();
-
-      // We don't want the Country field from our default set of fields, so we remove it.
-      $fields->removeByName('Country');
-
-      $actions = new FieldSet(
-         new FormAction('submit', 'Submit')
-      );
-
-      parent::__construct($controller, $name, $fields, $actions);
-   }
-
-}
-~~~
 This will also work if you want to remove a whole tab e.g. $fields->removeByName('Metadata'); will remove the whole Metadata tab.
 
 For more information on forms, see [form](form), [tutorial:2-extending-a-basic-site](tutorial/2-extending-a-basic-site) and [tutorial:3-forms](tutorial/3-forms).
 
 ## Creating a new page:
 
-~~~ {php}
-$page = new Page();
-$page->ParentID = 18; //if you want it to be a child of a certain other page...
-$page->Title = "Crazy page"; 
-$page->MetaTitle = "madness";
-$page->PageTitle = "Funny"; 
-$page->writeToStage('Stage'); 
-$page->publish('Stage', 'Live');
-~~~
+	:::php
+	$page = new Page();
+	$page->ParentID = 18; //if you want it to be a child of a certain other page...
+	$page->Title = "Crazy page"; 
+	$page->MetaTitle = "madness";
+	$page->PageTitle = "Funny"; 
+	$page->writeToStage('Stage'); 
+	$page->publish('Stage', 'Live');
+
 
 ## updating a page:
 
-~~~ {php}
-$page = DataObject::get_one("Page", "ParentID = 18");
-$page->Title = "More Serious";
-$page->writeToStage('Stage');
-$page->Publish('Stage', 'Live');
-$page->Status = "Published";
-~~~
+	:::php
+	$page = DataObject::get_one("Page", "ParentID = 18");
+	$page->Title = "More Serious";
+	$page->writeToStage('Stage');
+	$page->Publish('Stage', 'Live');
+	$page->Status = "Published";
+
 
 
 ## Deleting pages
 
-~~~ {php}
-$id = $page->ID;
-$stageRecord = Versioned::get_one_by_stage('SiteTree', 'Stage', "SiteTree.ID = $id");
-if ($stageRecord) $stageRecord->delete();
-$liveRecord = Versioned::get_one_by_stage('SiteTree', 'Live', "SiteTree_Live.ID = $id");
-if ($liveRecord) $liveRecord->delete();
-~~~
+	:::php
+	$id = $page->ID;
+	$stageRecord = Versioned::get_one_by_stage('SiteTree', 'Stage', "SiteTree.ID = $id");
+	if ($stageRecord) $stageRecord->delete();
+	$liveRecord = Versioned::get_one_by_stage('SiteTree', 'Live', "SiteTree_Live.ID = $id");
+	if ($liveRecord) $liveRecord->delete();
+
 
 ## Built-in Fields
 

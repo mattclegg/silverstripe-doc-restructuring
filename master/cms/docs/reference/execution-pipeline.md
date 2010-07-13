@@ -58,14 +58,14 @@ In general, the URL is build up as follows: page/action/ID/otherID - e.g. http:/
 
 When you create a function, you can access the ID like this:
 
-~~~ {php}
- function addToCart ($request) {
-  $param = $r->allParams();
-  echo "my ID = ".$param["ID"];
-  $obj = DataObject::get("myProduct", $param["ID"]);
-  $obj->addNow();
- }
-~~~
+	:::php
+	 function addToCart ($request) {
+	  $param = $r->allParams();
+	  echo "my ID = ".$param["ID"];
+	  $obj = DataObject::get("myProduct", $param["ID"]);
+	  $obj->addNow();
+	 }
+
 
 
 
@@ -76,15 +76,16 @@ Controllers are the building blocks of your application.
 **See:** [The API documentation for Controller](http://api.silverstripe.org/trunk/sapphire/control/Controller.html)
 
 *  You can access the following controller-method with /team/signup
-~~~ {php}
-class Team extends DataObject {}
 
-class Team_Controller extends Controller {
-  function signup($id, $otherId) {
-    return $this->renderWith('MyTemplate');
-  }
-}
-~~~
+	:::php
+	class Team extends DataObject {}
+	
+	class Team_Controller extends Controller {
+	  function signup($id, $otherId) {
+	    return $this->renderWith('MyTemplate');
+	  }
+	}
+
 
 ## SSViewer template rendering
 

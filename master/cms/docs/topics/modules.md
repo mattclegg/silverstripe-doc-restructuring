@@ -44,34 +44,34 @@ Note some times the folders extracted from the tar.gz contain the version number
 
 #### Option 1: Checkout
 
-~~~
-cd ~/Sites/yourSilverStripeProject/
-svn co http://svn.silverstripe.com/open/modules/modulename/trunk modulename/
-~~~
+	
+	cd ~/Sites/yourSilverStripeProject/
+	svn co http://svn.silverstripe.com/open/modules/modulename/trunk modulename/
+
 
 Note: Some modules are stored in subfolders.  If you want to use a module that is in a subfolder, such as widgets, put an _ between the subfolder name and the module name, like this:
 
-~~~
-cd /your/website/root
-svn co http://svn.silverstripe.com/open/modules/widgets/twitter/trunk widgets_twitter
-~~~
+	
+	cd /your/website/root
+	svn co http://svn.silverstripe.com/open/modules/widgets/twitter/trunk widgets_twitter
+
 
 
 #### Option 2: Add to svn:externals
 
-~~~
-cd ~/Sites/yourSilverStripeProject/
-svn propedit svn:externals .
-~~~
+	
+	cd ~/Sites/yourSilverStripeProject/
+	svn propedit svn:externals .
+
 
 In the editor add the following line (lines if you want multiple)
 
-~~~
-modulename/ http://svn.silverstripe.com/open/modules/modulename/trunk
-~~~
+	
+	modulename/ http://svn.silverstripe.com/open/modules/modulename/trunk
+
 
 Exit the editor and then run 
 
-~~~
-svn up
-~~~
+	
+	svn up
+

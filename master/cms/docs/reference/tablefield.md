@@ -17,41 +17,42 @@ Please use **TableField->setExtraData()** to specify additional (non-editable) d
 
 In this example, you'll note that we're setting TeamID to $this->ID.  This works well if you're including a TableField as an editable field on a getCMSFields() call.
 
-~~~ {php}
-$myTableField = new TableField(
-  'MyTableField', // fieldName
-  'Player', // sourceType
-  array(
-    'FirstName'=>'First Name',
-    'Surname'=>'Surname'
-  ), // fieldList
-  array(
-    'FirstName'=>'TextField',
-    'Surname'=>'TextField'
-  ), // fieldTypes
-  null, // filterField (legacy)
-  "Player.TeamID",
-  $this->ID
-);
-// add some HiddenFields thats saved with each new row
-$myTableField->setExtraData(array(
-  'TeamID' => $this->ID ? $this->ID : '$RecordID'
-));
-~~~
+	:::php
+	$myTableField = new TableField(
+	  'MyTableField', // fieldName
+	  'Player', // sourceType
+	  array(
+	    'FirstName'=>'First Name',
+	    'Surname'=>'Surname'
+	  ), // fieldList
+	  array(
+	    'FirstName'=>'TextField',
+	    'Surname'=>'TextField'
+	  ), // fieldTypes
+	  null, // filterField (legacy)
+	  "Player.TeamID",
+	  $this->ID
+	);
+	// add some HiddenFields thats saved with each new row
+	$myTableField->setExtraData(array(
+	  'TeamID' => $this->ID ? $this->ID : '$RecordID'
+	));
+
 
 The '$RecordID' value is used when building forms that create new records.  It will be populated with whatever record id is created.
 ## Row Transformation
 
 You can apply a [FormTransformation](http://api.silverstripe.org/current/forms/transformations/FormTransformation.html) (e.g. readonly or disabled) to any given field,
 based on a eval()ed php-rule. You can access all columns on the generated DataObjects here.
-~~~ {php}
-$myTF->setTransformationConditions(array(
-  "PlayerName" => array(
-    "rule" => '$PlayerStatus == "Retired" || $PlayerStatus == "Injured"',
-    "transformation" => "performReadonlyTransformation"
-  )
-));
-~~~
+
+	:::php
+	$myTF->setTransformationConditions(array(
+	  "PlayerName" => array(
+	    "rule" => '$PlayerStatus == "Retired" || $PlayerStatus == "Injured"',
+	    "transformation" => "performReadonlyTransformation"
+	  )
+	));
+
 
 # Best Practices
 

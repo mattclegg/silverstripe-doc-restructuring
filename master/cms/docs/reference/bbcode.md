@@ -7,14 +7,16 @@ Yes! SilverStripe supports BBCode
 *  BBCode is used by default in blog and forum.
 
 To add bbcode parsing to a template, instead of $Content use:
-~~~ {php}
-$Content.Parse(BBCodeParser)
-~~~
+
+	:::php
+	$Content.Parse(BBCodeParser)
+
 
 BBCode can be enabled in comments by adding the following to _config.php
-~~~ {php}
-PageComment::enableBBCode();
-~~~
+
+	:::php
+	PageComment::enableBBCode();
+
 
 
 

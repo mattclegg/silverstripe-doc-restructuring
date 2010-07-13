@@ -32,56 +32,58 @@ Whats with the 2 Page.ss files? Well we have 2 so when the user visits a page th
 So you have 2 blank Page.ss files. What are we going to do with them? How bout we put some HTML in them so we can see our theme in action. The code for mine is below (copied from [:HTML](/HTML))
 
 ** yourtheme/templates/Page.ss **
-~~~ {html}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-<head>
-  <% base_tag %>
-  $MetaTags(false)
-  <title>Bob's Chicken Shack | $Title</title>
-</head>
- 
-<body>
-<div id="Container">
-  <div id="Header">
-    <h1>Bob's Chicken Shack</h1>
-  </div>
- 
-  <div id="Navigation">
-    <% if Menu(1) %>
-    <ul>
-      <% control Menu(1) %>	  
-        <li><a href="$Link" title="Go to the $Title page" class="$LinkingMode">$MenuTitle</a></li>
-      <% end_control %>
-    </ul>
-   <% end_if %>
-  </div>
- 
-  <div id="Layout">
-    $Layout
-  </div>
- 
-  <div id="Footer">
-    <p>Copyright $Now.Year - Bob's Chicken Shack.</p>
-  </div>
-</div>
-</body>
-</html>
-~~~
+
+	:::html
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+	  <% base_tag %>
+	  $MetaTags(false)
+	  <title>Bob's Chicken Shack | $Title</title>
+	</head>
+	 
+	<body>
+	<div id="Container">
+	  <div id="Header">
+	    <h1>Bob's Chicken Shack</h1>
+	  </div>
+	 
+	  <div id="Navigation">
+	    <% if Menu(1) %>
+	    <ul>
+	      <% control Menu(1) %>	  
+	        <li><a href="$Link" title="Go to the $Title page" class="$LinkingMode">$MenuTitle</a></li>
+	      <% end_control %>
+	    </ul>
+	   <% end_if %>
+	  </div>
+	 
+	  <div id="Layout">
+	    $Layout
+	  </div>
+	 
+	  <div id="Footer">
+	    <p>Copyright $Now.Year - Bob's Chicken Shack.</p>
+	  </div>
+	</div>
+	</body>
+	</html>
+
 
 ** yourtheme/templates/Layout/Page.ss **
-~~~ {html}
-<h1>$Title</h1>
-$Content
-$Form
-$PageComments
-~~~
+
+	:::html
+	<h1>$Title</h1>
+	$Content
+	$Form
+	$PageComments
+
 
 All you have to do now is tell your site to use your new theme - This is defined in the **mysite/_config.php** file
 
-~~~ {php}
-SSViewer::set_theme('mythemename');
-~~~
+	:::php
+	SSViewer::set_theme('mythemename');
+
 
 Go to yoursite.com/?flush=1 and check it out. You should be using your new theme! Not really that awesome or amazing is it? Next we need to add some CSS Magics!
 
@@ -109,80 +111,80 @@ For layout we tend to use ''DIV'' tags as the ''DIV'' tag defines a division/sec
 
 Let's have a look at part of a Page.ss for the main layout elements defining a 2 column layout.
 
-~~~ {html}
-<div id="Container">
- <div id="Header">
-   <!-- Header -->
- </div>
+	:::html
+	<div id="Container">
+	 <div id="Header">
+	   <!-- Header -->
+	 </div>
+	
+	 <div id="Navigation">
+	   <!-- The Main Site Nav -->
+	 </div>
+	
+	 <div id="Layout">
+	   <!-- The whole site content Has to sit inside here! Anything you want to sub template (eg each page will be different, needs to be contained in $Layout. This calls the file /Layout/Page.ss or anyother sub page template -->
+	   $Layout
+	 </div>
+	
+	 <div id="Footer">
+	 </div>
+	</div>
 
- <div id="Navigation">
-   <!-- The Main Site Nav -->
- </div>
-
- <div id="Layout">
-   <!-- The whole site content Has to sit inside here! Anything you want to sub template (eg each page will be different, needs to be contained in $Layout. This calls the file /Layout/Page.ss or anyother sub page template -->
-   $Layout
- </div>
-
- <div id="Footer">
- </div>
-</div>
-~~~
 
 ### HTML naming conventions
 
 *  Class names should be lowercase, or lowerCamelCase starting with a lowercase letter, for example, latestNews
 *  IDs should be UpperCamelCase and remember ID's can only be used once per page.
 
-~~~ {html}
-<div id="Container"><!-- markup goes here --></div>
-~~~
+	:::html
+	<div id="Container"><!-- markup goes here --></div>
+
 
 As you can see we normally wrap the site in a container. For this we use the ID 'Container'. Then we divide the main template into sections.
 
-~~~ {html}
-<div id="Header"><!-- markup goes here --></div>
-~~~
+	:::html
+	<div id="Header"><!-- markup goes here --></div>
+
 
 We have the Header section which includes things like any banner images/ mastheads/ logos or any stuff that belongs at the top of the page, This might vary on the design of the page
 
-~~~ {html}
-<div id="Navigation"><!-- markup goes here --></div>
-~~~
+	:::html
+	<div id="Navigation"><!-- markup goes here --></div>
+
 
 Next is a division for the main navigation. This may contain something like:
 
-~~~ {html}
-<div id="Navigation">
-  <% if Menu(1) %>
-  <ul>
-    <% control Menu(1) %>	  
-      <li><a href="$Link" title="Go to the $Title page" class="$LinkingMode">$MenuTitle</a></li>
-    <% end_control %>
- </ul>
- <% end_if %>
-</div>
-~~~
+	:::html
+	<div id="Navigation">
+	  <% if Menu(1) %>
+	  <ul>
+	    <% control Menu(1) %>	  
+	      <li><a href="$Link" title="Go to the $Title page" class="$LinkingMode">$MenuTitle</a></li>
+	    <% end_control %>
+	 </ul>
+	 <% end_if %>
+	</div>
+
 
 This is the standard for creating the main Navigation. As you can see it outputs the Menu 1 in a unordered list.
 
 Before stepping into a control (a foreach loop) it's good practise to check if it exists first. This is not only important in manipulating SilverStripe templates, but in any programming language!
 
-~~~ {html}
-<% if MyFunction %>
-  <% control MyFunction %>
-    $Title
-  <% end_control %>
-<% end_if %>
-~~~
+	:::html
+	<% if MyFunction %>
+	  <% control MyFunction %>
+	    $Title
+	  <% end_control %>
+	<% end_if %>
+
 
 Last and probably least is the Footer division. Here is where you put all the Footer related stuff for your website. Maybe even a nice link saying Website Powered by SilverStripe to show your support.
 
-~~~ {html}
-<div id="Footer">
-<!-- markup goes here -->
-</div>
-~~~
+	:::html
+	<div id="Footer">
+	<!-- markup goes here -->
+	</div>
+
 
 # Resources
 
@@ -226,13 +228,15 @@ A subtheme overrides the files in the module. So for instance, if you have the f
 ### ThemeDir
 
 If you want to refer to an image or other file asset in a .ss template, use $ThemeDir. For example:
-~~~ {html}
-<img src="$ThemeDir/images/log.gif" />
-~~~
+
+	:::html
+	<img src="$ThemeDir/images/log.gif" />
+
 If your image is in a subtheme, you can refer to that with an argument to ThemeDir. For example, if your image was in mytheme_forum, you could use the following code:
-~~~ {html}
-<img src="$ThemeDir(forum)/images/log.gif" />
-~~~
+
+	:::html
+	<img src="$ThemeDir(forum)/images/log.gif" />
+
 # Conventions, standards and guidelines
 
 Following some set standards and conventions makes life easy for you and I.

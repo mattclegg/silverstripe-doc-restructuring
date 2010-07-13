@@ -2,47 +2,47 @@
 
 A unit test class will test the behaviour of one of your DataObjects.  This simple fragment of SiteTreeTest provides us the basics of creating unit tests.
 
-~~~ {php}
-<?php
-
-/**
-
- * Tests for SiteTree
- */
-class SiteTreeTest extends SapphireTest {
+	:::php
+	<?php
+	
 	/**
-
-	 * Define the fixture file to use for this test class
+	
+	 * Tests for SiteTree
 	 */
-	static $fixture_file = 'sapphire/tests/SiteTreeTest.yml';
-
-	/**
-
-	 * Test generation of the URLSegment values.
-	 *  - Turns things into lowercase-hyphen-format
-	 *  - Generates from Title by default, unless URLSegment is explicitly set
-	 *  - Resolves duplicates by appending a number
-	 */
-	function testURLGeneration() {
-		$expectedURLs = array(
-			'home' => 'home',
-			'staff' => 'my-staff',
-			'about' => 'about-us',
-			'staffduplicate' => 'my-staff-2',
-			'product1' => '1-1-test-product',
-			'product2' => 'another-product',
-			'product3' => 'another-product-2',
-			'product4' => 'another-product-3',
-		);
-		
-		foreach($expectedURLs as $fixture => $urlSegment) {
-			$obj = $this->objFromFixture('Page', $fixture);
-			$this->assertEquals($urlSegment, $obj->URLSegment);
+	class SiteTreeTest extends SapphireTest {
+		/**
+	
+		 * Define the fixture file to use for this test class
+		 */
+		static $fixture_file = 'sapphire/tests/SiteTreeTest.yml';
+	
+		/**
+	
+		 * Test generation of the URLSegment values.
+		 *  - Turns things into lowercase-hyphen-format
+		 *  - Generates from Title by default, unless URLSegment is explicitly set
+		 *  - Resolves duplicates by appending a number
+		 */
+		function testURLGeneration() {
+			$expectedURLs = array(
+				'home' => 'home',
+				'staff' => 'my-staff',
+				'about' => 'about-us',
+				'staffduplicate' => 'my-staff-2',
+				'product1' => '1-1-test-product',
+				'product2' => 'another-product',
+				'product3' => 'another-product-2',
+				'product4' => 'another-product-3',
+			);
+			
+			foreach($expectedURLs as $fixture => $urlSegment) {
+				$obj = $this->objFromFixture('Page', $fixture);
+				$this->assertEquals($urlSegment, $obj->URLSegment);
+			}
 		}
 	}
-}
+	
 
-~~~
 
 There are a number of points to note in this code fragment:
 
@@ -69,38 +69,38 @@ The main feature of SapphireTest over the raw PHPUnit classes is that SapphireTe
 
 We will begin with a sample file and talk our way through it.
 
-~~~ {yaml}
-Page:
-    home:
-        Title: Home
-    about:
-        Title: About Us
-    staff:
-        Title: Staff
-        URLSegment: my-staff
-        Parent: =>Page.about
-    staffduplicate:
-        Title: Staff
-        URLSegment: my-staff
-        Parent: =>Page.about
-    products:
-        Title: Products
-    product1:
-        Title: 1.1 Test Product
-    product2:
-        Title: Another Product
-    product3:
-        Title: Another Product
-    product4:
-        Title: Another Product
-    contact:
-        Title: Contact Us
-        
-ErrorPage:
-    404:
-        Title: Page not Found
-        ErrorCode: 404
-~~~
+	:::yaml
+	Page:
+	    home:
+	        Title: Home
+	    about:
+	        Title: About Us
+	    staff:
+	        Title: Staff
+	        URLSegment: my-staff
+	        Parent: =>Page.about
+	    staffduplicate:
+	        Title: Staff
+	        URLSegment: my-staff
+	        Parent: =>Page.about
+	    products:
+	        Title: Products
+	    product1:
+	        Title: 1.1 Test Product
+	    product2:
+	        Title: Another Product
+	    product3:
+	        Title: Another Product
+	    product4:
+	        Title: Another Product
+	    contact:
+	        Title: Contact Us
+	        
+	ErrorPage:
+	    404:
+	        Title: Page not Found
+	        ErrorCode: 404
+
 
 The contents of the YAML file are broken into three levels.
 
@@ -110,17 +110,17 @@ The contents of the YAML file are broken into three levels.
 
 There are a couple of lines like this:
 
-~~~
-Parent: =>Page.about
-~~~
+	
+	Parent: =>Page.about
+
 
 This will tell the system to set the ParentID database field to the ID of the Page object with the identifier "about".  This can be used on any has-one or many-many relationship.  Note that we use the name of the relationship (Parent), and not the name of the database field (ParentID)
 
 On many-many relationships, you should specify a comma separated list of values.
 
-~~~
-MyRelation: =>Class.inst1,=>Class.inst2,=>Class.inst3
-~~~
+	
+	MyRelation: =>Class.inst1,=>Class.inst2,=>Class.inst3
+
 
 An crucial thing to note is that **the YAML file specifies DataObjects, not database records**.  The database is populated by instantiating DataObject objects, setting the fields listed, and calling write().  This means that any onBeforeWrite() or default value logic will be executed as part of the test.  This forms the basis of our testURLGeneration() test above.
 

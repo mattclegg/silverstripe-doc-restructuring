@@ -32,10 +32,11 @@ PHP5 is required. The following are further details and recommendations for how 
 *  PHP safe mode off.
 
 If you need information on your PHP configuration, create a php file with the following content:
-~~~ {php}
-<?php
-phpinfo();
-~~~
+
+	:::php
+	<?php
+	phpinfo();
+
 
 If you visit this file in your web browser, it will give a full list of the configuration of PHP.
 
@@ -64,14 +65,15 @@ Some detailed notes on web server setup:
 
 *  Apache 1.3+/2.0+/2.2+ with [mod_rewrite](http://www.workingwith.me.uk/articles/scripting/mod_rewrite), and the ability to set rewriting rules in .htaccess files via "Allow Override".
     * The following is an example of the Directory directive from the Apache configuration file:
-~~~ {apache}
-    <Directory "/location/of/silverstripe">
-        Options FollowSymLinks SymLinksifOwnerMatch
-        AllowOverride All
-        Order allow,deny
-        Allow from all
-    </Directory>
-~~~
+
+	:::apache
+	    <Directory "/location/of/silverstripe">
+	        Options FollowSymLinks SymLinksifOwnerMatch
+	        AllowOverride All
+	        Order allow,deny
+	        Allow from all
+	    </Directory>
+
 
     * The Apache server needs to be restarted for the configuration changes to take effect.
     * We suggest using mod_deflate/gzip to compress HTML/CSS/JS etc and thus improve page loading times //this applies to any website constructed , not just to SilverStripe//

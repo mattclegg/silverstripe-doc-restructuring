@@ -10,9 +10,9 @@ Switching between SSL and Non-SSL is handled by the [Director](director) class.
 
 For some sites, you will want everyone to access them using SSL / HTTPS.  To facilitate this, put the following line into _config.php:
 
-~~~
-Director::forceSSL();
-~~~
+	
+	Director::forceSSL();
+
 
 This will automatically every http:// request to https://
 
@@ -27,53 +27,53 @@ This technique forces SSL on some page types, while the base page type makes sur
 
 ### Custom page type forcing SSL
 
-~~~ {php}
-class MySecurePage extends Page {
-    /* ... */
-}
+	:::php
+	class MySecurePage extends Page {
+	    /* ... */
+	}
+	
+	class MySecurePage_Controller extends Page_Controller {
+	    
+	    function init() {
+	        parent::init();
+	
+	        // causes an HTTP Redirect if in Non-SSL mode
+	        Director::forceSSL();
+	    }
+	    
+	    function SecurePage() {
+	        return true;
+	    }
+	}
 
-class MySecurePage_Controller extends Page_Controller {
-    
-    function init() {
-        parent::init();
-
-        // causes an HTTP Redirect if in Non-SSL mode
-        Director::forceSSL();
-    }
-    
-    function SecurePage() {
-        return true;
-    }
-}
-~~~
 
 
 
 ### Page class modifications to return non-secure pages to HTTP
 
-~~~ {php}
-class Page_Controller extends ContentController {
+	:::php
+	class Page_Controller extends ContentController {
+	
+	    function init() {
+	        parent::init();
+	        if ( !$this->SecurePage() ) {
+	            $this->force_HTTP();
+	        }
+	    }
+	    
+	    function SecurePage() {
+	        return false;
+	    }
+	    
+	    // if we are on https, redirect to the http version of this page's URL
+	    function force_HTTP() {
+	        $page_url    = Director::absoluteURL( $_SERVER['REQUEST_URI'] );
+	        $https_regex = '{^https:}';
+	        if ( preg_match( $https_regex, $page_url ) ) {
+	            $new_url = preg_replace( $https_regex, 'http:', $page_url );
+	            Director::redirect($new_url);
+	        }
+	    }
+	}
+	
 
-    function init() {
-        parent::init();
-        if ( !$this->SecurePage() ) {
-            $this->force_HTTP();
-        }
-    }
-    
-    function SecurePage() {
-        return false;
-    }
-    
-    // if we are on https, redirect to the http version of this page's URL
-    function force_HTTP() {
-        $page_url    = Director::absoluteURL( $_SERVER['REQUEST_URI'] );
-        $https_regex = '{^https:}';
-        if ( preg_match( $https_regex, $page_url ) ) {
-            $new_url = preg_replace( $https_regex, 'http:', $page_url );
-            Director::redirect($new_url);
-        }
-    }
-}
-
-~~~

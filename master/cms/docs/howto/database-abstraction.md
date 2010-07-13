@@ -23,22 +23,22 @@ The only way around this is to introduce code into your module to switch between
 
 Instead, we have introduced a class constant, ''Database::USE_ANSI_SQL'', that you can check for the presence of this to switch between the two query syntaxes
 
-~~~ {php}
-if(defined('DB::USE_ANSI_SQL')) $filter = '"BlogEntry"`.Date > NOW() - INTERVAL 3 MONTH';
-else $filter = '`BlogEntry`.Date > NOW() - INTERVAL 3 MONTH)';
-~~~
+	:::php
+	if(defined('DB::USE_ANSI_SQL')) $filter = '"BlogEntry"`.Date > NOW() - INTERVAL 3 MONTH';
+	else $filter = '`BlogEntry`.Date > NOW() - INTERVAL 3 MONTH)';
+
 
 If you are building up a query in a more complex manner, it might be clearer to use a custom string-replacement method for switching the query:
 
-~~~ {php}
-$filter = "(`BlogEntry`.Date > NOW() - INTERVAL 3 MONTH)";
+	:::php
+	$filter = "(`BlogEntry`.Date > NOW() - INTERVAL 3 MONTH)";
+	
+	if(isset($_GET['AuthorID'] && is_numeric($_GET['AuthorID'])) {
+	   $filter .= "AND (`BlogEntry`.AuthorID = '" . Convert::raw2sql($_GET['AuthorID') . "')";
+	}
+	
+	if(defined('DB::USE_ANSI_SQL')) $filter = str_replace('`BlogEntry`', '"BlogEntry"', $filter);
 
-if(isset($_GET['AuthorID'] && is_numeric($_GET['AuthorID'])) {
-   $filter .= "AND (`BlogEntry`.AuthorID = '" . Convert::raw2sql($_GET['AuthorID') . "')";
-}
-
-if(defined('DB::USE_ANSI_SQL')) $filter = str_replace('`BlogEntry`', '"BlogEntry"', $filter);
-~~~
 
 #### See also
 

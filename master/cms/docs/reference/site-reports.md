@@ -20,52 +20,54 @@ You can create reports for you own data quickly and easily. A general knowledge 
 Inside the Mysite/Code folder - your projects code, create a file called CustomSideReport or MyProjectSiteReport and inside this file we can add our site reports.
 
 CustomSideReport.php 
-~~~ {php}
-<?php
-class CustomSideReport_NameOfReport extends SideReport {
-	function title() {
-            // the name of our report
+
+	:::php
+	<?php
+	class CustomSideReport_NameOfReport extends SideReport {
+		function title() {
+	            // the name of our report
+		}
+		function records() {
+	            // what we want the report to return and what order
+		}
+		function fieldsToShow() {
+	            // which fields on that object do we want to show? Title, Author?
+		}
 	}
-	function records() {
-            // what we want the report to return and what order
-	}
-	function fieldsToShow() {
-            // which fields on that object do we want to show? Title, Author?
-	}
-}
-?>
-~~~
+	?>
+
 
 Now this won't do anything! You will just get a blank report that doesn't work! So for this to do something we have to fill in these 3 methods title() records() and fieldsToShow() till we have something like this. For example if you want to list every Page on your site!
 
 CustomSideReport.php
-~~~ {php}
-<?php
-/** 
 
- * This report lists all the pages in the CMS
- * of type Page. Sorted by title.
- */
-class CustomSideReport_AllPages extends SideReport {
-	function title() {
-        // this is the title of the report
-		return "All Pages";
-	}
+	:::php
+	<?php
+	/** 
 	
-	function records() {
-        // the data the report returns all the dataobjects of type Page and sorted by title. See datamodel for more info
-		return DataObject::get("Page", "", "Title");
+	 * This report lists all the pages in the CMS
+	 * of type Page. Sorted by title.
+	 */
+	class CustomSideReport_AllPages extends SideReport {
+		function title() {
+	        // this is the title of the report
+			return "All Pages";
+		}
+		
+		function records() {
+	        // the data the report returns all the dataobjects of type Page and sorted by title. See datamodel for more info
+			return DataObject::get("Page", "", "Title");
+		}
+		
+		function fieldsToShow() {
+	        // fields you want to display. This will display a list of titles which link to the page in the cms. Handy!
+			return array(
+				"Title" => array("NestedTitle", array("2")),
+			);
+		}	
 	}
-	
-	function fieldsToShow() {
-        // fields you want to display. This will display a list of titles which link to the page in the cms. Handy!
-		return array(
-			"Title" => array("NestedTitle", array("2")),
-		);
-	}	
-}
-?>
-~~~
+	?>
+
 
 Reload the CMS and test it out for your self! You should be able to select the report and view all the pages.
 

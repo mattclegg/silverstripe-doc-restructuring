@@ -14,19 +14,19 @@ In order to customize the ModelAdmin CMS interface you will need to understand h
 
 1. Extend ModelAdmin with a custom class for your admin area, and edit the ''$managed_models'' property with the list of data objects you want to scaffold an interface for:
 
-~~~ {php}
-class MyCatalogAdmin extends ModelAdmin {
-   
-  public static $managed_models = array(   //since 2.3.2
-      'Product',
-      'Category'
-   );
+	:::php
+	class MyCatalogAdmin extends ModelAdmin {
+	   
+	  public static $managed_models = array(   //since 2.3.2
+	      'Product',
+	      'Category'
+	   );
+	
+	  static $url_segment = 'products'; // will be linked as /admin/products
+	  static $menu_title = 'My Product Admin';
+	
+	}
 
-  static $url_segment = 'products'; // will be linked as /admin/products
-  static $menu_title = 'My Product Admin';
-
-}
-~~~
 
 To add the ModelAdmin to your CMS menu, you simply need to define a couple of statics on your ModelAdmin subclass. See [LeftAndMain](http://api.silverstripe.org/trunk/cms/core/LeftAndMain.html) on how to make your menu title translatable.
 
@@ -34,38 +34,40 @@ To add the ModelAdmin to your CMS menu, you simply need to define a couple of st
 2. Add a ''$searchable_fields'' (See [ModelAdmin#searchable_fields](ModelAdmin#searchable_fields)) property to your data models, to define the fields and filters for the search interface:
 
 Datamodel ''Product'':
-~~~ {php}
-class Product extends DataObject {
 
-   static $db = array(
-      'Name' => 'Varchar',
-      'ProductCode' => 'Varchar',
-      'Description' => 'Text',
-      'Price' => 'Currency'
-   );
+	:::php
+	class Product extends DataObject {
+	
+	   static $db = array(
+	      'Name' => 'Varchar',
+	      'ProductCode' => 'Varchar',
+	      'Description' => 'Text',
+	      'Price' => 'Currency'
+	   );
+	
+	   static $has_one = array(
+	      'Category' => 'Category'
+	   );
+	
+	   static $searchable_fields = array(
+	      'Name',
+	      'ProductCode' 
+	   );
+	
+	}
 
-   static $has_one = array(
-      'Category' => 'Category'
-   );
-
-   static $searchable_fields = array(
-      'Name',
-      'ProductCode' 
-   );
-
-}
-~~~
 
 Datamodel ''Category'':
-~~~ {php}
-<?php
-class Category extends DataObject {
-   static $db = array(
-      'Title' => 'Text'
-   );
-}
-?>
-~~~
+
+	:::php
+	<?php
+	class Category extends DataObject {
+	   static $db = array(
+	      'Title' => 'Text'
+	   );
+	}
+	?>
+
 
 3. You can now log in to the main CMS admin and manage your data objects, with no extra implementation required.
 

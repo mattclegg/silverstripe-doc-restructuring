@@ -6,24 +6,24 @@ The SiteConfig panel was introduced in 2.4 for providing a generic interface for
 
 You can access SiteConfig options from any SS template by using the function $SiteConfig.FieldName
 
-~~~ {html}
-$SiteConfig.Title 
-$SiteConfig.Tagline
+	:::html
+	$SiteConfig.Title 
+	$SiteConfig.Tagline
+	
+	Or 
+	
+	<% control SiteConfig %>
+	$Title $AnotherField
+	<% end_control %>
 
-Or 
-
-<% control SiteConfig %>
-$Title $AnotherField
-<% end_control %>
-~~~
 
 Or if you want to access variables in the PHP you can do
 
-~~~ {php}
-$config = SiteConfig::current_site_config(); 
+	:::php
+	$config = SiteConfig::current_site_config(); 
+	
+	$config->Title
 
-$config->Title
-~~~
 
 
 ## Extending SiteConfig
@@ -32,30 +32,30 @@ To extend the options available in the panel you can define your own fields via 
 
 Create a mysite/code/CustomSiteConfig.php file.
 
-~~~ {php}
-<?php
-
-class CustomSiteConfig extends Extension {
+	:::php
+	<?php
 	
-	function extraStatics() {
-		return array(
-			'db' => array(
-				'FooterContent' => 'HTMLText'
-			)
-		);
+	class CustomSiteConfig extends Extension {
+		
+		function extraStatics() {
+			return array(
+				'db' => array(
+					'FooterContent' => 'HTMLText'
+				)
+			);
+		}
+	
+		public function updateCMSFields(FieldSet $fields) {
+			$fields->addFieldToTab("Root.Main", new HTMLEditorField("FooterContact", "Footer Contact Info"));
+		}
 	}
 
-	public function updateCMSFields(FieldSet $fields) {
-		$fields->addFieldToTab("Root.Main", new HTMLEditorField("FooterContact", "Footer Contact Info"));
-	}
-}
-~~~
 
 Then add a link to your extension in the _config.php file like below.
 
-~~~
-Object::add_extension('SiteConfig', 'CustomSiteConfig');
-~~~
+	
+	Object::add_extension('SiteConfig', 'CustomSiteConfig');
+
 
 This tells SilverStripe to add the CustomSiteConfig extension to the SiteConfig class. 
 

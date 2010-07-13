@@ -10,20 +10,21 @@ Please use LeftAndMain::ForceReload to reload the whole form-area after an Ajax-
 ## Custom Access Checking
 
 You can customize access control in [LeftAndMain](http://api.silverstripe.org/trunk/cms/core/LeftAndMain.html) (and all subclasses) by using a [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html).
-~~~ {php}
-// mysite/_config.php
-LeftAndMain::add_extension('MyLeftAndMain');
 
-// MyLeftAndMain.php
-class MyLeftAndMain extends Extension {
-  function augumentInit() {
-    // add custom requirements etc.
-  }
-  function alternateAccessCheck() {
-    // custom permission checks, e.g. to check for an SSL-connection, or an LDAP-group-membership
-  }
-}
-~~~
+	:::php
+	// mysite/_config.php
+	LeftAndMain::add_extension('MyLeftAndMain');
+	
+	// MyLeftAndMain.php
+	class MyLeftAndMain extends Extension {
+	  function augumentInit() {
+	    // add custom requirements etc.
+	  }
+	  function alternateAccessCheck() {
+	    // custom permission checks, e.g. to check for an SSL-connection, or an LDAP-group-membership
+	  }
+	}
+
 
 # Subclassing
 
@@ -32,43 +33,44 @@ There are a few steps in creating a subclass of LeftAndMain.
 #### MyAdmin.php
 
 The PHP file defining your new subclass is the first step in the process.  This provides a good starting point:
-~~~ {php}
-class MyAdmin extends LeftAndMain {
 
-	static $url_segment = 'myadmin';
-
-	static $url_rule = '$Action/$ID';
-
-	static $menu_title = 'My Admin';
-
-	static $menu_priority = 60;
-
-	/**
-
-	 * Initialisation method called before accessing any functionality that BulkLoaderAdmin has to offer
-	 */
-	public function init() {
-		Requirements::javascript('cms/javascript/MyAdmin.js');
-		
-		parent::init();
+	:::php
+	class MyAdmin extends LeftAndMain {
+	
+		static $url_segment = 'myadmin';
+	
+		static $url_rule = '$Action/$ID';
+	
+		static $menu_title = 'My Admin';
+	
+		static $menu_priority = 60;
+	
+		/**
+	
+		 * Initialisation method called before accessing any functionality that BulkLoaderAdmin has to offer
+		 */
+		public function init() {
+			Requirements::javascript('cms/javascript/MyAdmin.js');
+			
+			parent::init();
+		}
+	
+		/**
+	
+		 * Form that will be shown when we open one of the items
+		 */	 
+		public function getEditForm($id = null) {
+			return new Form($this, "EditForm",
+				new FieldSet(
+					new ReadonlyField('id #',$id)
+				),
+				new FieldSet(
+					new FormAction('go')
+				)
+			);
+		}
 	}
 
-	/**
-
-	 * Form that will be shown when we open one of the items
-	 */	 
-	public function getEditForm($id = null) {
-		return new Form($this, "EditForm",
-			new FieldSet(
-				new ReadonlyField('id #',$id)
-			),
-			new FieldSet(
-				new FormAction('go')
-			)
-		);
-	}
-}
-~~~
 
 #### Templates
 
@@ -78,42 +80,44 @@ Next, create templates, (classname)_left.ss and (classname)_right.ss.  Again, he
  * On the right, we have the skeleton that the form will be loaded into.
 
 MyAdmin_left.ss
-~~~ {html}
-<div class="title"><div>Functions</div></div>
 
-<div id="treepanes">
-<div id="sitetree_holder" style="overflow:auto">
-	<% if Items %>
-		<ul id="sitetree" class="tree unformatted">
-		<li id="$ID" class="root Root"><a>Items</a>
-			<ul>
-			<% control Items %>
-				<li id="record-$class">
-				<a href="admin/my/show/$ID">$Title</a>
-				</li>
-			<% end_control %>
+	:::html
+	<div class="title"><div>Functions</div></div>
+	
+	<div id="treepanes">
+	<div id="sitetree_holder" style="overflow:auto">
+		<% if Items %>
+			<ul id="sitetree" class="tree unformatted">
+			<li id="$ID" class="root Root"><a>Items</a>
+				<ul>
+				<% control Items %>
+					<li id="record-$class">
+					<a href="admin/my/show/$ID">$Title</a>
+					</li>
+				<% end_control %>
+				</ul>
+			</li>
 			</ul>
-		</li>
-		</ul>
-	<% end_if %>
-</div>
-</div>
-~~~
+		<% end_if %>
+	</div>
+	</div>
+
 
 MyAdmin_right.ss
-~~~ {html}
-<div class="title"><div>My admin</div></div>
 
-<% if EditForm %>
-	$EditForm
-<% else %>
-	<form id="Form_EditForm" action="admin/my?executeForm=EditForm" method="post" enctype="multipart/form-data">
-		<p>Welcome to my $ApplicationName admin section.  Please choose something from the left.</p>
-	</form>
-<% end_if %>
+	:::html
+	<div class="title"><div>My admin</div></div>
+	
+	<% if EditForm %>
+		$EditForm
+	<% else %>
+		<form id="Form_EditForm" action="admin/my?executeForm=EditForm" method="post" enctype="multipart/form-data">
+			<p>Welcome to my $ApplicationName admin section.  Please choose something from the left.</p>
+		</form>
+	<% end_if %>
+	
+	<p id="statusMessage" style="visibility:hidden"></p>
 
-<p id="statusMessage" style="visibility:hidden"></p>
-~~~
 
 
 ### Customising the main menu
@@ -127,12 +131,12 @@ The static variable $menu_priority tells the CMS where to put the menu item rela
 
 For example:
 
-~~~ {php}
-static $url_segment = 'myadmin';
-static $url_rule = '$Action/$ID';
-static $menu_title = 'My Admin';
-static $menu_priority = 60;
-~~~
+	:::php
+	static $url_segment = 'myadmin';
+	static $url_rule = '$Action/$ID';
+	static $menu_title = 'My Admin';
+	static $menu_priority = 60;
+
 
 See also [CMSMenu](CMSMenu)
 
@@ -140,10 +144,10 @@ See also [CMSMenu](CMSMenu)
 
 Override the function getMenuTitle() to create a translated menu title name. Eg:
 
-~~~ {php}
-public function getMenuTitle() {
-   return _t('LeftAndMain.MYADMIN', 'My Admin', PR_HIGH, 'Menu title');
-~~~
+	:::php
+	public function getMenuTitle() {
+	   return _t('LeftAndMain.MYADMIN', 'My Admin', PR_HIGH, 'Menu title');
+
 
 
 ## 'onload' javascript in the CMS
@@ -152,20 +156,20 @@ You can have custom scripting called when a Page is loaded by clicking on the Si
 This can be used to set up event handlers, or populate dropdowns, etc.
 You could insert this code using Requirements from a custom page class.
 
-~~~ {javascript}
-Behaviour.register({
-	'#Form_EditForm' : {
-		initialize : function() {
-			this.observeMethod('PageLoaded', this.adminPageHandler);
-			this.adminPageHandler();
-		},
-		adminPageHandler : function() {
-			// Place your custom code here.
+	:::javascript
+	Behaviour.register({
+		'#Form_EditForm' : {
+			initialize : function() {
+				this.observeMethod('PageLoaded', this.adminPageHandler);
+				this.adminPageHandler();
+			},
+			adminPageHandler : function() {
+				// Place your custom code here.
+			}
 		}
-	}
-});
+	});
+	
 
-~~~
 
 ## Related
 

@@ -57,44 +57,46 @@ Virtual hosts let you run multiple sites on different domain names from your win
 2.  Open httpd-vhosts.conf and delete all the current stuff in it
 3.  Leave (or-recreate) the "NameVirtualHost" line, remove :80 if it exists (so the line now reads "NameVirtualHost *" without quotes
 4.  Make this your default (it must be the very first <VirtualHost> block in the file to be classed as the default)
-~~~
-##
 
-## Site list, phpMyAdmin, WAMP-specific config etc.
-##
+	
+	##
+	
+	## Site list, phpMyAdmin, WAMP-specific config etc.
+	##
+	
+	<VirtualHost *>
+	    DocumentRoot C:/serveweb/sites/default
+	    ServerName localhost
+	
+	    CustomLog ../logs/default/access.log common
+	</VirtualHost>
 
-<VirtualHost *>
-    DocumentRoot C:/serveweb/sites/default
-    ServerName localhost
-
-    CustomLog ../logs/default/access.log common
-</VirtualHost>
-~~~
 
 1.  Add extra ones for each project you work on. For example:
-~~~
-##
 
-## ssopen
-##
+	
+	##
+	
+	## ssopen
+	##
+	
+	<VirtualHost *>
+	    DocumentRoot c:/serveweb/sites/ssopen
+	    ServerName ssopen
+	    CustomLog ../logs/ssopen/access.log common
+	</VirtualHost>
+	
+	##
+	
+	## uPlay
+	##
+	
+	<VirtualHost *>
+	    DocumentRoot c:/serveweb/sites/uplay
+	    ServerName uplay
+	    CustomLog ../logs/uplay/access.log common
+	</VirtualHost>
 
-<VirtualHost *>
-    DocumentRoot c:/serveweb/sites/ssopen
-    ServerName ssopen
-    CustomLog ../logs/ssopen/access.log common
-</VirtualHost>
-
-##
-
-## uPlay
-##
-
-<VirtualHost *>
-    DocumentRoot c:/serveweb/sites/uplay
-    ServerName uplay
-    CustomLog ../logs/uplay/access.log common
-</VirtualHost>
-~~~
 
 1.  Create directories inside the logs/ folder for each project (you can remove the line, but it helps to debug issues when Apache doesn't like what you're passing it)
 2.  Create these directories. What I find works well is to install TortiseSVN, open c:\serveweb\sites, then right click and select SVN Checkout. Add the project name to the end of the destination directory and modify the SVN source path to suit. It'll check out the project into c:\serveweb\sites\uplay, for example.

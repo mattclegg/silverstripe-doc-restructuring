@@ -11,10 +11,10 @@ If you get an error when running the command php -v, then you may not have php-c
 
 **Linux / Mac**
 
-~~~
-cd /your/site/folder
-sudo ./sapphire/sake installsake
-~~~
+	
+	cd /your/site/folder
+	sudo ./sapphire/sake installsake
+
 
 ** Windows **
 
@@ -26,20 +26,20 @@ Sometimes SilverStripe needs to know the URL of your site, for example, when sen
 
 To work this out, you should add lines of this form to your [_ss_environment.php](environment-management) file.
 
-~~~ {php}
-global $_FILE_TO_URL_MAPPING;
-$_FILE_TO_URL_MAPPING['/Users/sminnee/Sites'] = 'http://localhost';
-~~~
+	:::php
+	global $_FILE_TO_URL_MAPPING;
+	$_FILE_TO_URL_MAPPING['/Users/sminnee/Sites'] = 'http://localhost';
+
 
 What the line says is that any Folder under /Users/sminnee/Sites/ can be accessed in a web browser from http://localhost.  For example, /Users/sminnee/Sites/mysite will be available at http://localhost/mysite.
 
 You can add multiple file to url mapping definitions.  The most specific mapping will be used. For example:
 
-~~~ {php}
-global $_FILE_TO_URL_MAPPING;
-$_FILE_TO_URL_MAPPING['/Users/sminnee/Sites'] = 'http://localhost';
-$_FILE_TO_URL_MAPPING['/Users/sminnee/Sites/mysite'] = 'http://mysite.localhost';
-~~~
+	:::php
+	global $_FILE_TO_URL_MAPPING;
+	$_FILE_TO_URL_MAPPING['/Users/sminnee/Sites'] = 'http://localhost';
+	$_FILE_TO_URL_MAPPING['/Users/sminnee/Sites/mysite'] = 'http://mysite.localhost';
+
 
 Using this example, /Users/sminnee/Sites/mysite/ would be accessed at http://mysite.localhost/, and /Users/sminnee/Sites/othersite/ would be accessed at http://localhost/othersite/
 
@@ -49,18 +49,18 @@ Sake will either run ./sapphire/cli-script.php or ./cli-script.php, depending on
 
 It's particularly useful for running build tasks...
 
-~~~
-cd /your/site/folder
-sake db/build
-sake dev/tests/all
-~~~
+	
+	cd /your/site/folder
+	sake db/build
+	sake dev/tests/all
+
 
 It can also be handy if you have a long running script.
 
-~~~
-cd /your/site/folder
-sake MyReallyLongTask
-~~~
+	
+	cd /your/site/folder
+	sake MyReallyLongTask
+
 
 #### Running processes
 
@@ -72,31 +72,31 @@ The other thing you should do is include some appropriate sleep()s so that your 
 
 This code provides a good template:
 
-~~~ {php}
-class MyProcess extends Controller {
-  function index() {
-    set_time_limit(0);
-    while(memory_get_usage() < 32*1024*1024) {
-      if($this->somethingToDo()) {
-        $this->doSomething();
-        sleep(1)
-      } else {
-        sleep(300);
-      }
-    }
-  }
-}
-~~~
+	:::php
+	class MyProcess extends Controller {
+	  function index() {
+	    set_time_limit(0);
+	    while(memory_get_usage() < 32*1024*1024) {
+	      if($this->somethingToDo()) {
+	        $this->doSomething();
+	        sleep(1)
+	      } else {
+	        sleep(300);
+	      }
+	    }
+	  }
+	}
+
 
 
 Step 2: Install the "daemon" command-line tool on your server.
 
 Step 3: Use sake to start and stop your process
 
-~~~
-sake -start MyProcess
-sake -stop MyProcess
-~~~
+	
+	sake -start MyProcess
+	sake -stop MyProcess
+
 
 Note that sake processes are currently a little brittle, in that the pid and log files are placed in the site root directory, rather than somewhere sensible like /var/log or /var/run.
 

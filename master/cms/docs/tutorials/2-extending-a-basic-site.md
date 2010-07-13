@@ -36,25 +36,25 @@ We'll start with the //ArticlePage// page type. First we create the model, a cla
 
 **mysite/code/ArticlePage.php**
 
-~~~ {php}
-<?php
-/**
+	:::php
+	<?php
+	/**
+	
+	 * Defines the ArticlePage page type
+	 */
+	class ArticlePage extends Page {
+	   static $db = array(
+	   );
+	   static $has_one = array(
+	   );
+	}
+	 
+	class ArticlePage_Controller extends Page_Controller {
+	 
+	}
+	 
+	?>
 
- * Defines the ArticlePage page type
- */
-class ArticlePage extends Page {
-   static $db = array(
-   );
-   static $has_one = array(
-   );
-}
- 
-class ArticlePage_Controller extends Page_Controller {
- 
-}
- 
-?>
-~~~
 
 Here we've created our data object/controller pair, but we haven't actually extended them at all. Don't worry about the //$db// and //$has_one// arrays just yet, we'll explain them soon, as well as other ways in which you can extend your page types. SilverStripe will use the template for the //Page// page type as explained in the first tutorial, so we don't need to specifically create the view for this page type.
 
@@ -62,27 +62,27 @@ Let's create the //ArticleHolder// page type.
 
 **mysite/code/ArticleHolder.php**
 
-~~~ {php}
-<?php
-/**
+	:::php
+	<?php
+	/**
+	
+	 * Defines the ArticleHolder page type
+	 */
+	class ArticleHolder extends Page {
+	   static $db = array(
+	   );
+	   static $has_one = array(
+	   );
+	   
+	   static $allowed_children = array('ArticlePage');
+	}
+	 
+	class ArticleHolder_Controller extends Page_Controller {
+	 
+	}
+	 
+	?>
 
- * Defines the ArticleHolder page type
- */
-class ArticleHolder extends Page {
-   static $db = array(
-   );
-   static $has_one = array(
-   );
-   
-   static $allowed_children = array('ArticlePage');
-}
- 
-class ArticleHolder_Controller extends Page_Controller {
- 
-}
- 
-?>
-~~~
 
 Here we have done something interesting: the //$allowed_children// field. This is one of a number of static fields we can define to change the properties of a page type. The //$allowed_children// field is an array of page types that are allowed to be children of the page in the site tree. As we only want news articles in the news section, we only want //ArticlePage// pages for children. We can enforce this in the CMS by setting the //$allowed_children// field.
 
@@ -97,20 +97,20 @@ It is SilverStripe convention to suffix general page types with "Page", and page
 
 Now that we have an //ArticlePage// page type, let's make it a little more useful. Remember the //$db// array? We can use this array to add extra fields to the database. It would be nice to know when each article was posted, and who posted it. Change the //$db// array in the //ArticlePage// class so it looks like this:
 
-~~~ {php}
-<?php
+	:::php
+	<?php
+	
+	class ArticlePage extends Page {
+	
+	   static $db = array(
+	      'Date' => 'Date',
+	      'Author' => 'Text'
+	   );
+	
+	   // .....
+	}
+	 
 
-class ArticlePage extends Page {
-
-   static $db = array(
-      'Date' => 'Date',
-      'Author' => 'Text'
-   );
-
-   // .....
-}
- 
-~~~
 
 Every entry in the array is a key-value pair. The key is the name of the field, and the value is the type. We have a //[Date](http://api.silverstripe.org/current/sapphire/model/Date.html)// field called "Date" and a //[Text](http://api.silverstripe.org/current/sapphire/model/Text.html)// field called "Author". See [:data-types](/data-types) for a complete list of different data types.
 
@@ -118,46 +118,46 @@ Note: The names chosen for the fields you add must not already be used. Be caref
 
 If we rebuild the database, we will see that now the //ArticlePage// table is created. Even though we had an //ArticlePage// page type before, the table was not created because we had no fields that were unique to the article page type. We now have the extra fields in the database, but still no way of changing them. To add these fields to the CMS we have to override the //getCMSFields()// method, which is called by the CMS when it creates the form to edit a page. Add the method to the //ArticlePage// class.
 
-~~~ {php}
-<?php
+	:::php
+	<?php
+	
+	class ArticlePage extends Page {
+	
+	   // ...
+	
+	   function getCMSFields() {
+	      $fields = parent::getCMSFields();
+	
+	      $fields->addFieldToTab('Root.Content.Main', new DateField('Date'), 'Content');
+	      $fields->addFieldToTab('Root.Content.Main', new TextField('Author'), 'Content');
+	    	
+	      return $fields;
+	   }
+	}
+	
+	// ...
+	
 
-class ArticlePage extends Page {
-
-   // ...
-
-   function getCMSFields() {
-      $fields = parent::getCMSFields();
-
-      $fields->addFieldToTab('Root.Content.Main', new DateField('Date'), 'Content');
-      $fields->addFieldToTab('Root.Content.Main', new TextField('Author'), 'Content');
-    	
-      return $fields;
-   }
-}
-
-// ...
-
-~~~
 
 
 Let's walk through this method.
 
-~~~ {php}
-$fields = parent::getCMSFields();
-~~~
+	:::php
+	$fields = parent::getCMSFields();
+
 
 Firstly, we get the fields from the parent class; we want to add fields, not replace them. The //$fields// variable returned is a //[FieldSet](http://api.silverstripe.org/current/forms/fields-structural/FieldSet.html)// object.
 
-~~~ {php}
-$fields->addFieldToTab('Root.Content.Main', new DateField('Date'), 'Content');
-$fields->addFieldToTab('Root.Content.Main', new TextField('Author'), 'Content');
-~~~
+	:::php
+	$fields->addFieldToTab('Root.Content.Main', new DateField('Date'), 'Content');
+	$fields->addFieldToTab('Root.Content.Main', new TextField('Author'), 'Content');
+
 
 We can then add our new fields with //addFieldToTab//. The first argument is the tab on which we want to add the field to: "Root.Content.Main" is the tab which the content editor is on. The second argument is the field to add; this is not a database field, but a //[FormField](http://api.silverstripe.org/current/forms/core/FormField.html)//. We must create new form fields, passing them the name of the database field we wish to edit. See the //[FormField](http://api.silverstripe.org/current/forms/core/FormField.html)// documentation for all the field types available. The last argument says that we wish to put our fields above the "Content" field: see the //[FieldSet](http://api.silverstripe.org/current/forms/fields-structural/FieldSet.html)// documentation for more details.
 
-~~~ {php}
-return $fields;
-~~~
+	:::php
+	return $fields;
+
 
 Finally, we return the fields to the CMS. If we flush the cache (//?flush=1//), we will be able to edit the fields in the CMS.
 
@@ -175,29 +175,29 @@ First, the template for displaying a single article:
 
 ** themes/tutorial/templates/Layout/ArticlePage.ss **
 
-~~~ {html}
-<% if Menu(2) %>
-  <ul id="Menu2">
-    <% control Menu(2) %>
-      <li class="$LinkingMode"><a href="$Link" title="Go to the $Title page">$MenuTitle</a></li>
-    <% end_control %>
-  </ul>
-<% end_if %>
+	:::html
+	<% if Menu(2) %>
+	  <ul id="Menu2">
+	    <% control Menu(2) %>
+	      <li class="$LinkingMode"><a href="$Link" title="Go to the $Title page">$MenuTitle</a></li>
+	    <% end_control %>
+	  </ul>
+	<% end_if %>
+	
+	<div id="Content" class="typography">
+	  <% if Level(2) %>
+	    <div class="breadcrumbs">
+	      $Breadcrumbs
+	    </div>
+	  <% end_if %>
+				
+	  <h1>$Title</h1>
+	  $Content
+	  <div class="newsDetails">
+	    Posted on $Date.Nice by $Author
+	  </div>
+	</div>
 
-<div id="Content" class="typography">
-  <% if Level(2) %>
-    <div class="breadcrumbs">
-      $Breadcrumbs
-    </div>
-  <% end_if %>
-			
-  <h1>$Title</h1>
-  $Content
-  <div class="newsDetails">
-    Posted on $Date.Nice by $Author
-  </div>
-</div>
-~~~
 
 The first block of code is our regular second level menu; we also have our regular breadcrumbs code here. We will see how to remove these blocks of repetitive code in a bit.
 
@@ -213,18 +213,18 @@ Now we'll create a template for the article holder: we want our news section to 
 
 **themes/tutorial/templates/Layout/ArticleHolder.ss**
 
-~~~ {html}
-<div id="Content" class="typography">		
-  $Content
-  <ul id="NewsList">
-    <% control Children %>
-      <li class="newsDateTitle"><a href="$Link" title="Read more on &quot;{$Title}&quot;">$Title</a></li>
-      <li class="newsDateTitle">$Date.Nice</li>
-      <li class="newsSummary">$Content.FirstParagraph <a href="$Link" title="Read more on &quot;{$Title}&quot;">Read more &gt;&gt;</a></li>
-    <% end_control %>
-  </ul>
-</div>
-~~~
+	:::html
+	<div id="Content" class="typography">		
+	  $Content
+	  <ul id="NewsList">
+	    <% control Children %>
+	      <li class="newsDateTitle"><a href="$Link" title="Read more on &quot;{$Title}&quot;">$Title</a></li>
+	      <li class="newsDateTitle">$Date.Nice</li>
+	      <li class="newsSummary">$Content.FirstParagraph <a href="$Link" title="Read more on &quot;{$Title}&quot;">Read more &gt;&gt;</a></li>
+	    <% end_control %>
+	  </ul>
+	</div>
+
 
 Here we use the page control //Children//. As the name suggests, this control allows you to iterate over the children of a page, which in this case is our news articles. The //$Link// variable will give the address of the article which we can use to create a link, and the //FirstParagraph// function of the [HTMLText](http://api.silverstripe.org/current/sapphire/model/HTMLText.html) field gives us a nice summary of the article.
 
@@ -239,47 +239,47 @@ The second level menu is something we want in most, but not all, pages so we can
 
 ** themes/tutorial/templates/Includes/Menu2.ss **
 
-~~~ {html}
-<% if Menu(2) %>
-  <ul id="Menu2">
-    <% control Menu(2) %>
-      <li class="$LinkingMode"><a href="$Link" title="Go to the $Title page">$MenuTitle</a></li>
-    <% end_control %>
-  </ul>
-<% end_if %>
-~~~
+	:::html
+	<% if Menu(2) %>
+	  <ul id="Menu2">
+	    <% control Menu(2) %>
+	      <li class="$LinkingMode"><a href="$Link" title="Go to the $Title page">$MenuTitle</a></li>
+	    <% end_control %>
+	  </ul>
+	<% end_if %>
+
 
 And then replace the second level menu with //<% include Menu2 %>// in //Page.ss// and //ArticlePage.ss// like so:
 
 ** themes/tutorial/templates/Layout/Page.ss**, ** themes/tutorial/templates/Layout/ArticlePage.ss**
 
-~~~ {html}
-<% include Menu2 %>
- 
-<div id="Content" class="typography">
-...
-~~~
+	:::html
+	<% include Menu2 %>
+	 
+	<div id="Content" class="typography">
+	...
+
 
 Do the same with the breadcrumbs:
 
 ** themes/tutorial/templates/Includes/Breadcrumbs.ss **
 
-~~~ {html}
-<% if Level(2) %>
-  <div class="breadcrumbs">
-    $Breadcrumbs
-  </div>
-<% end_if %>
-~~~
+	:::html
+	<% if Level(2) %>
+	  <div class="breadcrumbs">
+	    $Breadcrumbs
+	  </div>
+	<% end_if %>
+
 
 ** themes/tutorial/templates/Layout/Page.ss**, ** themes/tutorial/templates/Layout/ArticlePage.ss**
 
-~~~ {html}
-...
-<div id="Content" class="typography">
-  <% include Breadcrumbs %>
-...
-~~~
+	:::html
+	...
+	<div id="Content" class="typography">
+	  <% include Breadcrumbs %>
+	...
+
 
 You can make your templates more modular and easier to maintain by separating commonly-used pieces into include files.
 
@@ -288,15 +288,15 @@ You can make your templates more modular and easier to maintain by separating co
 
 Let's now make a purely cosmetic change that nevertheless helps to make the information presented in the CMS clearer. Add the following field to the //ArticleHolder// and //ArticlePage// classes:
 
-~~~ {php}
-static $icon = "themes/tutorial/images/treeicons/news";
-~~~
+	:::php
+	static $icon = "themes/tutorial/images/treeicons/news";
+
 
 And this one to the //HomePage// class:
 
-~~~ {php}
-static $icon = "themes/tutorial/images/treeicons/home";
-~~~
+	:::php
+	static $icon = "themes/tutorial/images/treeicons/home";
+
 
 This will change the icons for the pages in the CMS.  //Note// that the corresponding filename to the path given for $icon will end with **-file.gif**, e.g. when you specify //news// above, the filename will be //news-file.gif//.
 
@@ -311,14 +311,15 @@ A handy feature built into Silverstripe is the ability for guests to your site t
 We then need to include //$PageComments// in our template, which will insert the comment form as well as all comments left on the page.
 
 ** themes/tutorial/templates/Layout/ArticlePage.ss **
-~~~ {php}
-...
-<div class="newsDetails">
-  Posted on $Date.Nice by $Author
-</div>
-$PageComments
-...
-~~~
+
+	:::php
+	...
+	<div class="newsDetails">
+	  Posted on $Date.Nice by $Author
+	</div>
+	$PageComments
+	...
+
 
 You should also prepare the //Page// template in the same manner, so comments can be enabled at a later point on any page.
 
@@ -326,11 +327,11 @@ You should also prepare the //Page// template in the same manner, so comments ca
 
 It would be nice to have comments on for all articles by default. We can do this with the //$defaults// array. Add this to the //ArticlePage// class:
 
-~~~ {php}
-static $defaults = array(
-   'ProvideComments' => true
-);
-~~~
+	:::php
+	static $defaults = array(
+	   'ProvideComments' => true
+	);
+
 
 You can set defaults for any of the fields in your data object. //ProvideComments// is defined in //SiteTree//, so it is part of our //ArticlePage// data object.
 
@@ -339,30 +340,32 @@ You can set defaults for any of the fields in your data object. //ProvideComment
 It would be nice to greet page visitors with a summary of the latest news when they visit the homepage. This requires a little more code though - the news articles are not direct children of the homepage, so we can't use the //Children// control. We can get the data for the news articles by implementing our own function in //HomePage_Controller//.
 
 ** mysite/code/HomePage.php **
-~~~ {php}
-...
-function LatestNews($num=5) {
-  $news = DataObject::get_one("ArticleHolder");
-  return ($news) ? DataObject::get("ArticlePage", "ParentID = $news->ID", "Date DESC", "", $num) : false;
-}
-...
-~~~
+
+	:::php
+	...
+	function LatestNews($num=5) {
+	  $news = DataObject::get_one("ArticleHolder");
+	  return ($news) ? DataObject::get("ArticlePage", "ParentID = $news->ID", "Date DESC", "", $num) : false;
+	}
+	...
+
 
 This function simply runs a database query that gets the latest news articles from the database. By default, this is five, but you can change it by passing a number to the function. See the //[DataObject](http://api.silverstripe.org/current/sapphire/model/DataObject.html)// documentation for details. We can reference this function as a page control in our //HomePage// template:
 
 ** themes/tutorial/templates/Layout/Homepage.ss **
-~~~ {html}
-...
-$Content
-<ul id="NewsList">
-  <% control LatestNews %>
-    <li class="newsDateTitle"><a href="$Link" title="Read more on &quot;{$Title}&quot;">$Title</a></li>
-    <li class="newsDateTitle">$Date.Nice</li>
-    <li class="newsSummary">$Content.FirstParagraph<a href="$Link" title="Read more on &quot;{$Title}&quot;">Read more &gt;&gt;</a></li>
-  <% end_control %>
-</ul>
-...
-~~~
+
+	:::html
+	...
+	$Content
+	<ul id="NewsList">
+	  <% control LatestNews %>
+	    <li class="newsDateTitle"><a href="$Link" title="Read more on &quot;{$Title}&quot;">$Title</a></li>
+	    <li class="newsDateTitle">$Date.Nice</li>
+	    <li class="newsSummary">$Content.FirstParagraph<a href="$Link" title="Read more on &quot;{$Title}&quot;">Read more &gt;&gt;</a></li>
+	  <% end_control %>
+	</ul>
+	...
+
 
 When SilverStripe comes across a variable or page control it doesn't recognize, it first passes control to the controller. If the controller doesn't have a function for the variable or page control, it then passes control to the data object. If it has no matching functions, it then searches its database fields. Failing that it will return nothing.
 
@@ -376,12 +379,12 @@ The controller for a page is only created when page is actually visited, while t
 
 An RSS feed is something that no news section should be without. SilverStripe makes it easy to create RSS feeds by providing an //[RSSFeed](http://api.silverstripe.org/current/sapphire/integration/RSSFeed.html)// class to do all the hard work for you. Create the following function in the //ArticleHolder_Controller//:
 
-~~~ {php}
-function rss() {
-  $rss = new RSSFeed($this->Children(), $this->Link(), "The coolest news around");
-  $rss->outputToBrowser();
-}
-~~~
+	:::php
+	function rss() {
+	  $rss = new RSSFeed($this->Children(), $this->Link(), "The coolest news around");
+	  $rss->outputToBrowser();
+	}
+
 
 This function simply creates an RSS feed of all the news articles, and outputs it to the browser. If you go to [http://localhost:3000/news/rss](http://localhost:3000/news/rss) you will see our RSS feed. What happens here is that when there is more to a URL after the page's base URL - "rss" in this case - SilverStripe will call the function with that name on the controller if it exists.
 
@@ -391,12 +394,12 @@ Depending on your browser, you should see something like the picture below. If y
 
 Now all we need is to let the user know that our RSS feed exists. The //[RSSFeed](http://api.silverstripe.org/current/sapphire/integration/RSSFeed.html)// class provides a //linkToFeed// function that will create an embedded link inside your page that RSS aware browsers (such as Firefox or Internet Explorer 7) will pick up. The only question is where to call this function. If you create a function called //init()// in your controller, it will be called when the page is requested. Add this function to //ArticleHolder_Controller//:
 
-~~~ {php}
-function init() {
-   RSSFeed::linkToFeed($this->Link() . "rss");	
-   parent::init();
-}
-~~~
+	:::php
+	function init() {
+	   RSSFeed::linkToFeed($this->Link() . "rss");	
+	   parent::init();
+	}
+
 
 This automatically generates a link-tag in the header of our template. The //init// function is then called on the parent class to ensure any initialization the parent would have done if we hadn't overridden the //init// function is still called. In Firefox you can see the RSS feed link in the address bar:
 
@@ -407,53 +410,54 @@ This automatically generates a link-tag in the header of our template. The //ini
 Now that we have a complete news section, let's move on to the staff section. We need to create //StaffHolder// and //StaffPage// page types, for an overview on all staff members and a detail-view for a single member. First let's start with the //StaffHolder// page type.
 
 ** mysite/code/StaffHolder.php **
-~~~ {php}
-<?php
 
-class StaffHolder extends Page {
-   static $db = array(
-   );
-   static $has_one = array(
-   );
+	:::php
+	<?php
 	
-   static $allowed_children = array('StaffPage');
-}
-
-class StaffHolder_Controller extends Page_Controller {
+	class StaffHolder extends Page {
+	   static $db = array(
+	   );
+	   static $has_one = array(
+	   );
+		
+	   static $allowed_children = array('StaffPage');
+	}
 	
-}
+	class StaffHolder_Controller extends Page_Controller {
+		
+	}
+	
+	?>
 
-?>
-~~~
 
 Nothing here should be new. The //StaffPage// page type is more interesting though. Each staff member has a portrait image. We want to make a permanent connection between this image and the specific //StaffPage// (otherwise we could simply insert an image in the //$Content// field).
 
 ** mysite/code/StaffPage.php **
 
-~~~ {php}
-<?php
+	:::php
+	<?php
+	
+	class StaffPage extends Page {
+	   static $db = array(
+	   );
+	   static $has_one = array(
+	      'Photo' => 'Image'
+	   );
+		
+	   function getCMSFields() {
+	      $fields = parent::getCMSFields();
+		
+	      $fields->addFieldToTab("Root.Content.Images", new ImageField('Photo'));
+	   	
+	      return $fields;
+	   }
+	}
+	
+	class StaffPage_Controller extends Page_Controller {
+		
+	}
+	?>
 
-class StaffPage extends Page {
-   static $db = array(
-   );
-   static $has_one = array(
-      'Photo' => 'Image'
-   );
-	
-   function getCMSFields() {
-      $fields = parent::getCMSFields();
-	
-      $fields->addFieldToTab("Root.Content.Images", new ImageField('Photo'));
-   	
-      return $fields;
-   }
-}
-
-class StaffPage_Controller extends Page_Controller {
-	
-}
-?>
-~~~
 
 Instead of adding our //Image// as a field in //$db//, we have used the //$has_one// array. This is because an //Image// is not a simple database field like all the fields we have seen so far, but has its own database table. By using the //$has_one// array, we create a relationship between the //StaffPage// table and the //Image// table by storing the id of the respective //Image// in the //StaffPage// table.
 
@@ -475,24 +479,24 @@ The staff section templates aren't too difficult to create, thanks to the utilit
 
 ** themes/tutorial/templates/Layout/StaffHolder.ss **
 
-~~~ {html}
-<% include Menu2 %>
- 
-<div id="Content" class="typography">
-  <% include Breadcrumbs %>
-  $Content
+	:::html
+	<% include Menu2 %>
+	 
+	<div id="Content" class="typography">
+	  <% include Breadcrumbs %>
+	  $Content
+	
+	  <ul id="StaffList">
+	    <% control Children %>
+	      <li>
+	        <div class="staffname"><a href="$Link">$Title</a></div>
+	        <div class="staffphoto">$Photo.SetWidth(50)</div>
+	        <div class="staffdescription"><p>$Content.FirstSentence</p></div>
+	      </li>
+	    <% end_control %>
+	  </ul>
+	</div>
 
-  <ul id="StaffList">
-    <% control Children %>
-      <li>
-        <div class="staffname"><a href="$Link">$Title</a></div>
-        <div class="staffphoto">$Photo.SetWidth(50)</div>
-        <div class="staffdescription"><p>$Content.FirstSentence</p></div>
-      </li>
-    <% end_control %>
-  </ul>
-</div>
-~~~
 
 This template is very similar to the //ArticleHolder// template. The //FirstSentence// method of the //[Text](http://api.silverstripe.org/current/sapphire/model/Text.html)// class is similar to //FirstParagraph// used earlier, but returns the first sentence. The //SetWidth// method of the //[Image](http://api.silverstripe.org/current/sapphire/filesystem/Image.html)// class will resize the image before sending it to the browser. The resized image is cached, so the server doesn't have to resize the image every time the page is viewed.
 
@@ -502,19 +506,19 @@ The //StaffPage// template is also very straight forward.
 
 ** themes/tutorial/templates/Layout/StaffPage.ss **
 
-~~~ {html}
-<% include Menu2 %>
-
-<div id="Content" class="typography">
-  <% include Breadcrumbs %>
-
-  <div id="StaffPhoto">
-    $Photo.SetWidth(150)
-  </div>
+	:::html
+	<% include Menu2 %>
 	
-  $Content
-</div>
-~~~
+	<div id="Content" class="typography">
+	  <% include Breadcrumbs %>
+	
+	  <div id="StaffPhoto">
+	    $Photo.SetWidth(150)
+	  </div>
+		
+	  $Content
+	</div>
+
 
 Here we also use the //SetWidth// function to get a different sized image from the same source image. You should now have a complete staff section.
 

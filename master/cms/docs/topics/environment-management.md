@@ -13,35 +13,35 @@ In this example, we assume that you are managing multiple projects as subfolders
 
 *  Create a new file, ~/Sites/_ss_environment.php.  Put the following content in it, editing the values of the ''SS_DATABASE_...'' and ''SS_DEFAULT_ADMIN_...'' defines as appropriate.
 
-~~~ {php}
-<?php
-/* What kind of environment is this: development, test, or live (ie, production)? */
-define('SS_ENVIRONMENT_TYPE', 'dev/test/live');
+	:::php
+	<?php
+	/* What kind of environment is this: development, test, or live (ie, production)? */
+	define('SS_ENVIRONMENT_TYPE', 'dev/test/live');
+	
+	/* Database connection */
+	define('SS_DATABASE_SERVER', 'localhost');
+	define('SS_DATABASE_USERNAME', 'root');
+	define('SS_DATABASE_PASSWORD', '');
+	
+	/* Configure a default username and password to access the CMS on all sites in this environment. */
+	define('SS_DEFAULT_ADMIN_USERNAME', 'username');
+	define('SS_DEFAULT_ADMIN_PASSWORD', 'password');
 
-/* Database connection */
-define('SS_DATABASE_SERVER', 'localhost');
-define('SS_DATABASE_USERNAME', 'root');
-define('SS_DATABASE_PASSWORD', '');
-
-/* Configure a default username and password to access the CMS on all sites in this environment. */
-define('SS_DEFAULT_ADMIN_USERNAME', 'username');
-define('SS_DEFAULT_ADMIN_PASSWORD', 'password');
-~~~
 
 *  Now, edit each of your site's configuration file, ''~/Sites/(projectname)/mysite/_config.php''.  Delete all mention of ''$databaseConfig'' and ''Director::set_dev_servers'', and instead make sure that you file starts like this.
 
-~~~ {php}
-<?php
+	:::php
+	<?php
+	
+	global $project;
+	$project = 'mysite';
+	
+	global $database;
+	$database = '(databasename)';
+	
+	// Use _ss_environment.php file for configuration
+	require_once("conf/ConfigureFromEnv.php");
 
-global $project;
-$project = 'mysite';
-
-global $database;
-$database = '(databasename)';
-
-// Use _ss_environment.php file for configuration
-require_once("conf/ConfigureFromEnv.php");
-~~~
 
 #### How it works
 

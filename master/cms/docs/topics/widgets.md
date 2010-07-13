@@ -26,31 +26,33 @@ As of 2.2.1 this is this is a way to add widgets to other pages (by default only
 First step is to add an WidgetArea to the Database to store the widget details. Then you have to edit the CMS to add a Widget Form to manage the widgets. An example of this is below
 
 ** mysite/code/Page.php **
-~~~ {php}
-class Page extends SiteTree {
 
-...
-    static $has_one = array(
-	"Sidebar" => "WidgetArea",
-    );
+	:::php
+	class Page extends SiteTree {
 	
-    function getCMSFields() {
-	$fields = parent::getCMSFields();
-	$fields->addFieldToTab("Root.Content.Widgets", new WidgetAreaEditor("Sidebar"));
-	return $fields;
-    }
-....
-}
-~~~
+	...
+	    static $has_one = array(
+		"Sidebar" => "WidgetArea",
+	    );
+		
+	    function getCMSFields() {
+		$fields = parent::getCMSFields();
+		$fields->addFieldToTab("Root.Content.Widgets", new WidgetAreaEditor("Sidebar"));
+		return $fields;
+	    }
+	....
+	}
+
 
 Then in your Template you need to call $SideBar whereever you want to render the widget
 
 Eg for blackcandy I put this above the closing </div>
 
 ** themes/myThemeName/templates/Includes/Sidebar.ss **
-~~~ {html}
-$Sidebar
-~~~
+
+	:::html
+	$Sidebar
+
 
 
 
@@ -67,71 +69,73 @@ If a Widget has configurable options, then it can specify a number of database f
 An example widget is below:
 
 **FlickrWidget.php**
-~~~ {php}
-<?php
 
-class FlickrWidget extends Widget {
-	static $db = array(
-		"User" => "Varchar",
-		"Photoset" => "Varchar",
-		"Tags" => "Varchar",
-		"NumberToShow" => "Int"
-	);
+	:::php
+	<?php
 	
-
-	static $defaults = array(
-		"NumberToShow" => 8
-	);
-	
-
-	static $title = "Photos";
-	static $cmsTitle = "Flickr Photos";
-	static $description = "Shows flickr photos.";
-	
-	function Photos() {
-		Requirements::javascript("sapphire/thirdparty/prototype/prototype.js");
-		Requirements::javascript("sapphire/thirdparty/scriptaculous/effects.js");
-		Requirements::javascript("mashups/javascript/lightbox.js");
-		Requirements::css("mashups/css/lightbox.css");
-		
-		$flickr = new FlickrService();
-		if($this->Photoset == "") {
-			$photos = $flickr->getPhotos($this->Tags, $this->User, $this->NumberToShow, 1);
-		} else {
-			$photos = $flickr->getPhotoSet($this->Photoset, $this->User, $this->NumberToShow, 1);
-		}
-		
-		$output = new DataObjectSet();
-		foreach($photos->PhotoItems as $photo) {
-			$output->push(new ArrayData(array(
-				"Title" => $photo->title,
-				"Link" => "http://farm1.static.flickr.com/" . $photo->image_path .".jpg",
-				"Image" => "http://farm1.static.flickr.com/" .$photo->image_path. "_s.jpg"
-			)));
-		}
-		
-		return $output;
-	}
-
-	function getCMSFields() {
-		return new FieldSet(
-			new TextField("User", "User"),
-			new TextField("PhotoSet", "Photo Set"),
-			new TextField("Tags", "Tags"),
-			new NumericField("NumberToShow", "Number to Show")
+	class FlickrWidget extends Widget {
+		static $db = array(
+			"User" => "Varchar",
+			"Photoset" => "Varchar",
+			"Tags" => "Varchar",
+			"NumberToShow" => "Int"
 		);
+		
+	
+		static $defaults = array(
+			"NumberToShow" => 8
+		);
+		
+	
+		static $title = "Photos";
+		static $cmsTitle = "Flickr Photos";
+		static $description = "Shows flickr photos.";
+		
+		function Photos() {
+			Requirements::javascript("sapphire/thirdparty/prototype/prototype.js");
+			Requirements::javascript("sapphire/thirdparty/scriptaculous/effects.js");
+			Requirements::javascript("mashups/javascript/lightbox.js");
+			Requirements::css("mashups/css/lightbox.css");
+			
+			$flickr = new FlickrService();
+			if($this->Photoset == "") {
+				$photos = $flickr->getPhotos($this->Tags, $this->User, $this->NumberToShow, 1);
+			} else {
+				$photos = $flickr->getPhotoSet($this->Photoset, $this->User, $this->NumberToShow, 1);
+			}
+			
+			$output = new DataObjectSet();
+			foreach($photos->PhotoItems as $photo) {
+				$output->push(new ArrayData(array(
+					"Title" => $photo->title,
+					"Link" => "http://farm1.static.flickr.com/" . $photo->image_path .".jpg",
+					"Image" => "http://farm1.static.flickr.com/" .$photo->image_path. "_s.jpg"
+				)));
+			}
+			
+			return $output;
+		}
+	
+		function getCMSFields() {
+			return new FieldSet(
+				new TextField("User", "User"),
+				new TextField("PhotoSet", "Photo Set"),
+				new TextField("Tags", "Tags"),
+				new NumericField("NumberToShow", "Number to Show")
+			);
+		}
 	}
-}
+	
+	?>
 
-?>
-~~~
 
 **FlickrWidget.ss**
-~~~ {php}
-<% control Photos %>
-	<a href="$Link" rel="lightbox" title="$Title"><img src="$Image" alt="$Title" /></a>
-<% end_control %>
-~~~
+
+	:::php
+	<% control Photos %>
+		<a href="$Link" rel="lightbox" title="$Title"><img src="$Image" alt="$Title" /></a>
+	<% end_control %>
+
 
 # Extending and Customizing
 
@@ -141,30 +145,30 @@ To call a single Widget in a page - without adding a widget area in the CMS for 
 
 This example creates an RSSWidget with the SilverStripe blog feed.
 
-~~~ {php}
-<?php
-	function SilverStripeFeed() {
-		$widget = new RSSWidget();
-		$widget->RssUrl = "http://feeds.feedburner.com/silverstripe-blog";
-		return $widget->renderWith("WidgetHolder");
-	}
-?>
-~~~
+	:::php
+	<?php
+		function SilverStripeFeed() {
+			$widget = new RSSWidget();
+			$widget->RssUrl = "http://feeds.feedburner.com/silverstripe-blog";
+			return $widget->renderWith("WidgetHolder");
+		}
+	?>
+
 
 To render the widget, simply include $SilverStripeFeed in your template:
 
-~~~ {html}
-  $SilverStripeFeed
-~~~
+	:::html
+	  $SilverStripeFeed
+
 
 As directed in the definition of SilverStripeFeed(), the Widget will be rendered through the WidgetHolder template. This is pre-defined at /sapphire/templates/WidgetHolder.ss and simply consists of: 
 
-~~~ {html}
-<div class="WidgetHolder">
-	<h3>$Title</h3>
-	$Content
-</div>
-~~~
+	:::html
+	<div class="WidgetHolder">
+		<h3>$Title</h3>
+		$Content
+	</div>
+
 
 You can override the WidgetHolder.ss and Widget.ss templates in your theme too by adding WidgetHolder and Widget templates to ** themes/myThemeName/templates/Includes/ **
 
@@ -173,21 +177,22 @@ You can override the WidgetHolder.ss and Widget.ss templates in your theme too b
 To change the title of your widget, you need to override the Title() method. By default, this simply returns the $title variable. For example, to set your widgets title to 'Hello World!', you could use:
 
 ** widgets_yourWidget/YourWidgetWidget.php **
-~~~ {php}
-function Title() {
-	return "Hello World!";
-}
-~~~
+
+	:::php
+	function Title() {
+		return "Hello World!";
+	}
+
 
 but, you can do exactly the same by setting your $title variable.
 
 A more common reason for overriding Title() is to allow the title to be set in the CMS. Say you had a text field in your widget called WidgetTitle, that you wish to use as your title. If nothing is set, then you'll use your default title. This is similar to the RSS Widget in the blog module.
 
-~~~ {php}
-function Title() {
-	return $this->WidgetTitle ? $this->WidgetTitle : self::$title;
-}
-~~~
+	:::php
+	function Title() {
+		return $this->WidgetTitle ? $this->WidgetTitle : self::$title;
+	}
+
 
 This returns the value inputted in the CMS, if it's set or what is in the $title variable if it isn't.
 
@@ -198,40 +203,42 @@ This returns the value inputted in the CMS, if it's set or what is in the $title
 To implement a form inside a widget, you need to implement a custom controller for your widget to return this form. Make sure that your controller follows the usual naming conventions, and it will be automatically picked up by the [:WidgetArea](http://api.silverstripe.org/trunk/sapphire/widgets/WidgetArea.html) rendering in your //Page.ss// template.
 
 //mysite/code/MyWidget.php//
-~~~ {php}
-class MyWidget extends Widget {
-  static $db = array(
-    'TestValue' => 'Text'
-  );
-}
 
-class MyWidget_Controller extends Widget_Controller {
-  function MyFormName() {
-    return new Form(
-      $this, 
-      'MyFormName', 
-      new FieldSet(
-        new TextField('TestValue')
-      ), 
-      new FieldSet(
-        new FormAction('doAction')
-      )
-    );
-  }
-  
-  function doAction($data, $form) {
-    // $this->widget points to the widget
-  }
-}
-~~~
+	:::php
+	class MyWidget extends Widget {
+	  static $db = array(
+	    'TestValue' => 'Text'
+	  );
+	}
+	
+	class MyWidget_Controller extends Widget_Controller {
+	  function MyFormName() {
+	    return new Form(
+	      $this, 
+	      'MyFormName', 
+	      new FieldSet(
+	        new TextField('TestValue')
+	      ), 
+	      new FieldSet(
+	        new FormAction('doAction')
+	      )
+	    );
+	  }
+	  
+	  function doAction($data, $form) {
+	    // $this->widget points to the widget
+	  }
+	}
+
 
 To output this form, modify your widget template.
 
 //mysite/templates/MyWidget.ss//
-~~~ {html}
-$Content
-$MyFormName
-~~~
+
+	:::html
+	$Content
+	$MyFormName
+
 
 Note: The necessary controller actions are only present in subclasses of [Page_Controller](Page_Controller). To use widget forms in other controller subclasses, have a look at //ContentController->handleWidget()// and //ContentController::$url_handlers//.
 
@@ -242,23 +249,24 @@ See an [alternative recipe for SilverStripe 2.3 or earlier](/recipes/widget-form
 If you currently have a blog installed, the widget fields are going to double up on those pages (as the blog extends the Page class). One way to fix this is to comment out line 30 in BlogHolder.php and remove the DB entry by running a /db/build.
 
 ** blog/code/BlogHolder.php **
-~~~ {php}
-<?php
 
-class BlogHolder extends Page {
+	:::php
+	<?php
 	
-      ........
-	static $has_one = array(
-	//	"SideBar" => "WidgetArea", COMMENT OUT
-		'Newsletter' => 'NewsletterType'
-      .......
-	function getCMSFields() {
-		$fields = parent::getCMSFields();
-		$fields->removeFieldFromTab("Root.Content.Main","Content");
-	//	$fields->addFieldToTab("Root.Content.Widgets", new WidgetAreaEditor("SideBar")); COMMENT OUT
+	class BlogHolder extends Page {
+		
+	      ........
+		static $has_one = array(
+		//	"SideBar" => "WidgetArea", COMMENT OUT
+			'Newsletter' => 'NewsletterType'
+	      .......
+		function getCMSFields() {
+			$fields = parent::getCMSFields();
+			$fields->removeFieldFromTab("Root.Content.Main","Content");
+		//	$fields->addFieldToTab("Root.Content.Widgets", new WidgetAreaEditor("SideBar")); COMMENT OUT
+	
+		........
 
-	........
-~~~
 
 Then you can use the Widget area you defined on Page.php
 
@@ -280,9 +288,10 @@ The decision over whether to configure a widget in _config.php or in the CMS is 
 This way, the CMS remains an application designed for content authors, and not developers. 
 
 ** widget_name/_config.php **
-~~~ {php}
-<?php /*  */ ?>
-~~~
+
+	:::php
+	<?php /*  */ ?>
+
 
 ** Example Widget Structure **
 {{:widget_demo.gif|:widget_demo.gif}}

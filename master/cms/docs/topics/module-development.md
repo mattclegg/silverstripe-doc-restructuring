@@ -13,20 +13,20 @@ Try and keep your module as generic as possible - for example if you're making a
 
 If you're using Requirements to include generic support files for your project like CSS or Javascript, and want to override these files to be more specific in your project, the following code is an example of how to do so using the init() function on your module controller classes:
 
-~~~ {php}
-class Forum_Controller extends Page_Controller {
+	:::php
+	class Forum_Controller extends Page_Controller {
+	
+	   function init() {
+	      if(Director::fileExists(project() . "/css/forum.css")) {
+	         Requirements::css(project() . "/css/forum.css");
+	      }else{
+	         Requirements::css("forum/css/forum.css");
+	      }
+	      parent::init();	
+	   }
+	
+	}
 
-   function init() {
-      if(Director::fileExists(project() . "/css/forum.css")) {
-         Requirements::css(project() . "/css/forum.css");
-      }else{
-         Requirements::css("forum/css/forum.css");
-      }
-      parent::init();	
-   }
-
-}
-~~~
 
 This will use your_project/css/forum.css if it exists, otherwise it falls back to using forum/css/forum.css.
 

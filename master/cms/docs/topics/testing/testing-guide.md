@@ -26,11 +26,12 @@ You might have to perform the following commands as root or super user (sudo).
 We need a specific version of PHPUnit (3.3.x), as 3.4 or higher breaks our test runner (see [#4573](http://open.silverstripe.com/ticket/4573))
 
 At your prompt, type the following commands:
-~~~
-pear channel-discover pear.phpunit.de 
-pear channel-discover pear.symfony-project.com
-pear install phpunit/PHPUnit
-~~~
+
+	
+	pear channel-discover pear.phpunit.de 
+	pear channel-discover pear.symfony-project.com
+	pear install phpunit/PHPUnit
+
 
 
 
@@ -42,38 +43,41 @@ pear install phpunit/PHPUnit
 
 Go to the main test URL which will give you options for running various available test suites or individual tests on their own:
 
-~~~
- http://mysite.com/dev/tests
-~~~
+	
+	 http://mysite.com/dev/tests
+
 
 
 ### Via Command Line
 
 ''cd'' to the root level of your project and run [sake](sake) (Sapphire Make) to execute the tests:
 
-~~~
-/path/to/project$ sake dev/tests/all
-~~~
+	
+	/path/to/project$ sake dev/tests/all
+
 
 
 ### Partial Test Runs
 
 
 Run specific tests (Minimum requirement: SilverStripe 2.4)
-~~~
-dev/tests/MyTest,MyOtherTest
-~~~
+
+	
+	dev/tests/MyTest,MyOtherTest
+
 
 
 Run all tests in a module folder, e.g. "sapphire" (Minimum requirement: SilverStripe 2.4)
-~~~
-dev/tests/module/<modulename>
-~~~
+
+	
+	dev/tests/module/<modulename>
+
 
 Skip tests (Minimum requirement: SilverStripe 2.4)
-~~~
-dev/tests/all SkipTests=MySkippedTest
-~~~
+
+	
+	dev/tests/all SkipTests=MySkippedTest
+
 
 ## Writing Tests
 

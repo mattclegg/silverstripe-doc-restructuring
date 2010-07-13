@@ -10,12 +10,12 @@ The trade-off is that it does not provide as much performance improvement as sta
 
 The way you mark a section of the template as being cached is to wrap that section in a cached tag, like so:
 
-~~~ {html}
-<% cached %>
-$DataTable
-...
-<% end_cached %>
-~~~
+	:::html
+	<% cached %>
+	$DataTable
+	...
+	<% end_cached %>
+
 
 Each cache block has a cache key - an unlimited number of comma separated variables (in the same form as `if` and `control` tag variables) and quoted strings.
 
@@ -27,21 +27,21 @@ Here are some more complex examples:
 
 From a block that updates every time the Page subclass it's the template for updates
 
-~~~ {html}
-<% cached 'database', LastEdited %>
-~~~
+	:::html
+	<% cached 'database', LastEdited %>
+
 
 From a block that shows a login block if not logged in, or a homepage link if logged in, depending on the current member
 
-~~~ {html}
-<% cached 'loginblock', CurrentMember.ID %>
-~~~
+	:::html
+	<% cached 'loginblock', CurrentMember.ID %>
+
 
 From a block that shows a summary of the page edits if administrator, nothing if not
 
-~~~ {html}
-<% cached 'loginblock', LastEdited, CurrentMember.isAdmin %>
-~~~
+	:::html
+	<% cached 'loginblock', LastEdited, CurrentMember.isAdmin %>
+
 
 ## Aggregates
 
@@ -49,42 +49,42 @@ Often you want to invalidate a cache when any in a set of objects change, or whe
 
 For example, if we have a menu, we want that menu to update whenever _any_ page is edited, but would like to cache it otherwise. By using aggregates, that's easy
 
-~~~ {html}
-<% cached 'navigation', Aggregate(Page).Max(LastEdited) %>
-~~~
+	:::html
+	<% cached 'navigation', Aggregate(Page).Max(LastEdited) %>
+
 
 If we have a block that shows a list of categories, we can make sure the cache updates every time a category is added or edited
 
-~~~ {html}
-<% cached 'categorylist', Aggregate(Category).Max(LastEdited) %>
-~~~
+	:::html
+	<% cached 'categorylist', Aggregate(Category).Max(LastEdited) %>
+
 
 We can also calculate aggregates on relationships. A block that shows the current member's favourites needs to update whenever the relationship Member::$has_many = array('Favourites' => Favourite') changes.
 
-~~~ {html}
-<% cached 'favourites', CurrentMember.ID, CurrentMember.RelationshipAggregate(Favourites).Max(LastEdited) %>
-~~~
+	:::html
+	<% cached 'favourites', CurrentMember.ID, CurrentMember.RelationshipAggregate(Favourites).Max(LastEdited) %>
+
 
 ## Cache key calculated in controller
 
 That last example is a bit large, and is complicating our template up with icky logic. Better would be to extract that logic into the controller
 
-~~~ {php}
-function FavouriteCacheKey() {
-    $member = Member::currentUser();
-    return implode('_', array(
-        'favourites',
-        $member->ID,
-        $member->RelationshipAggregate('Favourites')->Max('LastEdited')
-    ));
-}
-~~~
+	:::php
+	function FavouriteCacheKey() {
+	    $member = Member::currentUser();
+	    return implode('_', array(
+	        'favourites',
+	        $member->ID,
+	        $member->RelationshipAggregate('Favourites')->Max('LastEdited')
+	    ));
+	}
+
 
 and then using that function in the cache key
 
-~~~ {html}
-<% cached FavouriteCacheKey %>
-~~~
+	:::html
+	<% cached FavouriteCacheKey %>
+
 
 ## Cache blocks and template changes
 
@@ -96,23 +96,23 @@ In some situations it's more important to be fast than to always be showing the 
 
 For instance, if we show some blog statistics, but are happy having them be slightly stale, we could do
 
-~~~ {html}
-<% cached 'blogstatistics', Blog.ID %>
-~~~
+	:::html
+	<% cached 'blogstatistics', Blog.ID %>
+
 
 which will invalidate after the cache lifetime expires. If you need more control than that (cache lifetime is configurable only on a site-wide basis), you could add a special function to your controller:
 
-~~~ {php}
-function BlogStatisticsCounter() {
-    return (int)(time() / 60 / 5); // Returns a new number every five minutes
-}
-~~~
+	:::php
+	function BlogStatisticsCounter() {
+	    return (int)(time() / 60 / 5); // Returns a new number every five minutes
+	}
+
  
 and then use it in the cache key
 
-~~~ {html}
-<% cached 'blogstatistics', Blog.ID, BlogStatisticsCounter %>
-~~~
+	:::html
+	<% cached 'blogstatistics', Blog.ID, BlogStatisticsCounter %>
+
 
 ## Cache block conditionals
 
@@ -120,23 +120,23 @@ You may wish to conditionally enable or disable caching. To support this, in cac
 
 Following on from the previous example, you might wish to only cache slightly-stale data if the server is experiencing heavy load:
 
-~~~ {html}
-<% cached 'blogstatistics', Blog.ID if HighLoad %>
-~~~
+	:::html
+	<% cached 'blogstatistics', Blog.ID if HighLoad %>
+
 
 By adding a HighLoad function to your page controller, you could enable or disable caching dynamically.
 
 To cache the contents of a page for all anonymous users, but dynamically calculate the contents for logged in members, you could use something like:
 
-~~~ {html}
-<% cached unless CurrentUser %>
-~~~
+	:::html
+	<% cached unless CurrentUser %>
+
 
 As a shortcut, the template tag 'uncached' can be used - it is the exact equivilent of a cached block with an if condition that always returns false. The key and conditionals in an uncached tag are ignored, so you can easily temporarily disable a particular cache block by changing just the tag, leaving the key and conditional intact.
 
-~~~ {html}
-<% uncached %>
-~~~
+	:::html
+	<% uncached %>
+
 
 ## Nested cacheblocks
 
@@ -148,33 +148,33 @@ This allows you to wrap an entire page in a cache block on the page's LastEdited
 
 An example:
 
-~~~ {html}
-<% cached LastEdited %>
-  Our wonderful site
+	:::html
+	<% cached LastEdited %>
+	  Our wonderful site
+	
+	  <% cached Member.ID %>
+	    Welcome $Member.Name
+	  <% end_cached %>
+	
+	  $ASlowCalculation
+	<% end_cached %>
 
-  <% cached Member.ID %>
-    Welcome $Member.Name
-  <% end_cached %>
-
-  $ASlowCalculation
-<% end_cached %>
-~~~
 
 This will cache the entire outer section until the next time the page is edited, but will display a different welcome message depending on the logged in member.
 
 Cache conditionals and the uncached tag also work in the same nested manner. Since Member.Name is fast to calculate, you could also write the last example as:
 
-~~~ {html}
-<% cached LastEdited %>
-  Our wonderful site
+	:::html
+	<% cached LastEdited %>
+	  Our wonderful site
+	
+	  <% uncached %>
+	    Welcome $Member.Name
+	  <% end_uncached %>
+	
+	  $ASlowCalculation
+	<% end_cached %>
 
-  <% uncached %>
-    Welcome $Member.Name
-  <% end_uncached %>
-
-  $ASlowCalculation
-<% end_cached %>
-~~~
 
 ## The important rule
 
@@ -182,29 +182,29 @@ Currently cached blocks can not be contained within if or control blocks. The te
 
 Failing example:
 
-~~~ {html}
-<% cached LastEdited %>
+	:::html
+	<% cached LastEdited %>
+	
+	  <% control Children %>
+	    <% cached LastEdited %>
+	      $Name
+	    <% end_cached %>
+	  <% end_control %>
+	
+	<% end_cached %>
 
-  <% control Children %>
-    <% cached LastEdited %>
-      $Name
-    <% end_cached %>
-  <% end_control %>
-
-<% end_cached %>
-~~~
 
 
 Can be re-written as:
 
-~~~ {html}
-<% cached LastEdited %>
+	:::html
+	<% cached LastEdited %>
+	
+	  <% cached RelationshipAggregate(Children).Max(LastEdited) %>
+	    <% control Children %>
+	      $Name
+	    <% end_control %>
+	  <% end_cached %>
+	
+	<% end_cached %>
 
-  <% cached RelationshipAggregate(Children).Max(LastEdited) %>
-    <% control Children %>
-      $Name
-    <% end_control %>
-  <% end_cached %>
-
-<% end_cached %>
-~~~

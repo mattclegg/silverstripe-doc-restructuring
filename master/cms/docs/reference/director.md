@@ -32,11 +32,12 @@ You can influence the way URLs are resolved one of 2 ways
 See [controller](controller) for examples and explanations on how the rules get processed for both 1 and 2 above. 
 
 *  Static redirect for specific URL
-~~~ {php}
-Director::addRules(100, array(
-'myPermanentRedirect' => 'redirect:http://www.mysite.com'
-));
-~~~
+
+	:::php
+	Director::addRules(100, array(
+	'myPermanentRedirect' => 'redirect:http://www.mysite.com'
+	));
+
 
 ======= Default Rewrite Rules =======
 SilverStripe comes with certain rewrite rules (e.g. for //admin/assets//).

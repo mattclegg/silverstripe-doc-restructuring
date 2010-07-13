@@ -35,17 +35,17 @@ Before starting the relations management, we need to create a //ProjectsHolder//
 
 ** tutorial/code/ProjectsHolder.php **
 
-~~~ {php}
-class ProjectsHolder extends Page {
+	:::php
+	class ProjectsHolder extends Page {
+	
+	    static $allowed_children = array( 'Project' );
+	
+	}
+	
+	class ProjectsHolder_Controller extends Page_Controller {
+	
+	}
 
-    static $allowed_children = array( 'Project' );
-
-}
-
-class ProjectsHolder_Controller extends Page_Controller {
-
-}
-~~~
 # Project - Student relation
 
 **A project can only be done by one student.**
@@ -58,69 +58,70 @@ The first step is to create the student and project objects.
 
 ** tutorial/code/Student.php **
 
-~~~ {php}
-class Student extends DataObject {
+	:::php
+	class Student extends DataObject {
+	
+	   static $db = array(
+	      'FirstName' => 'Text',
+	      'Lastname' => 'Text',
+	      'Nationality' => 'Text'
+	   );
+	
+	   function getCMSFields_forPopup() {
+	      $fields = new FieldSet();
+	      $fields->push( new TextField( 'FirstName', 'First Name' ) );
+	      $fields->push( new TextField( 'Lastname' ) );
+	      $fields->push( new TextField( 'Nationality' ) );
+	      return $fields;
+	   }
+	
+	}
 
-   static $db = array(
-      'FirstName' => 'Text',
-      'Lastname' => 'Text',
-      'Nationality' => 'Text'
-   );
-
-   function getCMSFields_forPopup() {
-      $fields = new FieldSet();
-      $fields->push( new TextField( 'FirstName', 'First Name' ) );
-      $fields->push( new TextField( 'Lastname' ) );
-      $fields->push( new TextField( 'Nationality' ) );
-      return $fields;
-   }
-
-}
-~~~
 
 ** tutorial/code/Project.php **
 
-~~~ {php}
-class Project extends Page {
+	:::php
+	class Project extends Page {
+	
+	   static $has_one = array(
+	      'MyStudent' => 'Student'
+	   );
+	
+	}
 
-   static $has_one = array(
-      'MyStudent' => 'Student'
-   );
-
-}
-~~~
 
 This code will create a relationship between the //Project// table and the //Student// table by storing the id of the respective //Student// in the //Project// table.
 
 The second step is to add the table in the method //getCMSFields// which will allow you to manage the //has_one// relation.
-~~~ {php}
-class Project extends Page {
 
-   ...
+	:::php
+	class Project extends Page {
+	
+	   ...
+	
+	   function getCMSFields() {
+	      $fields = parent::getCMSFields();
+	
+	      $tablefield = new HasOneComplexTableField(
+	         $this,
+	         'MyStudent',
+	         'Student',
+	         array(
+		    'FirstName' => 'First Name',
+		    'Lastname' => 'Family Name',
+		    'Nationality' => 'Nationality'
+	         ),
+	         'getCMSFields_forPopup'
+	      );
+	      $tablefield->setParentClass('Project');
+	
+	      $fields->addFieldToTab( 'Root.Content.Student', $tablefield );
+	
+	      return $fields;
+	   }
+	
+	}
 
-   function getCMSFields() {
-      $fields = parent::getCMSFields();
-
-      $tablefield = new HasOneComplexTableField(
-         $this,
-         'MyStudent',
-         'Student',
-         array(
-	    'FirstName' => 'First Name',
-	    'Lastname' => 'Family Name',
-	    'Nationality' => 'Nationality'
-         ),
-         'getCMSFields_forPopup'
-      );
-      $tablefield->setParentClass('Project');
-
-      $fields->addFieldToTab( 'Root.Content.Student', $tablefield );
-
-      return $fields;
-   }
-
-}
-~~~
 Let’s walk through the parameters of the //HasOneComplexTableField// constructor.
 1.  **$this** : The first object concerned by the relation
 2.  **'MyStudent'** : The name of the second object of the relation
@@ -129,13 +130,14 @@ Let’s walk through the parameters of the //HasOneComplexTableField// construct
 5.  **'getCMSFields_forPopup'** : The method which will be called to add, edit or only show a second object
 
 You can also directly replace the last parameter by this code :
-~~~ {php}
-   new FieldSet(
-      new TextField( 'FirstName', 'First Name' ),
-      new TextField( 'Lastname' ),
-      new TextField( 'Nationality' )
-   ),
-~~~
+
+	:::php
+	   new FieldSet(
+	      new TextField( 'FirstName', 'First Name' ),
+	      new TextField( 'Lastname' ),
+	      new TextField( 'Nationality' )
+	   ),
+
 
 Don't forget to rebuild the database using [http://localhost:3000/db/build?flush=1](http://localhost:3000/db/build?flush=1) before you proceed to the next part of this tutorial.
 
@@ -144,9 +146,10 @@ Now that we have created our //Project// page type and //Student// data object, 
 {{:tutorial:gsoc-project-creation.png|:tutorial:gsoc-project-creation.png}}
 
 As you can see in the tab panel //Student//, the adding functionality is titled //Add Student//. However, if you want to modify this title, you have to add this code in the //getCMSFields// method of the //Project// class :
-~~~ {php}
-      $tablefield->setAddTitle( 'A Student' );
-~~~
+
+	:::php
+	      $tablefield->setAddTitle( 'A Student' );
+
 
 Select now one of the //Project// page that you have created, go in the tab panel //Student// and add all the students listed [above](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?) by clicking on the link **Add A Student** of your //HasOneComplexTableField// table.
 
@@ -163,24 +166,25 @@ You will also notice, that you have the possibility to **unselect** a student wh
 **At the moment, the //HasOneComplexTableField// table doesn't manage totally the //1-to-1// relation because you can easily select the same student for two ( or more ) differents //Project// pages which corresponds to a //1-to-many// relation.**
 
 To use your //HasOneComplexTableField// table for a **1-to-1** relation, make this modification in the class //Project// :
-~~~ {php}
-class Project extends Page {
 
-   ...
+	:::php
+	class Project extends Page {
+	
+	   ...
+	
+	   function getCMSFields() {
+	
+	      ...
+	
+	      $tablefield->setOneToOne();
+	
+	      $fields->addFieldToTab( 'Root.Content.Student', $tablefield );
+	
+	      return $fields;
+	   }
+	
+	}
 
-   function getCMSFields() {
-
-      ...
-
-      $tablefield->setOneToOne();
-
-      $fields->addFieldToTab( 'Root.Content.Student', $tablefield );
-
-      return $fields;
-   }
-
-}
-~~~
 Now, you will notice that by checking a student in a //Project// page, you will be unable to select him again in any other //Project// page which is the definition of a **1-to-1** relation.
 
 
@@ -200,76 +204,77 @@ The first step is to create the mentor object and set the relation with the //St
 
 ** tutorial/code/Mentor.php **
 
-~~~ {php}
-class Mentor extends Page {
+	:::php
+	class Mentor extends Page {
+	
+	   static $db = array(
+	      'FirstName' => 'Text',
+	      'Lastname' => 'Text',
+	      'Nationality' => 'Text'
+	   );
+	
+	   static $has_many = array(
+	      'Students' => 'Student'
+	   );
+	
+	   function getCMSFields() {
+	      $fields = parent::getCMSFields();
+	
+	      $fields->addFieldToTab( 'Root.Content.Main', new TextField( 'FirstName' ) );
+	      $fields->addFieldToTab( 'Root.Content.Main', new TextField( 'Lastname' ) );
+	      $fields->addFieldToTab( 'Root.Content.Main', new TextField( 'Nationality' ) );
+	
+	      return $fields;
+	   }
+	
+	}
 
-   static $db = array(
-      'FirstName' => 'Text',
-      'Lastname' => 'Text',
-      'Nationality' => 'Text'
-   );
+	:::php
+	class Student extends DataObject {
+	
+	   ...
+	
+	   static $has_one = array(
+	      'MyMentor' => 'Mentor'
+	   );
+	
+	}
 
-   static $has_many = array(
-      'Students' => 'Student'
-   );
-
-   function getCMSFields() {
-      $fields = parent::getCMSFields();
-
-      $fields->addFieldToTab( 'Root.Content.Main', new TextField( 'FirstName' ) );
-      $fields->addFieldToTab( 'Root.Content.Main', new TextField( 'Lastname' ) );
-      $fields->addFieldToTab( 'Root.Content.Main', new TextField( 'Nationality' ) );
-
-      return $fields;
-   }
-
-}
-~~~
-~~~ {php}
-class Student extends DataObject {
-
-   ...
-
-   static $has_one = array(
-      'MyMentor' => 'Mentor'
-   );
-
-}
-~~~
 
 This code will create a relationship between the //Student// table and the //Mentor// table by storing the id of the respective //Mentor// in the //Student// table.
 
 The second step is to add the table in the method //getCMSFields// which will allow you to manage the //has_many// relation.
-~~~ {php}
-class Mentor extends Page {
 
-   ...
+	:::php
+	class Mentor extends Page {
+	
+	   ...
+	
+	   function getCMSFields() {
+	      $fields = parent::getCMSFields();
+	
+	      ...
+	
+	      $tablefield = new HasManyComplexTableField(
+	         $this,
+	         'Students',
+	         'Student',
+	         array(
+		    'FirstName' => 'FirstName',
+		    'Lastname' => 'Family Name',
+		    'Nationality' => 'Nationality'
+	         ),
+	         'getCMSFields_forPopup'
+	      );
+	      $tablefield->setAddTitle( 'A Student' );
+	
+	      $fields->addFieldToTab( 'Root.Content.Students', $tablefield );
+	
+	      return $fields;
+	   }
+	
+	}
 
-   function getCMSFields() {
-      $fields = parent::getCMSFields();
-
-      ...
-
-      $tablefield = new HasManyComplexTableField(
-         $this,
-         'Students',
-         'Student',
-         array(
-	    'FirstName' => 'FirstName',
-	    'Lastname' => 'Family Name',
-	    'Nationality' => 'Nationality'
-         ),
-         'getCMSFields_forPopup'
-      );
-      $tablefield->setAddTitle( 'A Student' );
-
-      $fields->addFieldToTab( 'Root.Content.Students', $tablefield );
-
-      return $fields;
-   }
-
-}
-~~~
 To know more about the parameters of the //HasManyComplexTableField// constructor, [check](tutorial/5-dataobject-relationship-management#project_-_student_relation) those of the //HasOneComplexTableField// constructor.
 
 Don't forget to rebuild the database using [http://localhost:3000/db/build?flush=1](http://localhost:3000/db/build?flush=1) before you proceed to the next part of this tutorial.
@@ -307,68 +312,69 @@ The first step is to create the module object and set the relation with the //Pr
 
 ** tutorial/code/Module.php **
 
-~~~ {php}
-class Module extends DataObject {
+	:::php
+	class Module extends DataObject {
+	
+	   static $db = array(
+	      'Name' => 'Text'
+	   );
+	
+	   static $belongs_many_many = array(
+	      'Projects' => 'Project'
+	   );
+	
+	   function getCMSFields_forPopup() {
+	      $fields = new FieldSet();
+	      $fields->push( new TextField( 'Name' ) );
+	      return $fields;
+	   }
+	
+	}
 
-   static $db = array(
-      'Name' => 'Text'
-   );
+	:::php
+	class Project extends Page {
+	
+	   ...
+	
+	   static $many_many = array(
+	      'Modules' => 'Module'
+	   );
+	
+	}
 
-   static $belongs_many_many = array(
-      'Projects' => 'Project'
-   );
-
-   function getCMSFields_forPopup() {
-      $fields = new FieldSet();
-      $fields->push( new TextField( 'Name' ) );
-      return $fields;
-   }
-
-}
-~~~
-~~~ {php}
-class Project extends Page {
-
-   ...
-
-   static $many_many = array(
-      'Modules' => 'Module'
-   );
-
-}
-~~~
 
 This code will create a relationship between the //Project// table and the //Module// table by storing the ids of the respective //Project// and //Module// in a another table named **Project_Modules**.
 
 The second step is to add the table in the method //getCMSFields// which will allow you to manage the //many_many// relation.
-~~~ {php}
-class Project extends Page {
 
-   ...
+	:::php
+	class Project extends Page {
+	
+	   ...
+	
+	   function getCMSFields() {
+	      $fields = parent::getCMSFields();
+	
+	      ...
+	
+	      $modulesTablefield = new ManyManyComplexTableField(
+	         $this,
+	         'Modules',
+	         'Module',
+	         array(
+		    'Name' => 'Name'
+	         ),
+	         'getCMSFields_forPopup'
+	      );
+	      $modulesTablefield->setAddTitle( 'A Module' );
+	
+	      $fields->addFieldToTab( 'Root.Content.Modules', $modulesTablefield );
+	
+	      return $fields;
+	   }
+	
+	}
 
-   function getCMSFields() {
-      $fields = parent::getCMSFields();
-
-      ...
-
-      $modulesTablefield = new ManyManyComplexTableField(
-         $this,
-         'Modules',
-         'Module',
-         array(
-	    'Name' => 'Name'
-         ),
-         'getCMSFields_forPopup'
-      );
-      $modulesTablefield->setAddTitle( 'A Module' );
-
-      $fields->addFieldToTab( 'Root.Content.Modules', $modulesTablefield );
-
-      return $fields;
-   }
-
-}
-~~~
 To know more about the parameters of the //ManyManyComplexTableField// constructor, [check](tutorial/5-dataobject-relationship-management#project_-_student_relation) those of the //HasOneComplexTableField// constructor.
 
 Don't forget to rebuild the database using [http://localhost:3000/db/build?flush=1](http://localhost:3000/db/build?flush=1) before you proceed to the next part of this tutorial.
@@ -441,93 +447,93 @@ Let's start with the //ProjectsHolder// page created before. For this template, 
 
 ** tutorial/templates/Layout/ProjectsHolder.ss **
 
-~~~ {html}
-<div class="typography">
-    <% if Menu(2) %>
-        <% include SideBar %>
-        <div id="Content">
-    <% end_if %>
+	:::html
+	<div class="typography">
+	    <% if Menu(2) %>
+	        <% include SideBar %>
+	        <div id="Content">
+	    <% end_if %>
+	
+	    <% if Level(2) %>
+	        <% include BreadCrumbs %>
+	    <% end_if %>
+	
+	        <h2>$Title</h2>
+	
+	        $Content
+	
+	        <table>
+	            <thead>
+	                <tr>
+	                    <th>Project</th>
+	                    <th>Student</th>
+	                    <th>Mentor</th>
+	                    <th>Modules</th>
+	                </tr>
+	            </thead>
+	            <tbody>
+	                <% control Children %>
+	                    <tr>
+	                        <td>$Title</td>
+	                        <td>
+	                            <% if MyStudent %>
+	                                <% control MyStudent %>
+	                                    $FirstName $Lastname
+	                                <% end_control %>
+	                            <% else %>
+	                                No Student
+	                            <% end_if %>
+	                        </td>
+	                        <td>
+	                            <% if MyStudent %>
+	                                <% control MyStudent %>
+	                                    <% if MyMentor %>
+	                                        <% control MyMentor %>
+	                                            $FirstName $Lastname
+	                                        <% end_control %>
+	                                    <% else %>
+	                                        No Mentor
+	                                    <% end_if %>
+	                                <% end_control %>
+	                            <% else %>
+	                                No Mentor
+	                            <% end_if %>
+	                        </td>
+	                        <td>
+	                            <% if Modules %>
+	                                <% control Modules %>
+	                                    $Name &nbsp;
+	                                <% end_control %>
+	                            <% else %>
+	                                No Modules
+	                            <% end_if %>
+	                        </td>
+	                    </tr>
+	                <% end_control %>
+	            </tbody>
+	        </table>
+	
+	        $Form
+	        $PageComments
+	
+	    <% if Menu(2) %>
+	        </div>
+	    <% end_if %>
+	</div>
 
-    <% if Level(2) %>
-        <% include BreadCrumbs %>
-    <% end_if %>
-
-        <h2>$Title</h2>
-
-        $Content
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Project</th>
-                    <th>Student</th>
-                    <th>Mentor</th>
-                    <th>Modules</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% control Children %>
-                    <tr>
-                        <td>$Title</td>
-                        <td>
-                            <% if MyStudent %>
-                                <% control MyStudent %>
-                                    $FirstName $Lastname
-                                <% end_control %>
-                            <% else %>
-                                No Student
-                            <% end_if %>
-                        </td>
-                        <td>
-                            <% if MyStudent %>
-                                <% control MyStudent %>
-                                    <% if MyMentor %>
-                                        <% control MyMentor %>
-                                            $FirstName $Lastname
-                                        <% end_control %>
-                                    <% else %>
-                                        No Mentor
-                                    <% end_if %>
-                                <% end_control %>
-                            <% else %>
-                                No Mentor
-                            <% end_if %>
-                        </td>
-                        <td>
-                            <% if Modules %>
-                                <% control Modules %>
-                                    $Name &nbsp;
-                                <% end_control %>
-                            <% else %>
-                                No Modules
-                            <% end_if %>
-                        </td>
-                    </tr>
-                <% end_control %>
-            </tbody>
-        </table>
-
-        $Form
-        $PageComments
-
-    <% if Menu(2) %>
-        </div>
-    <% end_if %>
-</div>
-~~~
 
 ** tutorial/templates/Includes/SideBar.ss **
  You might want to move the include above the typography div in your layouts to get rid of the bullets.
 
-~~~ {html}
-<% if Menu(2) %>
-  <ul id="Menu2">
-	<% control Menu(2) %>
-	  <li class="$LinkingMode"><a href="$Link" title="Go to the &quot;{$Title}&quot; page">$MenuTitle</a></li>
-	<% end_control %>
-  </ul>
-<% end_if %>
-~~~
+	:::html
+	<% if Menu(2) %>
+	  <ul id="Menu2">
+		<% control Menu(2) %>
+		  <li class="$LinkingMode"><a href="$Link" title="Go to the &quot;{$Title}&quot; page">$MenuTitle</a></li>
+		<% end_control %>
+	  </ul>
+	<% end_if %>
+
 
 **__2. Project__**
 
@@ -539,75 +545,75 @@ We can now do the same for every //Project// page by creating its own template.
 
 ** tutorial/templates/Layout/Project.ss **
 
-~~~ {html}
-<div class="typography">
-    <% if Menu(2) %>
-        <% include SideBar %>
-        <div id="Content">
-    <% end_if %>
-
-    <% if Level(2) %>
-        <% include BreadCrumbs %>
-    <% end_if %>
-
-        <h2>$Title</h2>
-
-        $Content
-
-        <h3>Student</h3>
+	:::html
+	<div class="typography">
+	    <% if Menu(2) %>
+	        <% include SideBar %>
+	        <div id="Content">
+	    <% end_if %>
 	
-        <% if MyStudent %>
-            <% control MyStudent %>
-                <p>First Name: <strong>$FirstName</strong></p>
-                <p>Lastname: <strong>$Lastname</strong></p>
-                <p>Nationality: <strong>$Nationality</strong></p>
-
-                <h3>Mentor</h3>
+	    <% if Level(2) %>
+	        <% include BreadCrumbs %>
+	    <% end_if %>
+	
+	        <h2>$Title</h2>
+	
+	        $Content
+	
+	        <h3>Student</h3>
 		
-                <% if MyMentor %>
-                    <% control MyMentor %>
-                        <p>First Name: <strong>$FirstName</strong></p>
-                        <p>Lastname: <strong>$Lastname</strong></p>
-                        <p>Nationality: <strong>$Nationality</strong></p>
-                    <% end_control %>
-                <% else %>
-                    <p>This student doesn't have any mentor.</p>
-                <% end_if %>
-            <% end_control %>
-        <% else %>
-            <p>There is no any student working on this project.</p>
-        <% end_if %>
+	        <% if MyStudent %>
+	            <% control MyStudent %>
+	                <p>First Name: <strong>$FirstName</strong></p>
+	                <p>Lastname: <strong>$Lastname</strong></p>
+	                <p>Nationality: <strong>$Nationality</strong></p>
+	
+	                <h3>Mentor</h3>
+			
+	                <% if MyMentor %>
+	                    <% control MyMentor %>
+	                        <p>First Name: <strong>$FirstName</strong></p>
+	                        <p>Lastname: <strong>$Lastname</strong></p>
+	                        <p>Nationality: <strong>$Nationality</strong></p>
+	                    <% end_control %>
+	                <% else %>
+	                    <p>This student doesn't have any mentor.</p>
+	                <% end_if %>
+	            <% end_control %>
+	        <% else %>
+	            <p>There is no any student working on this project.</p>
+	        <% end_if %>
+	
+	        <h3>Modules</h3>
+	
+	        <% if Modules %>
+	            <ul>
+	                <% control Modules %>
+	                    <li>$Name</li>
+	                <% end_control %>
+	            </ul>
+	        <% else %>
+	            <p>This project has not used any modules.</p>
+	        <% end_if %>
+	
+	        $Form
+	        $PageComments
+	
+	    <% if Menu(2) %>
+	        </div>
+	    <% end_if %>
+	</div>
 
-        <h3>Modules</h3>
-
-        <% if Modules %>
-            <ul>
-                <% control Modules %>
-                    <li>$Name</li>
-                <% end_control %>
-            </ul>
-        <% else %>
-            <p>This project has not used any modules.</p>
-        <% end_if %>
-
-        $Form
-        $PageComments
-
-    <% if Menu(2) %>
-        </div>
-    <% end_if %>
-</div>
-~~~
 
 What we would like now is to create a special template for the //DataObject// //Student// and the //Page// //Mentor// which will be used when we will call directly the variable in the //Project// template. In our case, we will use the same template because these two classes have the same fields ( FirstName, Surname and Nationality ).
 
 ** tutorial/templates/Includes/GSOCPerson.ss **
 
-~~~ {html}
-<p>First Name: <strong>$FirstName</strong></p>
-<p>Lastname: <strong>$Lastname</strong></p>
-<p>Nationality: <strong>$Nationality</strong></p>
-~~~
+	:::html
+	<p>First Name: <strong>$FirstName</strong></p>
+	<p>Lastname: <strong>$Lastname</strong></p>
+	<p>Nationality: <strong>$Nationality</strong></p>
+
 
 Now the template is created, we need to establish the link between the //Student// and //Mentor// classes with their common template.
 
@@ -615,45 +621,46 @@ To do so, add this code in the two classes.
 
 ** tutorial/code/Student.php, tutorial/code/Mentor.php **
 
-~~~ {php}
-   function forTemplate() {
-      $template = 'GSOCPerson';
-      return $this->renderWith( $template );
-   }
-~~~
+	:::php
+	   function forTemplate() {
+	      $template = 'GSOCPerson';
+	      return $this->renderWith( $template );
+	   }
+
 
 We can now modify the //Project// template.
 
-~~~ {html}
-
-    ...
-
-    <% if MyStudent %>
-        $MyStudent
-
-        <h3>Mentor</h3>
+	:::html
 	
-        <% control MyStudent %>
-            <% if MyMentor %>
-                $MyMentor
-            <% else %>
-                <p>This student doesn't have any mentor.</p>
-            <% end_if %>
-        <% end_control %>
-    <% else %>
-        <p>There is no any student working on this project.</p>
-    <% end_if %>
+	    ...
+	
+	    <% if MyStudent %>
+	        $MyStudent
+	
+	        <h3>Mentor</h3>
+		
+	        <% control MyStudent %>
+	            <% if MyMentor %>
+	                $MyMentor
+	            <% else %>
+	                <p>This student doesn't have any mentor.</p>
+	            <% end_if %>
+	        <% end_control %>
+	    <% else %>
+	        <p>There is no any student working on this project.</p>
+	    <% end_if %>
+	
+	    ...
+	
 
-    ...
-
-~~~
 
 In the //Project// template, it has been really easy to display the **1-to-1** relation with a //Student// object just by calling the variable **$MyStudent**. This has been made possible thanks to the code below present in the //Project// class.
-~~~ {php}
-static $has_one = array(
-    'MyStudent' => 'Student'
-);
-~~~
+
+	:::php
+	static $has_one = array(
+	    'MyStudent' => 'Student'
+	);
+
 
 However, in the //Student// class, there is no any code relating to the **1-to-1** relation with a //Project// //Page//. So how to access it from a //Student// //DataObject// ?
 
@@ -666,83 +673,84 @@ What we want to do is to access to the //Project// page in the same way than we 
 {{:tutorial:gsoc-mentor.png|:tutorial:gsoc-mentor.png}}
 
 To do so, we have to create a function in the //Student// class which will return the //Project// linked with it. Let's call it //MyProject// for instance.
-~~~ {php}
-class Student extends DataObject {
 
-   ...
+	:::php
+	class Student extends DataObject {
+	
+	   ...
+	
+	   function MyProject() {
+	      return DataObject::get( 'Project', "`MyStudentID` = '{$this->ID}'" );
+	   }
+	
+	}
 
-   function MyProject() {
-      return DataObject::get( 'Project', "`MyStudentID` = '{$this->ID}'" );
-   }
-
-}
-~~~
 
 We can now use this value in the same way that we have used the other relations.
 That's how we can use this function in the //Mentor// template.
 
 ** tutorial/templates/Layout/Mentor.ss **
 
-~~~ {html}
-<div class="typography">
-    <% if Menu(2) %>
-        <% include SideBar %>
-        <div id="Content">
-    <% end_if %>
-
-    <% if Level(2) %>
-        <% include BreadCrumbs %>
-    <% end_if %>
-
-        <h2>$Title</h2>
-
-        $Content
-
-        <h3>Personal Details</h3>
+	:::html
+	<div class="typography">
+	    <% if Menu(2) %>
+	        <% include SideBar %>
+	        <div id="Content">
+	    <% end_if %>
 	
-        <p>First Name: <strong>$FirstName</strong></p>
-        <p>Lastname: <strong>$Lastname</strong></p>
-        <p>Nationality: <strong>$Nationality</strong></p>
+	    <% if Level(2) %>
+	        <% include BreadCrumbs %>
+	    <% end_if %>
+	
+	        <h2>$Title</h2>
+	
+	        $Content
+	
+	        <h3>Personal Details</h3>
+		
+	        <p>First Name: <strong>$FirstName</strong></p>
+	        <p>Lastname: <strong>$Lastname</strong></p>
+	        <p>Nationality: <strong>$Nationality</strong></p>
+	
+	        <h3>Students</h3>
+	
+	        <% if Students %>
+	            <table>
+	                <thead>
+	                    <tr>
+	                        <th>Student</th>
+	                        <th>Project</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                    <% control Students %>
+	                        <tr>
+	                            <td>$FirstName $Lastname</td>
+	                            <td>
+	                                <% if MyProject %>
+	                                    <% control MyProject %>
+	                                        $Title
+	                                    <% end_control %>
+	                                <% else %>
+	                                    No Project
+	                                <% end_if %>
+	                            </td>
+	                        </tr>
+	                    <% end_control %>
+	                </tbody>
+	            </table>
+	        <% else %>
+	            <p>There is no any student working with this mentor.</p>
+	        <% end_if %>
+	
+	        $Form
+	        $PageComments
+	
+	    <% if Menu(2) %>
+	        </div>
+	    <% end_if %>
+	</div>
 
-        <h3>Students</h3>
-
-        <% if Students %>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Student</th>
-                        <th>Project</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% control Students %>
-                        <tr>
-                            <td>$FirstName $Lastname</td>
-                            <td>
-                                <% if MyProject %>
-                                    <% control MyProject %>
-                                        $Title
-                                    <% end_control %>
-                                <% else %>
-                                    No Project
-                                <% end_if %>
-                            </td>
-                        </tr>
-                    <% end_control %>
-                </tbody>
-            </table>
-        <% else %>
-            <p>There is no any student working with this mentor.</p>
-        <% end_if %>
-
-        $Form
-        $PageComments
-
-    <% if Menu(2) %>
-        </div>
-    <% end_if %>
-</div>
-~~~
 
 
 # Summary

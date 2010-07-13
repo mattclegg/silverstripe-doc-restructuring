@@ -6,33 +6,35 @@ Base controller class.  You will extend this to take granular control over the a
 ## Example
 
 mysite/code/Controllers/FastFood.php
-~~~ {php}
-<?php
 
-class FastFood_Controller extends Controller {
-    function order($arguments) {
-        print_r($arguments);
-    }
-}
+	:::php
+	<?php
+	
+	class FastFood_Controller extends Controller {
+	    function order($arguments) {
+	        print_r($arguments);
+	    }
+	}
+	
+	?>
 
-?>
-~~~
 
 mysite/_config.php
 
-~~~ {php}
-Director::addRules(50, array('fastfood/$Action/$ID/$Name' => 'FastFood_Controller'));
-~~~
+	:::php
+	Director::addRules(50, array('fastfood/$Action/$ID/$Name' => 'FastFood_Controller'));
+
 
 Request for '/fastfood/order/24/cheesefries' would result in the following to the $arguments above. If needed, use "?flush=1" on the end of request after making any code changes to your controller.
-~~~ {html}
-Array
-(
-    [Action] => order
-    [ID] => 24
-    [Name] => cheesefries
-)
-~~~
+
+	:::html
+	Array
+	(
+	    [Action] => order
+	    [ID] => 24
+	    [Name] => cheesefries
+	)
+
 
 ## URL Handling
 
@@ -42,12 +44,12 @@ This is useful when you want to subvert the fixed action mapping of 'fastfood/or
 
 mysite/code/Controllers/FastFood.php
 
-~~~ {php}
-class FastFood_Controller extends Controller {
-    public static $url_handlers = array(
-            'drivethrough/$Action/$ID/$Name' => 'order'
-            );
-~~~
+	:::php
+	class FastFood_Controller extends Controller {
+	    public static $url_handlers = array(
+	            'drivethrough/$Action/$ID/$Name' => 'order'
+	            );
+
 
 
 ## URL Patterns

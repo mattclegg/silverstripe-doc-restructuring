@@ -6,23 +6,23 @@ Basic data-object representing all pages within the site tree. The omnipresent /
 
 ## Linking
 
-~~~ {php}
-// wrong
-$mylink = $mypage->URLSegment;
-// right
-$mylink = $mypage->Link(); // alternatively: AbsoluteLink(), RelativeLink()
-~~~
+	:::php
+	// wrong
+	$mylink = $mypage->URLSegment;
+	// right
+	$mylink = $mypage->Link(); // alternatively: AbsoluteLink(), RelativeLink()
+
 
 ## Querying
 
 Use //SiteTree::get_by_link()// to correctly retrieve a page by URL, as it taked nested URLs into account (a page URL might consist of more than one //URLSegment//).
 
-~~~ {php}
-// wrong
-$mypage = DataObject::get_one('SiteTree', '"URLSegment" = \'<mylink>\'');
-// right
-$mypage = SiteTree::get_by_link('<mylink>');
-~~~
+	:::php
+	// wrong
+	$mypage = DataObject::get_one('SiteTree', '"URLSegment" = \'<mylink>\'');
+	// right
+	$mypage = SiteTree::get_by_link('<mylink>');
+
 
 
 ## Nested/Hierarchical URLs
@@ -32,48 +32,49 @@ In a nutshell, the nested URLs feature means that your site URLs now reflect the
 {{http://silverstripe.org/assets/screenshots/Nested-URLs-Table.png|url table}}
 
 This feature is enabled by default in SilverStripe 2.4 or newer. To activate it for older sites, insert the following code in your //mysite/_config.php//:
-~~~ {php}
-SiteTree::enable_nested_urls();
-~~~
+
+	:::php
+	SiteTree::enable_nested_urls();
+
 
 After activating nested URLs on an existing database, you'll have to run a migration task to rewrite internal URL references in the //SiteTree.Content// field.
 
-~~~
-http://<yourdomain.tld>/dev/tasks/MigrateSiteTreeLinkingTask
-~~~
+	
+	http://<yourdomain.tld>/dev/tasks/MigrateSiteTreeLinkingTask
+
 
 ## Limiting Children/Parent
 
 By default, any page type can be the child of any other page type.  However, there are 4 static properties that can be used to set up restrictions that will preserve the integrity of the page hierarchy.
 
-~~~ {php}
-class BlogHolder extends Page {
+	:::php
+	class BlogHolder extends Page {
+	
+	  // Blog holders can only contain blog entries
+	  static $allowed_children = array("BlogEntry");
+	
+	  static $default_child = "BlogEntry";
+	
+	...
+	
+	class BlogEntry extends Page {
+	  // Blog entries can't contain children
+	  static $allowed_children = "none";
+	
+	  static $default_parent = "blog";
+	
+	  static $can_be_root = false;
+	
+	...
+	
+	
+	class Page extends SiteTree {
+	  // Don't let BlogEntry pages be underneath Pages.  Only underneath Blog holders.
+	  static $allowed_children = array("*Page,", "BlogHolder");
+	  
+	}
+	
 
-  // Blog holders can only contain blog entries
-  static $allowed_children = array("BlogEntry");
-
-  static $default_child = "BlogEntry";
-
-...
-
-class BlogEntry extends Page {
-  // Blog entries can't contain children
-  static $allowed_children = "none";
-
-  static $default_parent = "blog";
-
-  static $can_be_root = false;
-
-...
-
-
-class Page extends SiteTree {
-  // Don't let BlogEntry pages be underneath Pages.  Only underneath Blog holders.
-  static $allowed_children = array("*Page,", "BlogHolder");
-  
-}
-
-~~~
 
 *  **allowed_children:** This can be an array of allowed child classes, or the string "none" - indicating that this page type can't have children.  If a classname is prefixed by "*", such as "*Page", then only that class is allowed - no subclasses.  Otherwise, the class and all its subclasses are allowed.
 
@@ -87,41 +88,41 @@ Note that there is no allowed_parents control.  To set this, you will need to sp
 
 Here is an overview of everything you can add to a class that extends sitetree.  NOTE: this example will not work, but it is a good starting point, for choosing your customisation.
 
-~~~ {php}
-class Page extends SiteTree {
+	:::php
+	class Page extends SiteTree {
+	
+		// tree customisation
+	
+		static $icon = "";
+		static $allowed_children = array("SiteTree"); // set to string "none" or array of classname(s)
+		static $default_child = "Page"; //one classname
+		static $default_parent = null; // NOTE: has to be a URL segment NOT a class name
+		static $can_be_root = true; //
+		static $hide_ancestor = null; //dont show ancestry class
+	
+		// extensions and functionality
+	
+		static $versioning = array();
+		static $default_sort = "Sort";
+		/static $extensions = array();
+		public static $breadcrumbs_delimiter = " &raquo; ";
+	
+	
+		public function canCreate() {
+			//here is a trick to only allow one (e.g. holder) of a page
+			return !DataObject::get_one($this->class);
+		}
+	
+		public function canDelete() {
+			return false;
+		}
+	
+		function getCMSFields() {
+			$fields = parent::getCMSFields();
+			return $fields;
+		}
+	
 
-	// tree customisation
-
-	static $icon = "";
-	static $allowed_children = array("SiteTree"); // set to string "none" or array of classname(s)
-	static $default_child = "Page"; //one classname
-	static $default_parent = null; // NOTE: has to be a URL segment NOT a class name
-	static $can_be_root = true; //
-	static $hide_ancestor = null; //dont show ancestry class
-
-	// extensions and functionality
-
-	static $versioning = array();
-	static $default_sort = "Sort";
-	/static $extensions = array();
-	public static $breadcrumbs_delimiter = " &raquo; ";
-
-
-	public function canCreate() {
-		//here is a trick to only allow one (e.g. holder) of a page
-		return !DataObject::get_one($this->class);
-	}
-
-	public function canDelete() {
-		return false;
-	}
-
-	function getCMSFields() {
-		$fields = parent::getCMSFields();
-		return $fields;
-	}
-
-~~~
 
 ## Recipes
 
@@ -149,53 +150,55 @@ Returning custom children for a specific ''SiteTree'' subclass can be handy to i
 Children objects are generated from two functions ''stageChildren()'' and ''liveChildren()'' and the tree generation in the CMS is calculated from ''numChildren()''. Please keep in mind that the returned children should still be instances of ''SiteTree''.
 
 Example:
-~~~ {php}
-class MyProduct extends Page {
-	static $belongs_many_many = array(
-		'MyCategories' => 'MyCategory'
-	);
-}
-class MyCategory extends Page {
-	static $many_many = array(
-		'MyProducts' => 'MyProduct'
-	);
-	function stageChildren($showAll = false) {
-		// @todo Implement $showAll
-		return $this->MyProducts();
+
+	:::php
+	class MyProduct extends Page {
+		static $belongs_many_many = array(
+			'MyCategories' => 'MyCategory'
+		);
+	}
+	class MyCategory extends Page {
+		static $many_many = array(
+			'MyProducts' => 'MyProduct'
+		);
+		function stageChildren($showAll = false) {
+			// @todo Implement $showAll
+			return $this->MyProducts();
+		}
+	
+		function liveChildren($showAll = false) {
+			// @todo Implement $showAll
+			return $this->MyProducts();
+		}
+		function numChildren() {
+			return $this->MyProducts()->Count();
+		}
+	}	}
 	}
 
-	function liveChildren($showAll = false) {
-		// @todo Implement $showAll
-		return $this->MyProducts();
-	}
-	function numChildren() {
-		return $this->MyProducts()->Count();
-	}
-}	}
-}
-~~~
 
 
 ### Multiple parents in the tree
 
 The [LeftAndMain](http://api.silverstripe.org/trunk/cms/core/LeftAndMain.html) tree supports multiple parents.  We overload CMSTreeClasses and make it include "manyparents" in the class list.
-~~~ {php}
-function CMSTreeClasses($controller) {
-	return parent::CMSTreeClasses($controller) . ' manyparents';
-}
-~~~
+
+	:::php
+	function CMSTreeClasses($controller) {
+		return parent::CMSTreeClasses($controller) . ' manyparents';
+	}
+
 
 Don't forget to define a new Parent() method that also references your new many-many join (or however it is you've set up the hierarchy!
 
-~~~ {php}
-function getParent() {
-  return $this->Parent();
-}
-function Parent() {
-  $parents = $this->Parents();
-  if($parents) return $parents->First();
-}
-~~~
+	:::php
+	function getParent() {
+	  return $this->Parent();
+	}
+	function Parent() {
+	  $parents = $this->Parents();
+	  if($parents) return $parents->First();
+	}
+
 
 Sometimes, you don't want to mess with the CMS in this manner.  In this case, leave stageChildren() and liveChildren() as-is, and instead make another method, such as ChildProducts(), to get the data from your many-many join.
 

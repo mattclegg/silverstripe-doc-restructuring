@@ -19,9 +19,9 @@ The Search Form functionality has been altered over time. Please use the section
 
 SilverStripe 2.4 does not come bundled with the search engine enabled. To enable the search engine you need to include the following code in your mysite/_config.php file
 
-~~~ {php}
-FulltextSearchable::enable();
-~~~
+	:::php
+	FulltextSearchable::enable();
+
 
 After including that in your _config.php you will need to rebuild the database by visiting http://yoursite.com/dev/build in your web browser. This will add the fulltext search columns.
 
@@ -34,23 +34,23 @@ SilverStripe 2.3 came bundled with the code as well as a MySQL Search engine. If
 
 If you are using SilverStripe 2.2 or earlier then you need to define your own code. The first step in implementing search on your site is to create a form for the user to type their query. Create a function named //SearchForm// on the //Page_Controller// class (//mysite/code/Page.php//).
 
-~~~ {php}
-class Page_Controller extends ContentController {
-   function SearchForm() {
-      $searchText = isset($this->Query) ? $this->Query : 'Search';
-		
-      $fields = new FieldSet(
-         new TextField("Search", "", $searchText)
-      );
+	:::php
+	class Page_Controller extends ContentController {
+	   function SearchForm() {
+	      $searchText = isset($this->Query) ? $this->Query : 'Search';
+			
+	      $fields = new FieldSet(
+	         new TextField("Search", "", $searchText)
+	      );
+	
+	      $actions = new FieldSet(
+	         new FormAction('results', 'Go')
+	      );
+	
+	      return new SearchForm($this, "SearchForm", $fields, $actions);
+	   }
+	}
 
-      $actions = new FieldSet(
-         new FormAction('results', 'Go')
-      );
-
-      return new SearchForm($this, "SearchForm", $fields, $actions);
-   }
-}
-~~~
 
 
 
@@ -60,12 +60,12 @@ We then just need to add the search form to the template. Add //$SearchForm// to
 
 //themes/tutorial/templates/Page.ss//
 
-~~~ {html}
-<div id="Header">
-  $SearchForm
-  <h1>$Title</h1>
-</div>
-~~~
+	:::html
+	<div id="Header">
+	  $SearchForm
+	  <h1>$Title</h1>
+	</div>
+
 
 {{searchform.png}}
 
@@ -75,22 +75,22 @@ Next we need to create the //results// function.
 
 //mysite/code/Page.php//
 
-~~~ {php}
-class Page_Controller extends ContentController {
-   ...	
-
-   function results($data, $form){
-      $data = array(
-         'Results' => $form->getResults(),
-         'Query' => $form->getSearchQuery(),
-         'Title' => 'Search Results'
-      );
-      $this->Query = $form->getSearchQuery();
+	:::php
+	class Page_Controller extends ContentController {
+	   ...	
 	
-      return $this->customise($data)->renderWith(array('Page_results', 'Page'));
-   }
-}
-~~~
+	   function results($data, $form){
+	      $data = array(
+	         'Results' => $form->getResults(),
+	         'Query' => $form->getSearchQuery(),
+	         'Title' => 'Search Results'
+	      );
+	      $this->Query = $form->getSearchQuery();
+		
+	      return $this->customise($data)->renderWith(array('Page_results', 'Page'));
+	   }
+	}
+
 
 First we populate an array with the data we wish to pass to the template - the search results, query and title of the page. The final line is a little more complicated.
 
@@ -110,56 +110,56 @@ Lastly we need to create the template for the search page. This template uses al
 
 //themes/tutorial/templates/Layout/Page_results.ss//
 
-~~~ {html}
-<div id="Content" class="searchResults">
-  <h2>$Title</h2>
-	
-  <% if Query %>
-    <p class="searchQuery"><strong>You searched for &quot;{$Query}&quot;</strong></p>
-  <% end_if %>
+	:::html
+	<div id="Content" class="searchResults">
+	  <h2>$Title</h2>
 		
-  <% if Results %>
-    <ul id="SearchResults">
-      <% control Results %>
-        <li>
-          <a class="searchResultHeader" href="$Link">
-            <% if MenuTitle %>
-              $MenuTitle
-            <% else %>
-              $Title
-            <% end_if %>
-          </a>
-          <p>$Content.LimitWordCountXML</p>
-          <a class="readMoreLink" href="$Link" title="Read more about &quot;{$Title}&quot;">Read more about &quot;{$Title}&quot;...</a>
-        </li>
-      <% end_control %>
-    </ul>
-  <% else %>
-    <p>Sorry, your search query did not return any results.</p>
-  <% end_if %>
+	  <% if Query %>
+	    <p class="searchQuery"><strong>You searched for &quot;{$Query}&quot;</strong></p>
+	  <% end_if %>
 			
-  <% if Results.MoreThanOnePage %>
-    <div id="PageNumbers">
-      <% if Results.NotLastPage %>
-        <a class="next" href="$Results.NextLink" title="View the next page">Next</a>
-      <% end_if %>
-      <% if Results.NotFirstPage %>
-        <a class="prev" href="$Results.PrevLink" title="View the previous page">Prev</a>
-      <% end_if %>
-      <span>
-        <% control Results.Pages %>
-          <% if CurrentBool %>
-            $PageNum
-          <% else %>
-            <a href="$Link" title="View page number $PageNum">$PageNum</a>
-          <% end_if %>
-        <% end_control %>
-      </span>
-      <p>Page $Results.CurrentPage of $Results.TotalPages</p>
-    </div>
-  <% end_if %>
-</div>
-~~~
+	  <% if Results %>
+	    <ul id="SearchResults">
+	      <% control Results %>
+	        <li>
+	          <a class="searchResultHeader" href="$Link">
+	            <% if MenuTitle %>
+	              $MenuTitle
+	            <% else %>
+	              $Title
+	            <% end_if %>
+	          </a>
+	          <p>$Content.LimitWordCountXML</p>
+	          <a class="readMoreLink" href="$Link" title="Read more about &quot;{$Title}&quot;">Read more about &quot;{$Title}&quot;...</a>
+	        </li>
+	      <% end_control %>
+	    </ul>
+	  <% else %>
+	    <p>Sorry, your search query did not return any results.</p>
+	  <% end_if %>
+				
+	  <% if Results.MoreThanOnePage %>
+	    <div id="PageNumbers">
+	      <% if Results.NotLastPage %>
+	        <a class="next" href="$Results.NextLink" title="View the next page">Next</a>
+	      <% end_if %>
+	      <% if Results.NotFirstPage %>
+	        <a class="prev" href="$Results.PrevLink" title="View the previous page">Prev</a>
+	      <% end_if %>
+	      <span>
+	        <% control Results.Pages %>
+	          <% if CurrentBool %>
+	            $PageNum
+	          <% else %>
+	            <a href="$Link" title="View page number $PageNum">$PageNum</a>
+	          <% end_if %>
+	        <% end_control %>
+	      </span>
+	      <p>Page $Results.CurrentPage of $Results.TotalPages</p>
+	    </div>
+	  <% end_if %>
+	</div>
+
 
 {{searchresults.png}}
 

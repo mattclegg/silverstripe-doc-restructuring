@@ -12,24 +12,24 @@ Relations (has_many/many_many) are described in [ComponentSet](http://api.silver
 
 ## Getting an single element
 
-~~~ {php}
-$myFirstDataObject = $mySet->First();
-$myLastDataObject = $mySet->Last();
-~~~
+	:::php
+	$myFirstDataObject = $mySet->First();
+	$myLastDataObject = $mySet->Last();
+
 
 ## Getting multiple elements
 
-~~~ {php}
-$mySpecialDataObjects = $mySet->find('Status', 'special');
-$startingFromTen = $mySet->getOffset(10);
-$tenToTwenty = $mySet->getRange(10, 10);
-~~~
+	:::php
+	$mySpecialDataObjects = $mySet->find('Status', 'special');
+	$startingFromTen = $mySet->getOffset(10);
+	$tenToTwenty = $mySet->getRange(10, 10);
+
 
 ## Getting one property
 
-~~~ {php}
-$myIDArray = $mySet->column('ID');
-~~~
+	:::php
+	$myIDArray = $mySet->column('ID');
+
 
 
 ## Grouping
@@ -48,18 +48,19 @@ This works on the object itself, so do NOT do something like this:
 
 ## Merge with other DataObjectSets
 
-~~~ {php}
-$myFirstSet->merge($mySecondSet);
-// $myFirstSet now contains all combined values
-~~~
+	:::php
+	$myFirstSet->merge($mySecondSet);
+	// $myFirstSet now contains all combined values
+
 
 ## Mapping for Dropdowns
 
 When using [DropdownField](DropdownField) and its numerous subclasses to select a value from a set, you can easily map the records to a compatible array:
-~~~ {php}
-$map = $mySet->toDropDownMap('ID', 'Title');
-$dropdownField = new DropdownField('myField', 'my label', $map);
-~~~
+
+	:::php
+	$map = $mySet->toDropDownMap('ID', 'Title');
+	$dropdownField = new DropdownField('myField', 'my label', $map);
+
 
 ## Converting to array
 
@@ -72,11 +73,12 @@ Use [buildNestedUL](http://doc.silverstripe.com/assets/classes/default/DataObjec
 ## Checking for existence
 
 It is good practice to check for empty sets before doing any iteration.
-~~~ {php}
-$mySet = DataObject::get('Players');
-if($mySet->exists()) foreach($mySet as $player)
-// ...
-~~~
+
+	:::php
+	$mySet = DataObject::get('Players');
+	if($mySet->exists()) foreach($mySet as $player)
+	// ...
+
 
 
 ## Paging

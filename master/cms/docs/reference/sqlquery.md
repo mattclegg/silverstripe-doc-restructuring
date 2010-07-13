@@ -18,37 +18,37 @@ We'll explain some ways to use //SELECT// with the full power of SQL, but still 
 
 ## SELECT
 
-~~~ {php}
-$sqlQuery = new SQLQuery();
-$sqlQuery->select = array(
-  'Firstname AS Name',
-  'YEAR(Birthday) AS BirthYear'
-);
-$sqlQuery->from = "
-  Player
-  LEFT JOIN Team ON Player.TeamID = Team.ID
-";
-$sqlQuery->where = "
-  YEAR(Birthday) = 1982
-";
-// $sqlQuery->having = "";
-// $sqlQuery->orderby = "";
-// $sqlQuery->limit = "";
-// $sqlQuery->distinct = true;
+	:::php
+	$sqlQuery = new SQLQuery();
+	$sqlQuery->select = array(
+	  'Firstname AS Name',
+	  'YEAR(Birthday) AS BirthYear'
+	);
+	$sqlQuery->from = "
+	  Player
+	  LEFT JOIN Team ON Player.TeamID = Team.ID
+	";
+	$sqlQuery->where = "
+	  YEAR(Birthday) = 1982
+	";
+	// $sqlQuery->having = "";
+	// $sqlQuery->orderby = "";
+	// $sqlQuery->limit = "";
+	// $sqlQuery->distinct = true;
+	
+	// get the raw SQL
+	$rawSQL = $sqlQuery->sql();
+	
+	// execute and return a Query-object
+	$result = $sqlQuery->execute();
 
-// get the raw SQL
-$rawSQL = $sqlQuery->sql();
-
-// execute and return a Query-object
-$result = $sqlQuery->execute();
-~~~
 
 ## DELETE
 
-~~~ {php}
-// ...
-$sqlQuery->delete = true;
-~~~
+	:::php
+	// ...
+	$sqlQuery->delete = true;
+
 
 ## INSERT/UPDATE
 
@@ -60,58 +60,63 @@ The result is an array lightly wrapped in a database-specific subclass of [Query
 
 ## Iterating
 
-~~~ {php}
-foreach($result as $row) {
-  echo $row['BirthYear'];
-}
-~~~
+	:::php
+	foreach($result as $row) {
+	  echo $row['BirthYear'];
+	}
+
 
 ## Quick value checking
 
 Raw SQL is handy for performance-optimized calls. 
-~~~ {php}
-class Team extends DataObject {
-  function getPlayerCount() {
-    $sqlQuery = new SQLQuery(
-      "COUNT(Player.ID)",
-      "Team LEFT JOIN Player ON Team.ID = Player.TeamID"
-    );
-    return $sqlQuery->execute()->value();
-}
-~~~
+
+	:::php
+	class Team extends DataObject {
+	  function getPlayerCount() {
+	    $sqlQuery = new SQLQuery(
+	      "COUNT(Player.ID)",
+	      "Team LEFT JOIN Player ON Team.ID = Player.TeamID"
+	    );
+	    return $sqlQuery->execute()->value();
+	}
+
 Way faster than dealing with [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html)s:
-~~~ {php}
-$players = $myTeam->Players();
-echo $players->Count();
-~~~
+
+	:::php
+	$players = $myTeam->Players();
+	echo $players->Count();
+
 
 ## Mapping
 
 Useful for creating dropdowns.
-~~~ {php}
-$sqlQuery = new SQLQuery(
-  array('YEAR(Birthdate)', 'Birthdate'),
-  'Player'
-);
-$map = $sqlQuery->execute()->map();
-$field = new DropdownField('Birthdates', 'Birthdates', $map);
-~~~
+
+	:::php
+	$sqlQuery = new SQLQuery(
+	  array('YEAR(Birthdate)', 'Birthdate'),
+	  'Player'
+	);
+	$map = $sqlQuery->execute()->map();
+	$field = new DropdownField('Birthdates', 'Birthdates', $map);
+
 
 ## "Raw" SQL with DB::query()
 
 This is not recommended for most cases, but you can also use the Silverstripe database-layer to fire off a raw query:
-~~~ {php}
-DB::query("UPDATE Player SET Status='Active'");
-~~~
+
+	:::php
+	DB::query("UPDATE Player SET Status='Active'");
+
 
 ## "Semi-raw" SQL with buildSQL()
 
 You can gain some ground on the datamodel-side when involving the selected class for querying. You don't necessarily need to call //buildSQL// from a specific object-instance, a //singleton// will do just fine.
-~~~ {php}
-$sqlQuery = singleton('Player')->buildSQL(
-  'YEAR(Birthdate) = 1982'
-);
-~~~
+
+	:::php
+	$sqlQuery = singleton('Player')->buildSQL(
+	  'YEAR(Birthdate) = 1982'
+	);
+
 
 This form of building a query has the following advantages:
 
@@ -123,41 +128,42 @@ This form of building a query has the following advantages:
 ## Transforming a result to DataObjectSet
 
 This is a commonly used technique inside Silverstripe: Use raw SQL, but transfer the resulting rows back into DataObjects.
-~~~ {php}
-$sqlQuery = new SQLQuery();
-$sqlQuery->select = array(
-  'Firstname AS Name',
-  'YEAR(Birthday) AS BirthYear',
-  // IMPORTANT: Needs to be set after other selects to avoid overlays
-  'Player.ClassName AS ClassName',
-  'Player.ClassName AS RecordClassName',
-  'Player.ID AS ID',
-);
-$sqlQuery->from = array(
-  "Player",
-  "LEFT JOIN Team ON Player.TeamID = Team.ID"
-);
-$sqlQuery->where = array(
-  "YEAR(Player.Birthday) = 1982"
-);
 
-$result = $sqlQuery->execute();
-var_dump($result->first()); // array
+	:::php
+	$sqlQuery = new SQLQuery();
+	$sqlQuery->select = array(
+	  'Firstname AS Name',
+	  'YEAR(Birthday) AS BirthYear',
+	  // IMPORTANT: Needs to be set after other selects to avoid overlays
+	  'Player.ClassName AS ClassName',
+	  'Player.ClassName AS RecordClassName',
+	  'Player.ID AS ID',
+	);
+	$sqlQuery->from = array(
+	  "Player",
+	  "LEFT JOIN Team ON Player.TeamID = Team.ID"
+	);
+	$sqlQuery->where = array(
+	  "YEAR(Player.Birthday) = 1982"
+	);
+	
+	$result = $sqlQuery->execute();
+	var_dump($result->first()); // array
+	
+	// let Silverstripe work the magic
+	$myDataObjectSet = singleton('Player')->buildDataObjectSet($result);
+	var_dump($myDataObjectSet->First()); // DataObject
+	
+	// this is where it gets tricky
+	$myFirstPlayer = $myDataObjectSet->First();
+	var_dump($myFirstPlayer->Name); // 'John'
+	var_dump($myFirstPlayer->Firstname); // undefined, as it was not part of the SELECT-clause;
+	var_dump($myFirstPlayer->Surname); // undefined, as it was not part of the SELECT-clause
+	
+	// lets assume that class Player extends BasePlayer,
+	// and BasePlayer has a database-column "Status"
+	var_dump($myFirstPlayer->Status); // undefined, as we didn't LEFT JOIN the BasePlayer-table
 
-// let Silverstripe work the magic
-$myDataObjectSet = singleton('Player')->buildDataObjectSet($result);
-var_dump($myDataObjectSet->First()); // DataObject
-
-// this is where it gets tricky
-$myFirstPlayer = $myDataObjectSet->First();
-var_dump($myFirstPlayer->Name); // 'John'
-var_dump($myFirstPlayer->Firstname); // undefined, as it was not part of the SELECT-clause;
-var_dump($myFirstPlayer->Surname); // undefined, as it was not part of the SELECT-clause
-
-// lets assume that class Player extends BasePlayer,
-// and BasePlayer has a database-column "Status"
-var_dump($myFirstPlayer->Status); // undefined, as we didn't LEFT JOIN the BasePlayer-table
-~~~
 
 CAUTION: Depending on the selected columns in your query, you might get into one of the following scenarios:
 

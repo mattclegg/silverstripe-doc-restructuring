@@ -22,19 +22,19 @@ You can use whatever codes you like, but for the sanity of developers and users,
 
 PermissionProvider is an interface which lets you define a method //providePermissions()//. This method should return a map of permission code names with a human readable explanation of its purpose (see [:permission:codes](/permission/codes)).
 
-~~~ {php}
-class Page_Controller implements PermissionProvider {
-  function init() {
-    if(!Permission::check("VIEW_SITE")) Security::permissionFailure();
-  }
+	:::php
+	class Page_Controller implements PermissionProvider {
+	  function init() {
+	    if(!Permission::check("VIEW_SITE")) Security::permissionFailure();
+	  }
+	
+	  function providePermissions() {
+	    return array(
+	      "VIEW_SITE" => "Access the site",
+	    );
+	  }
+	}
 
-  function providePermissions() {
-    return array(
-      "VIEW_SITE" => "Access the site",
-    );
-  }
-}
-~~~
 
 This can then be used to add a dropdown for permission codes to the security panel.  Permission::get_all_codes() will be a helper method that will call providePermissions() on every applicable class, and collate the resuls into a single dropdown.
 

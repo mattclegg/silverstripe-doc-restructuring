@@ -12,56 +12,56 @@ See [StaticExporter](StaticExporter) for a less flexible, but easier way of buil
 
 SilverStripe doesn't have enough information about your template and data-structures to automatically determine which URLs need to be cached, and at which time they are considered outdated. By adding a custom method allPagesToCache() to your Page class, you can determine which URLs need caching, and hook in custom logic. This array of URLs is used by the publisher to generate folders and HTML-files.
 
-~~~ {php}
-class Page extends SiteTree {
-  // ...
+	:::php
+	class Page extends SiteTree {
+	  // ...
+	
+	  /**
+	
+	   * Return a list of all the pages to cache
+	   */
+	  function allPagesToCache() {
+	    // Get each page type to define its sub-urls
+	    $urls = array();
+	
+	    // memory intensive depending on number of pages
+	    $pages = DataObject::get("SiteTree");
+	
+	    foreach($pages as $page) {
+	      $urls = array_merge($urls, (array)$page->subPagesToCache());
+	    }
+	    
+	    // add any custom URLs which are not SiteTree instances
+	    $urls[] = "sitemap.xml";
+	
+	    return $urls;
+	  }
+	
+	 /**
+	
+	   * Get a list of URLs to cache related to this page
+	   */
+	  function subPagesToCache() {
+	    $urls = array();
+	
+	    // add current page
+	    $urls[] = $this->Link();
+	    
+	    // cache the RSS feed if comments are enabled
+	    if ($this->ProvideComments) {
+	      $urls[] = Director::absoluteBaseURL() . "pagecomment/rss/" . $this->ID;
+	    }
+	    
+	    return $urls;
+	  }
+	  
+	  function pagesAffectedByChanges() {
+	    $urls = $this->subPagesToCache();
+	    if($p = $this->Parent) $urls = array_merge((array)$urls, (array)$p->subPagesToCache());
+	    return $urls;
+	  }
+	}
 
-  /**
-
-   * Return a list of all the pages to cache
-   */
-  function allPagesToCache() {
-    // Get each page type to define its sub-urls
-    $urls = array();
-
-    // memory intensive depending on number of pages
-    $pages = DataObject::get("SiteTree");
-
-    foreach($pages as $page) {
-      $urls = array_merge($urls, (array)$page->subPagesToCache());
-    }
-    
-    // add any custom URLs which are not SiteTree instances
-    $urls[] = "sitemap.xml";
-
-    return $urls;
-  }
-
- /**
-
-   * Get a list of URLs to cache related to this page
-   */
-  function subPagesToCache() {
-    $urls = array();
-
-    // add current page
-    $urls[] = $this->Link();
-    
-    // cache the RSS feed if comments are enabled
-    if ($this->ProvideComments) {
-      $urls[] = Director::absoluteBaseURL() . "pagecomment/rss/" . $this->ID;
-    }
-    
-    return $urls;
-  }
-  
-  function pagesAffectedByChanges() {
-    $urls = $this->subPagesToCache();
-    if($p = $this->Parent) $urls = array_merge((array)$urls, (array)$p->subPagesToCache());
-    return $urls;
-  }
-}
-~~~
 
 
 
@@ -73,9 +73,9 @@ This setup will store the cached content on the same server as the CMS.  This is
 
 *  Put this in mysite/_config.php.  This will create static content in a "cache/" subdirectory, with an HTML suffix.
 
-~~~ {php}
-Object::add_extension("SiteTree", "FilesystemPublisher('cache/', 'html')");
-~~~
+	:::php
+	Object::add_extension("SiteTree", "FilesystemPublisher('cache/', 'html')");
+
 
 *  Put this into your .htaccess.  It will serve requests from the cache, statically, if the cache file exists.  Replace **sitedir** with the a subdirectory that you would like to serve the site from (for example, in your dev environment).
 
@@ -85,70 +85,70 @@ Object::add_extension("SiteTree", "FilesystemPublisher('cache/', 'html')");
 
 Just look for this line:
 
-~~~
-RewriteRule .* sapphire/main.php?url=%1&%{QUERY_STRING} [L]
-~~~
+	
+	RewriteRule .* sapphire/main.php?url=%1&%{QUERY_STRING} [L]
+
 
 And change the PHP script from main.php to static-main.php:
 
-~~~
-RewriteRule .* sapphire/static-main.php?url=%1&%{QUERY_STRING} [L]
-~~~
+	
+	RewriteRule .* sapphire/static-main.php?url=%1&%{QUERY_STRING} [L]
+
 ## Using Static Publisher With Subsites Module
 
 Append the following code to mysite/config.php
 
-~~~ {php}
-FilesystemPublisher::$domain_based_caching = true;
-~~~
+	:::php
+	FilesystemPublisher::$domain_based_caching = true;
+
 
 Instead of the above code snippet for Page.php, use the following code: 
 
-~~~ {php}
-class Page extends SiteTree {
-
-        // ...
-
-	function allPagesToCache() {
-            // Get each page type to define its sub-urls
-	    $urls = array();
-
-	    // memory intensive depending on number of pages
-	    $pages = Subsite::get_from_all_subsites("SiteTree");
-
-	    foreach($pages as $page) {
-		$urls = array_merge($urls, (array)$page->subPagesToCache());
-	    }
-
-	    return $urls;
+	:::php
+	class Page extends SiteTree {
+	
+	        // ...
+	
+		function allPagesToCache() {
+	            // Get each page type to define its sub-urls
+		    $urls = array();
+	
+		    // memory intensive depending on number of pages
+		    $pages = Subsite::get_from_all_subsites("SiteTree");
+	
+		    foreach($pages as $page) {
+			$urls = array_merge($urls, (array)$page->subPagesToCache());
+		    }
+	
+		    return $urls;
+		}
+	
+		function subPagesToCache() {
+			$urls = array();
+			$urls[] = $this->AbsoluteLink();
+			return $urls;
+		}
+	
+		function pagesAffectedByChanges() {
+			$urls = $this->subPagesToCache();
+			if($p = $this->Parent) $urls = array_merge((array)$urls, (array)$p->subPagesToCache());
+			return $urls;
+		}
+	
+	        // ... some other code ...
+	
 	}
 
-	function subPagesToCache() {
-		$urls = array();
-		$urls[] = $this->AbsoluteLink();
-		return $urls;
-	}
-
-	function pagesAffectedByChanges() {
-		$urls = $this->subPagesToCache();
-		if($p = $this->Parent) $urls = array_merge((array)$urls, (array)$p->subPagesToCache());
-		return $urls;
-	}
-
-        // ... some other code ...
-
-}
-~~~
 
 And the last thing you need to do is adding your main site's host mapping to subsites/host-map.php. For example, your main site's host is mysite.com the content of the file would be: 
 
-~~~ {php}
-<?php 
-$subsiteHostmap = array (
-  // .. subsite hots mapping ..,
-  'mysite.com', 'mysite.com' 
-);
-~~~
+	:::php
+	<?php 
+	$subsiteHostmap = array (
+	  // .. subsite hots mapping ..,
+	  'mysite.com', 'mysite.com' 
+	);
+
 
 Remember that you need to add main site's host mapping every time a subsite is added or modified because the operation overwrites your manual modification to the file and subsite module does not add main site's hot mapping automatically at the moment.
 
@@ -164,13 +164,13 @@ This approach is very secure, because you can lock the CMS right down (for examp
 
 *  Add the RsyncMultiHostPublisher extension to your SiteTree objects in mysite/_config.php.  This will create static content in a "cache/" subdirectory, with an HTML suffix.
 
-~~~ {php}
-Object::add_extension("SiteTree", "RsyncMultiHostPublisher('cache/', 'html')");
-RsyncMultiHostPublisher::set_targets(array(
-	'<rsyncuser>@<static-server1>:<webroot>',
-	'<rsyncuser>@<static-server2>:<webroot>',
-));
-~~~
+	:::php
+	Object::add_extension("SiteTree", "RsyncMultiHostPublisher('cache/', 'html')");
+	RsyncMultiHostPublisher::set_targets(array(
+		'<rsyncuser>@<static-server1>:<webroot>',
+		'<rsyncuser>@<static-server2>:<webroot>',
+	));
+
 
 Where ''<rsyncuser>'' is a unix account with write permissions to ''<webroot>'' (e.g. ''/var/www''), and ''<static-server1>'' and ''<static-server2>'' are the names of your static content servers.  The number of servers is flexible and depends on your infrastructure and scalability needs.
 
@@ -188,9 +188,9 @@ There is also the option to wrap some PHP logic around the static HTML content s
 
 To enable cache control, specify "php" instead of "html" in the RsyncMultiHostPublisher definition.
 
-~~~ {php}
-Object::add_extension("SiteTree", "RsyncMultiHostPublisher('cache/', 'php')");
-~~~
+	:::php
+	Object::add_extension("SiteTree", "RsyncMultiHostPublisher('cache/', 'php')");
+
 
 And use this slightly different .htaccess file. Make sure that index.php can be used as a directory index!
 
@@ -201,14 +201,16 @@ And use this slightly different .htaccess file. Make sure that index.php can be 
 Once you've set up your rewrite rules and defined which pages need caching, you can build the static HTML files. This is done by the [RebuildStaticCacheTask](RebuildStaticCacheTask).
 
 Execution via URL
-~~~
-http://www.example.com/dev/buildcache?flush=1
-~~~
+
+	
+	http://www.example.com/dev/buildcache?flush=1
+
 
 Execution on CLI (via [sake](sake))
-~~~
-sake dev/buildcache flush=1
-~~~
+
+	
+	sake dev/buildcache flush=1
+
 
 Depending on which extension you've set up for your SiteTree (FilesystemPublisher or RsyncMultiHostPublisher), the method publishPages() either stores the generated HTML-files on the server's filesystem, or deploys them to other servers via rsync.
 

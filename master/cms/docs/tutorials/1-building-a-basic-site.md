@@ -94,28 +94,31 @@ Whenever we edit a template file, we need to append //?flush=1// onto the end of
 Let's introduce two new template variables - //$Title// and //$MetaTags//.
 
 //$Title// is simply replaced with the name of the page ('Page name' on the 'Main' tab in the editor). Open //themes/tutorial/templates/Page.ss//. Find the following code:
-~~~ {html}
-<div id="Header">
-   <h1>&nbsp;</h1>
-</div>
-~~~
+
+	:::html
+	<div id="Header">
+	   <h1>&nbsp;</h1>
+	</div>
+
 and replace it with
-~~~ {html}
-<div id="Header">
- <h1>$Title</h1>
-</div>
-~~~
+
+	:::html
+	<div id="Header">
+	 <h1>$Title</h1>
+	</div>
+
 
 //$MetaTags// adds meta tags for search engines, as well as the page title ('Title' on the 'Meta-data' tab in the editor). You can define your metatags in the meta-data tab off the content editor in the CMS. Add //$MetaTags// to the head so that it looks like this:
-~~~ {html}
-<head>
-   <% base_tag %>
-   $MetaTags
-   <link rel="stylesheet" type="text/css" href="themes/tutorial/css/layout.css" />
-   <link rel="stylesheet" type="text/css" href="themes/tutorial/css/typography.css" />
-   <link rel="stylesheet" type="text/css" href="themes/tutorial/css/form.css" />
-</head>
-~~~
+
+	:::html
+	<head>
+	   <% base_tag %>
+	   $MetaTags
+	   <link rel="stylesheet" type="text/css" href="themes/tutorial/css/layout.css" />
+	   <link rel="stylesheet" type="text/css" href="themes/tutorial/css/typography.css" />
+	   <link rel="stylesheet" type="text/css" href="themes/tutorial/css/form.css" />
+	</head>
+
 
 <note tip>
 Don't forget to flush the cache each time you change a template by adding //?flush=1// onto the end of the URL.
@@ -130,22 +133,24 @@ Your page should now look something like this (with your own content of course):
 So far we have made several pages, but we have no way to navigate between them. We can create a menu for our site using a **control block**. Control blocks allow us to iterate over a data set, and render each item using a sub-template. The **page control** //Menu(1)// returns the set of the first level menu items. We can then use the template variable //$MenuTitle// to show the title of the page we are linking to.
 
 Open up //themes/tutorial/templates/Page.ss//, and insert the following code inside //<div id="Main">//:
-~~~ {html}
-<ul id="Menu1">
-   <% control Menu(1) %>
-      <li><a href="#">$MenuTitle</a></li>
-   <% end_control %>
-</ul>
-~~~
+
+	:::html
+	<ul id="Menu1">
+	   <% control Menu(1) %>
+	      <li><a href="#">$MenuTitle</a></li>
+	   <% end_control %>
+	</ul>
+
 
 Here we've created an unordered list called //Menu1//, which //themes/tutorial/css/layout.css// will style into the menu. Then, using a control block over the page control //Menu(1)//, we add a link to the list for each menu item. All going to plan, your page should look like this:
 
 {{tutorial:menu.png}}
 
 The menu isn't really very useful until each button links to the relevant page. We can get the link for the menu item in question by using the //$Link// template variable. Replace the list item line with this one:
-~~~ {html}
-<li><a href="$Link" title="Go to the &quot;{$Title}&quot; page">$MenuTitle</a></li>
-~~~
+
+	:::html
+	<li><a href="$Link" title="Go to the &quot;{$Title}&quot; page">$MenuTitle</a></li>
+
 
 ($Title refers to //Page Name// in the CMS, whereas $MenuTitle refers to (the often shorter) //Navigation label//)
 
@@ -158,9 +163,10 @@ A useful feature is highlighting the current page the user is looking at. We can
 *  //link// - The page is not currently being visited, so shouldn't be highlighted
 *  //section// - A page under this page is being visited so you probably want to highlight it. (E.g. if you were visiting a staff member such as "Home > Company > Staff > Bob Smith", you would want to highlight 'Company' to say you are in that section.)
 Highlighting the current page is easy - simply assign a css class based on the value of //$LinkingMode//. Then provide a different style for current/section in css, as has been provided for you in //tutorial/css/layout.css//. Change the list item line in //Page.ss// so it looks like this:
-~~~ {html}
-<li class="$LinkingMode"><a href="$Link" title="Go to the &quot;{$Title}&quot; page">$MenuTitle</a></li>
-~~~
+
+	:::html
+	<li class="$LinkingMode"><a href="$Link" title="Go to the &quot;{$Title}&quot; page">$MenuTitle</a></li>
+
 
 You should now have a fully functional top menu.
 
@@ -177,48 +183,48 @@ First, let's add some pages. The "About Us" section could use some expansion. Se
 
 Great, we now have a hierarchical site structure, but we still have no way of getting to these second level pages. Adding a second level menu is very similar to adding the first level menu. Open up our //Page.ss// template, and find the //<div id="ContentContainer">// tag. Underneath it, add the following code:
 
-~~~ {html}
-<ul id="Menu2">
-  <% control Menu(2) %>
-    <li class="$LinkingMode"><a href="$Link" title="Go to the &quot;{$Title}&quot; page">$MenuTitle</a></li>
-  <% end_control %>
-</ul>
-~~~
+	:::html
+	<ul id="Menu2">
+	  <% control Menu(2) %>
+	    <li class="$LinkingMode"><a href="$Link" title="Go to the &quot;{$Title}&quot; page">$MenuTitle</a></li>
+	  <% end_control %>
+	</ul>
+
 
 
 This should look very familiar. It is exactly the same as our first menu, except we have named our linked list //Menu2// and we are using the control //Menu(2)// instead of //Menu(1)//. As we can see here, the //Menu// control takes a single argument - the level of the menu we want to get. Our css file will style this linked list into the second level menu, using our usual //$LinkingMode// technique to highlight the current page.
 
 We now have our second level menu, but we also have a problem. The menu is displayed on every page, even those that don't have any nested pages. We can solve this problem with an **if block**. Simply surround the menu with an if block like this:
 
-~~~ {html}
-<% if Menu(2) %>
-  <ul id="Menu2">
-    <% control Menu(2) %>
-      <li class="$LinkingMode"><a href="$Link" title="Go to the &quot;{$Title}&quot; page">$MenuTitle</a></li>
-    <% end_control %>
-  </ul>
-<% end_if %>
-~~~
+	:::html
+	<% if Menu(2) %>
+	  <ul id="Menu2">
+	    <% control Menu(2) %>
+	      <li class="$LinkingMode"><a href="$Link" title="Go to the &quot;{$Title}&quot; page">$MenuTitle</a></li>
+	    <% end_control %>
+	  </ul>
+	<% end_if %>
+
 
 The if block only includes the code inside it if the condition is true. In this case, it checks for the existence of //Menu(2)//. If it exists then the code inside will be processed and the menu will be shown. Otherwise the code will not be processed and the menu will not be shown.
 
 Now that we have two levels of navigation, it would also be useful to include some "breadcrumbs". Find //<div id="Content" class="typography">// and underneath it add:
 
-~~~ {html}
-<div class="breadcrumbs">
-  $Breadcrumbs
-</div>	
-~~~
+	:::html
+	<div class="breadcrumbs">
+	  $Breadcrumbs
+	</div>	
+
 
 Breadcrumbs are only useful on pages that aren't in the top level. We can ensure that we only show them if we aren't in the top level with another if statement.
 
-~~~ {html}
-<% if Level(2) %>
-  <div class="breadcrumbs">
-    $Breadcrumbs
-  </div>
-<% end_if %>
-~~~
+	:::html
+	<% if Level(2) %>
+	  <div class="breadcrumbs">
+	    $Breadcrumbs
+	  </div>
+	<% end_if %>
+
 
 The //Level// page control allows you to get data from the page's parents, eg if you used //Level(1)//, you could use //$Level(1).Title// to get the top level page title. In this case, we merely use it to check the existence of a second level page; if one exists then we include the breadcrumbs.
 
@@ -242,26 +248,26 @@ Each page type is represented by two php classes: a data object and a controller
 
 Create a new file //HomePage.php// in //mysite/code//. Copy the following code into it:
 
-~~~ {php}
-<?php
-/**
-
- * Defines the HomePage page type
- */
-
-class HomePage extends Page {
-   static $db = array(
-   );
-   static $has_one = array(
-   );
-
-}
-
-class HomePage_Controller extends Page_Controller {
+	:::php
+	<?php
+	/**
 	
-}
-?>
-~~~
+	 * Defines the HomePage page type
+	 */
+	
+	class HomePage extends Page {
+	   static $db = array(
+	   );
+	   static $has_one = array(
+	   );
+	
+	}
+	
+	class HomePage_Controller extends Page_Controller {
+		
+	}
+	?>
+
 
 Every page type also has a database table corresponding to it. Every time we modify the database, we need to rebuild it. We can do this by going to [http://localhost/dev/build?flush=1](http://localhost/dev/build?flush=1). It may take a moment, so be patient. This add tables and fields needed by your site, and modifies any structures that have changed. It does this non-destructively - it will never delete your data.
 
@@ -281,11 +287,11 @@ To create a new template, create a copy of //Page.ss// (found in //themes/tutori
 
 Now let's customize the //HomePage// template. First, remove the breadcrumbs and the secondary menu; we don't need them for the homepage. Let's replace the title with our image. Add this line above the //Content// div:
 
-~~~ {html}
-<div id="Banner">
-  <img src="themes/tutorial/images/welcome.png" alt="Homepage image" />
-</div>
-~~~
+	:::html
+	<div id="Banner">
+	  <img src="themes/tutorial/images/welcome.png" alt="Homepage image" />
+	</div>
+
 
 {{tutorial:home-template.png}}
 
@@ -296,36 +302,36 @@ If we compare //Page.ss// and //HomePage.ss//, we can see the only differences a
 
 **themes/tutorial/templates/Layout/Page.ss**
 
-~~~ {html}
-<% if Menu(2) %>
-  <ul id="Menu2">
-    <% control Menu(2) %>
-      <li class="$LinkingMode"><a href="$Link" title="Go to the &quot;{$Title}&quot; page">$MenuTitle</a></li>
-    <% end_control %>
-  </ul>
-<% end_if %>
+	:::html
+	<% if Menu(2) %>
+	  <ul id="Menu2">
+	    <% control Menu(2) %>
+	      <li class="$LinkingMode"><a href="$Link" title="Go to the &quot;{$Title}&quot; page">$MenuTitle</a></li>
+	    <% end_control %>
+	  </ul>
+	<% end_if %>
+	
+	<div id="Content" class="typography">
+	  <% if Level(2) %>
+	    <div class="breadcrumbs">
+	      $Breadcrumbs
+	    </div>
+	  <% end_if %>			
+	  $Content
+	  $Form
+	</div>
 
-<div id="Content" class="typography">
-  <% if Level(2) %>
-    <div class="breadcrumbs">
-      $Breadcrumbs
-    </div>
-  <% end_if %>			
-  $Content
-  $Form
-</div>
-~~~
 
 **themes/tutorial/templates/Layout/HomePage.ss**
 
-~~~ {html}
-<div id="Banner">
-  <img src="themes/tutorial/images/welcome.png" alt="Homepage image" />
-</div>
-<div id="Content" class="typography">
-  $Content
-</div>
-~~~
+	:::html
+	<div id="Banner">
+	  <img src="themes/tutorial/images/welcome.png" alt="Homepage image" />
+	</div>
+	<div id="Content" class="typography">
+	  $Content
+	</div>
+
 
 
 
@@ -333,37 +339,37 @@ We can then delete //themes/tutorial/templates/HomePage.ss//, as it is no longer
 
 **themes/tutorial/templates/Page.ss**
 
-~~~ {html}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
-  <head>
-    <% base_tag %>
-    $MetaTags
-    <link rel="stylesheet" type="text/css" href="tutorial/css/layout.css" />
-    <link rel="stylesheet" type="text/css" href="tutorial/css/typography.css" />
-    <link rel="stylesheet" type="text/css" href="tutorial/css/form.css" />
-  </head>
-  <body>
-    <div id="Main">
-      <ul id="Menu1">
-        <% control Menu(1) %>
-          <li class="$LinkingMode"><a href="$Link" title="Go to the &quot;{$Title}&quot; page">$MenuTitle</a></li>
-        <% end_control %>
-      </ul>
-      <div id="Header">
-        <h1>$Title</h1>
-      </div>
-      <div id="ContentContainer">
-        $Layout
-      </div>
-      <div id="Footer">
-        <span>Visit <a href="http://www.silverstripe.com" title="Visit www.silverstripe.com">www.silverstripe.com</a> to download the CMS</span>
-      </div>
-    </div>
-    $SilverStripeNavigator
-  </body>
-</html>
-~~~
+	:::html
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
+	  <head>
+	    <% base_tag %>
+	    $MetaTags
+	    <link rel="stylesheet" type="text/css" href="tutorial/css/layout.css" />
+	    <link rel="stylesheet" type="text/css" href="tutorial/css/typography.css" />
+	    <link rel="stylesheet" type="text/css" href="tutorial/css/form.css" />
+	  </head>
+	  <body>
+	    <div id="Main">
+	      <ul id="Menu1">
+	        <% control Menu(1) %>
+	          <li class="$LinkingMode"><a href="$Link" title="Go to the &quot;{$Title}&quot; page">$MenuTitle</a></li>
+	        <% end_control %>
+	      </ul>
+	      <div id="Header">
+	        <h1>$Title</h1>
+	      </div>
+	      <div id="ContentContainer">
+	        $Layout
+	      </div>
+	      <div id="Footer">
+	        <span>Visit <a href="http://www.silverstripe.com" title="Visit www.silverstripe.com">www.silverstripe.com</a> to download the CMS</span>
+	      </div>
+	    </div>
+	    $SilverStripeNavigator
+	  </body>
+	</html>
+
 
 
 SilverStripe first searches for a template in the //themes/tutorial/templates// folder. Since there is no //HomePage.ss//, it will use the //Page.ss// for both //Page// and //HomePage// page types. When it comes across the //$Layout// tag, it will then descend into the //themes/tutorial/templates/Layout// folder, and will use //Page.ss// for the //Page// page type, and //HomePage.ss// for the //HomePage// page type.

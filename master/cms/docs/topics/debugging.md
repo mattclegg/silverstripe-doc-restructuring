@@ -3,9 +3,10 @@
 Silverstripe knows three different environment-types (or "debug-levels"). Each of the levels gives you different tools and functionality. "//dev//", "//test//" and "//live//". You can either configure the environment of the site in the mysite/_config.php file or in your [environment configuration file](environment-management).
 
 The definition of setting an environment in your mysite/_config.php looks like
-~~~ {php}
-Director::set_environment_type("dev");
-~~~
+
+	:::php
+	Director::set_environment_type("dev");
+
 ## Available Site Modes
 
 ### Dev Mode
@@ -14,9 +15,9 @@ When developing your websites, adding page types or installing modules you shoul
 
 To set your site to dev mode set this in your mysite/_config.php file
 
-~~~ {php}
-Director::set_environment_type("dev");
-~~~
+	:::php
+	Director::set_environment_type("dev");
+
 
 Please note **devmode should not be enabled long term on live sites for security reasons**. In devmode by outputting backtraces of function calls a hacker can gain information about your environment (including passwords) so you should use devmode on a public server very very carefully
 
@@ -29,15 +30,15 @@ In this mode error messages are hidden from the user and it includes BasicAuth i
 
 To set your site to test mode set this in your mysite/_config.php file
 
-~~~ {php}
-Director::set_environment_type("test");
-~~~
+	:::php
+	Director::set_environment_type("test");
+
 
 A common situation is to enable password protected site viewing on your test site only. You can enable that but adding this to your mysite/_config file
 
-~~~ {php}
-if(Director::isTest()) BasicAuth::protect_entire_site();
-~~~
+	:::php
+	if(Director::isTest()) BasicAuth::protect_entire_site();
+
 
 ### Live Mode
 
@@ -45,37 +46,37 @@ Live sites should always run in live mode. Error messages are suppressed from th
 
 To set your site to live mode set this in your mysite/_config.php file
 
-~~~ {php}
-Director::set_environment_type("live");
-~~~
+	:::php
+	Director::set_environment_type("live");
+
 
 
 ## Checking Environment Types
 
 Use the following methods:
 
-~~~ {php}
-Director::isDev();
-Director::isTest();
-Director::isLive();
-~~~
+	:::php
+	Director::isDev();
+	Director::isTest();
+	Director::isLive();
+
 
 This is useful when you have various API keys on your site and separate ones for dev / live or for configuring environment settings based on type 
 
-~~~ {php}
-if(Director::isDev()) {
-// this is for dev only
-}
-else {
-// this is for the live site
-}
-~~~
+	:::php
+	if(Director::isDev()) {
+	// this is for dev only
+	}
+	else {
+	// this is for the live site
+	}
+
 
 ## Email Errors
 
-~~~ {php}
-if(Director::isLive()) Debug::send_errors_to("your@email.com");
-~~~
+	:::php
+	if(Director::isLive()) Debug::send_errors_to("your@email.com");
+
 
 ## Customizing Error-Output
 
