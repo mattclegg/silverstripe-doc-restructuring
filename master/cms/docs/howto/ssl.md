@@ -1,4 +1,5 @@
 # Introduction
+
 Switching between SSL and Non-SSL is handled by the [Director](director) class.
 
 **Note:** Director::forceSSL() does not work if your site is in Dev mode, see ticket [#4509](http://open.silverstripe.org/ticket/4509) if you need to test in Dev.
@@ -6,6 +7,7 @@ Switching between SSL and Non-SSL is handled by the [Director](director) class.
 # Recipes
 
 ## Force SSL Redirection on all pages
+
 For some sites, you will want everyone to access them using SSL / HTTPS.  To facilitate this, put the following line into _config.php:
 
 ~~~
@@ -18,11 +20,13 @@ This will automatically every http:// request to https://
 
 
 ## Force SSL Redirection on certain page types
+
 This technique forces SSL on some page types, while the base page type makes sure to redirect to non-SSL if need be. It will not do simply to call Director::setBaseURL with the non-SSL URL as the base, because this will cause your secure page to link to graphics, CSS, and other assets insecurely. More than that, your secure form will post insecurely. Such a setup will make modern browsers complain. So we will modify Page as well as MyPage, as shown below.
 
 
 
 ### Custom page type forcing SSL
+
 ~~~ {php}
 class MySecurePage extends Page {
     /* ... */
@@ -46,6 +50,7 @@ class MySecurePage_Controller extends Page_Controller {
 
 
 ### Page class modifications to return non-secure pages to HTTP
+
 ~~~ {php}
 class Page_Controller extends ContentController {
 

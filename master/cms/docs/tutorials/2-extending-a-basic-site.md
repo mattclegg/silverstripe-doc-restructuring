@@ -39,6 +39,7 @@ We'll start with the //ArticlePage// page type. First we create the model, a cla
 ~~~ {php}
 <?php
 /**
+
  * Defines the ArticlePage page type
  */
 class ArticlePage extends Page {
@@ -64,6 +65,7 @@ Let's create the //ArticleHolder// page type.
 ~~~ {php}
 <?php
 /**
+
  * Defines the ArticleHolder page type
  */
 class ArticleHolder extends Page {

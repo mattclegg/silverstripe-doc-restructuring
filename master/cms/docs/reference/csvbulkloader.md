@@ -5,6 +5,7 @@
 Utility class to facilitate complex CSV-imports by defining column-mappings and custom converters. Uses the fgetcsv() function to process CSV input. Accepts a file-handler as input 
 
 ## Features
+
 *  Custom column mapping
 *  Auto-detection of CSV-header rows
 *  Duplicate detection based on custom criteria
@@ -101,6 +102,7 @@ class FootballTeam extends DataObject {
 ~~~
 
 Sample implementation of a custom loader. Assumes a CSV-file in a certain format (see below).
+
 *  Converts property names
 *  Splits a combined "Name" fields from the CSV-data into ''FirstName'' and ''Lastname'' by a custom importer method
 *  Avoids duplicate imports by a custom ''$duplicateChecks'' definition

@@ -62,6 +62,7 @@ $HTTP["host"] == "yoursite.com" {
 Note: It doesn't work properly if the directory name copy1 or copy2 on your server has a dot in it, and you then open the image editor inside admin, I found that out the hard way when using a directory name of silverstripe-v2.2.2 after directly unzipping the Silverstripe tarball leaving the name as is. I haven't found a solution for that yet, but for now this method still works properly if you just don't use dots in the directory names.
 
 #### Installing lighttpd on Debian
+
 *  aptitude install lighttpd //(and php5-cgi, mysql-server, etc, as necessary.)//
     * if apache is already running, lighttpd can still be safely installed. It will complain it cannot start because port 80 is in use. After installing lighttpd, edit /etc/lighttpd/lighttpd.conf  and set: "server.port = 81" for example, and run /etc/init.d/lighttpd restart
     * edit /etc/lighttpd/conf-available/10-fastcgi.conf and set socket to: /var/run/lighttpd/php.socket
@@ -71,4 +72,5 @@ Note: It doesn't work properly if the directory name copy1 or copy2 on your serv
 *  Follow the top instructions on adding the rewrite rules, and then install SilverStripe.
 
 ##### More about lighttpd
+
 Learn more about the lighttpd webserver at http://www.lighttpd.net/

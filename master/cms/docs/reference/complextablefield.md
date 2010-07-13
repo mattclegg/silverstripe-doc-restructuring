@@ -1,4 +1,5 @@
 ##  Introduction
+
 Shows a group of DataObjects as a (readonly) tabular list (similiar to [TableListField](http://api.silverstripe.org/trunk/forms/fields-relational/TableListField.html)). Its most useful when you want to display a relationship (e.g. one-to-many), subset, or collection of DataObjects via a simple interface with the ability to edit context specific information in a javascript-popup ("Lightbox").  
 
 You can specify limits and filters for the resultset by customizing query-settings (mostly the ID-field on the other side of a one-to-many-relationship).
@@ -8,15 +9,18 @@ See [complextablefieldExamples](complextablefieldExamples)
 See [TableListField](http://api.silverstripe.org/trunk/forms/fields-relational/TableListField.html) for more documentation on the base-class
 
 ## Source Input
+
 See [TableListField](http://api.silverstripe.org/trunk/forms/fields-relational/TableListField.html).
 
 ## Setting Parent/Child-Relations
+
 ComplexTableField tries to determine the parent-relation automatically by looking at the $has_one property on the listed child, or the record loaded into the surrounding form (see getParentClass() and getParentIdName()). You can force a specific parent relation:
 ~~~ {php}
 $myCTF->setParentClass('ProductGroup');
 ~~~
 
 ## Customizing Popup
+
 By default, getCMSFields() is called on the listed DataObject.
 You can override this behaviour in various ways:
 ~~~ {php}
@@ -50,13 +54,16 @@ $myCTF = new ComplexTableField(
 ~~~
 
 ## Customizing Display & Functionality
+
 If you don't want several functions to appear (e.g. no add-link), there's several ways:
+
 *  Use ComplexTableField->setPermissions(array("show","edit")) to limit the functionality without touching the template (more secure). Possible values are "show","edit", "delete" and "add".  
 
 *  Subclass ComplexTableField and override the rendering-mechanism
 *  Use ComplexTableField->setTemplate() and ComplexTableField->setTemplatePopup() to provide custom templates
 
 #### Customising fields and Requirements in the popup
+
 There are several ways to customise the fields in the popup. Often you would want to display more information in the popup as there is more real-estate for you to play with. 
 
 ComplexTableField gives you several options to do this. You can either
@@ -103,19 +110,24 @@ It's not a perfect solution, but it works relatively well to get a simple Comple
 To come: Make it a lot more flexible so tables can be easily used on the front end. It also needs to be flexible enough to use a popup as well, out of the box.
 
 ## Subclassing
+
 Most of the time, you need to override the following methods:
+
 *  ComplexTableField->sourceItems() - querying
 *  ComplexTableField->DetailForm() - form output
 *  ComplexTableField_Popup->saveComplexTableField() - saving
 
 ## Examples
+
 *  [AssetTableField](AssetTableField)
 *  [MemberTableField](MemberTableField)
 
 # API Documentation
+
 [Click here for the API documentation](http://api.silverstripe.org/trunk/forms/fields-relational/ComplexTableField.html).
 
 ## Todo
+
 *  Find a less fragile solution for accessing this field through the main controller and ReferencedField, e.g. build a seperate CTF-instance (doesn't necessarly have to be connected to the original by ReferencedField)
 *  Control width/height of popup by constructor (hardcoded at the moment)
 *  Integrate search from MemberTableField.php directly on ComplexTableField

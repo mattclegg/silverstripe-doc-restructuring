@@ -1,4 +1,5 @@
 # Introduction
+
 Silverstripe doesn't have a global configuration-array or an interface with all available configuration-options. As all Silverstripe logic is contained in classes, the appropriate place to configure their behaviour is directly in the class itself. 
 
 This lack of a configuration-GUI is on purpose, as we'd like to keep developer-level options where they belong (into code), without cluttering up the interface. See this core forum discussion ["The role of the CMS"](http://www.silverstripe.com/core-team-discussion/flat/2723) for further reasoning.
@@ -8,6 +9,7 @@ This lack of a configuration-GUI is on purpose, as we'd like to keep developer-l
 See [environment-management](environment-management).
 
 ## mysite/_config.php
+
 This file is detected in each folder by [ManifestBuilder](ManifestBuilder). This way, every toplevel-folder (=module) can have independent configuration-rules.
 
 //Please note that this is the only place where you can put in procedural code - all other functionality is wrapped in classes (see [common-problems](common-problems)).//
@@ -46,7 +48,9 @@ Some constants are user-defineable within //_ss_environment.php//.
  | //TEMP_FOLDER// | Absolute file path to store temporary files such as cached templates or the class manifest. Needs to be writeable by the webserver user. Defaults to //sys_get_temp_dir()//, and falls back to //silverstripe-cache// in the webroot. See //getTempFolder()// in //sapphire/core/Core.php// | 
 
 ## User-level: Member-object
+
 All user-related preferences are stored as a property of the [Member](Member)-class (and as a database-column in the //Member//-table). You can "mix in" your custom preferences by using [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html) for details.
 
 ## Permissions
+
 See [security](security) and [permission](permission)

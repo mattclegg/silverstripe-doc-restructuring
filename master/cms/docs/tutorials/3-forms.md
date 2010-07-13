@@ -333,6 +333,7 @@ We use the normal tactic of putting the data into an unordered list and using CS
 
 
 # Summary
+
 In this tutorial we have explored forms, and seen the different approaches to creating and using forms. Whether you decide to use a [:UserDefinedForm](/UserDefinedForm) or create a form in PHP depends on the situation and flexibility required.
 
 [Next Tutorial >>](tutorial/4-site-search)data

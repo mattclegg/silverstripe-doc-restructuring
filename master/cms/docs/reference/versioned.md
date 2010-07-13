@@ -3,6 +3,7 @@
 The Versioned class is a [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html) that adds versioning and staging capabilities to the objects.
 
 ### Trapping the publication event
+
 Sometimes, you'll want to do something whenever a particular kind of page is published.  This example sends an email whenever a blog entry has been published.
 
 //SilverStripe 2.3//

@@ -1,14 +1,17 @@
 # Introduction
+
 SilverStripe has emailing functionality using the built-in mail() function in PHP.
 Features include sending plaintext- and HTML emails, sending bulk emails, subscription, handling bounced back emails.
 
 # Configuration
+
 Your PHP configuration needs to include the SMTP module for sending emails.
 If you are not running an SMTP server together with your webserver, you might need to setup PHP with the credentials for an external SMTP server (see [PHP documentation for mail()](http://php.net/mail)).
 
 # Usage
 
 ## Sending combined HTML and Plaintext
+
 By default, emails are sent in both HTML and Plaintext format.
 A plaintext representation is automatically generated from the system
 by stripping HTML markup, or transformining it where possible
@@ -21,6 +24,7 @@ $email->send();
 The default HTML template is located in ''sapphire/templates/email/GenericEmail.ss''.
 
 ## Sending Plaintext only
+
 ~~~ {php}
 $email = new Email($from, $to, $subject, $body);
 $email->sendPlain();
@@ -30,6 +34,7 @@ $email->sendPlain();
 
 
 ## Templates
+
 **Requirements: SilverStripe 2.3+**
 
 *  Create a SS-template file called, in this example we will use 'MyEmail.ss' inside mysite/templates/email.
@@ -56,6 +61,7 @@ $email->send();
 
 
 ## Subclassing
+
 Class definition:
 ~~~ {php}
 <?php
@@ -78,6 +84,7 @@ $email->send(); // Will immediately send an HTML email with appropriate plain-te
 ~~~
 
 ## Administrator Emails
+
 The static function ''Email::setAdminEmail()'' can be called from a _config.php file to set the address that these emails should originate from. This address is used if the ''from'' field is empty.
 
 ## Redirecting Emails
@@ -103,10 +110,13 @@ $email->addCustomHeader('HeaderName', 'HeaderValue');
 See http://en.wikipedia.org/wiki/E-mail#Message_header for a list of header names.
 
 ## Bounced Emails
+
 [email_bouncehandler](email_bouncehandler)
 
 ## Newsletters
+
 The [newsletter module](modules/newsletter) provides a UI and logic to send batch emails.
 
 # API Documentation
+
 [ Click here for API documentation](http://api.silverstripe.org/trunk/sapphire/Email.html)

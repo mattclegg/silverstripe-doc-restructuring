@@ -3,6 +3,7 @@
 There is a fairly comprehensive security mechanism in place for Silverstripe. If you want to add premium content to your site you have to figure this stuff out, and it's not entirely obvious. 
 
 ### Ways to restrict access
+
 There are a number of ways to restrict access in Silverstripe.  In the security tab in the CMS you can create groups that have access to certain parts.  The options can be found here: [http://doc.silverstripe.com/doku.php?id=permissions:codes](http://doc.silverstripe.com/doku.php?id=permissions:codes). 
 
 Once you have groups, you can set access for each page for a particular groups.  This can be:
@@ -45,4 +46,5 @@ If you go to [your site]/admin -- how does that work?
 //Security::[permissionFailure](http://api.silverstripe.org/trunk/sapphire/Security.html#permissionFailure)// is the next utility function you can use to redirect to the login form. 
 
 #### Customizing Access Checks in CMS Classes
+
 see [LeftAndMain](http://api.silverstripe.org/trunk/cms/core/LeftAndMain.html)

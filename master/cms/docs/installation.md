@@ -5,10 +5,12 @@ SilverStripe is a web application.  This means that you will need to have a web 
 The installation instructions below will take you through setting up an appropriate web server on your system.  The installation instructions will set you up with a SilverStripe website very similar to our [our demo site](http://demo.silverstripe.com/) uses. 
 
 #### Windows
+
 {{http://doc.silverstripe.com/assets/windows.png }}
 
 If you run Windows, we recommend that you use [Microsoft's free Web Platform installer](installation-on-windows-pi). If you are more technically inclined you can install using [Apache on Windows](installation-on-windows-wamp) or [Manually install on IIS](installation-on-windows-manual-iis).
 #### Mac OS X
+
 {{http://doc.silverstripe.com/assets/osx.png }}
 
 If you run Mac OS X, we recommend that you install MAMP first, and then install SilverStripe.
@@ -17,6 +19,7 @@ If you run Mac OS X, we recommend that you install MAMP first, and then install 
 [ Watch installation video contributed by an open source member](http://www.silverstripe.org/assets/screencasts/Tutorial-InstallingMAMP-SW08.swf )
 
 #### Linux
+
 {{http://doc.silverstripe.com/assets/linux.png }}
 
 If you run Linux, we assume that you know how to get a web-server going.

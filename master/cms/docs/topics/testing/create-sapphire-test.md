@@ -6,15 +6,18 @@ A unit test class will test the behaviour of one of your DataObjects.  This simp
 <?php
 
 /**
+
  * Tests for SiteTree
  */
 class SiteTreeTest extends SapphireTest {
 	/**
+
 	 * Define the fixture file to use for this test class
 	 */
 	static $fixture_file = 'sapphire/tests/SiteTreeTest.yml';
 
 	/**
+
 	 * Test generation of the URLSegment values.
 	 *  - Turns things into lowercase-hyphen-format
 	 *  - Generates from Title by default, unless URLSegment is explicitly set
@@ -51,6 +54,7 @@ There are a number of points to note in this code fragment:
 
 
 ### Assertion commands
+
 **$this->assertEquals()** is an example of an assertion function.  These functions form the basis of our tests - a test fails if and only if one or more of the assertions fail.  
 
 

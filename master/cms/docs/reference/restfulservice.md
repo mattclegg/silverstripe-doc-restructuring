@@ -1,4 +1,5 @@
 # Introduction
+
 RestfulService enables connecting to remote web services which supports REST interface and consume those web services (for example Flickr, Youtube, Amazon and etc). RestfulService can parse the XML response (sorry no JSON support) returned from the web service. Further it supports caching of the response, and you can customize the cache interval. 
 
 To gain the functionality you can either create a new RestfulService object or create a class extending the RestfulService (refer [flickrservice](flickrservice) or [youtubeservice](youtubeservice)).
@@ -6,6 +7,7 @@ To gain the functionality you can either create a new RestfulService object or c
 
 
 # Examples
+
 ##### Creating a new RestfulObject
 ~~~ {php}
  //example for using RestfulService to connect and retrive latest twitter status of an user.
@@ -17,6 +19,7 @@ $twitter = new RestfulService("http://twitter.com/statuses/user_timeline/user.xm
 ~~~
 
 ##### Extending to a new class
+
 ~~~ {php}
 //example for extending RestfulService
 class FlickrService extends RestfulService {
@@ -29,6 +32,7 @@ class FlickrService extends RestfulService {
 ~~~
 
 ##### Multiple requests by using the $subURL argument on connect()
+
 ~~~ {php}
 // Set up REST service
 $service = new RestfulService("http://example.harvestapp.com");
@@ -49,12 +53,14 @@ $tasks = $service->getValues($taskXML, 'task');
 # Features
 
 ## Caching 
+
 To set the cache interval you can pass it as the 2nd argument to constructor.
 ~~~ {php}
 new RestfulService("http://twitter.com/statuses/user_timeline/user.xml", 3600 );
 ~~~
 
 ## Getting Values & Attributes
+
 You can traverse throught document tree to get the values or attribute of a particular node.
 for example you can traverse 
 ~~~ {xml}
@@ -76,6 +82,7 @@ $this->getValues($xml, "entries", "entry") //will return all values of each entr
 ~~~
 
 ## Searching for Values & Attributes
+
 If you don't know the exact position of dom tree where the node will appear you can use xpath to search for the node.Recommended for retrieving values of namespaced nodes.
 ~~~ {xml}
   <media:guide>
@@ -92,10 +99,12 @@ to get the value of entry node with the namespace media, use:
 
 
 ## Handling Errors
+
 If the web service returned an error (for example, API key not available or inadequate parameters) RestfulService could delgate the error handling to it's descendant class. To handle the errors define a function called errorCatch
 ~~~ {php}
         /*
 	This will raise Youtube API specific error messages (if any).
+
 	*/
 	function errorCatch($response){
 		$err_msg = $response;
@@ -117,8 +126,10 @@ If you want to bypass error handling on your sub-classes you could define that i
 ~~~
 
 # Other Uses
+
 ## How to use RestfulService to easily embed an RSS feed
 [RestfulService](RestfulService) can be used to easily embed an RSS feed (since it's also an xml response) from a site such as del.icio.us
+
 *  Put something like this code in mysite/code/Page.php inside class Page_Controller
 ~~~ {php}
 	// Accepts an RSS feed URL and outputs a list of links from it
@@ -136,6 +147,7 @@ If you want to bypass error handling on your sub-classes you could define that i
 		return $output;
 	}
 ~~~
+
 *  Put something like this code in mysite/templates/Layout/HomePage.ss:
 ~~~ {html}
 <h3>My Latest Del.icio.us Links</h3>
@@ -145,4 +157,5 @@ If you want to bypass error handling on your sub-classes you could define that i
 ~~~
 
 # API Documentation
+
 [Click here for the API documentation](http://api.silverstripe.org/trunk/sapphire/core/RestfulService.html).

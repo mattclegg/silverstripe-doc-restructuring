@@ -16,6 +16,7 @@ We are going to add a search box on the top of the page. When a user types somet
 The Search Form functionality has been altered over time. Please use the section which applies to your SilverStripe version.
 
 ## 2.4 and newer
+
 SilverStripe 2.4 does not come bundled with the search engine enabled. To enable the search engine you need to include the following code in your mysite/_config.php file
 
 ~~~ {php}
@@ -27,8 +28,10 @@ After including that in your _config.php you will need to rebuild the database b
 The actual search form code is already provided in FulltextSearchable so when you add the enable line above to your _config you can add your form as $SearchForm.
 
 ## 2.3
+
 SilverStripe 2.3 came bundled with the code as well as a MySQL Search engine. If you are using the blackcandy theme you should have everything you need already to have a search. If you are using the tutorial theme then you can simply skip down to 'Adding the search form' as the PHP code is already provided in Page.php. If it is not then you can follow the instructions below as well.
 ## 2.2
+
 If you are using SilverStripe 2.2 or earlier then you need to define your own code. The first step in implementing search on your site is to create a form for the user to type their query. Create a function named //SearchForm// on the //Page_Controller// class (//mysite/code/Page.php//).
 
 ~~~ {php}
@@ -92,6 +95,7 @@ class Page_Controller extends ContentController {
 First we populate an array with the data we wish to pass to the template - the search results, query and title of the page. The final line is a little more complicated.
 
 When we call a function by its url (eg http://localhost/home/results), SilverStripe will look for a template with the name //PageType//_//function//.ss. As we are implementing the //results// function on the //Page// page type, we create our results page template as //Page_results.ss//. Unfortunately this doesn't work when we are using page types that are children of the //Page// page type. For example, if someone used the search on the homepage, it would be rendered with //Homepage.ss// rather than //Page_results.ss//. SilverStripe always looks for the template from the most specific page type first, so in this case it would use the first template it finds in this list:
+
 *  HomePage_results.ss
 *  HomePage.ss
 *  Page_results.ss

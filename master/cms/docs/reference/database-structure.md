@@ -1,6 +1,7 @@
 SilverStripe is currently hard-coded to use a fix mapping between data-objects and the underlying database structure - opting for "convention over configuration".  This page details what that database structure is. 
 
 ### Base tables
+
 Each direct sub-class of DataObject will have its own table.
 
 The following fields are always created.

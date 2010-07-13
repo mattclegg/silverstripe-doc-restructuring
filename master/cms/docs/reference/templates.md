@@ -1,4 +1,5 @@
 # Introduction
+
 SilverStripe templates consist of HTML code augmented with special control codes, described below.  Because of this, you can have as much control of your site's HTML code as you like.
 
 Because the SilverStripe templating language is a string processing language it can therefore be used to make other text-based data formats, such as XML or RTF.
@@ -26,9 +27,11 @@ Here is a very simple template:
 ~~~
 
 # Template Syntax
+
 The following control codes are available. For a more details list see [built-in-page-controls](built-in-page-controls):
 
 ## Variables
+
 ~~~ {html}
 $Property
 $Property(param)
@@ -46,6 +49,7 @@ If a Variable returns a string, that string will be inserted into the template. 
 Note you also cannot past a variable into a variable, so using $Property($Value) within your template will not work
 
 ##  Includes
+
 You can perform includes using the Requirements Class via the template controls.  See the section on [Includes in Templates](requirements#including_inside_template_files) for more details and examples.
 
 ~~~ {html}
@@ -53,6 +57,7 @@ You can perform includes using the Requirements Class via the template controls.
 ~~~
 
 ##  Controls
+
 ~~~ {html}
 <% control Property %>
 ... content ...
@@ -179,6 +184,7 @@ See [partial-caching](partial-caching) for more information.
 
 
 # Built In Template Variables and Controls
+
 Out of the box, the template engine gives you lots of neat little variables and controls which you will find useful. For a list of all the controls see [built-in-page-controls](built-in-page-controls).
 
 # Creating your own Template Variables and Controls
@@ -186,6 +192,7 @@ Out of the box, the template engine gives you lots of neat little variables and 
 There are 2 ways you can extend the template variables you have available. You can create a new Database field in your $db or if you do not need the variable to be editable in the cms you can create a function which returns a value in your Page.php class.
 
 ~~~ {php}
+
 **mysite/code/Page.php**
 ...
 function MyCustomValue() {
@@ -252,6 +259,7 @@ $Counter, $Counter, $Counter
 will give "1, 1, 1", not "1, 2, 3"
 
 # Calling templates from PHP code
+
 This is all very well and good, but how do the templates actually get called?  
 
 Templates do nothing on their own.  Rather, they are used to render //a particular object//.  All of the <% if %>, <% control %>, and variable codes are methods or parameters that are called //on that object//.  All that is necessary is that the object is an instance of ViewableData (or one of its subclasses).
@@ -263,6 +271,7 @@ $controller->renderWith("TemplateName");
 ~~~
 
 Here's what this line does:
+
 *  First renderWith() constructs a new object: $template = new SSViewer("TemplateName");
 *  SSViewer will take the content of TemplateName.ss, and turn it into PHP code.
 *  Then renderWith() passes the controller to $template->process($controller);

@@ -1,8 +1,11 @@
 # Introduction
+
 Represents an image object, inheriting all base functionality from the [file](file) class with extra functionality including resizing.
 
 # Usage
+
 ## Form Fields
+
 *  [Image](http://api.silverstripe.org/trunk/sapphire/model/Image.html). Designed to provide a complex image uploader for the CMS.
 *  [SimpleImageField](SimpleImageField). A Simple Image Upload Form
 *  See [recipes:imageupload](recipes/imageupload) for a example
@@ -28,6 +31,7 @@ $image->getOrienation() // Returns a class constant: ORIENTATION_SQUARE or ORIEN
 ~~~
 
 ## Resizing in Templates
+
 You can call certain resize functions directly from the template, to use the inbuilt GD functions as the template parser supports these, for example SetWidth() or SetHeight().  
 
 For output of an image tag with the image automatically resized to 80px width, you can use:
@@ -45,10 +49,12 @@ $Image.URL // returns filename
 ~~~
 
 ## Form Upload
+
 For usage on a website form, see [recipes:imageupload](recipes/imageupload) and [simpleimagefield](simpleimagefield).
 If you want to upload images within the CMS, see [imagefield](imagefield).
 
 ## Clearing Thumbnail Cache
+
 Images are (like all other Files) synchronized with the SilverStripe database.
 This syncing happens whenever you load the "Files & Images" interface,
 and whenever you upload or modify an Image through SilverStripe.
@@ -58,8 +64,10 @@ If you encounter problems with images not appearing, or have mysteriously disapp
 http://www.mysite.com/images/flush
 ~~~
 # Examples
+
 *  [Insert an ImageField into the CMS](recipes/imageupload)
 
 # API Documentation
+
 *  [Click here for the Image API documentation](http://api.silverstripe.org/trunk/sapphire/Image.html).
 *  [Click here for the GD API documentation](http://api.silverstripe.org/trunk/sapphire/GD.html)

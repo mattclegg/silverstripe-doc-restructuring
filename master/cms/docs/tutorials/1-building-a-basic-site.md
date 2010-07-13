@@ -153,6 +153,7 @@ The menu isn't really very useful until each button links to the relevant page. 
 # Highlighting the current page
 
 A useful feature is highlighting the current page the user is looking at. We can do this with the template variable //$LinkingMode//. //$LinkingMode// returns one of three values:
+
 *  //current// - This page is being visited, and should be highlighted
 *  //link// - The page is not currently being visited, so shouldn't be highlighted
 *  //section// - A page under this page is being visited so you probably want to highlight it. (E.g. if you were visiting a staff member such as "Home > Company > Staff > Bob Smith", you would want to highlight 'Company' to say you are in that section.)
@@ -244,6 +245,7 @@ Create a new file //HomePage.php// in //mysite/code//. Copy the following code i
 ~~~ {php}
 <?php
 /**
+
  * Defines the HomePage page type
  */
 
@@ -377,6 +379,8 @@ In the next tutorial, [Extending a Basic Site](tutorial/2-extending-a-basic-site
 [Next Tutorial >>]([tutorial/2-extending-a-basic-site)
 
 # Books on SilverStripe 
+
 {{ :silverstripe-cms-book-front-cover-design-june2009preview.png?100}}
+
 *  [Official book on SilverStripe in English](http://www.silverstripe.org/silverstripe-book).
 *  [Official book on SilverStripe in German](http://www.silverstripe.org/das-silverstripe-buch).

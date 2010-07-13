@@ -6,10 +6,12 @@ Widgets are small pieces of functionality such as Showing the latest Comments or
 
 
 ### Downloading and Contributing Widgets
+
 *  To download widgets visit [Widgets section](http://silverstripe.org/widgets)
 *  Visit [widget-ideas](widget-ideas) for some ideas on what kind of widget to build (just check the [Widgets section](http://silverstripe.org/widgets) first to make sure it hasn't already been built!)
 *  Upload widgets you want to share to [http://silverstripe.org/widgets/manage/add](http://silverstripe.org/widgets/manage/add). Make sure you read the packaging instructions at the bottom of the page about how to make your widget package.
 ### Installing a widget
+
 By following the "Packaging" rules below, widgets are easily installed. 
 
 *  Download the file and unzip to the main folder of your SilverStripe website, e.g. to "/widget_twitter/". The folder will contain a few files, which generally won't need editing or reading.
@@ -44,6 +46,7 @@ class Page extends SiteTree {
 Then in your Template you need to call $SideBar whereever you want to render the widget
 
 Eg for blackcandy I put this above the closing </div>
+
 ** themes/myThemeName/templates/Includes/Sidebar.ss **
 ~~~ {html}
 $Sidebar
@@ -133,6 +136,7 @@ class FlickrWidget extends Widget {
 # Extending and Customizing
 
 ### Rendering a $Widget Individually
+
 To call a single Widget in a page - without adding a widget area in the CMS for you to add / delete the widgets, you can define a merge variable in the Page Controller and include it in the Page Template. 
 
 This example creates an RSSWidget with the SilverStripe blog feed.
@@ -261,12 +265,15 @@ Then you can use the Widget area you defined on Page.php
 # Releasing Your Widget
 
 ## Packaging
+
 For a widget to be put in our official widget database they must follow this convention - If the name of your widget was "TwitterWidget" then:
 
 #### File Structure for your widget
+
 You should have a folder called widget_YourName in the top level (the one with sapphire, cms..) with all your files. See the example below. Your widget **MUST** have at least 1 Template file, 1 PHP file, the README File [(Example)](http://open.silverstripe.com/browser/modules/widgets/twitter/trunk/README)and an _config.php file for configuration. If you dont need any config options for the widget to work then you still need an _config.php by you can make it blank
 
 The decision over whether to configure a widget in _config.php or in the CMS is important:
+
 *  If the setting is the kind of thing that a website author, familiar with common business apps such as Word and Outlook, would understand - then make it configurable in the CMS.
 *  If the setting is the kind of thing that the person setting up the website - doing the design and/or development - would understand, then make it configurable in the _config.php file.
 

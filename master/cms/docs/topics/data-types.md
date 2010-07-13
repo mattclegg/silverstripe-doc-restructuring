@@ -1,8 +1,10 @@
 # Introduction
+
 These are the data-types that you can use when defining your data objects.  They are all subclasses of [DBField](http://api.silverstripe.org/current/sapphire/model/DBField.html). See also [form-field-types](form-field-types), which lists all fields you can use to put these data types in forms. See [tutorial:2-extending-a-basic-site](tutorial/2-extending-a-basic-site) for introducing their usage.
  
 
 #  Types
+
 *  [Varchar](http://api.silverstripe.org/current/sapphire/model/Varchar.html): A variable-length string of up to 255 characters, designed to store raw text
 *  [Text](http://api.silverstripe.org/current/sapphire/model/Text.html): A variable-length string of up to 2 megabytes, designed to store raw text
 *  [HTMLVarchar](http://api.silverstripe.org/current/sapphire/model/HTMLVarchar.html): A variable-length string of up to 255 characters, designed to store HTML
@@ -26,5 +28,6 @@ The database field types HTMLVarchar and Varchar are exactly the same in the dat
 If you're going to put HTML content into the field, please use the field type with the HTML prefix.  Otherwise, you're going to risk double-escaping your data, forgetting to escape your data, and generally creating a confusing situation.
 
 # Usage
+
 *  See [datamodel](datamodel) for information about **database schemas** implementing these types
 *  See [objectmodel](objectmodel) for information about **casting** values to these types

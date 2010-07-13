@@ -10,6 +10,7 @@ Append the option and corresponding value to your URL in your browser's address 
     http://yoursite.com/page?option_1=value&option_2=value
 
 ## Templates
+
  | URL Variable | Values | Description                                                                                                                                                                              | 
  | ------------ | ------ | -----------                                                                                                                                                                              | 
  | flush        | 1,all  | This will clear out all cached information about the page.  This is used frequently during development - for example, when adding new PHP or SS files. See below for value descriptions. | 
@@ -21,6 +22,7 @@ Append the option and corresponding value to your URL in your browser's address 
  | ?flush=all | Flushes the entire template cache |            
 
 ## General Testing
+
  | URL Variable  | Values | Description                                                                                                                                                                         | 
  | ------------  | ------ | -----------                                                                                                                                                                         | 
  | isDev         | 1      | Put the site into [development mode](debugging), enabling debugging messages to the browser on a live server.  For security, you'll be asked to log in with an administrator log-in | 
@@ -29,6 +31,7 @@ Append the option and corresponding value to your URL in your browser's address 
  | debug_request | 1      | Show all steps of the request from initial HTTPRequest to Controller to Template Rendering                                                                                          | 
 
 ## Classes and Objects
+
  | URL Variable    | Values | Description                                                                                                          | 
  | ------------    | ------ | -----------                                                                                                          | 
  | debugmanifest   | 1      | Show the entire Sapphire manifest as currently built (Use /dev/build to rebuild)                                     | 
@@ -37,12 +40,14 @@ Append the option and corresponding value to your URL in your browser's address 
  | debugfailover   | 1      | Shows failover methods from classes extended                                                                         | 
 
 ## Database
+
  | URL Variable | Values | Description                                                                                                      | 
  | ------------ | ------ | -----------                                                                                                      | 
  | showqueries  | 1      | List all SQL queries executed                                                                                    | 
  | previewwrite | 1      | List all insert / update SQL queries, and **don't** execute them.  Useful for previewing writes to the database. | 
 
 ## Profiling
+
  | URL Variable     | Values | Description                                                                                      | 
  | ------------     | ------ | -----------                                                                                      | 
  | debug_memory     | 1      | Output the number of bytes of memory used for this request                                       | 
@@ -52,6 +57,7 @@ Append the option and corresponding value to your URL in your browser's address 
  | debug_javascript | 1      | Force debug-output on live-sites                                                                 | 
 
 ## Misc
+
  | URL Variable | Values     | Description                                                                                                | 
  | ------------ | ------     | -----------                                                                                                | 
  | forceFormat  | xhtml,html | Force the content negotiator to deliver [HTML](HTML) even if [XHTML](XHTML) is allowed                     | 
@@ -60,6 +66,7 @@ Append the option and corresponding value to your URL in your browser's address 
  | force_ajax   | 1          | Similar to **ajax**                                                                                        | 
 
 ## Security Redirects
+
 You can set an URL to redirect back to after a [Security](security) action.  See the section on [URL Redirections](security#redirect_back_to_another_page_after_login) for more information and examples.
  | URL Variable | Values | Description                                                          | 
  | ------------ | ------ | -----------                                                          | 
@@ -74,6 +81,7 @@ You can set an URL to redirect back to after a [Security](security) action.  See
  | %%http://yoursite.com%%**/anypage/images/flush** | Creates new images for the page by deleting the resized ones and going back to the original to create new resized one | 
 
 ##  /dev/build
+
  | URL Variable  | Values | Description                                                                                                             | 
  | ------------  | ------ | -----------                                                                                                             | 
  | quiet         | 1      | Don't show messages during build                                                                                        | 

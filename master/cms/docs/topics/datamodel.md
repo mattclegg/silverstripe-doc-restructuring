@@ -1,5 +1,7 @@
 # Introduction
+
 Silverstripe uses an [object-relational model](http://en.wikipedia.org/wiki/Object-relational_model) that assumes the following connections:
+
 *  Each database-table maps to a php-class
 *  Each database-row maps to a php-object
 *  Each database-column maps to a property on a php-object
@@ -12,6 +14,7 @@ See [database-structure](database-structure) for in-depth information on the dat
 See [objectmodel](objectmodel) for further details about casting values and the underlying property-transformations.
 
 ## Generating the database-schema
+
 The Silverstripe database-schema is generated automatically by visiting the URL.
 `http://<mysite>/dev/build`
 Or, for older versions of SilverStripe:
@@ -19,6 +22,7 @@ Or, for older versions of SilverStripe:
 Note: You need to be logged in as an administrator to perform this command.
 
 ## Querying Data
+
 There are static methods available for querying data. They automatically compile the necessary SQL to query the database so they are very helpful. In case you need to fall back to plain-jane SQL, have a look at [sqlquery](sqlquery).
 ~~~ {php}
 $records = DataObject::get($obj, $filter, $sort, $join, $limit);
@@ -51,6 +55,7 @@ $links = DataObject::get("SiteTree",
 
 
 ## Definition
+
 Data is defined in the static variable $db on each class, in the format:
 <property-name> => "data-type"
 ~~~ {php}
@@ -67,6 +72,7 @@ class Player extends DataObject {
 See [data-types](data-types) for all available types.
 
 ## Overloading
+
 "Getters" and "Setters" are functions that help us save fields to our data objects. By default, the methods getField() and setField() are used to set data object fields.  They save to the protected array, $obj->record. We can overload the default behaviour by making a function called "get<fieldname>" or "set<fieldname>". 
 ~~~ {php}
 class Player extends DataObject {
@@ -82,6 +88,7 @@ class Player extends DataObject {
 ~~~
 
 ## Customizing
+
 We can create new "virtual properties" which are not actually listed in //static $db// or stored in the database-row.
 Here we combined a Player's first- and surname, accessible through $myPlayer->Title.
 ~~~ {php}
@@ -103,6 +110,7 @@ CAUTION: It is common practice to make sure that pairs of custom getters/setter 
 CAUTION: Custom setters can be hard to debug: Please doublecheck if you could transform your data in more straight-forward logic embedded to your custom controller or form-saving.
 
 ## Default Values
+
 Define the default values for all the $db fields. This example sets the "Status"-column on Player to "Active" whenever a new object is created.
 ~~~ {php}
 class Player extends DataObject {
@@ -114,6 +122,7 @@ class Player extends DataObject {
 Note: Alternatively you can set defaults directly in the database-schema (rather than the object-model). See [data-types](data-types) for details.
 
 ## Casting
+
 Properties defined in //static $db// are automatically casted to their [data-types](data-types) when used in templates. 
 You can also cast the return-values of your custom functions (e.g. your "virtual properties").
 Calling those functions directly will still return whatever type your php-code generates,
@@ -139,10 +148,12 @@ class Player extends DataObject {
 
 
 # Relations
+
 Relations are built through static array definitions on a class, in the format:\\
 `<relationship-name> => <classname>`{php}
 
 ## has_one
+
 A 1-to-1 relation creates a database-column called "<relationship-name>ID", in the example below this would be "TeamID" on the "Player"-table.
 ~~~ {php}
 // access with $myPlayer->Team()
@@ -163,6 +174,7 @@ class SiteTree extends DataObject {
 }
 ~~~
 ## has_many
+
 Defines 1-to-many joins. A database-column named ""<relationship-name>ID"" will to be created in the child-class.
 
 **CAUTION:** Please specify a $has_one-relationship on the related child-class as well, in order to have the necessary accessors available on both ends.
@@ -203,6 +215,7 @@ Multiple $has_one relationships are okay if they aren't linking to the same obje
 
 ~~~ {php}
 /**
+
  * THIS IS BAD
  */
 class Team extends DataObject {
@@ -219,6 +232,7 @@ class Player extends DataObject {
 ~~~
 
 ## many_many
+
 Defines many-to-many joins. A new table, (this-class)_(relationship-name), will be created with a pair of ID fields.
 
 CAUTION: Please specify a $belongs_many_many-relationship on the related class as well, in order to have the necessary accessors available on both ends.
@@ -242,6 +256,7 @@ See [recipes:many_many-example](recipes/many_many-example) for a more in-depth e
 
 
 ## Adding relations
+
 Inside sapphire it doesn't matter if you're editing a //has_many//- or a //many_many//-relationship. You need to get a [ComponentSet](http://api.silverstripe.org/trunk/sapphire/model/ComponentSet.html) on one side of the relationship (even if it is empty its still a valid ComponentSet) and use the //add()//-function on this (it automatically sets the correct keys in either the many_many-join-table or the has_many-foreign-key).
 
 ~~~ {php}
@@ -252,6 +267,7 @@ class Team extends DataObject {
   );
 	
   /**
+
    * @param DataObjectSet
    */
   function addCategories($additionalCategories) {
@@ -269,6 +285,7 @@ class Team extends DataObject {
 ~~~
 
 ## Custom Relation Getters
+
 You can use the flexible datamodel to get a filtered result-list without writing any SQL. For example, this snippet gets you the "Players"-relation on a team, but only containing active players. (See [#has_many](#has_many) for more info on the described relations).
 ~~~ {php}
 class Team extends DataObject {
@@ -292,10 +309,12 @@ class Team extends DataObject {
 
 
 # Data Handling
+
 When saving data through the object model, you don't have to manually escape strings to create SQL-safe commands.
 You have to make sure though that certain properties are not overwritten, e.g. //ID// or //ClassName//.
 
 ## Creation
+
 ~~~ {php}
 $myPlayer = new Player();
 $myPlayer->Firstname = "John"; // sets property on object
@@ -303,6 +322,7 @@ $myPlayer->write(); // writes row to database
 ~~~
 
 ## Update
+
 ~~~ {php}
 $myPlayer = DataObject::get_by_id('Player',99);
 if($myPlayer) {
@@ -312,6 +332,7 @@ if($myPlayer) {
 ~~~
 
 ## Batch Update
+
 ~~~ {php}
 $myPlayer->update(
   ArrayLib::filter_keys(
@@ -336,6 +357,7 @@ $myPlayer->castedUpdate(
 
 
 ## onBeforeWrite
+
 You can customize saving-behaviour for each DataObject, e.g. for adding security. These functions are private, obviously it wouldn't make sense to call them externally on the object. They are triggered when calling //write()//.
 
 Example: Disallow creation of new players if the currently logged-in player is not a team-manager.
@@ -370,6 +392,7 @@ class Player extends DataObject {
 Note: There are no separate methods for //onBeforeCreate// and //onBeforeUpdate//. Please check for the existence of $this->ID to toggle these two modes, as shown in the example above.
 
 ## onBeforeDelete
+
 Triggered before executing //delete()// on an existing object.
 
 Example: Checking for a specific [permission](permission) to delete this type of object.
@@ -394,15 +417,18 @@ class Player extends DataObject {
 
 
 ## Saving data with forms
+
 See [form](form) and [recipes:forms](recipes/forms)
 
 ## Saving data with custom SQL
+
 See [sqlquery](sqlquery) for custom //INSERT//, //UPDATE//, //DELETE// queries.
 
 
 
 
 # Decorating DataObjects
+
 You can add properties and methods to existing DataObjects like [Member](Member) (a core class) without hacking core code or subclassing.
 Please see [dataobjectdecorator](dataobjectdecorator) for a general description, and [Hierarchy](http://api.silverstripe.org/trunk/sapphire/model/Hierarchy.html)/[Versioned](http://api.silverstripe.org/trunk/sapphire/model/Versioned.html) for our most popular examples.
 
@@ -413,6 +439,7 @@ Please see [dataobjectdecorator](dataobjectdecorator) for a general description,
 
 
 # FAQ
+
 ##### Whats the difference between DataObject::get() and a relation-getter?
 You can work with both in pretty much the same way, but relationship-getters return a special type of collection: 
 A [ComponentSet](http://api.silverstripe.org/trunk/sapphire/model/ComponentSet.html) which extends [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html) with relation-specific functionality.
@@ -427,6 +454,7 @@ $myTeam->add(new Player()); // works
 
 
 # Related
+
 *  [objectmodel](objectmodel)
 *  [many_many-example](many_many-example)
 *  [database-troubleshooting](database-troubleshooting)

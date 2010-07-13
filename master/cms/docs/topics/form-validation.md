@@ -28,6 +28,7 @@ Validators are implemented as an argument to the [api:Form] constructor.  You cr
 ### Subclassing Validator
 
 To create your own validator, you need to subclass validator and define two methods:
+
  *  **javascript()** Should output a snippet of JavaScript that will get called to perform javascript validation.
  *  **php($data)** Should return true if the given data is valid, and call $this->validationError() if there were any errors.
 

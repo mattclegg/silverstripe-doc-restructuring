@@ -7,12 +7,14 @@ An easy and reliable approach to getting SilverStripe running on Windows is to u
 *  Note: Installing on Microsoft's IIS webserver is likely to be easier - See [installation-on-windows-pi](installation-on-windows-pi)
 
 ##### Installing using WampServer
+
 *  [Watch as video.](http://www.silverstripe.com/assets/screencasts/silverstripe-installation-wamp/index.html)
 
 1.  Download WampServer from http://www.wampserver.com/en/download.php
 2.  Run the installer.  By default, it will install to C:\wamp.  You can choose your own install path if you wish; the directories mentioned below will also be different.
 3.  Once WampServer has been installed and launched, you will see a little half circle gauge in the task bar, next to the clock.  If everything is working, then it will be white.  If it's yellow or red, then something is wrong.  If you can't see the gauge, then WampServer hasn't been started and you should start WampServer from the start menu.
 4.  If something's wrong, this usually means that you have another service on port 80 or port 3306.   Here are some common sources of problems to check.  After correcting these issues, left-click the gauge and choose 'restart all services'.  It might a short while to restart, but the gauge should go to white.
+
     * You might have IIS running.  Check Start -> Control Panel -> Administrative Tools -> Internet Information Services.   Ensure that any web site services are stopped.
     * If you run Skype, visit Select "Tools" -> "Options" in Skype's menu.  Find an option "Use port 80 and 443 as alternatives for incoming connection".  Make sure that it is de-selected.
 5.  Left-click the gauge, then select Apache -> Apache Modules -> Rewrite Module.  The gauge will flick to yellow, and then return to white.
@@ -57,8 +59,10 @@ Virtual hosts let you run multiple sites on different domain names from your win
 4.  Make this your default (it must be the very first <VirtualHost> block in the file to be classed as the default)
 ~~~
 ##
+
 ## Site list, phpMyAdmin, WAMP-specific config etc.
 ##
+
 <VirtualHost *>
     DocumentRoot C:/serveweb/sites/default
     ServerName localhost
@@ -70,8 +74,10 @@ Virtual hosts let you run multiple sites on different domain names from your win
 1.  Add extra ones for each project you work on. For example:
 ~~~
 ##
+
 ## ssopen
 ##
+
 <VirtualHost *>
     DocumentRoot c:/serveweb/sites/ssopen
     ServerName ssopen
@@ -79,8 +85,10 @@ Virtual hosts let you run multiple sites on different domain names from your win
 </VirtualHost>
 
 ##
+
 ## uPlay
 ##
+
 <VirtualHost *>
     DocumentRoot c:/serveweb/sites/uplay
     ServerName uplay

@@ -33,4 +33,5 @@ If you want to submit your theme to the silverstripe directory then check
 Your theme file must be in a .tar.gz format. A useful tool for this is - [7 Zip](http://www.7-zip.org/). Using 7Zip you must select the your_theme folder and Add to archive, select TAR and create. Then after you have the TAR file right click it -> Add to Archive (again) -> Then use the archive format GZIP.
 
 ## Discussing
+
 Head over to the [ Themes Forum ](http://www.silverstripe.com/showcase-forum/ )

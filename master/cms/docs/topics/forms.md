@@ -24,6 +24,7 @@ function MyCustomForm() {
 ~~~
 
 ## Subclassing a form
+
 It's the reponsibility of your subclass' constructor to call 
 ~~~ {php}
 parent::__construct()
@@ -46,6 +47,7 @@ class MyForm extends Form {
 
 The real difference, however, is that you can then define your controller methods within the form class itself.
 # Form Field Types
+
 There are many classes extending [FormField](http://api.silverstripe.org/current/forms/core/FormField.html). Some examples:
 
 *  [TextField](http://api.silverstripe.org/current/forms/fields-basic/TextField.html)
@@ -60,6 +62,7 @@ There are many classes extending [FormField](http://api.silverstripe.org/current
 Full overview at [form-field-types](form-field-types)
 
 ## Using Form Fields
+
 To get these fields automatically rendered into a form element, all you need to do is create a new instance of the class, and add it to the fieldset of the form. 
 ~~~ {php}
 $form = new Form(
@@ -135,6 +138,7 @@ $myReadonlyField = $myField->performReadonlyTransformation();
 ~~~
 
 # Using a custom template
+
 //Required Silverstripe 2.3 for some displayed functionality//
 
 You can use a custom form template to render with, instead of //Form.ss//
@@ -242,10 +246,12 @@ $fields->addFieldToTab('Root.Content.Main', new TextField('FavouriteColour'), 'C
 
 
 # Related
+
 *  [form-field-types](form-field-types)
 *  [formfield](formfield)
 *  [recipes:forms](recipes/forms)
 *  [modules:multiform](modules/multiform)
 
 #  API Documentation
+
 [Click here for the API documentation](http://api.silverstripe.org/trunk/sapphire/forms/Form.html)

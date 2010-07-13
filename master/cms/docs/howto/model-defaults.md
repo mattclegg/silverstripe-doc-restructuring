@@ -6,6 +6,7 @@ Here's a simple example for a Date field to insert the current date by default:
 
 ~~~ {php}
 /**
+
  * overload so that the default date is today.
  */
 public function populateDefaults(){
@@ -19,6 +20,7 @@ If you need to retrieve a value from another object, you can do this:
 
 ~~~ {php}
 /**
+
  * Our object is a City, we'd like to store the abbreviation of the state
  * with it, to make pretty names easier to produce
  */

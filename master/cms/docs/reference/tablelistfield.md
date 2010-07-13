@@ -1,4 +1,5 @@
 # Introduction
+
 Form field that embeds a list of [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html)s into a form, such as a member list or a file list.
 Provides customizeable columns, record-deletion by ajax, paging, sorting, CSV-export, printing, input by [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html) or raw SQL.
 
@@ -66,6 +67,7 @@ For more information on each of the features used in the example, you can read b
 # Features
 
 ## Source Input
+
 ~~~ {php}
 // default: DataObject selection (e.g. all 'Product's)
 $myTableListField = new TableListField(
@@ -103,12 +105,14 @@ class Product extends DataObject {
 ~~~
 
 ## Pagination
+
 Paging works by AJAX, but also works without javascript on link-basis.
 ~~~ {php}
 $myTableListField->setPageSize(100); // defaults to 20
 ~~~
 
 ## Sorting
+
 The easiest method is to add the sorting criteria as a constructor parameter. Sorting should be applied manually, where appropriate. Only direct columns from the produced SQL-query are supported. 
 
 Example (sorting by "FirstName" column):
@@ -129,6 +133,7 @@ $report = new TableListField(
 If you want to sort by custom getters in your DataObject, please reformulate them to a custom SQL column. This restriction is needed to avoid performance-hits by caching and sorting potentially large datasets on PHP-level.
 
 ## Casting
+
 Column-values can be casted, based on the casting-types available through DBObject  (sapphire/core/model/fieldtypes).
 ~~~ {php}
 $myTableListField->setFieldCasting(array(
@@ -138,6 +143,7 @@ $myTableListField->setFieldCasting(array(
 ~~~
 
 ## Permissions
+
 Permissions vary in different TableListField-implementations, and are evaluated in the template.
 By default, all listed permissions are enabled.
 ~~~ {php}
@@ -149,6 +155,7 @@ $myTableListField->setPermissions(array(
 ~~~
 
 ## Formatting
+
 Specify custom formatting for fields, e.g. to render a link instead of pure text.
 Caution: Make sure to escape special php-characters like in a normal php-statement.
 ~~~ {php}
@@ -158,6 +165,7 @@ $myTableListField->setFieldFormatting(array(
 ~~~
 
 ## Highlighting
+
 "Highlighting" is similiar to "Formatting", but applies to the whole row rather than a column.
 Definitions for highlighting table-rows with a specific CSS-class. You can use all column-names
 in the result of a query. Use in combination with {@setCustomQuery} to select custom properties and joined objects.
@@ -175,7 +183,9 @@ $myTableListField->setHighlightConditions(array(
 ~~~
 
 ## Export
+
 Export works only to CSV currently, with following specs:
+
 *  Line delimiter: "\n"
 *  Separator: ";"
 *  Column-quotes: none
@@ -198,6 +208,7 @@ $myTableListField->setFieldListCsv(array(
 ~~~
 
 ## Row-Summaries
+
 You can summarize specific columns in your result-set. The term "summary" is used in a broad sense, you can also implement averages etc.
 ~~~ {php}
 $myTableListField->addSummary(
@@ -210,10 +221,12 @@ $myTableListField->addSummary(
 ~~~
 In TableField-implementation, these summaries also react to changes in input-fields by javascript.
 Available methods:
+
 *  sum
 *  avg
 
 ## Grouping
+
 Used to group by a specific column in the DataObject and create partial summaries.
 Please use only together with addSummary().
 (Automatically disables sorting).
@@ -224,6 +237,7 @@ $myTableListField->groupByField = 'MyColumnName';
 # Best Practices
 
 ## Custom Sorting
+
 Please subclass TableListField to implement custom sorting, following the naming-convention "colFunction_<yourFunctionName>".
 ~~~ {php}
 class CustomTableListField extends TableListField {
@@ -235,10 +249,12 @@ class CustomTableListField extends TableListField {
 ~~~
 
 ## Adding Utility-functions
+
 In case you want to perform utility-functions like "export" or "print" through action-buttons,
 make sure to subclass Utility() which collates all possible actions.
 
 ## Customizing Look&Feel
+
 You can exchange the used template, e.g. to change applied CSS-classes or the HTML-markup:
 ~~~ {php}
 $myTableListField->setTemplate("MyPrettyTableListField");
@@ -246,4 +262,5 @@ $myTableListField->setTemplate("MyPrettyTableListField");
 
 
 # API Documentation
+
 [Click here for the API documentation](http://api.silverstripe.org/trunk/forms/fields-relational/TableListField.html).

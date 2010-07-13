@@ -42,6 +42,7 @@ CustomSideReport.php
 ~~~ {php}
 <?php
 /** 
+
  * This report lists all the pages in the CMS
  * of type Page. Sorted by title.
  */
@@ -74,6 +75,7 @@ Reload the CMS and test it out for your self! You should be able to select the r
 *  You can have more then 1 report in the 1 file. Actually its recommended!. You should create 1 CustomSideReport.php file and add class's as you need them inside that for each report.
 
 ## TODO
+
 *  How to format and make nicer reports. 
 *  More examples.
 

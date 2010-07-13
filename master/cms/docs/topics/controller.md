@@ -4,6 +4,7 @@ Base controller class.  You will extend this to take granular control over the a
 
 
 ## Example
+
 mysite/code/Controllers/FastFood.php
 ~~~ {php}
 <?php
@@ -34,6 +35,7 @@ Array
 ~~~
 
 ## URL Handling
+
 In the above example the URLs were configured using the [director](director) rules in the **_config.php** file.  Alternatively you can specify these in your Controller class via the **$url_handlers** static array (which gets processed by the RequestHandler).  
 
 This is useful when you want to subvert the fixed action mapping of 'fastfood/order/*' to the function **order**.  In the case below we also want any orders coming through '/fastfood/drivethrough/' to use the same order function.
@@ -81,6 +83,7 @@ You can use the **debug_request=1** switch from the [urlvariabletools](urlvariab
 
 
 ## Links
+
 *  [director](director)
 *  [execution-pipeline](execution-pipeline)
 *  [URL Handling in Controllers](http://maetl.net/silverstripe-url-handling) by maetl

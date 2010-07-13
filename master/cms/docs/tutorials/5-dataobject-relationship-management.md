@@ -6,6 +6,7 @@ In the [second tutorial](tutorial/2-extending-a-basic-site) we have learned how 
 To simulate these relations between objects, we are going to simulate the management via the CMS of the **[Google Summer Of Code 2007](http://www.silverstripe.com/google-summer-of-code-2007-we-are-in/)** that SilverStripe was part of.
 
 To do this, we are gonna use the following objects :
+
 *  Project : Project on SilverStripe system for the GSOC 
 *  Student : Student involved in the project
 *  Mentor : SilverStripe developer

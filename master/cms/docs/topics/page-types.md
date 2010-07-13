@@ -1,5 +1,7 @@
 # Introduction
+
 Page Types are the basic building blocks of any SilverStripe website. A page type can define:
+
 *  The template or templates that are used to display content
 *  What fields are available to edit in the CMS
 *  Behaviour specific to a page type – for example a contact form on the ‘Contact Us’ page that sends an email when the form is submitted
@@ -44,6 +46,7 @@ class StaffPage_Controller extends Page_Controller {
 See [datamodel](datamodel) for a more detailed explanation on adding database fields, and how the SilverStripe data model works.
 
 ## Adding formfields and tabs
+
 See [form](form) and [tutorial:2-extending-a-basic-site](tutorial/2-extending-a-basic-site)
 
 ## Removing inherited form fields and tabs
@@ -131,6 +134,7 @@ if ($liveRecord) $liveRecord->delete();
 ~~~
 
 ## Built-in Fields
+
 FIXME List fields from LeftAndMain->getCMSFields()
 
 ## Adding new fields and tabs

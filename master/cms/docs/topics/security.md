@@ -1,14 +1,17 @@
 # Introduction
+
 This page details notes on how to ensure that we develop secure SilverStripe applications. See [security](security) for the Silverstripe-class as a starting-point for most security-related functionality.
 
 See our [contributing guidelines](http://doc.silverstripe.org/doku.php?id=contributing#reporting_security_issues) on how to report security issues.
 
 # SQL Injection
+
 The [coding-conventions](coding-conventions) help guard against SQL injection attacks but still require developer dilligence: ensure that any variable you insert into a filter / sort / join clause has been escaped.
 
 See [http://shiflett.org/articles/sql-injection](http://shiflett.org/articles/sql-injection).
 
 ## Automatic escaping
+
 Silverstripe automatically runs [addslashes()](http://php.net/addslashes) in DataObject::write() wherever possible. Data is escaped when saving back to the database, not when writing to object-properties.
 
 *  DataObject::get_by_id()
@@ -23,6 +26,7 @@ Silverstripe automatically runs [addslashes()](http://php.net/addslashes) in Dat
 Note: It is NOT good practice to "be sure" and convert the data passed to the functions below manually. This might result in //double escaping// and alters the actually saved data (e.g. by adding slashes to your content).
 
 ## Manual escaping
+
 As a rule of thumb, whenever you're creating raw queries (or just chunks of SQL), you need to take care of escaping yourself. See [coding-conventions](coding-conventions) and [escape-types](escape-types) for ways to cast and convert your data.
 
 *  SQLQuery
@@ -40,6 +44,7 @@ class MyForm extends Form {
   }
 }
 ~~~
+
 *  FormField->Value()
 *  URLParams passed to a Controller-method
 ~~~ {php}
@@ -57,6 +62,7 @@ This means if you've got a chain of functions passing data through, escaping sho
 ~~~ {php}
 class MyController extends Controller {
   /**
+
    * @param array $RAW_data All names in an indexed array (not SQL-safe)
    */
   function saveAllNames($RAW_data) {
@@ -205,11 +211,13 @@ Template:
 ~~~
 
 Some rules of thumb:
+
 *  Don't concatenate URLs in a template.  It only works in extremely simple cases that usually contain bugs.
 *  Use //Controller::join_links()// to concatenate URLs.  It deals with querystrings and other such edge cases.
 
 
 # Cross-Site Request Forgery (CSRF)
+
 SilverStripe has built-in countermeasures against this type of identity theft for all form submissions. A form object will automatically contain a //SecurityID// parameter which is generated as a secure hash on the server, connected to the currently active session of the user. If this form is submitted without this parameter, or if the parameter doesn't match the hash stored in the users session, the request is discarded.
 
 If you know what you're doing, you can disable this behaviour:
@@ -265,6 +273,7 @@ Note that there is also a 'SilverStripe' way of casting fields on a class, this 
 # Filesystem
 
 ## Don't allow script-execution in /assets
+
 As all uploaded files are stored by default on the /assets-directory, you should disallow script-execution for this folder. This is just an additional security-measure to making sure you avoid directory-traversal, check for filesize and disallow certain filetypes.
 
 Example configuration for Apache2:

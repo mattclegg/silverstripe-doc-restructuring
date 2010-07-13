@@ -38,6 +38,7 @@ class SiteMap extends Page {
 class SiteMap_Controller extends Page_Controller {
    
 	/**
+
 	 * This function will return a unordered list of all pages on the site.
 	 * Watch for the switch between $page and $child in the second line of the foreach().
 	 * 
@@ -147,14 +148,18 @@ However, if you're looking to get it the way you want it, there's nothing to do 
 ~~~ {css}
 /************************
 SITEMAP
+
 ************************/
 #sitemap-list {padding:0 0 0 10px; margin:0; list-style:none; font-weight:bold; line-height:150%} /*1st level list*/
+
 #sitemap-list li {padding:10px; margin-top:10px; font-size:13px; background:#f0f0f0;} /*1st level items*/
 
 #sitemap-list ul {margin:5px 10px 5px 10px; padding:5px 10px; font-weight:normal; background:#f8f8f8;} /*2nd level lists*/
+
 #sitemap-list li li {padding:0; margin:0; list-style:none; font-weight:bold; font-size:11px; line-height:18px; background:none} /*2nd level items*/
 
 #sitemap-list ul ul {margin-left:10px;padding:5px 10px;  background:#fff;} /*3rd level lists*/
+
 #sitemap-list li li li {font-size:11px; font-weight:normal;} /*3rd level items*/
 ~~~
 

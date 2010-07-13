@@ -11,6 +11,7 @@
 Please suggest improvements or further tutorials by [registering to our issue tracker](http://open.silverstripe.com/register) and [adding a concise and clear request, with "Documentation" listed as the category](http://open.silverstripe.com/newticket).
 
 #  Brief video tutorials
+
 *  [Installing on linux](http://silverstripe.org/assets/screencasts/Tutorial-InstallingLinux-DM08.swf)
 *  [Installing on Apple Macintosh (using MAMP)](http://silverstripe.org/assets/screencasts/Tutorial-InstallingMAMP-SW08.swf)
 *  [Installing a module (e.g. a blog)](http://silverstripe.org/assets/screencasts/Tutorial-InstallingBlogModule-DM08.swf)

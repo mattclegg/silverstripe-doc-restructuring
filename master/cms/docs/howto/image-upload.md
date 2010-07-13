@@ -124,9 +124,11 @@ You can also call [GD functions](http://doc.silverstripe.com/doku.php?id=gd) fro
 ~~~
 
 ## Template Image Resizing Functions
+
 There is alot of functions available on the image class to make your life easier and cleaner. For a list of functions that you can call see http://doc.silverstripe.com/doku.php?id=gd
 
 
 
 ## Form Image Upload
+
 See [simpleimagefield](simpleimagefield)

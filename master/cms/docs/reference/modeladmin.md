@@ -1,4 +1,5 @@
 # ModelAdmin
+
 //Replaces GenericDataAdmin in Silverstripe 2.3//
 
 The ModelAdmin provides a simple way to utilize the SilverStripe CMS UI with your own custom data models.  The ModelAdmin uses the [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html)'s Scaffolding to create the search fields, forms, and displayed data within the CMS. 
@@ -78,6 +79,7 @@ Scaffolding **has_one** relationships in your ModelAdmin relies on a column in t
 If you are seeing a list of ID#s when creating new objects, ensure you have one of those two in the related model.
 
 ### Searchable Fields
+
 You can customize the fields which are searchable for each managed DataObject class, as well as the ways in which the fields are searched (e.g. "partial match", "fulltext", etc.) using ''$searchable_fields''.
 
    * See [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html)
@@ -85,11 +87,13 @@ You can customize the fields which are searchable for each managed DataObject cl
 {{:modeladmin_search.png|:modeladmin_search.png}}
 
 ### Summary Fields
+
 Summary Fields are the columns which are shown in the [TableListField](http://api.silverstripe.org/trunk/forms/fields-relational/TableListField.html) when viewing DataObjects.  These can be customized for each DataObject's search results using ''$summary_fields''.
 
    * See [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html)
 
 ## Related
+
 *  [SearchContext](SearchContext)
 *  [genericviews Module](modules/genericviews)
 *  [Presentation about ModelAdmin at SupperHappyDevHouse Wellington](http://www.slideshare.net/chillu/modeladmin-in-silverstripe-23)

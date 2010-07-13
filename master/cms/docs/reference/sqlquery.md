@@ -1,7 +1,9 @@
 # Introduction
+
 An object representing a SQL query. It is easier to deal with object-wrappers than string-parsing a raw SQL-query. This object is used by [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html)::get()/get_one(). Using SQL directly can also be faster than tunneling everything through the [datamodel](datamodel). Please be wary of [premature optimization](http://en.wikipedia.org/wiki/Optimization_(computer_science)), though...
 
 A word of caution: Dealing with low-level SQL is not encouraged in the Silverstripe [datamodel](datamodel) for various reasons. You'll break the behaviour of:
+
 *  Custom getters/setters
 *  DataObject::onBeforeWrite/onBeforeDelete
 *  Automatic casting
@@ -15,6 +17,7 @@ We'll explain some ways to use //SELECT// with the full power of SQL, but still 
 
 
 ## SELECT
+
 ~~~ {php}
 $sqlQuery = new SQLQuery();
 $sqlQuery->select = array(
@@ -41,18 +44,22 @@ $result = $sqlQuery->execute();
 ~~~
 
 ## DELETE
+
 ~~~ {php}
 // ...
 $sqlQuery->delete = true;
 ~~~
 
 ## INSERT/UPDATE
+
 (currently not supported)
 
 # Working with results
+
 The result is an array lightly wrapped in a database-specific subclass of [Query](http://api.silverstripe.org/trunk/sapphire/model/SS_Query.html). This class implements the //Iterator//-interface defined in PHP5, and provides convenience-methods for accessing the data.
 
 ## Iterating
+
 ~~~ {php}
 foreach($result as $row) {
   echo $row['BirthYear'];
@@ -60,6 +67,7 @@ foreach($result as $row) {
 ~~~
 
 ## Quick value checking
+
 Raw SQL is handy for performance-optimized calls. 
 ~~~ {php}
 class Team extends DataObject {
@@ -78,6 +86,7 @@ echo $players->Count();
 ~~~
 
 ## Mapping
+
 Useful for creating dropdowns.
 ~~~ {php}
 $sqlQuery = new SQLQuery(
@@ -89,12 +98,14 @@ $field = new DropdownField('Birthdates', 'Birthdates', $map);
 ~~~
 
 ## "Raw" SQL with DB::query()
+
 This is not recommended for most cases, but you can also use the Silverstripe database-layer to fire off a raw query:
 ~~~ {php}
 DB::query("UPDATE Player SET Status='Active'");
 ~~~
 
 ## "Semi-raw" SQL with buildSQL()
+
 You can gain some ground on the datamodel-side when involving the selected class for querying. You don't necessarily need to call //buildSQL// from a specific object-instance, a //singleton// will do just fine.
 ~~~ {php}
 $sqlQuery = singleton('Player')->buildSQL(
@@ -103,12 +114,14 @@ $sqlQuery = singleton('Player')->buildSQL(
 ~~~
 
 This form of building a query has the following advantages:
+
 *  Respects DataObject::$default_sort
 *  Automatically LEFT JOIN on all base-tables (see [database-structure](database-structure))
 *  Selection of //ID//, //ClassName//, //RecordClassName//, which are necessary to use //buildDataObjectSet// later on
 *  Filtering records for correct //ClassName//
 
 ## Transforming a result to DataObjectSet
+
 This is a commonly used technique inside Silverstripe: Use raw SQL, but transfer the resulting rows back into DataObjects.
 ~~~ {php}
 $sqlQuery = new SQLQuery();
@@ -147,6 +160,7 @@ var_dump($myFirstPlayer->Status); // undefined, as we didn't LEFT JOIN the BaseP
 ~~~
 
 CAUTION: Depending on the selected columns in your query, you might get into one of the following scenarios:
+
 *  Not all object-properties accessible: You need to take care of selecting the right stuff yourself
 *  Overlayed object-properties: If you //LEFT JOIN// a table which also has a column 'Birthdate' and do a global select on this table, you might not be able to access original object-properties.
 *  You can't create DataObjects where no scalar record-data is available, e.g. when using //GROUP BY//
@@ -154,13 +168,16 @@ CAUTION: Depending on the selected columns in your query, you might get into one
 
 Be careful when saving back DataObjects created through //buildDataObjectSet//, you might get strange side-effects due to the issues noted above.
 ## Using FormFields with custom SQL
+
 Some subclasses of [FormField](http://api.silverstripe.org/current/forms/core/FormField.html) are constructed to deal with the SQLQuery-object for maximum flexibility. Have a look at [TableListField](http://api.silverstripe.org/trunk/forms/fields-relational/TableListField.html) and [ComplexTableField](ComplexTableField) for ways to create sophisticated report-tables based on SQL.
 
 # Related
+
 *  [datamodel](datamodel)
 *  [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html)
 *  [database-troubleshooting](database-troubleshooting)
 *  [database-structure](database-structure)
 
 # API Documentation
+
 [Click here for API documentation](http://api.silverstripe.org/trunk/sapphire/SQLQuery.html).

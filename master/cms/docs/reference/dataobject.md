@@ -1,12 +1,15 @@
 # Introduction
+
 A single database record & abstract class for the data-access-model. 
 
 # Usage
+
 *  [datamodel](datamodel): The basic pricinples
 *  [objectmodel](objectmodel): Casting and special property-parsing
 *  [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html): A "container" for DataObjects
 
 ## Basics
+
 The call to ''DataObject->getCMSFields()'' is the centerpiece of every data administration interface in Silverstripe, which returns a [FieldSet](http://api.silverstripe.org/trunk/forms/core/FieldSet.html) suitable for a [Form](http://api.silverstripe.org/trunk/forms/core/Form.html) object. If not overloaded, we're using ''@link scaffoldFormFields()'' to automatically generate this set. To customize, overload this method in a subclass or decorate onto it by using ''DataObjectDecorator->updateCMSFields()''.
 
 ~~~ {php}
@@ -20,15 +23,18 @@ class MyPage extends Page {
 ~~~
 
 # Scaffolding Formfields
+
 These calls retrieve a [FieldSet](http://api.silverstripe.org/trunk/forms/core/FieldSet.html) that can be used to add or edit entries from the DataObject.  Use the following examples to get an appropriate [FieldSet](http://api.silverstripe.org/trunk/forms/core/FieldSet.html) for the area where you intend to work with the scaffolded form.
 
 ## For the CMS
+
 // Requirements: SilverStripe 2.3.//
 ~~~ {php}
 $fields = singleton('MyDataObject')->getCMSFields();
 ~~~
 
 ## For the Frontend
+
 Used for simple frontend forms without relation editing or [TabSet](TabSet) behaviour. Uses ''scaffoldFormFields()'' by default. To customize, either overload this method in your subclass, or decorate it by ''DataObjectDecorator->updateFormFields()''.
 
 // Requirements: SilverStripe 2.3.//
@@ -38,12 +44,14 @@ $fields = singleton('MyDataObject')->getFrontEndFields();
 ~~~
 
 # Customizing Scaffolded Fields
+
 // Requirements: SilverStripe 2.3.//
 
 This section covers how to enhance the default scaffolded form fields from above.  It is particularly useful when used in conjunction with the [ModelAdmin](ModelAdmin) in the CMS to make relevant data administration interfaces.
 
 
 ## Searchable Fields
+
 // Requirements: SilverStripe 2.3.//
 
 The ''$searchable_fields'' property uses a mixed array format that can be used to further customize your generated admin system. The default is a set of array values listing the fields.
@@ -118,6 +126,7 @@ class Player extends DataObject {
 ~~~
 
 ## Summary Fields
+
 // Requirements: SilverStripe 2.3.//
 
 Summary fields can be used to show a quick overview of the data for a specific DataObject record. Most common use is their display as table columns, e.g. in the search results of a [ModelAdmin](ModelAdmin) CMS interface.
@@ -164,4 +173,5 @@ class MyDataObject extends DataObject {
 ~~~
 
 # API Documentation
+
 [Click here for the API documentation](http://api.silverstripe.org/trunk/sapphire/core/DataObject.html).

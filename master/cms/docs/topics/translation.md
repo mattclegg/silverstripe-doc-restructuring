@@ -1,4 +1,5 @@
 # Introduction
+
 This page introduces developers to using the CMS for creating content in multiple languages.
 
 Please see [i18n](i18n) for a internationalization, globalization and localization support of built-in datatypes as well as translating templates and PHP code.
@@ -35,6 +36,7 @@ Warning: If you're upgrading from a SilverStripe version prior to 2.3.2, please 
 
 =====Configuration=====
 ### ThroughObject::add_extension()====
+
 Enabling Translatable through //Object::add_extension()// in your //mysite/_config.php//:
 ~~~ {php}
 Object::add_extension('SiteTree', 'Translatable');
@@ -42,6 +44,7 @@ Object::add_extension('SiteConfig', 'Translatable'); // 2.4 or newer only
 ~~~
 
 ### Through$extensions====
+
 ~~~ {php}
 class Page extends SiteTree {
   static $extensions = array(
@@ -194,6 +197,7 @@ SiteTree_translationgroups database table
  | 99                 | 1          | 
  | 99                 | 2          | 
  | 199                | 3          | 
+
  *
 ## CharacterSets=====
 
@@ -209,8 +213,10 @@ your content before building the database with Translatable enabled:
 ~~~ {php}
 Translatable::set_default_locale(<locale>);
 ~~~
+
  *
 ## Locales and languagetags=====
+
 For the Translatable class, a "locale" consists of a language code plus a region code separated by an underscore, 
 for example "de_AT" for German language ("de") in the region Austria ("AT").
 See http://www.w3.org/International/articles/language-tags/ for a detailed description.
@@ -227,14 +233,17 @@ in the database.
 
 
 ## Switching languages
+
 A widget now exists to switch between languages, and is [available here](http://www.silverstripe.org/Language-Chooser-Widget/). You can easily make your own switchers with the following basic tools. To stay friendly to  caches and search engines, each translation of a page must have a unique URL
 
 ### By URL
+
 ~~~ {php}
 http://<mysite>/mypage/?locale=de_DE
 ~~~
 
 ### By User Preference
+
 Place this in your Page_Controller->init() method:
 ~~~ {php}
 $member = Member::currentUser();
@@ -245,6 +254,7 @@ if($member && $member->Locale) {
 
 
 ### Templates
+
 As every page has its own unique URL, language selection mostly happens explicitly: A user requests a page, which always has only one language. But how does a user coming to your English default language know that there's a Japanese version of this page? 
 By default, SilverStripe core doesn't provide any switching of languages through sessions or browser cookies. As a SEO-friendly CMS, it contains all this information in the URL. Each page in SilverStripe is aware of its translations through the //getTranslations()// method. We can use this method in our template to build a simple language switcher. It shows all available translations in an unordered list with links to the same page in a different language. The example below can be inserted in any of your templates, for example //themes/blackcandy/templates/Layout/Page.ss//.
 
@@ -266,6 +276,7 @@ title="$Title">
 Keep in mind that this will only show you available translations for the current page. The $Locale.Nice casting will just work if your locale value is registered in i18n::get_common_locales().
 
 #### Page-control
+
 If you want to put static links in your template, which link to a site by their url, normally you can use the <% control Page(page-url) %>. For sites which use Translatable, this is not possible for more than one language, because the url's of different pages differ.
 For this case place the following function in your Page_Controller:
 ~~~ {php}
@@ -294,15 +305,18 @@ Example:
 ~~~
 
 ### Language Chooser Widget
+
 You can use a widget on your website to provide a list of links for switching languages: [download](http://silverstripe.org/Language-Chooser-Widget-2/)
 
 
 ### Enabling the _t() function in templates 
+
 If you're looking to use [the _t() function](http://doc.silverstripe.com/doku.php?id=i18n#the_t_function) in template files, you'll need to [set the i18n locale](multilingualcontent#setting_the_i18n_locale) first. 
 
 (The reasoning is as follows: Translatable doesn't set the i18n locale. Historically these were two separate systems, but they're reasonably interchangeable for a front-end website. The distinction is mainly valid for the CMS, because you want the CMS to be in English (i18n), but edit pages in different languages (Translatable).)
 
 ## Migrating from 2.1 datamodel
+
 The datamodel of Translatable changed significantly between its original release in SilverStripe 2.1 and SilverStripe 2.3.2. See our [discussion on the mailinglist](http://groups.google.com/group/silverstripe-dev/browse_thread/thread/91e26e1f78d3c1b4/bd276dd5bbc56283?lnk=gst&q=translatable#bd276dd5bbc56283).
 
 To migrate a database that was built with SilverStripe 2.1.x or 2.2.x, follow these steps:
@@ -317,6 +331,7 @@ Please see the [class documentation](http://api.silverstripe.org/trunk/sapphire/
 
 
 ## Setting the i18n locale
+
 You can set the i18n locale value which is used to format dates, currencies and other regionally different values to the same as your current page locale. 
 
 ~~~ {php}
@@ -332,6 +347,7 @@ class Page_Controller extends ContentController {
 ~~~
 
 ## Add new locales
+
 The i18n logic has lookup tables for common locales in i18n::$common_locales, which is a subset of i18n::$all_locales. If your locale is not present here, you can simply add it through mysite/_config.php:
 ~~~ {php}
 i18n::$common_locales['de_AT'] = 'Deutsch (Oestereich)';

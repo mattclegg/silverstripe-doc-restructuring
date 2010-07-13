@@ -1,4 +1,5 @@
 # Developing Themes
+
 [Tutorial 1](tutorial/1-building-a-basic-site#templates) shows you how to create page templates. This guide will help you create your own SilverStripe website theme.
 
 Developing your own theme in SilverStripe is a piece of cake thanks to a very straight forward and clean templating language.  
@@ -198,6 +199,7 @@ A bunch of resources feel free to use to make your template awesome
 # Reference
 
 #### Overriding
+
 The templating system will search for the appropriate files in the following order:
 1.  mysite (or other name given to site folder)
 2.  themes
@@ -206,14 +208,17 @@ The templating system will search for the appropriate files in the following ord
 So if, for example, you had a typography.css file for a module in the module folder (eg blog/css/), in the theme module directory (eg themes/blackcandy_blog/css/), and in your site folder (eg mysite/css/), the system would use the file mysite/css/typography.css
 
 ##### What gets overridden?
+
 *  CSS
 *  Templates
 PHP files **do not** get overridden!
 
 ### Requirements
+
 The [Requirements::themedCSS('cssfile')](http://api.silverstripe.com/default/Requirements.html#themedCSS) function will do the search specified above. This avoids the need to type a full path to the css file, and also provides better ambiguity for themes.
 
 ### Subthemes
+
 If you have a theme called mytheme_forum, it is considered to be a 'subtheme' of the mytheme theme. This lets module developers release extensions to popular themes that will let their module work with that theme. 
 
 A subtheme overrides the files in the module. So for instance, if you have the forum setup instead of editing the files within the forum/ module you would create a themes/yourtheme_forum/ folder.
@@ -229,9 +234,11 @@ If your image is in a subtheme, you can refer to that with an argument to ThemeD
 <img src="$ThemeDir(forum)/images/log.gif" />
 ~~~
 # Conventions, standards and guidelines
+
 Following some set standards and conventions makes life easy for you and I.
 
 Some conventions for SilverStripe websites, which we suggest following. Take a look at each:
+
 *  [:CSS](/CSS)
 *  [:HTML](/HTML)
 *  [:Coding-Conventions](/Coding-Conventions)

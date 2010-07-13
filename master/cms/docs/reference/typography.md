@@ -3,6 +3,7 @@ SilverStripe lets you customise the style of content in the CMS.  This is done b
 You also need to create a file called (projectname)/css/editor.css with the following content:
 ~~~ {css}
 /**
+
  * This support file is used to style the WYSIWYG editor in the CMS
  */
 
@@ -20,6 +21,7 @@ body.mceContentBody a.broken {
 
 
 In typography.css you can define styles of any of the tags that will get created by the editor:
+
 * P, BLOCKQUOTE
 * H1-6
 * UL, OL, LI

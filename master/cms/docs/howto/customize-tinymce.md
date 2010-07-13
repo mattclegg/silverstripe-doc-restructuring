@@ -26,6 +26,7 @@ HtmlEditorConfig::get('cms')->setOption('verify_html', 'false');
 
 
 ## Enabling a Custom Plugin
+
 ~~~ {php}
 // mysite/_config.php
 HtmlEditorConfig::get('cms')->enablePlugins('../../tinymce_ssmacron'); // enables plugin
@@ -33,6 +34,7 @@ HtmlEditorConfig::get('cms')->insertButtonsAfter('charmap', 'ssmacron'); // posi
 ~~~
 
 ## Setting TinyMCE Options (eg valid elements)
+
 You can customize any of the [TinyMCE](http://wiki.moxiecode.com/index.php/TinyMCE:Configuration) options by calling setOption('optionname', 'value').
 
 ### Customizing allowed HTML

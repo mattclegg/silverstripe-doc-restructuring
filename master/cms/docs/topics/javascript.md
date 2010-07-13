@@ -21,9 +21,11 @@ For any custom code developed with jQuery, you have four choices to structure it
 **Important**: Historically we have been using [PrototypeJS](http://prototypejs.com), which is now discouraged (see [legacy documentation](/javascript/prototypejs)). SilverStripe as a framework doesn't impose a choice of library. It tries to generate meaningful markup which you can alter with other JavaScript libraries as well. Only the CMS itself and certain form widgets require jQuery to function correctly. You can also use jQuery in parallel with other libraries, see [here](http://docs.jquery.com/Using_jQuery_with_Other_Libraries).
 
 ### Custom jQuery Code
+
 jQuery allows you to write complex behaviour in a couple of lines of JavaScript. Smaller features which aren't likely to be reused can be custom code without further encapsulation. For example, a button rollover effect doesn't require a full plugin. See "[How jQuery Works](http://docs.jquery.com/How_jQuery_Works)" for a good introduction.
 
 ### jQuery Plugins
+
 A jQuery Plugin is essentially a method call which can act on a collection of DOM elements. It is contained within the ''jQuery.fn'' namespace, and attaches itself automatically to all jQuery collections. The basics for are outlined in the official [jQuery Plugin Authoring](http://docs.jquery.com/Plugins/Authoring) documentation.
 
 There a certain [documented patterns](http://www.learningjquery.com/2007/10/a-plugin-development-pattern) for plugin development, most importantly:
@@ -79,9 +81,11 @@ Usage:
 ~~~
 
 ### jQuery UI Widgets
+
 UI Widgets are jQuery Plugins with a bit more structure, targeted towards interactive elements. They require jQuery and the core libraries in jQuery UI, so are generally more heavyweight if jQuery UI isn't already used elsewhere.
 
 Main advantages over simpler jQuery plugins are:
+
 *  Exposing public methods on DOM elements (incl. pseudo-private methods)
 *  Exposing configuration and getters/setters on DOM elements
 *  Constructor/Destructor hooks
@@ -182,6 +186,7 @@ This is a deliberately simple example, the strength of jQuery.entwine over simpl
 Resist the temptation to build "cathedrals" of complex interrelated components.  In general, you can get a lot done in jQuery with a few lines of code.  Your jQuery code will normally end up as a series of event handlers applied with ''jQuery.live()'' or jQuery.entwine, rather than a complex object graph.
 
 ### Don't claim global properties
+
 Global properties are evil. They are accesible by other scripts, might be overwritten or mis-used. A popular case is the ''$'' shortcut in different libraries: in PrototypeJS it stands for ''document.getElementByID()'', in jQuery for ''jQuery()''. 
 
 ~~~ {javascript}
@@ -195,6 +200,7 @@ Global properties are evil. They are accesible by other scripts, might be overwr
 You can run ''[jQuery.noConflict()](http://docs.jquery.com/Core/jQuery.noConflict)'' to avoid namespace clashes. NoConflict mode is enabled by default in the SilverStripe CMS javascript.
 
 ### Initialize at document.ready
+
 You have to ensure that DOM elements you want to act on are loaded before using them. jQuery provides a wrapper around the ''window.onload'' and ''document.ready'' events.
 
 ~~~ {javascript}
@@ -207,6 +213,7 @@ $(document).ready(function() {
 See [jQuery FAQ: Launching Code on Document Ready](http://docs.jquery.com/How_jQuery_Works#Launching_Code_on_Document_Ready).
 
 ### Bind events "live"
+
 jQuery supports automatically reapplying event handlers when new DOM elements get inserted, mostly through Ajax calls. This "live binding" saves you from reapplying this step manually.
 
 Caution: Only applies to certain events, see the [jQuery.live() documentation](http://docs.jquery.com/Events/live).
@@ -227,6 +234,7 @@ $('input[[type=submit]]').live(function() {
 See [jQuery FAQ: Why do my events stop working after an AJAX request](http://docs.jquery.com/Frequently_Asked_Questions#Why_do_my_events_stop_working_after_an_AJAX_request.3F).
 
 ### Assume Element Collections
+
 jQuery is based around collections of DOM elements, the library functions typically handle multiple elements (where it makes sense). Encapsulate your code by nesting your jQuery commands inside a ''jQuery().each()'' call.
 
 Example: ComplexTableField implements a paginated table with a pop-up for displaying 
@@ -240,6 +248,7 @@ $('div.ComplexTableField').each(function() {
 ~~~
 
 ### Use plain HTML and jQuery.data() to store data
+
 The DOM can make javascript configuration and state-keeping a lot easier, without having to resort to javascript properties and complex object graphs.
 
 Example: Simple form change tracking to prevent submission of unchanged data
@@ -289,6 +298,7 @@ $('.restricted-text').bind('change', function(e) {
 See [interactive example on jsbin.com](http://jsbin.com/axafa)
 
 ### Return HTML/JSON and HTTPResponse class for AJAX responses
+
 Ajax responses will sometimes need to update existing DOM elements, for example refresh a set of search results. Returning plain HTML is generally a good default behaviour, as it allows you to keep template rendering in one place (in SilverStripe PHP code), and is easy to deal with in JavaScript. 
 
 If you need to process or inspect returned data, consider extracting it from the loaded HTML instead (through id/class attributes, or the jQuery.metadata plugin). For returning status messages, please use the HTTP status-codes.
@@ -387,6 +397,7 @@ $('form :input').bind('validationfailed',function(e) {
 See [interactive example on jsbin.com](http://jsbin.com/ipeca).
 
 Don't use event handlers in the following situations:
+
 *  If two-way communication is required, for example, calling an method in another component, which returns data that you then use.  Event handlers can't have return values.
 *  If specific execution order is required.  Event handlers are executed in parallel, which makes it difficult to know the exact order in which code in different threads will execute.  If the execution order is likely to cause problems, it is better to use a code structure that is executed sequentially. An example might be two events modifying the same piece of the DOM.
 
@@ -410,6 +421,7 @@ Example: jQuery.entwine
 
 ~~~ {javascript}
 /**
+
  * Available Custom Events:
  * <ul>
  * <li>ajaxsubmit</li>
@@ -423,12 +435,14 @@ Example: jQuery.entwine
 $('.LeftAndMain').entwine('ss', function($){
   return/** @lends ss.LeftAndMain */ {
     /**
+
      * Reference to some property
      * @type Number
      */
     MyProperty: 123,
       
     /**
+
      * Renders the provided data into an unordered list.
      * 
      * @param {Object} data
@@ -442,6 +456,7 @@ $('.LeftAndMain').entwine('ss', function($){
     },
     
     /**
+
      * Won't show in documentation, but still worth documenting.
      * 
      * @return {String} Something else.
@@ -454,6 +469,7 @@ $('.LeftAndMain').entwine('ss', function($){
 ~~~
 
 ### Unit Testing
+
 It is important to verify that your code actually does what it says, and the best way to ensure this are **automated tests**. For jQuery, we use two different tools with different uses: **unit testing** with [QUnit](http://docs.jquery.com/QUnit) (also used by the jQuery team for the core libraries), and **behaviour driven testing** with [JSpec](http://visionmedia.github.com/jspec/). There are overlaps between the two solutions, if in doubt start with JSpec, as it provides a much more powerful testing framework.
 
 Example: QUnit test (from [jquery.com](http://docs.jquery.com/QUnit#Using_QUnit)):
@@ -486,6 +502,7 @@ end
 The guidelines are not intended to be hard and fast rules; they cover the most common cases but not everything. Don't be afraid to experiment with using other approaches.
 
 # Links
+
 *  [Unobtrusive Javascript](http://www.onlinetools.org/articles/unobtrusivejavascript/chapter1.html)
 *  [Quirksmode: In-depth Javascript Resources](http://www.quirksmode.org/resources.html)
 *  [behaviour.js documentation](http://open.silverstripe.org/browser/modules/sapphire/branches/2.4/thirdparty/behaviour/README.md)

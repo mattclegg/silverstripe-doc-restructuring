@@ -1,12 +1,15 @@
 ## Introduction
+
 Many sites get too much traffic to justify dynamically sending every request.  Caching is needed.  The static publication system will generate static versions of your content that can be served without ever hitting PHP.
 
 See [StaticExporter](StaticExporter) for a less flexible, but easier way of building a local static cache from all of your pages.
 
 ## Requirements
+
 //Requires SilverStripe 2.3//
 
 ## Usage
+
 SilverStripe doesn't have enough information about your template and data-structures to automatically determine which URLs need to be cached, and at which time they are considered outdated. By adding a custom method allPagesToCache() to your Page class, you can determine which URLs need caching, and hook in custom logic. This array of URLs is used by the publisher to generate folders and HTML-files.
 
 ~~~ {php}
@@ -14,6 +17,7 @@ class Page extends SiteTree {
   // ...
 
   /**
+
    * Return a list of all the pages to cache
    */
   function allPagesToCache() {
@@ -34,6 +38,7 @@ class Page extends SiteTree {
   }
 
  /**
+
    * Get a list of URLs to cache related to this page
    */
   function subPagesToCache() {
@@ -156,6 +161,7 @@ In this setup, you have one server that is your dynamic CMS server, and one or m
 This approach is very secure, because you can lock the CMS right down (for example, by IP) and hide all the PHP code away from potential hackers.  It is also good for high-traffic situations.
 
 ### Setup
+
 *  Add the RsyncMultiHostPublisher extension to your SiteTree objects in mysite/_config.php.  This will create static content in a "cache/" subdirectory, with an HTML suffix.
 
 ~~~ {php}
@@ -177,6 +183,7 @@ Where ''<rsyncuser>'' is a unix account with write permissions to ''<webroot>'' 
 [View .htaccess example](http://open.silverstripe.com/browser/modules/cms/trunk/code/staticpublisher/htaccess_example_rsyncmultiservers)
 
 ## Cache Control 
+
 There is also the option to wrap some PHP logic around the static HTML content served by the content servers, which can greatly reduce the bandwidth required on your content servers. This code takes care of cache control through HTTP headers (''Cache-control'', ''If-modified-since''), meaning the files will only be delivered if they changed since the browser client last requested them. The last modification date for each static file is controlled by the publication script, meaning the cache gets invalidated on each publication.
 
 To enable cache control, specify "php" instead of "html" in the RsyncMultiHostPublisher definition.
@@ -208,4 +215,5 @@ Depending on which extension you've set up for your SiteTree (FilesystemPublishe
 It is adviseable to set dev/buildcache up as an automated task (e.g. unix cron) which continually rebuilds and redeploys the cache. 
 
 ## Related
+
 *  [StaticExporter](StaticExporter)

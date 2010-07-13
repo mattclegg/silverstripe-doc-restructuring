@@ -1,4 +1,5 @@
 # Introduction
+
  Extensions (also referred to as decorators) allow for adding additional functionality to a [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html) class without subclassing (similiar to //mixins// in Ruby). Note that this is **NOT** an implementation of the classic [Decorator Design Pattern](http://devzone.zend.com/article/4-PHP-Patterns-Introduction-continued). Rather it allows you to add methods and properties to an existing class, using [PHP5 Magic Methods](http://www.onlamp.com/pub/a/php/2005/06/16/overloading.html).
 
 In some cases, it can be easier to completely replace the used class throughout the core with your custom implementation. Have a look at [Object](Object)->useCustomClass().
@@ -20,6 +21,7 @@ class CustomMember extends DataObjectDecorator {
 This defines your own extension where you can add your own functions, database fields or other properties you want. After you create this extension however it does not yet apply it to your object. Next you need to tell SilverStripe what class you want to extend.
 
 ## Adding a decorator to a built-in class
+
 Sometimes you will want to add decorators to classes that you didn't make.  For example, you might want to add the ForumRole decorator to the Member object.
 
 
@@ -152,4 +154,5 @@ class CustomerWorkflow extends DataObjectDecorator {
 ~~~
 
 # API Documentation
+
 [Click here for the API documentation](http://api.silverstripe.org/trunk/sapphire/DataObjectDecorator.html). 

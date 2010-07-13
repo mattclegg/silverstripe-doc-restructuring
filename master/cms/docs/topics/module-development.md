@@ -31,6 +31,7 @@ class Forum_Controller extends Page_Controller {
 This will use your_project/css/forum.css if it exists, otherwise it falls back to using forum/css/forum.css.
 
 ## Submitting your module to silverstripe.org/modules
+
 If you wish to submit your module to our public directory, you take responsibility for a certain level of code quality, adherence to conventions, writing documentation, and releasing updates. See [module-maintainers](module-maintainers).
 ## Reference
 
@@ -38,5 +39,6 @@ If you wish to submit your module to our public directory, you take responsibili
 *  [Add a link to your module in the main SilverStripe Admin Menu](leftandmain)
 **
 Useful Links:**
+
 *  [Debugging methods](debugging)
 *  [URL Variable Tools](urlvariabletools) - Lists a number of “page options” , “rendering tools” or “special URL variables” that you can use to debug your sapphire applications

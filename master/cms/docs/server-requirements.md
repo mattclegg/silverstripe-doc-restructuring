@@ -1,4 +1,5 @@
 # Introduction
+
 We try to be as wide as possible in our server requirements.  However, there are some limitations.
 Please check our [suggested-web-hosts](suggested-web-hosts) (and add your host if the installation was successful).
 
@@ -10,6 +11,7 @@ Installing SilverStripe on grid servers and content delivery networks have their
 
 
 ### PHP
+
 PHP5 is required. The following are further details and recommendations for how to properly set up PHP for use with SilverStripe.
 
 *  **PHP 5.2.0+ recommended**, PHP as low as 5.1.0 have been known to work, but for best results 5.2.0+ is recommended. (see http://www.gophp5.org)
@@ -86,4 +88,5 @@ SilverStripe can run on OS X, Windows, Linux and BSD.
     * File permissions: To install and run SilverStripe, You need to be able to set some files (e.g. the 'assets' folder) to be writable by the user the webserver is running as (e.g. wwwrun). Having shell access or a control panel (or an FTP server that allows file permission changing) is helpful.
 
 ### Browser
+
 Make sure that Cookies have been enabled for the web site for the installation and management of the SilverStripe CMS.

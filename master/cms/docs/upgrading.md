@@ -9,6 +9,7 @@ Usually an update or upgrade your SilverStripe installation just means overwriti
 *  [Blog posts about releases on silverstripe.org](http://silverstripe.org/blog/tag/release)
 
 # Versions
+
 *  [trunk](upgrading/trunk)
 *  [2.4.0](upgrading/2.4.0)
 *  [2.3.3](upgrading/2.3.3)
@@ -19,6 +20,7 @@ Usually an update or upgrade your SilverStripe installation just means overwriti
 *  [2.1.0](upgrading/2.1.0)
 
 # Process
+
 *  Check if any [modules](modules) (e.g. blog or forum) in your installation are compatible and need to be upgraded as well
 *  Backup your database
 *  Backup your webroot
@@ -33,6 +35,7 @@ Usually an update or upgrade your SilverStripe installation just means overwriti
 *  See [common-problems](common-problems) for a list of likely mistakes that could happen during an upgrade.
 
 #  Decision Helpers
+
 How easy will it be to update my project? It's a fair question, and sometimes a difficult one to answer.  This page is intended to help you work out how hard it will be to upgrade your site.
 
 *  If you've made custom branches of the core, or of a module, it's going to be harder to upgrade.

@@ -3,7 +3,9 @@
 This topic covers setting up your Mac as a Web Server and installing SilverStripe. If you want to watch the video see the online tutorial at http://silverstripe.com/assets/screencasts/Tutorial-InstallingMAMP-SW08.swf
 
 ## Setting Up MAMP
+
  
+
 *  While OSX Comes bundled with PHP and Apache (Thanks Apple!) Its not quite ideal for SilverStripe so for setting up a webserver on OSX we suggest using MAMP - http://www.mamp.info/en/index.php. If you want to use the default OSX PHP version then you will need to recompile your own versions of PHP with GD so you can probably work out how to Install SilverStripe! but for those normal folk you want to go download the latest and greatest [MAMP Version](http://www.mamp.info/en/download.html) and run the installer.
 
 *  Once you have downloaded and Installed MAMP start the Application and Make sure everything is running by clicking the MAMP icon. Under Preferences -> PHP make sure Version 5 is Selected.
@@ -15,6 +17,7 @@ This topic covers setting up your Mac as a Web Server and installing SilverStrip
 
 *  Okay! Hard part done. Now for the fun!. [Download](http://silverstripe.org/download) the latest SilverStripe installer package.
  
+
 *  Once its downloaded copy the tar.gz file to the 'Document Root' for MAMP - By Default its /Applications/MAMP/htdocs. Don't know what your Document Root is? Open MAMP Click Preferences -> Apache. It is the directory defined there. I use /User/Will/Sites/ instead so I don't keep my important Site files inside an Application. 
 
 *  Extract The tar.gz file to a folder, e.g., silverstripe/ (You always move the tar.gz file first and not the other way around as SilverStripe uses a '.htaccess' file which is hidden from OSX so if you move SilverStripe the .htaccess file won't come along.

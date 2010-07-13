@@ -1,4 +1,5 @@
 # Introduction
+
 Basic data-object representing all pages within the site tree. The omnipresent //Page// class (located in //mysite/code/Page.php//) is based on this class.
 
 # Usage
@@ -176,6 +177,7 @@ class MyCategory extends Page {
 
 
 ### Multiple parents in the tree
+
 The [LeftAndMain](http://api.silverstripe.org/trunk/cms/core/LeftAndMain.html) tree supports multiple parents.  We overload CMSTreeClasses and make it include "manyparents" in the class list.
 ~~~ {php}
 function CMSTreeClasses($controller) {
@@ -236,7 +238,9 @@ We will need to define these methods, to
 *  Return that as a dataobjectset.
 
 #### BlogMonthTreeNode
+
  
+
 *  Parameter 'ID': should return 'BlogMonthTreeNode-(BlogHolderID)-(Year)-(Month)'.  You can do  this by implementing getID().
 *  Methods cmsStageChildren() and cmsLiveChildren(): These should return the blog-entries for that month.
 
@@ -247,4 +251,5 @@ After that, there will be some other things to tweak, like the tree icons.
 This is a lot of work for the specific example of blog-entries grouped by month.  Instead of BlogMonthTreeNode, you could genericise this to a DynamicTreeGroup class, which would let you specify the parent node, the type of grouping, and the specific group.
 
 # API Documentation
+
 [Click here for the API documentation](http://api.silverstripe.org/trunk/sapphire/core/SiteTree.html)

@@ -14,6 +14,7 @@ class SubsiteAdminTest extends SapphireTest {
 	static $fixture_file = 'subsites/tests/SubsiteTest.yml';
 
 	/**
+
 	 * Return a session that has a user logged in as an administrator
 	 */
 	function adminLoggedInSession() {
@@ -23,6 +24,7 @@ class SubsiteAdminTest extends SapphireTest {
 	}
 
 	/**
+
 	 * Test generation of the view
 	 */
 	function testBasicView() {

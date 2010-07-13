@@ -40,6 +40,7 @@ Then it's time to install the SilverStripe installation package, and modify it t
   </system.webServer>
 </configuration>
 ~~~
+
 *  Visit the folder that you just extracted in your web browser.  For example, the URL might be ''http://localhost/silverstripe-v2.3/''.  You will be shown the install screen.
 *  Enter your MySQL username and password in the boxes provided and press "re-check requirements".  You should be able to install now.
 *  After the installation has finished, delete the index.html and index.php files.

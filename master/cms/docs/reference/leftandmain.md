@@ -1,9 +1,11 @@
 # Introduction
+
 LeftAndMain is the base class of all the admin area controllers.  
 
 # Best Practices
 
 ## Refreshing
+
 Please use LeftAndMain::ForceReload to reload the whole form-area after an Ajax-Request. If you just need to refresh parts of the form, please use javascript-replacement in the response of the original Ajax-Request. Consider using [Form](http://api.silverstripe.org/trunk/forms/core/Form.html) for  compiling Ajax-Responses and automatic detection of Ajax/Non-Ajax-Calls.
 ## Custom Access Checking
 
@@ -24,9 +26,11 @@ class MyLeftAndMain extends Extension {
 ~~~
 
 # Subclassing
+
 There are a few steps in creating a subclass of LeftAndMain.
 
 #### MyAdmin.php
+
 The PHP file defining your new subclass is the first step in the process.  This provides a good starting point:
 ~~~ {php}
 class MyAdmin extends LeftAndMain {
@@ -40,6 +44,7 @@ class MyAdmin extends LeftAndMain {
 	static $menu_priority = 60;
 
 	/**
+
 	 * Initialisation method called before accessing any functionality that BulkLoaderAdmin has to offer
 	 */
 	public function init() {
@@ -49,6 +54,7 @@ class MyAdmin extends LeftAndMain {
 	}
 
 	/**
+
 	 * Form that will be shown when we open one of the items
 	 */	 
 	public function getEditForm($id = null) {
@@ -65,7 +71,9 @@ class MyAdmin extends LeftAndMain {
 ~~~
 
 #### Templates
+
 Next, create templates, (classname)_left.ss and (classname)_right.ss.  Again, here are a couple of starting points:
+
  * On the left, we're using the tree as a way of providing navigation.  The left and side could be replaced with anything but LeftAndMain has built-in support for trees.
  * On the right, we have the skeleton that the form will be loaded into.
 
@@ -139,6 +147,7 @@ public function getMenuTitle() {
 
 
 ## 'onload' javascript in the CMS
+
 You can have custom scripting called when a Page is loaded by clicking on the Site Content Tree.
 This can be used to set up event handlers, or populate dropdowns, etc.
 You could insert this code using Requirements from a custom page class.
@@ -166,6 +175,7 @@ Behaviour.register({
 *  [ModelAdmin](ModelAdmin) 
 
 # TODO
+
 *  Explain how to build the javascript file
 *  Explain how the ajax button handlers work
 *  Explain how to create little pop-up dialogs

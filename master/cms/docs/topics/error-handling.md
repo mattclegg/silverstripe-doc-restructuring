@@ -25,6 +25,7 @@ Note that currently, the SilverStripe core doesn't follow these standards perfec
 *  A lot of assertion checking in the system that throws errors when it should throw warnings.
 
 ## Friendly Website Errors
+
 An HTTP 500 error will be sent when there has been a fatal error on either a test or production site.  You can make this friendlier - much like the 404 page, the error content can be edited within the CMS.
 
 *  Create a page of type [ErrorPage](ErrorPage).
@@ -38,6 +39,7 @@ An HTTP 500 error will be sent when there has been a fatal error on either a tes
 
 
 ### From SilverStripe
+
 //Requires SilverStripe 2.3//
 You can indicate a log file relative to the site root. The named file will have a terse log sent to it, and the full log (an encoded file containing backtraces and things) will go to a file of a similar name, but with the suffix ".full" added.
 
@@ -57,6 +59,7 @@ Debug::log_errors_to("/my/logfile/path");
 ~~~
 
 ### From PHP
+
 In addition to SilverStripe-integrated logging, it is adviseable to fall back to PHPs native logging functionality. A script might terminate before it reaches the SilverStripe errorhandling, for example in the case of a fatal error.
 
 <mysite>/_config.php:
@@ -67,6 +70,7 @@ ini_set("error_log", "/my/logfile/path");
 
 
 ## Email Logs
+
 You can send both fatal errors and warnings in your code to a specified email-address.
 <mysite>/_config.php:
 ~~~ {php}
@@ -77,6 +81,7 @@ SS_Log::add_writer(new SS_LogEmailWriter('admin@domain.com'), SS_Log::ERR);
 ~~~
 
 #### Deprecated method (SS 2.3 ?)
+
 ~~~ {php}
 Debug::send_errors_to("developer@example.org");
 Debug::send_warnings_to("developer@example.org"); // Optional, implied by send_errors_to()

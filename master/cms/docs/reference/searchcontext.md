@@ -1,6 +1,7 @@
 # SearchContext
 
 ## Introduction
+
 Manages searching of properties on one or more [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html) types, based on a given set of input parameters. SearchContext is intentionally decoupled from any controller-logic,
 it just receives a set of search parameters and an object class it acts on.
 
@@ -27,6 +28,7 @@ singleton('MyDataObject')->getDefaultSearchContext();
 See [dataobject#searchable_fields](dataobject#searchable_fields)
 
 ### Customizing fields and filters
+
 In this example we're defining three attributes on our MyDataObject subclasss: ''PublicProperty'', ''HiddenProperty'' and ''MyDate''. The attribute ''HiddenProperty'' should not be searchable, and ''MyDate'' should only search for dates *after* the search entry (with a ''GreaterThanFilter''). Similiar to the built-in ''DataObject->getDefaultSearchContext()'' method, we're building our own ''getCustomSearchContext()'' variant.
 
 ~~~ {php}
@@ -59,6 +61,7 @@ class MyDataObject extends DataObject {
 
 
 ### Generating a search form from the context
+
 ~~~ {php}
 class Page_Controller extends ContentController {
 	public function SearchForm() {
@@ -88,6 +91,7 @@ class Page_Controller extends ContentController {
 
 
 ### Pagination
+
 For paginating records on multiple pages, you need to get the generated ''SQLQuery'' before firing off the actual search. This way we can set the "page limits" on the result through ''setPageLimits()'', and only retrieve a fraction of the whole result set.
 
 

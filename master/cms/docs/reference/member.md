@@ -1,6 +1,7 @@
 **This is partially deprecated - see the [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html) page for more information**
 
 # Introduction
+
 The Member class is used to represent user accounts on a Silverstripe site (including newsletter recipients).
  
 
@@ -53,6 +54,7 @@ Object::useCustomClass("Member", "ParishouseMember");
 Note that if you want to look this class-name up, you can call Object::getCustomClass("Member")
 
 ### Overloading getCMSFields()
+
 If you overload the built-in function getCMSFields(), then you can change the form that is used to view & edit member details in the newsletter system.  This function returns a FieldSet object.  You should generally start by calling parent::getCMSFields() and manipulate the FieldSet from there.
 ~~~ {php}
 function getCMSFields() {
@@ -65,6 +67,7 @@ function getCMSFields() {
 ~~~
 
 ## Extending Member or DataObject?
+
 Basic rule: Class "Member" should just be extended for entities who have some kind of login.
 If you have different types of Members in the system, you have to make sure that those with login-capabilities have unique email-addresses (as this is used for login-credentials). 
 For persons without login-capabilities (e.g. for an address-database), you shouldn't extend member to avoid conflicts with the Member-database. This enables us to have a different subclass of Member for an email-address with login-data, and another subclass for the same email-address in the address-database.
@@ -73,6 +76,7 @@ For persons without login-capabilities (e.g. for an address-database), you shoul
 
 
 ### New Idea: Member Role Decorator
+
 Using inheritance to add extra behaviour or data fields to a member is limiting, because you can only inherit from 1 class.  A better way is to use role decorators to add this behaviour.
 
 ~~~ {php}
@@ -86,6 +90,7 @@ A role decorator is simply a subclass of DataObjectDecorator that is designed to
 ~~~ {php}
 class ForumRole extends DataObjectDecorator {
   /**
+
    * Modify the field set to be displayed in the CMS detail pop-up
    */
   function updateCMSFields(FieldSet $currentFields) {
@@ -108,9 +113,11 @@ class ForumRole extends DataObjectDecorator {
 Sam is going to implement this change; Romain will be using it to create a ForumRole for the new forum module.
 
 # TODO
+
 *  MemberTableField has to determine which fields is should display based on the subclass of the requested record
 *  MemberTableField needs to have a switch for creating new Members with different fields
 *  We should add a getOverviewFields() to each Member-class which specifiy which fields to use in the overview (and accordingly have different tables for each subclass of members)
 
 # API Documentation
+
 [Click here for the API documentation](http://api.silverstripe.org/trunk/sapphire/security/Member.html).

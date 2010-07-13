@@ -5,6 +5,7 @@
 (Windows XP, 2003, 2008, Vista and 7)
 
 ##### Installing SilverStripe
+
 *  Download and run Microsoft Web Platform Installer (WebPI):
 [{{http://www.silverstripe.org/assets/downloads/webpi/wpiBadgeGreen.png}}](http://www.microsoft.com/web/gallery/install.aspx?appsxml=www.microsoft.com%2fweb%2fwebpi%2f2.0%2fWebApplicationList.xml&amp;appid=105)
 
@@ -32,11 +33,13 @@ Specifically, you need to configure XP not to check that a script file exists be
 *  Hit OK's all the way back up and restart IIS
 
 ##### Support
+
 *  http://www.silverstripe.org/installing-on-windows-now-easier-thanks-to-microsoft-web-platform-installer/  (This shows a beta version of the software)
 *  Microsoft Forum: http://forums.iis.net/1155.aspx
 *  SilverStripe Installation Issues Forum: http://silverstripe.org/installing-silverstripe/
 
 ##### Screenshots of this installation process
+
 {{:webpi-2-a-silverstripe-choice.png|:webpi-2-a-silverstripe-choice.png}}
 {{:webpi-2-b-dependencies.png|:webpi-2-b-dependencies.png}}
 {{:webpi-2-c-downloading-and-installaing.png|:webpi-2-c-downloading-and-installaing.png}}

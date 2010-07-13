@@ -1,4 +1,5 @@
 # Introduction
+
 Sometimes, you will want the content that appears in your template to be slightly different from the content entered into the CMS.
 
 For example, you might want to let your author position a dynamic element, such as a paypal button, by entering a special token such as $Paypal into the content.
@@ -38,6 +39,7 @@ function PaypalButton() {
   return $this->renderWith("Paypal");
 }
 ~~~
+
 ** themes/blackcandy/templates/Includes/Paypal.ss **
 ~~~ {html}
 <p>This could be HTML/Text/Images or PHP</p>
@@ -45,4 +47,5 @@ function PaypalButton() {
 ~~~
 
 # Related
+
 *  See [:custom-page-controls](/custom-page-controls) for more copy/paste snippets to easily customize the data available to your templates.

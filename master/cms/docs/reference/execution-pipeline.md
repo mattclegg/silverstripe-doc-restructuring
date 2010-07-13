@@ -1,4 +1,5 @@
 # Introduction
+
 This page documents all the steps from an URL request to the delivered page. 
 
 
@@ -6,11 +7,13 @@ This page documents all the steps from an URL request to the delivered page.
 
 
 ## .htaccess and RewriteRule
+
 Silverstripe uses **[mod_rewrite](http://httpd.apache.org/docs/2.0/mod/mod_rewrite.html)** to deal with page requests. So instead of having your normal everyday ''index.php'' file which tells all, you need to look elsewhere. 
 
 The basic .htaccess file after installing SilverStripe look like this:
 <file>
 ### SILVERSTRIPE START ###
+
 <Files *.ss>
 Order deny,allow
 Deny from all
@@ -27,10 +30,12 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule .* sapphire/main.php?url=%1&%{QUERY_STRING} [L]
 </IfModule>
 ### SILVERSTRIPE END ###
+
 </file>
 The ''<Files>'' section denies direct access to the template files from anywhere but the server itself.
 
 The next section enables the rewriting engine and rewrites requests to ''sapphire/main.php'' if they meet the following criteria:
+
 *  URI doesn't end in .gif, .jpg, .png, .css, or .js
 *  The requested file doesn't exist on the filesystem
 ''sapphire/main.php'' is called with the REQUEST_FILENAME (%1) as the ''url'' parameter and also appends the original QUERY_STRING.

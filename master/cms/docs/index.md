@@ -5,6 +5,7 @@ If you would like to contribute, you can [register](http://doc.silverstripe.com/
 
 
 ###  Getting support
+
 *  Use our [support forum](http://www.silverstripe.com/silverstripe-forum/) and [irc-channel](IRC)
 *  See [userhelp](http://userhelp.silverstripe.com) for end-user documentation
 *  Visit some of the [community run third party websites](community run third party websites)
@@ -26,6 +27,7 @@ If you would like to contribute, you can [register](http://doc.silverstripe.com/
 
 
 ###  Books
+
 [{{ :silverstripe-cms-book-front-cover-design-june2009preview.png?100}}](http://www.silverstripe.org/silverstripe-book)
 
 *  [Official book on SilverStripe in English](http://www.silverstripe.org/silverstripe-book) ([Errata](silverstripe-book-errata)).
@@ -33,6 +35,7 @@ If you would like to contribute, you can [register](http://doc.silverstripe.com/
 
 
 ###  Installation
+
 *  **[Installing](installation)** and [Upgrading](Upgrading) 
 *  [Server-requirements](Server-requirements)
 *  [Suggested-web-hosts](Suggested-web-hosts)
@@ -40,6 +43,7 @@ If you would like to contribute, you can [register](http://doc.silverstripe.com/
 
 
 ### Level 1: Building your first SilverStripe website
+
 *  **[Tutorials](tutorials):**
     - [Building a basic site](tutorial/1-building-a-basic-site)
     - [Extending a basic site](tutorial/2-extending-a-basic-site)
@@ -47,6 +51,7 @@ If you would like to contribute, you can [register](http://doc.silverstripe.com/
     - [Site Search](tutorial/4-site-search)
     - [Relationships](tutorial/5-dataobject-relationship-management)
     - [Site Map](tutorial/site-map)
+
 *  [Introduction to PHP5](http://devzone.zend.com/node/view/id/627)
 *  [Common Problems](common-problems)
 
@@ -54,6 +59,7 @@ If you would like to contribute, you can [register](http://doc.silverstripe.com/
 
 
 ### Level 2: SilverStripe fundamentals
+
 *  [Templates](templates): SilverStripe has its own templating engine
 *  [Themes](themes): How to customize your site with themes
 *  [Controllers](controllers): Coordination from a URL-request to finding the controller-class
@@ -72,6 +78,7 @@ If you would like to contribute, you can [register](http://doc.silverstripe.com/
 
 
 ### Level 3: The less obvious features
+
 *  [Execution Pipeline](execution-pipeline): Tracking a request from director to template-rendering
 *  [Building for Modularity](building-for-modularity)
 *  [Email](email)
@@ -87,6 +94,7 @@ If you would like to contribute, you can [register](http://doc.silverstripe.com/
 
 
 ### Level 4: Contributing to the SilverStripe core
+
 *  Share your [Recipes](recipes/start)
 *  [Coding Conventions](coding-conventions)
 *  [CSS](css) and [HTML](html) Guidelines
@@ -94,6 +102,7 @@ If you would like to contribute, you can [register](http://doc.silverstripe.com/
 *  [Secure development](secure-development)
 
 ### Modules
+
 *  [Overview](modules)
 *  [Maintainers](module-maintainers)
 *  [Creating Modules](creating-modules)
