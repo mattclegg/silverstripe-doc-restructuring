@@ -42,14 +42,14 @@ You can call most static methods from _config.php - classes will be loaded as re
  | SSViewer::set_theme(string $themename)                              | Choose the default theme for your site                                                                                                                                                                                                                       |        
 ## Constants
 
-Some constants are user-defineable within //_ss_environment.php//.
+Some constants are user-defineable within *_ss_environment.php*.
  | Name            | Description                                                                                                                                                                                                                                                                                 | 
  | ----            | -----------                                                                                                                                                                                                                                                                                 | 
- | //TEMP_FOLDER// | Absolute file path to store temporary files such as cached templates or the class manifest. Needs to be writeable by the webserver user. Defaults to //sys_get_temp_dir()//, and falls back to //silverstripe-cache// in the webroot. See //getTempFolder()// in //sapphire/core/Core.php// | 
+ | *TEMP_FOLDER* | Absolute file path to store temporary files such as cached templates or the class manifest. Needs to be writeable by the webserver user. Defaults to //sys_get_temp_dir()//, and falls back to *silverstripe-cache* in the webroot. See //getTempFolder()// in *sapphire/core/Core.php* | 
 
 ## User-level: Member-object
 
-All user-related preferences are stored as a property of the [Member](Member)-class (and as a database-column in the //Member//-table). You can "mix in" your custom preferences by using `[api:DataObject]` for details.
+All user-related preferences are stored as a property of the [Member](Member)-class (and as a database-column in the *Member*-table). You can "mix in" your custom preferences by using `[api:DataObject]` for details.
 
 ## Permissions
 

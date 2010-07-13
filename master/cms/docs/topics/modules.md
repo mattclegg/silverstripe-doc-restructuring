@@ -30,9 +30,9 @@ Because of the broad definition of modules, they can be created for a number of 
 
 ## Installation
 
-Modules should exist in the root folder of your SilverStripe. The root folder being the one that contains the //sapphire//, //cms// and other folders.
+Modules should exist in the root folder of your SilverStripe. The root folder being the one that contains the *sapphire*, *cms* and other folders.
 
-The following article explains the generic installation of a module. Individual modules have their own requirements such as creating folders or configuring API keys. For information about installing or configuring a specific module see the modules //INSTALL// (or //README//) file. Modules should adhere to the [directory-structure](directory-structure) guidelines.
+The following article explains the generic installation of a module. Individual modules have their own requirements such as creating folders or configuring API keys. For information about installing or configuring a specific module see the modules *INSTALL* (or *README*) file. Modules should adhere to the [directory-structure](directory-structure) guidelines.
 
 ### Download
 

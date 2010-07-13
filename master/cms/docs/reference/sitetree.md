@@ -1,6 +1,6 @@
 # Introduction
 
-Basic data-object representing all pages within the site tree. The omnipresent //Page// class (located in //mysite/code/Page.php//) is based on this class.
+Basic data-object representing all pages within the site tree. The omnipresent *Page* class (located in *mysite/code/Page.php*) is based on this class.
 
 # Usage
 
@@ -15,7 +15,7 @@ Basic data-object representing all pages within the site tree. The omnipresent /
 
 ## Querying
 
-Use //SiteTree::get_by_link()// to correctly retrieve a page by URL, as it taked nested URLs into account (a page URL might consist of more than one //URLSegment//).
+Use //SiteTree::get_by_link()// to correctly retrieve a page by URL, as it taked nested URLs into account (a page URL might consist of more than one *URLSegment*).
 
 	:::php
 	// wrong
@@ -31,13 +31,13 @@ In a nutshell, the nested URLs feature means that your site URLs now reflect the
 
 {{http://silverstripe.org/assets/screenshots/Nested-URLs-Table.png|url table}}
 
-This feature is enabled by default in SilverStripe 2.4 or newer. To activate it for older sites, insert the following code in your //mysite/_config.php//:
+This feature is enabled by default in SilverStripe 2.4 or newer. To activate it for older sites, insert the following code in your *mysite/_config.php*:
 
 	:::php
 	SiteTree::enable_nested_urls();
 
 
-After activating nested URLs on an existing database, you'll have to run a migration task to rewrite internal URL references in the //SiteTree.Content// field.
+After activating nested URLs on an existing database, you'll have to run a migration task to rewrite internal URL references in the *SiteTree.Content* field.
 
 	
 	http://<yourdomain.tld>/dev/tasks/MigrateSiteTreeLinkingTask
@@ -80,7 +80,7 @@ By default, any page type can be the child of any other page type.  However, the
 
 *  **default_child:** If a page is allowed more than 1 type of child, you can set a default.  This is the value that will be automatically selected in the page type dropdown when you create a page in the CMS.
 
-*  **default_parent:** This should be set to the //URLSegment// of a specific page, not to a class name.  If you have asked to create a page of a particular type that's not allowed underneath the page that you have selected, then the default_parent page will be selected.  For example, if you have a gallery page open in the CMS, and you select add blog entry, you can set your site up to automatically select the blog page as a parent.
+*  **default_parent:** This should be set to the *URLSegment* of a specific page, not to a class name.  If you have asked to create a page of a particular type that's not allowed underneath the page that you have selected, then the default_parent page will be selected.  For example, if you have a gallery page open in the CMS, and you select add blog entry, you can set your site up to automatically select the blog page as a parent.
 
 *  **can_be_root:** This is a boolean variable.  It lets you specify whether the given page type can be in the top level.
 

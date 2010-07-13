@@ -23,7 +23,7 @@ Silverstripe automatically runs [addslashes()](http://php.net/addslashes) in Dat
 *  FormField->saveInto()
 *  DBField->saveInto()
 
-Note: It is NOT good practice to "be sure" and convert the data passed to the functions below manually. This might result in //double escaping// and alters the actually saved data (e.g. by adding slashes to your content).
+Note: It is NOT good practice to "be sure" and convert the data passed to the functions below manually. This might result in *double escaping* and alters the actually saved data (e.g. by adding slashes to your content).
 
 ## Manual escaping
 
@@ -80,7 +80,7 @@ This means if you've got a chain of functions passing data through, escaping sho
 	}
 
 
-This might not be applicable in all cases - especially if you are building an API thats likely to be customized. If you're passing unescaped data, make sure to be explicit about it by writing //phpdoc//-documentation and //prefixing// your variables ($RAW_data instead of $data).
+This might not be applicable in all cases - especially if you are building an API thats likely to be customized. If you're passing unescaped data, make sure to be explicit about it by writing *phpdoc*-documentation and *prefixing* your variables ($RAW_data instead of $data).
 
 
 
@@ -136,7 +136,7 @@ Template (see above):
 
 ## Escaping custom attributes and getters
 
-Every object attribute or getter method used for template purposes should have its escape type defined through the static //$casting// array. Caution: Casting only applies when using values in a template, not in PHP.
+Every object attribute or getter method used for template purposes should have its escape type defined through the static *$casting* array. Caution: Casting only applies when using values in a template, not in PHP.
 
 PHP:
 
@@ -172,7 +172,7 @@ Note: Avoid generating HTML by string concatenation in PHP wherever possible to 
 
 When using //customise()// or //renderWith()// calls in your controller, or otherwise forcing a custom context for your template, you'll need to take care of casting and escaping yourself in PHP. 
 
-The [Convert](Convert) class has utilities for this, mainly //Convert::raw2xml()// and //Convert::raw2att()// (which is also used by //XML// and //ATT// in template code).
+The [Convert](Convert) class has utilities for this, mainly //Convert::raw2xml()// and //Convert::raw2att()// (which is also used by *XML* and *ATT* in template code).
 
 PHP:
 
@@ -230,7 +230,7 @@ Some rules of thumb:
 
 # Cross-Site Request Forgery (CSRF)
 
-SilverStripe has built-in countermeasures against this type of identity theft for all form submissions. A form object will automatically contain a //SecurityID// parameter which is generated as a secure hash on the server, connected to the currently active session of the user. If this form is submitted without this parameter, or if the parameter doesn't match the hash stored in the users session, the request is discarded.
+SilverStripe has built-in countermeasures against this type of identity theft for all form submissions. A form object will automatically contain a *SecurityID* parameter which is generated as a secure hash on the server, connected to the currently active session of the user. If this form is submitted without this parameter, or if the parameter doesn't match the hash stored in the users session, the request is discarded.
 
 If you know what you're doing, you can disable this behaviour:
 
@@ -244,11 +244,11 @@ See [http://shiflett.org/articles/cross-site-request-forgeries](http://shiflett.
 
 ======= Casting user input =======
 
-When working with ''$_GET'', ''$_POST'' or ''Director::urlParams'' variables, and you know your variable has to be of a certain type, like an integer, then it's essential to cast it as one. //Why?// To be sure that any processing of your given variable is done safely, with the assumption that it's an integer.
+When working with ''$_GET'', ''$_POST'' or ''Director::urlParams'' variables, and you know your variable has to be of a certain type, like an integer, then it's essential to cast it as one. *Why?* To be sure that any processing of your given variable is done safely, with the assumption that it's an integer.
 
 To cast the variable as an integer, place ''(int)'' or ''(integer)'' before the variable.
 
-For example: a page with the URL paramaters //mysite.com/home/add/1// requires that ''Director::urlParams['ID']'' be an integer. We cast it by adding ''(int)'' - ''(int)Director::urlParams['ID']''. If a value other than an integer is passed, such as //mysite.com/home/add/dfsdfdsfd//, then it returns 0.
+For example: a page with the URL paramaters *mysite.com/home/add/1* requires that ''Director::urlParams['ID']'' be an integer. We cast it by adding ''(int)'' - ''(int)Director::urlParams['ID']''. If a value other than an integer is passed, such as *mysite.com/home/add/dfsdfdsfd*, then it returns 0.
 
 Below is an example with different ways you would use this casting technique:
 

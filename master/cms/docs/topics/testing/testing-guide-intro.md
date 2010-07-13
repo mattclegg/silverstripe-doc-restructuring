@@ -4,7 +4,7 @@
 
 ## Why Unit Test?
 
-So at this point, you might be thinking, //"that's way too complicated, I don't have time to write unit tests on top of all the things I'm already doing"//. Fair enough. But, maybe you're already doing things that are close to unit testing without realizing it. Everyone tests all the time, in various ways. Even if you're just refreshing a URL in a browser to review the context of your changes, you're testing!
+So at this point, you might be thinking, *"that's way too complicated, I don't have time to write unit tests on top of all the things I'm already doing"*. Fair enough. But, maybe you're already doing things that are close to unit testing without realizing it. Everyone tests all the time, in various ways. Even if you're just refreshing a URL in a browser to review the context of your changes, you're testing!
 
 First, ask yourself how much time you're already spending debugging your code. Are you inserting ''echo'', ''print_r'', and ''die'' statements into different parts of your program and watching the details dumping out to screen? **Yes, you know you are.** So how much time do you spend doing this? How much of your development cycle is dependent on dumping out the contents of variables to confirm your assumptions about what they contain?
 
@@ -22,7 +22,7 @@ Unit test assertions are best understood as **pass/fail** statements about the b
 
 Everyone has a different set of ideas about what makes good code, and particular preferences towards a certain style of logic. At the same time, frameworks and programming languages provide clear conventions and design idioms that guide code towards a certain common style.
 
-If all this ranting and raving about the importance of testing hasn't made got you thinking that you want to write tests then we haven't done our job well enough! But the key question still remains - //"where do I start?"//.
+If all this ranting and raving about the importance of testing hasn't made got you thinking that you want to write tests then we haven't done our job well enough! But the key question still remains - *"where do I start?"*.
 
 To turn the key in the lock and answer this question, we need to look at how automated testing fits into the different aspects of the SilverStripe platform. There are some significant differences in goals and focus between different layers of the system and interactions between the core, and various supporting modules.
 

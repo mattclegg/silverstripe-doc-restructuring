@@ -68,7 +68,7 @@ When you have TableField inside a [ComplexTableField](ComplexTableField), the pa
 # Known Issues
 
 *  A TableField doesn't reload any submitted form-data if the saving is interrupted by a failed validation. After refreshing the form with the validation-errors, the TableField will be blank again.
-*  You can't add **visible default data** to columns in a TableField, please use //setExtraData//
+*  You can't add **visible default data** to columns in a TableField, please use *setExtraData*
 
 
 # API Documentation

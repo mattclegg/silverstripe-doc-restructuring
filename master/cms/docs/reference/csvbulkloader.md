@@ -16,7 +16,7 @@ Utility class to facilitate complex CSV-imports by defining column-mappings and 
 
 ## Requirements
 
-*  //SilverStripe 2.3//
+*  *SilverStripe 2.3*
 ## Usage
 
 Simple upload form (creates new ''MyDataObject'' instances). You can access it through 
@@ -145,7 +145,7 @@ Sample implementation of a custom loader. Assumes a CSV-file in a certain format
 	?>
 
 
-Integration into a new [ModelAdmin](ModelAdmin) instance to get an upload form out of the box (accessible through ///admin/players//):
+Integration into a new [ModelAdmin](ModelAdmin) instance to get an upload form out of the box (accessible through */admin/players*):
 
 	:::php
 	<?php

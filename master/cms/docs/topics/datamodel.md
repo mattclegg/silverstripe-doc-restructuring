@@ -38,9 +38,9 @@ CAUTION: Please make sure to properly escape your SQL-snippets (see [security](s
 
 ## Joining 
 
-Passing a //$join// statement to DataObject::get will filter results further by the JOINs performed against the foreign table. **It will NOT return the additionally joined data.**  The returned //$records// will always be a `[api:DataObject]`.
+Passing a *$join* statement to DataObject::get will filter results further by the JOINs performed against the foreign table. **It will NOT return the additionally joined data.**  The returned *$records* will always be a `[api:DataObject]`.
 
-When using //$join// statements be sure the string is in the proper format for the respective database engine.  In  MySQL the use of backticks may be necessary when referring Table Names and potentially Columns. (see [MySQL Identifiers](http://dev.mysql.com/doc/refman/5.0/en/identifiers.html)):
+When using *$join* statements be sure the string is in the proper format for the respective database engine.  In  MySQL the use of backticks may be necessary when referring Table Names and potentially Columns. (see [MySQL Identifiers](http://dev.mysql.com/doc/refman/5.0/en/identifiers.html)):
 
 	:::php
 	// Example from the forums: http://www.silverstripe.org/archive/show/79865#post79865
@@ -93,7 +93,7 @@ See [data-types](data-types) for all available types.
 
 ## Customizing
 
-We can create new "virtual properties" which are not actually listed in //static $db// or stored in the database-row.
+We can create new "virtual properties" which are not actually listed in *static $db* or stored in the database-row.
 Here we combined a Player's first- and surname, accessible through $myPlayer->Title.
 
 	:::php
@@ -129,7 +129,7 @@ Note: Alternatively you can set defaults directly in the database-schema (rather
 
 ## Casting
 
-Properties defined in //static $db// are automatically casted to their [data-types](data-types) when used in templates. 
+Properties defined in *static $db* are automatically casted to their [data-types](data-types) when used in templates. 
 You can also cast the return-values of your custom functions (e.g. your "virtual properties").
 Calling those functions directly will still return whatever type your php-code generates,
 but using the //obj()//-method or accessing through a template will cast the value accordig to the $casting-definition.
@@ -266,7 +266,7 @@ See [recipes:many_many-example](recipes/many_many-example) for a more in-depth e
 
 ## Adding relations
 
-Inside sapphire it doesn't matter if you're editing a //has_many//- or a //many_many//-relationship. You need to get a `[api:ComponentSet]`.
+Inside sapphire it doesn't matter if you're editing a *has_many*- or a *many_many*-relationship. You need to get a `[api:ComponentSet]`.
 
 	:::php
 	class Team extends DataObject {
@@ -321,7 +321,7 @@ You can use the flexible datamodel to get a filtered result-list without writing
 # Data Handling
 
 When saving data through the object model, you don't have to manually escape strings to create SQL-safe commands.
-You have to make sure though that certain properties are not overwritten, e.g. //ID// or //ClassName//.
+You have to make sure though that certain properties are not overwritten, e.g. *ID* or *ClassName*.
 
 ## Creation
 
@@ -401,7 +401,7 @@ Example: Disallow creation of new players if the currently logged-in player is n
 	}
 
 
-Note: There are no separate methods for //onBeforeCreate// and //onBeforeUpdate//. Please check for the existence of $this->ID to toggle these two modes, as shown in the example above.
+Note: There are no separate methods for *onBeforeCreate* and *onBeforeUpdate*. Please check for the existence of $this->ID to toggle these two modes, as shown in the example above.
 
 ## onBeforeDelete
 
@@ -435,7 +435,7 @@ See [form](form) and [recipes:forms](recipes/forms)
 
 ## Saving data with custom SQL
 
-See [sqlquery](sqlquery) for custom //INSERT//, //UPDATE//, //DELETE// queries.
+See [sqlquery](sqlquery) for custom *INSERT*, *UPDATE*, *DELETE* queries.
 
 
 

@@ -12,7 +12,7 @@ The directory-structure in Silverstripe it built on "convention over configurati
 
 ## Custom Code Structure
 
-We're using //<mysite>// as an example - arbitrary directory-names are allowed, as long as they don't collide with existing modules or the directories listes in "Core Structure".
+We're using *<mysite>* as an example - arbitrary directory-names are allowed, as long as they don't collide with existing modules or the directories listes in "Core Structure".
 
  | Directory           | Description                                                         | 
  | ---------           | -----------                                                         | 
@@ -34,7 +34,7 @@ See themes:[:themes:developing](/themes/developing)
 
 ## Module Structure
 
-Modules are currently top-level folders that need to have a //_config.php//-file present.
+Modules are currently top-level folders that need to have a *_config.php*-file present.
 They should follow the same conventions as posed in "Custom Site Structure"
 
 Example Forum:
@@ -49,7 +49,7 @@ Example Forum:
 
 ## PHP Include Paths
 
-Due to the way [ManifestBuilder](ManifestBuilder) recursively detects php-files and includes them through PHP5's //__autoload()//-feature, you don't need to worry about include paths. Feel free to structure your php-code into subdirectories inside the //code//-directory.
+Due to the way [ManifestBuilder](ManifestBuilder) recursively detects php-files and includes them through PHP5's //__autoload()//-feature, you don't need to worry about include paths. Feel free to structure your php-code into subdirectories inside the *code*-directory.
 
 # Best Practices
 

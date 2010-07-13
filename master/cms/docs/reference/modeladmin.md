@@ -8,7 +8,7 @@ In order to customize the ModelAdmin CMS interface you will need to understand h
 
 #### Requirements
 
-*  //Requires Silverstripe 2.3//
+*  *Requires Silverstripe 2.3*
 
 ## Usage
 

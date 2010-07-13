@@ -80,7 +80,7 @@ This is useful when you have various API keys on your site and separate ones for
 
 ## Customizing Error-Output
 
-You can customize "friendly error messages" in test/live-mode by creating //assets/error-500.html//.
+You can customize "friendly error messages" in test/live-mode by creating *assets/error-500.html*.
 
 # URL Variable Tools
 
@@ -110,7 +110,7 @@ Since we don't have a decent interactive debugger going, we use the following de
 
 *  There are some special [url querystring variables](urlvariabletools) that can be helpful in seeing what's going on with core modules, such as the templates.
 
-*  You can also use //$Debug// with //ViewableData// in templates.
+*  You can also use *$Debug* with *ViewableData* in templates.
 
 ### Unit Testing
 

@@ -11,7 +11,7 @@ The Member class comes with 2 static methods for getting information about the c
 
 **Member::currentUserID()**
 
-Retrieves the ID (int) of the current logged in member.  Returns //0// if user is not logged in.  Much lighter than the next method for testing if you just need to test.
+Retrieves the ID (int) of the current logged in member.  Returns *0* if user is not logged in.  Much lighter than the next method for testing if you just need to test.
 
 	:::php
 	// Is a member logged in?
@@ -24,7 +24,7 @@ Retrieves the ID (int) of the current logged in member.  Returns //0// if user i
 
 **Member::currentUser()**
 
-Returns the full //Member// Object for the current user, returns //null// if user is not logged in.
+Returns the full *Member* Object for the current user, returns *null* if user is not logged in.
 
 	:::php
 	if( $member = Member::currentUser() ) {

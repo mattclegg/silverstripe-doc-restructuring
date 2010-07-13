@@ -1,6 +1,6 @@
 # Overview
 
-In the [second tutorial](tutorial/2-extending-a-basic-site) we have learned how to add extrafields to a page type thanks to the //$db// array and how to add an image using the //$has_one// array and so create a relationship between a table and the //Image// table by storing the id of the respective //Image// in the first table. This tutorial explores all this relations between [DataObjects](/datamodel#relations) and the way to manage them easily thanks to [RelationTables](/relationtable).
+In the [second tutorial](tutorial/2-extending-a-basic-site) we have learned how to add extrafields to a page type thanks to the *$db* array and how to add an image using the *$has_one* array and so create a relationship between a table and the *Image* table by storing the id of the respective *Image* in the first table. This tutorial explores all this relations between [DataObjects](/datamodel#relations) and the way to manage them easily thanks to [RelationTables](/relationtable).
 # What are we working towards?
 
 To simulate these relations between objects, we are going to simulate the management via the CMS of the **[Google Summer Of Code 2007](http://www.silverstripe.com/google-summer-of-code-2007-we-are-in/)** that SilverStripe was part of.
@@ -31,7 +31,7 @@ You can also play with the [RelationTables](/relationtable) on the //[demo](http
 
 # GSOC Projects
 
-Before starting the relations management, we need to create a //ProjectsHolder// class where we will save the GSOC Project pages.
+Before starting the relations management, we need to create a *ProjectsHolder* class where we will save the GSOC Project pages.
 
 ** tutorial/code/ProjectsHolder.php **
 
@@ -90,9 +90,9 @@ The first step is to create the student and project objects.
 	}
 
 
-This code will create a relationship between the //Project// table and the //Student// table by storing the id of the respective //Student// in the //Project// table.
+This code will create a relationship between the *Project* table and the *Student* table by storing the id of the respective *Student* in the *Project* table.
 
-The second step is to add the table in the method //getCMSFields// which will allow you to manage the //has_one// relation.
+The second step is to add the table in the method *getCMSFields* which will allow you to manage the *has_one* relation.
 
 	:::php
 	class Project extends Page {
@@ -122,7 +122,7 @@ The second step is to add the table in the method //getCMSFields// which will al
 	
 	}
 
-Let’s walk through the parameters of the //HasOneComplexTableField// constructor.
+Let’s walk through the parameters of the *HasOneComplexTableField* constructor.
 1.  **$this** : The first object concerned by the relation
 2.  **'MyStudent'** : The name of the second object of the relation
 3.  **'Student'** : The type of the second object of the relation
@@ -141,31 +141,31 @@ You can also directly replace the last parameter by this code :
 
 Don't forget to rebuild the database using [http://localhost:3000/db/build?flush=1](http://localhost:3000/db/build?flush=1) before you proceed to the next part of this tutorial.
 
-Now that we have created our //Project// page type and //Student// data object, let’s add some content. Go into the CMS and create one //Project// page for each project listed [above](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?) under a //ProjectsHolder// page named **GSOC Projects** for instance.
+Now that we have created our *Project* page type and *Student* data object, let’s add some content. Go into the CMS and create one *Project* page for each project listed [above](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?) under a *ProjectsHolder* page named **GSOC Projects** for instance.
 
 {{:tutorial:gsoc-project-creation.png|:tutorial:gsoc-project-creation.png}}
 
-As you can see in the tab panel //Student//, the adding functionality is titled //Add Student//. However, if you want to modify this title, you have to add this code in the //getCMSFields// method of the //Project// class :
+As you can see in the tab panel *Student*, the adding functionality is titled *Add Student*. However, if you want to modify this title, you have to add this code in the *getCMSFields* method of the *Project* class :
 
 	:::php
 	      $tablefield->setAddTitle( 'A Student' );
 
 
-Select now one of the //Project// page that you have created, go in the tab panel //Student// and add all the students listed [above](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?) by clicking on the link **Add A Student** of your //HasOneComplexTableField// table.
+Select now one of the *Project* page that you have created, go in the tab panel *Student* and add all the students listed [above](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?) by clicking on the link **Add A Student** of your *HasOneComplexTableField* table.
 
 {{:tutorial:gsoc-student-creation.png|:tutorial:gsoc-student-creation.png}}
 
-After having added all the students, you will see that, in the tab panel //Student// of all the //Project// pages, the //HasOneComplexTableField// tables have the same content.
+After having added all the students, you will see that, in the tab panel *Student* of all the *Project* pages, the *HasOneComplexTableField* tables have the same content.
 
-For each //Project// page, you can now affect **one and only one** student to it ( see the [list](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?) ).
+For each *Project* page, you can now affect **one and only one** student to it ( see the [list](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?) ).
 
 {{:tutorial:gsoc-project-student-selection.png|:tutorial:gsoc-project-student-selection.png}}
 
-You will also notice, that you have the possibility to **unselect** a student which will make your //Project// page without any student affected to it.
+You will also notice, that you have the possibility to **unselect** a student which will make your *Project* page without any student affected to it.
 
-**At the moment, the //HasOneComplexTableField// table doesn't manage totally the //1-to-1// relation because you can easily select the same student for two ( or more ) differents //Project// pages which corresponds to a //1-to-many// relation.**
+**At the moment, the *HasOneComplexTableField* table doesn't manage totally the *1-to-1* relation because you can easily select the same student for two ( or more ) differents *Project* pages which corresponds to a *1-to-many* relation.**
 
-To use your //HasOneComplexTableField// table for a **1-to-1** relation, make this modification in the class //Project// :
+To use your *HasOneComplexTableField* table for a **1-to-1** relation, make this modification in the class *Project* :
 
 	:::php
 	class Project extends Page {
@@ -185,7 +185,7 @@ To use your //HasOneComplexTableField// table for a **1-to-1** relation, make th
 	
 	}
 
-Now, you will notice that by checking a student in a //Project// page, you will be unable to select him again in any other //Project// page which is the definition of a **1-to-1** relation.
+Now, you will notice that by checking a student in a *Project* page, you will be unable to select him again in any other *Project* page which is the definition of a **1-to-1** relation.
 
 
 
@@ -200,7 +200,7 @@ Now, you will notice that by checking a student in a //Project// page, you will 
 
 This relation is called a **1-to-many** relation.
 
-The first step is to create the mentor object and set the relation with the //Student// data object.
+The first step is to create the mentor object and set the relation with the *Student* data object.
 
 ** tutorial/code/Mentor.php **
 
@@ -241,9 +241,9 @@ The first step is to create the mentor object and set the relation with the //St
 	}
 
 
-This code will create a relationship between the //Student// table and the //Mentor// table by storing the id of the respective //Mentor// in the //Student// table.
+This code will create a relationship between the *Student* table and the *Mentor* table by storing the id of the respective *Mentor* in the *Student* table.
 
-The second step is to add the table in the method //getCMSFields// which will allow you to manage the //has_many// relation.
+The second step is to add the table in the method *getCMSFields* which will allow you to manage the *has_many* relation.
 
 	:::php
 	class Mentor extends Page {
@@ -275,21 +275,21 @@ The second step is to add the table in the method //getCMSFields// which will al
 	
 	}
 
-To know more about the parameters of the //HasManyComplexTableField// constructor, [check](tutorial/5-dataobject-relationship-management#project_-_student_relation) those of the //HasOneComplexTableField// constructor.
+To know more about the parameters of the *HasManyComplexTableField* constructor, [check](tutorial/5-dataobject-relationship-management#project_-_student_relation) those of the *HasOneComplexTableField* constructor.
 
 Don't forget to rebuild the database using [http://localhost:3000/db/build?flush=1](http://localhost:3000/db/build?flush=1) before you proceed to the next part of this tutorial.
 
-Now that we have created our //Mentor// page type, go into the CMS and create one //Mentor// page for each mentor listed [above](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?) under a simple //Page// named **Mentors** for instance.
+Now that we have created our *Mentor* page type, go into the CMS and create one *Mentor* page for each mentor listed [above](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?) under a simple *Page* named **Mentors** for instance.
 
 {{:tutorial:gsoc-mentor-creation.png|:tutorial:gsoc-mentor-creation.png}}
 
-For each //Mentor// page, you can now affect **many** students created previously ( see the [list](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?) ) by going in the tab panel //Students//.
+For each *Mentor* page, you can now affect **many** students created previously ( see the [list](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?) ) by going in the tab panel *Students*.
 
 {{:tutorial:gsoc-mentor-student-selection.png|:tutorial:gsoc-mentor-student-selection.png}}
 
-You will also notice, that by checking a student in a //Mentor// page, you will be unable to select him again in any other //Mentor// page which is the definition of a **1-to-many** relation.
+You will also notice, that by checking a student in a *Mentor* page, you will be unable to select him again in any other *Mentor* page which is the definition of a **1-to-many** relation.
 
-As the //HasOneComplexTableField// table, you also have the possibility not to select any student which will make your //Mentor// page without any student affected to it.
+As the *HasOneComplexTableField* table, you also have the possibility not to select any student which will make your *Mentor* page without any student affected to it.
 
 
 
@@ -308,7 +308,7 @@ As the //HasOneComplexTableField// table, you also have the possibility not to s
 
 This relation is called a **many-to-many** relation.
 
-The first step is to create the module object and set the relation with the //Project// page type.
+The first step is to create the module object and set the relation with the *Project* page type.
 
 ** tutorial/code/Module.php **
 
@@ -343,9 +343,9 @@ The first step is to create the module object and set the relation with the //Pr
 	}
 
 
-This code will create a relationship between the //Project// table and the //Module// table by storing the ids of the respective //Project// and //Module// in a another table named **Project_Modules**.
+This code will create a relationship between the *Project* table and the *Module* table by storing the ids of the respective *Project* and *Module* in a another table named **Project_Modules**.
 
-The second step is to add the table in the method //getCMSFields// which will allow you to manage the //many_many// relation.
+The second step is to add the table in the method *getCMSFields* which will allow you to manage the *many_many* relation.
 
 	:::php
 	class Project extends Page {
@@ -375,21 +375,21 @@ The second step is to add the table in the method //getCMSFields// which will al
 	
 	}
 
-To know more about the parameters of the //ManyManyComplexTableField// constructor, [check](tutorial/5-dataobject-relationship-management#project_-_student_relation) those of the //HasOneComplexTableField// constructor.
+To know more about the parameters of the *ManyManyComplexTableField* constructor, [check](tutorial/5-dataobject-relationship-management#project_-_student_relation) those of the *HasOneComplexTableField* constructor.
 
 Don't forget to rebuild the database using [http://localhost:3000/db/build?flush=1](http://localhost:3000/db/build?flush=1) before you proceed to the next part of this tutorial.
 
-Select now one of the //Project// page, go in the tab panel //Modules// and add all the modules listed [above](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?) by clicking on the link **Add A Module** of your //ManyManyComplexTableField// table.
+Select now one of the *Project* page, go in the tab panel *Modules* and add all the modules listed [above](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?) by clicking on the link **Add A Module** of your *ManyManyComplexTableField* table.
 
 {{:tutorial:gsoc-module-creation.png|:tutorial:gsoc-module-creation.png}}
 
-For each //Project// page, you can now affect **many** modules created previously ( see the [list](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?) ) by going in the tab panel //Modules//.
+For each *Project* page, you can now affect **many** modules created previously ( see the [list](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?) ) by going in the tab panel *Modules*.
 
 {{:tutorial:gsoc-project-module-selection.png|:tutorial:gsoc-project-module-selection.png}}
 
-You will also notice, that you are able to select several times a //Module// on different //Project// pages which is the definition of a **many-to-many** relation.
+You will also notice, that you are able to select several times a *Module* on different *Project* pages which is the definition of a **many-to-many** relation.
 
-As the //HasOneComplexTableField// and //HasManyComplexTableField// table, you also have the possibility not to select any module which will make your //Project// page without any module affected to it.
+As the *HasOneComplexTableField* and *HasManyComplexTableField* table, you also have the possibility not to select any module which will make your *Project* page without any module affected to it.
 
 
 
@@ -433,15 +433,15 @@ As the //HasOneComplexTableField// and //HasManyComplexTableField// table, you a
 
 # Displaying the data on your website
 
-Now that we have created all the //Page// and //DataObject// classes necessary and the [RelationTables](/relationtable) to manage the [relations](/datamodel#relations) between them, we would like to see these relations on the website.
+Now that we have created all the *Page* and *DataObject* classes necessary and the [RelationTables](/relationtable) to manage the [relations](/datamodel#relations) between them, we would like to see these relations on the website.
 
-We will see in this section how to display all these relations but also how to create a template for a //DataObject//.
+We will see in this section how to display all these relations but also how to create a template for a *DataObject*.
 
-For every kind of //Page// or //DataObject//, you can access to their relations thanks to the **control** loop.
+For every kind of *Page* or *DataObject*, you can access to their relations thanks to the **control** loop.
 
 **__1. GSOC Projects__**
 
-Let's start with the //ProjectsHolder// page created before. For this template, we are will display the same table than [above](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?).
+Let's start with the *ProjectsHolder* page created before. For this template, we are will display the same table than [above](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?).
 
 {{:tutorial:gsoc-projects-table.png|:tutorial:gsoc-projects-table.png}}
 
@@ -537,9 +537,9 @@ Let's start with the //ProjectsHolder// page created before. For this template, 
 
 **__2. Project__**
 
-We know now how to easily access and show [relations](/datamodel#relations) between //DataObject// in a template.
+We know now how to easily access and show [relations](/datamodel#relations) between *DataObject* in a template.
 
-We can now do the same for every //Project// page by creating its own template.
+We can now do the same for every *Project* page by creating its own template.
 
 {{:tutorial:gsoc-project.png|:tutorial:gsoc-project.png}}
 
@@ -605,7 +605,7 @@ We can now do the same for every //Project// page by creating its own template.
 	</div>
 
 
-What we would like now is to create a special template for the //DataObject// //Student// and the //Page// //Mentor// which will be used when we will call directly the variable in the //Project// template. In our case, we will use the same template because these two classes have the same fields ( FirstName, Surname and Nationality ).
+What we would like now is to create a special template for the *DataObject* *Student* and the *Page* *Mentor* which will be used when we will call directly the variable in the *Project* template. In our case, we will use the same template because these two classes have the same fields ( FirstName, Surname and Nationality ).
 
 ** tutorial/templates/Includes/GSOCPerson.ss **
 
@@ -615,7 +615,7 @@ What we would like now is to create a special template for the //DataObject// //
 	<p>Nationality: <strong>$Nationality</strong></p>
 
 
-Now the template is created, we need to establish the link between the //Student// and //Mentor// classes with their common template.
+Now the template is created, we need to establish the link between the *Student* and *Mentor* classes with their common template.
 
 To do so, add this code in the two classes.
 
@@ -628,7 +628,7 @@ To do so, add this code in the two classes.
 	   }
 
 
-We can now modify the //Project// template.
+We can now modify the *Project* template.
 
 	:::html
 	
@@ -654,7 +654,7 @@ We can now modify the //Project// template.
 	
 
 
-In the //Project// template, it has been really easy to display the **1-to-1** relation with a //Student// object just by calling the variable **$MyStudent**. This has been made possible thanks to the code below present in the //Project// class.
+In the *Project* template, it has been really easy to display the **1-to-1** relation with a *Student* object just by calling the variable **$MyStudent**. This has been made possible thanks to the code below present in the *Project* class.
 
 	:::php
 	static $has_one = array(
@@ -662,17 +662,17 @@ In the //Project// template, it has been really easy to display the **1-to-1** r
 	);
 
 
-However, in the //Student// class, there is no any code relating to the **1-to-1** relation with a //Project// //Page//. So how to access it from a //Student// //DataObject// ?
+However, in the *Student* class, there is no any code relating to the **1-to-1** relation with a *Project* *Page*. So how to access it from a *Student* *DataObject* ?
 
 **__3. Mentor__**
 
-In this template, we are gonna try to access the //Project// details from a //Student// //DataObject//.
+In this template, we are gonna try to access the *Project* details from a *Student* *DataObject*.
 
-What we want to do is to access to the //Project// page in the same way than we have done for the other relations **without modifying the relations between //Page// and //DataObject// and the database structure**.
+What we want to do is to access to the *Project* page in the same way than we have done for the other relations **without modifying the relations between *Page* and *DataObject* and the database structure**.
 
 {{:tutorial:gsoc-mentor.png|:tutorial:gsoc-mentor.png}}
 
-To do so, we have to create a function in the //Student// class which will return the //Project// linked with it. Let's call it //MyProject// for instance.
+To do so, we have to create a function in the *Student* class which will return the *Project* linked with it. Let's call it *MyProject* for instance.
 
 	:::php
 	class Student extends DataObject {
@@ -687,7 +687,7 @@ To do so, we have to create a function in the //Student// class which will retur
 
 
 We can now use this value in the same way that we have used the other relations.
-That's how we can use this function in the //Mentor// template.
+That's how we can use this function in the *Mentor* template.
 
 ** tutorial/templates/Layout/Mentor.ss **
 
@@ -755,7 +755,7 @@ That's how we can use this function in the //Mentor// template.
 
 # Summary
 
-This tutorial has demonstrated how easy it is to manage all the type of relations between //DataObject// objects in the CMS and how to display them on the website.
+This tutorial has demonstrated how easy it is to manage all the type of relations between *DataObject* objects in the CMS and how to display them on the website.
 
 
 

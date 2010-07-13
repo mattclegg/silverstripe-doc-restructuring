@@ -58,9 +58,9 @@ Eg for blackcandy I put this above the closing </div>
 
 # Writing your own widgets
 
-To create a Widget you need at least three files - a php file containing the class, a template file of the same name and a config file called //_config.php// (if you dont need any config options for the widget to work then you can make it blank). Each widget should be in its own folder like widgets_widgetName/
+To create a Widget you need at least three files - a php file containing the class, a template file of the same name and a config file called *_config.php* (if you dont need any config options for the widget to work then you can make it blank). Each widget should be in its own folder like widgets_widgetName/
 
-After installing or creating a new widget, **make sure to run db/build?flush=1** at the end of the URL, //before// attempting to use it.
+After installing or creating a new widget, **make sure to run db/build?flush=1** at the end of the URL, *before* attempting to use it.
 
 The class should extend the Widget class, and must specify three static variables - $title, the title that will appear in the rendered widget (eg Photos), $cmsTitle, a more descriptive title that will appear in the cms editor (eg Flickr Photos), and $description, a short description that will appear in the cms editor (eg This widget shows photos from Flickr). The class may also specify functions to be used in the template like a page type can.
 
@@ -200,7 +200,7 @@ This returns the value inputted in the CMS, if it's set or what is in the $title
 
 //Requires SilverStripe 2.4 or newer//
 
-To implement a form inside a widget, you need to implement a custom controller for your widget to return this form. Make sure that your controller follows the usual naming conventions, and it will be automatically picked up by the [:WidgetArea](http://api.silverstripe.org/trunk/sapphire/widgets/WidgetArea.html) rendering in your //Page.ss// template.
+To implement a form inside a widget, you need to implement a custom controller for your widget to return this form. Make sure that your controller follows the usual naming conventions, and it will be automatically picked up by the [:WidgetArea](http://api.silverstripe.org/trunk/sapphire/widgets/WidgetArea.html) rendering in your *Page.ss* template.
 
 //mysite/code/MyWidget.php//
 
@@ -240,7 +240,7 @@ To output this form, modify your widget template.
 	$MyFormName
 
 
-Note: The necessary controller actions are only present in subclasses of [Page_Controller](Page_Controller). To use widget forms in other controller subclasses, have a look at //ContentController->handleWidget()// and //ContentController::$url_handlers//.
+Note: The necessary controller actions are only present in subclasses of [Page_Controller](Page_Controller). To use widget forms in other controller subclasses, have a look at //ContentController->handleWidget()// and *ContentController::$url_handlers*.
 
 See an [alternative recipe for SilverStripe 2.3 or earlier](/recipes/widget-forms-2.3).
 

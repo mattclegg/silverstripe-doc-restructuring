@@ -37,7 +37,7 @@ Warning: If you're upgrading from a SilverStripe version prior to 2.3.2, please 
 =====Configuration=====
 ### ThroughObject::add_extension()====
 
-Enabling Translatable through //Object::add_extension()// in your //mysite/_config.php//:
+Enabling Translatable through //Object::add_extension()// in your *mysite/_config.php*:
 
 	:::php
 	Object::add_extension('SiteTree', 'Translatable');
@@ -264,7 +264,7 @@ Place this in your Page_Controller->init() method:
 ### Templates
 
 As every page has its own unique URL, language selection mostly happens explicitly: A user requests a page, which always has only one language. But how does a user coming to your English default language know that there's a Japanese version of this page? 
-By default, SilverStripe core doesn't provide any switching of languages through sessions or browser cookies. As a SEO-friendly CMS, it contains all this information in the URL. Each page in SilverStripe is aware of its translations through the //getTranslations()// method. We can use this method in our template to build a simple language switcher. It shows all available translations in an unordered list with links to the same page in a different language. The example below can be inserted in any of your templates, for example //themes/blackcandy/templates/Layout/Page.ss//.
+By default, SilverStripe core doesn't provide any switching of languages through sessions or browser cookies. As a SEO-friendly CMS, it contains all this information in the URL. Each page in SilverStripe is aware of its translations through the //getTranslations()// method. We can use this method in our template to build a simple language switcher. It shows all available translations in an unordered list with links to the same page in a different language. The example below can be inserted in any of your templates, for example *themes/blackcandy/templates/Layout/Page.ss*.
 
 	:::php
 	<% if Translations %>

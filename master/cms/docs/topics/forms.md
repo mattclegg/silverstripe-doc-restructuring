@@ -146,9 +146,9 @@ Readonly on a FormField
 
 //Required Silverstripe 2.3 for some displayed functionality//
 
-You can use a custom form template to render with, instead of //Form.ss//
+You can use a custom form template to render with, instead of *Form.ss*
 
-It's recommended you only do this if you've got a lot of presentation text, graphics that surround the form fields. This is better than defining those as //LiteralField// objects, as it doesn't clutter the data layer with presentation junk.
+It's recommended you only do this if you've got a lot of presentation text, graphics that surround the form fields. This is better than defining those as *LiteralField* objects, as it doesn't clutter the data layer with presentation junk.
 
 First of all, you need to create your form on it's own class, that way you can define a custom template using a ''forTemplate()'' method on your Form class.
 
@@ -182,9 +182,9 @@ First of all, you need to create your form on it's own class, that way you can d
 	}
 
 
-''forTemplate()'' tells the Form class to render with a template of return value of ''$this->class'', which in this case is //MyForm//, the name of the class. If the template doesn't exist, then it falls back to using Form.ss
+''forTemplate()'' tells the Form class to render with a template of return value of ''$this->class'', which in this case is *MyForm*, the name of the class. If the template doesn't exist, then it falls back to using Form.ss
 
-//MyForm.ss// should then be placed into your //templates/Includes// directory for your project. Here is an example of basic customisation:
+//MyForm.ss// should then be placed into your *templates/Includes* directory for your project. Here is an example of basic customisation:
 
 	:::html
 	<form $FormAttributes>
@@ -222,7 +222,7 @@ To find more methods, have a look at the Form class, as there is a lot of differ
 
 ## Securing forms against Cross-Site Request Forgery (CSRF)
 
-SilverStripe tries to protect users against //Cross-Site Request Forgery (CSRF)// by adding a hidden //SecurityID// parameter to each form. See [secure-development](secure-development) for details.
+SilverStripe tries to protect users against //Cross-Site Request Forgery (CSRF)// by adding a hidden *SecurityID* parameter to each form. See [secure-development](secure-development) for details.
 
 ## Remove existing fields
 

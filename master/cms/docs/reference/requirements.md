@@ -80,7 +80,7 @@ You can also quote custom script directly.  This may seem a bit ugly, but is use
 
 ## Templated javascript
 
-A variant on the inclusion of custom javascript is the inclusion of //templated// javascript.  Here, you keep your JavaScript in a separate file and instead load, via search and replace, several PHP-generated variables into that code.
+A variant on the inclusion of custom javascript is the inclusion of *templated* javascript.  Here, you keep your JavaScript in a separate file and instead load, via search and replace, several PHP-generated variables into that code.
 
 	:::php
 	$vars = array(
@@ -102,13 +102,13 @@ You can also clear specific Requirements:
 	:::php
 	Requirements::clear('jsparty/prototype.js');
 
-Caution: Depending on where you call this command, a Requirement might be //re-included// afterwards.
+Caution: Depending on where you call this command, a Requirement might be *re-included* afterwards.
 
 
 
 ## Inclusion Order
 
-Requirements acts like a stack, where everything is rendered sequentially in the order it was included. There is no way to change inclusion-order, other than using //Requirements::clear// and rebuilding (=guessing) the whole set of requirements. Caution: Inclusion order is both relevant for CSS and Javascript files in terms of dependencies, inheritance and overlays - please be careful when messing with the order of Requirements.
+Requirements acts like a stack, where everything is rendered sequentially in the order it was included. There is no way to change inclusion-order, other than using *Requirements::clear* and rebuilding (=guessing) the whole set of requirements. Caution: Inclusion order is both relevant for CSS and Javascript files in terms of dependencies, inheritance and overlays - please be careful when messing with the order of Requirements.
 
 NOTE:
 By default, SilverStripe includes all Javascript files at the bottom of the page body. If this causes problems for you, for example if you're using animation that ends up showing everything until the bottom of the page loads, or shows buttons before pushing them will actually work, you can change this behaviour:

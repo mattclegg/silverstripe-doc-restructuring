@@ -34,7 +34,7 @@ Relations (has_many/many_many) are described in `[api:ComponentSet]`, a subclass
 
 ## Grouping
 
-You can group a set by a specific column. Consider using [SQLQuery](SQLQuery) with a //GROUP BY// statement for enhanced performance.
+You can group a set by a specific column. Consider using [SQLQuery](SQLQuery) with a *GROUP BY* statement for enhanced performance.
 `$groupedSet = $mySet->groupBy('Lastname');`{php}
 
 ## Sorting
@@ -84,7 +84,7 @@ It is good practice to check for empty sets before doing any iteration.
 ## Paging
 
 DataObjects have native support for dealing with **pagination**.
-See //setPageLimits//, //setPageLength//, etc.
+See *setPageLimits*, *setPageLength*, etc.
 
 FIXME Complete pagination documentation
 

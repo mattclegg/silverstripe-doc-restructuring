@@ -23,7 +23,7 @@ We are going to add a site map to your site. The site map will contain a list of
 
 # Step 1: Creating the page type
 
-We now need to create a page type so we can display the site map. Navigate to your ///mysite/code// directory and create a new file called **SiteMap.php**. SiteMap.php should contain the following:
+We now need to create a page type so we can display the site map. Navigate to your */mysite/code* directory and create a new file called **SiteMap.php**. SiteMap.php should contain the following:
 
 	:::php
 	<?php
@@ -82,7 +82,7 @@ We now need to create a page type so we can display the site map. Navigate to yo
 
 # Step 2: Rebuild the Database
 
-Before continuing, we need to flush the database so that SilverStripe knows that we've just added a new page type. Visit //http://yoursite.com/dev/build //.  You should be presented with a screen that looks like the following:
+Before continuing, we need to flush the database so that SilverStripe knows that we've just added a new page type. Visit *http:*yoursite.com/dev/build //.  You should be presented with a screen that looks like the following:
 
 {{:tutorial:site-map-build.jpg|:tutorial:site-map-build.jpg}}
 
@@ -97,7 +97,7 @@ Launch the CMS (or refresh if the CMS was open when you rebuilt the database) an
 
 # Step 4: Create the template for the site map
 
-Next we need to create the template used to display the site map. You need to create a file called **SiteMap.ss** in the following location: ///mysite/templates/Layout/SiteMap.ss//. You'll know that you have the right directory becuase there should already be a Page.ss file in there. If you're following the turotials, you might find /tutorial/templates/Layout/SiteMap.ss will work for you.
+Next we need to create the template used to display the site map. You need to create a file called **SiteMap.ss** in the following location: */mysite/templates/Layout/SiteMap.ss*. You'll know that you have the right directory becuase there should already be a Page.ss file in there. If you're following the turotials, you might find /tutorial/templates/Layout/SiteMap.ss will work for you.
 
 SiteMap needs to include "**$SiteMap**" where you want the site map to appear. Here's an example from the Blackcandy theme:
 

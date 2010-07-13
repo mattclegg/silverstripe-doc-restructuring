@@ -55,7 +55,7 @@ See more information on conditional logic on http://doc.silverstripe.org/doku.ph
 
 ## Site wide settings
 
-Since 2.4.0, SilverStripe provides a generic interface for accessing global properties such as //Site name// or //Site tag line//. This interface is implemented by the [SiteConfig](siteconfig) class.
+Since 2.4.0, SilverStripe provides a generic interface for accessing global properties such as *Site name* or *Site tag line*. This interface is implemented by the [SiteConfig](siteconfig) class.
 
 ## Controlling Parents and Children
 

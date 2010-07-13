@@ -56,7 +56,7 @@ SilverStripe will work on the following web servers:
 *  Apache with mod_rewrite and "AllowOverride All" set
 *  IIS 7.x with [URL Rewrite Module](http://www.iis.net/expand/URLRewrite) (installer supported in SilverStripe 2.4+)
 
-SilverStripe //may// work on the following, but it has not been tested by the core team:
+SilverStripe *may* work on the following, but it has not been tested by the core team:
 
 *  IIS 5 and 6
 *  lighttpd
@@ -76,7 +76,7 @@ Some detailed notes on web server setup:
 
 
     * The Apache server needs to be restarted for the configuration changes to take effect.
-    * We suggest using mod_deflate/gzip to compress HTML/CSS/JS etc and thus improve page loading times //this applies to any website constructed , not just to SilverStripe//
+    * We suggest using mod_deflate/gzip to compress HTML/CSS/JS etc and thus improve page loading times *this applies to any website constructed , not just to SilverStripe*
 *  lighttpd 1.4+ with access to the server configuration. (See [installation-on-lighttpd](installation-on-lighttpd)
 *  Silverstripe makes uses the geoiplookup to get the visitors' location (with an ip2country function).  In order for this to work, you must have the geoiplookup application installed on your server. Silverstripe will run fine without it.
 

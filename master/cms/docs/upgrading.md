@@ -25,8 +25,8 @@ Usually an update or upgrade your SilverStripe installation just means overwriti
 *  Backup your database
 *  Backup your webroot
 *  Download the new release and uncompress it to a temporary folder
-*  Leave custom folders like //mysite// or //themes// in place.
-*  Identify system folders in your webroot (//cms//, //sapphire// and any additional modules). 
+*  Leave custom folders like *mysite* or *themes* in place.
+*  Identify system folders in your webroot (//cms//, *sapphire* and any additional modules). 
     * Delete existing system folders (or move them outside of your webroot)
     * Extract and replace system folders from your download (//Deleting instead of "copying over" existing folders ensures that files removed from the new SilverStripe release are not persisting in your installation//)
 *  Visit http://yoursite.com/dev/build/?flush=1 (adds new fields/tables to the database, and empties your template cache)

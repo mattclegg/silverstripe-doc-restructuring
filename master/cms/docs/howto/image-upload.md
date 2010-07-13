@@ -86,7 +86,7 @@ Now, we need to change the has_one relation for the image:
 
 Lets step through this:
 
-First we define a new class of Page_BannerImage. Remember the class is in the form of PageClass_ImageFieldName, in case of this, a field of BannerImage in Page. //If you want to create an Image extention class that is not in this form it must go into its own file, for example a class called 'BannerImage' would need to go into a file called BannerImage.php.//
+First we define a new class of Page_BannerImage. Remember the class is in the form of PageClass_ImageFieldName, in case of this, a field of BannerImage in Page. *If you want to create an Image extention class that is not in this form it must go into its own file, for example a class called 'BannerImage' would need to go into a file called BannerImage.php.*
 
 You can create any generate function, eg. function generateThumbnail, or function generateBanner. This allows us to create multiple versions of the same image, for example thumbnails and large versions for a news feed.
 

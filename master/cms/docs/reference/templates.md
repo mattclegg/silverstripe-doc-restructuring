@@ -264,7 +264,7 @@ will give "1, 1, 1", not "1, 2, 3"
 
 This is all very well and good, but how do the templates actually get called?  
 
-Templates do nothing on their own.  Rather, they are used to render //a particular object//.  All of the <% if %>, <% control %>, and variable codes are methods or parameters that are called //on that object//.  All that is necessary is that the object is an instance of ViewableData (or one of its subclasses).
+Templates do nothing on their own.  Rather, they are used to render *a particular object*.  All of the <% if %>, <% control %>, and variable codes are methods or parameters that are called *on that object*.  All that is necessary is that the object is an instance of ViewableData (or one of its subclasses).
 
 The key is ViewableData::renderWith().  This method is passed a For example, within the controller's default action, there is an instruction of the following sort:
 

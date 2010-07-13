@@ -1,6 +1,6 @@
 # Overview
 
-This is a short tutorial demonstrating how to add search functionality to a SilverStripe site. It is recommended that you have completed the earlier tutorials, especially the tutorial on forms, before attempting this tutorial. While this tutorial will add search functionality to the site built in the previous tutorials, it should be straight forward to follow this tutorial on any site of your own. If you are adding the search form to the tutorial site, please get {{layout.css|this updated css file}} and place it in //themes/tutorial/css// (as layout.css) and this {{search-file.gif|search file tree icon}} search file tree icon and place it in //themes/tutorial/images/treeicons// (as search-file.gif).
+This is a short tutorial demonstrating how to add search functionality to a SilverStripe site. It is recommended that you have completed the earlier tutorials, especially the tutorial on forms, before attempting this tutorial. While this tutorial will add search functionality to the site built in the previous tutorials, it should be straight forward to follow this tutorial on any site of your own. If you are adding the search form to the tutorial site, please get {{layout.css|this updated css file}} and place it in *themes/tutorial/css* (as layout.css) and this {{search-file.gif|search file tree icon}} search file tree icon and place it in *themes/tutorial/images/treeicons* (as search-file.gif).
 
 # What are we working towards?
 
@@ -32,7 +32,7 @@ The actual search form code is already provided in FulltextSearchable so when yo
 SilverStripe 2.3 came bundled with the code as well as a MySQL Search engine. If you are using the blackcandy theme you should have everything you need already to have a search. If you are using the tutorial theme then you can simply skip down to 'Adding the search form' as the PHP code is already provided in Page.php. If it is not then you can follow the instructions below as well.
 ## 2.2
 
-If you are using SilverStripe 2.2 or earlier then you need to define your own code. The first step in implementing search on your site is to create a form for the user to type their query. Create a function named //SearchForm// on the //Page_Controller// class (//mysite/code/Page.php//).
+If you are using SilverStripe 2.2 or earlier then you need to define your own code. The first step in implementing search on your site is to create a form for the user to type their query. Create a function named *SearchForm* on the *Page_Controller* class (//mysite/code/Page.php//).
 
 	:::php
 	class Page_Controller extends ContentController {
@@ -56,7 +56,7 @@ If you are using SilverStripe 2.2 or earlier then you need to define your own co
 
 # Adding the search form
 
-We then just need to add the search form to the template. Add //$SearchForm// to the 'Header' div in //themes/tutorial/templates/Page.ss//.
+We then just need to add the search form to the template. Add *$SearchForm* to the 'Header' div in *themes/tutorial/templates/Page.ss*.
 
 //themes/tutorial/templates/Page.ss//
 
@@ -71,7 +71,7 @@ We then just need to add the search form to the template. Add //$SearchForm// to
 
 # Showing the results
 
-Next we need to create the //results// function.
+Next we need to create the *results* function.
 
 //mysite/code/Page.php//
 
@@ -94,14 +94,14 @@ Next we need to create the //results// function.
 
 First we populate an array with the data we wish to pass to the template - the search results, query and title of the page. The final line is a little more complicated.
 
-When we call a function by its url (eg http://localhost/home/results), SilverStripe will look for a template with the name //PageType//_//function//.ss. As we are implementing the //results// function on the //Page// page type, we create our results page template as //Page_results.ss//. Unfortunately this doesn't work when we are using page types that are children of the //Page// page type. For example, if someone used the search on the homepage, it would be rendered with //Homepage.ss// rather than //Page_results.ss//. SilverStripe always looks for the template from the most specific page type first, so in this case it would use the first template it finds in this list:
+When we call a function by its url (eg http://localhost/home/results), SilverStripe will look for a template with the name *PageType*_//function//.ss. As we are implementing the *results* function on the *Page* page type, we create our results page template as *Page_results.ss*. Unfortunately this doesn't work when we are using page types that are children of the *Page* page type. For example, if someone used the search on the homepage, it would be rendered with *Homepage.ss* rather than *Page_results.ss*. SilverStripe always looks for the template from the most specific page type first, so in this case it would use the first template it finds in this list:
 
 *  HomePage_results.ss
 *  HomePage.ss
 *  Page_results.ss
 *  Page.ss
 
-We can override this list by using the //renderWith// function. The //renderWith// function takes an array of the names of the templates you wish to render the page with. Here we first add the data to the page by using the 'customise' function, and then attempt to render it with //Page_results.ss//, falling back to //Page.ss// if there is no //Page_results.ss//.
+We can override this list by using the *renderWith* function. The *renderWith* function takes an array of the names of the templates you wish to render the page with. Here we first add the data to the page by using the 'customise' function, and then attempt to render it with *Page_results.ss*, falling back to *Page.ss* if there is no *Page_results.ss*.
 
 
 # Creating the template
