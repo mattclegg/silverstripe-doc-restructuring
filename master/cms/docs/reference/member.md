@@ -1,4 +1,4 @@
-**This is partially deprecated - see the [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html) page for more information**
+**This is partially deprecated - see the `[api:DataObject]` page for more information**
 
 # Introduction
 

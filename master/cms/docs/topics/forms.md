@@ -8,9 +8,9 @@ Creating a form is a matter of defining a method to represent that form.  This m
 
 *  ''$controller'': This must be the controller that contains the form.
 *  ''$name'': This must be the name of the method on that controller that is called to return the form.  The first two fields allow the form object to be re-created after submission.  **It's vital that they are properly set - if you ever have problems with form action handler not working, check that these values are correct.*
-*  ''$fields'': A [FieldSet](http://api.silverstripe.org/trunk/forms/core/FieldSet.html) containing all the [Form](http://api.silverstripe.org/trunk/forms/core/Form.html)s that make up the editable portion of the form.
-*  ''$actions'': A [FieldSet](http://api.silverstripe.org/trunk/forms/core/FieldSet.html) containing all the [Form](http://api.silverstripe.org/trunk/forms/core/Form.html)s that make up the control portion of the form - the butons at the bottom.
-*  ''$validator'': An optional [Validator](http://api.silverstripe.org/trunk/forms/validators/Validator.html) object to define form validation.  Form validation is done on a per-form basis, rather than per-field basis.  See [Validator](http://api.silverstripe.org/trunk/forms/validators/Validator.html) for more information.
+*  ''$fields'': A `[api:FieldSet]`s that make up the editable portion of the form.
+*  ''$actions'': A `[api:FieldSet]`s that make up the control portion of the form - the butons at the bottom.
+*  ''$validator'': An optional `[api:Validator]` for more information.
 
 	:::php
 	function MyCustomForm() {
@@ -49,16 +49,16 @@ with the right parameters.  You may choose to take $fields and $actions as argum
 The real difference, however, is that you can then define your controller methods within the form class itself.
 # Form Field Types
 
-There are many classes extending [FormField](http://api.silverstripe.org/current/forms/core/FormField.html). Some examples:
+There are many classes extending `[api:FormField]`. Some examples:
 
-*  [TextField](http://api.silverstripe.org/current/forms/fields-basic/TextField.html)
-*  [EmailField](http://api.silverstripe.org/current/forms/fields-basic/EmailField.html)
-*  [NumericField](http://api.silverstripe.org/current/forms/fields-basic/NumericField.html)
-*  [DateField](http://api.silverstripe.org/current/forms/fields-basic/DateField.html)
-*  [CheckboxField](http://api.silverstripe.org/current/forms/fields-basic/CheckboxField.html)
-*  [DropdownField](http://api.silverstripe.org/current/forms/fields-basic/DropdownField.html)
-*  [OptionsetField](http://api.silverstripe.org/current/forms/fields-basic/OptionsetField.html)
-*  [CheckboxSetField](http://api.silverstripe.org/current/forms/fields-basic/CheckboxSetField.html)
+*  `[api:TextField]`
+*  `[api:EmailField]`
+*  `[api:NumericField]`
+*  `[api:DateField]`
+*  `[api:CheckboxField]`
+*  `[api:DropdownField]`
+*  `[api:OptionsetField]`
+*  `[api:CheckboxSetField]`
 
 Full overview at [form-field-types](form-field-types)
 

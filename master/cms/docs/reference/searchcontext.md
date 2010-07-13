@@ -2,10 +2,10 @@
 
 ## Introduction
 
-Manages searching of properties on one or more [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html) types, based on a given set of input parameters. SearchContext is intentionally decoupled from any controller-logic,
+Manages searching of properties on one or more `[api:DataObject]` types, based on a given set of input parameters. SearchContext is intentionally decoupled from any controller-logic,
 it just receives a set of search parameters and an object class it acts on.
 
-The default output of a SearchContext is either a [SQLQuery](SQLQuery) object for further refinement, or a [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html) instance.
+The default output of a SearchContext is either a [SQLQuery](SQLQuery) object for further refinement, or a `[api:DataObject]` instance.
 
 In case you need multiple contexts, consider namespacing your request parameters by using ''FieldSet->namespace()'' on the $fields constructor parameter.
 

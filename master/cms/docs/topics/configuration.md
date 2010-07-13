@@ -49,7 +49,7 @@ Some constants are user-defineable within //_ss_environment.php//.
 
 ## User-level: Member-object
 
-All user-related preferences are stored as a property of the [Member](Member)-class (and as a database-column in the //Member//-table). You can "mix in" your custom preferences by using [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html) for details.
+All user-related preferences are stored as a property of the [Member](Member)-class (and as a database-column in the //Member//-table). You can "mix in" your custom preferences by using `[api:DataObject]` for details.
 
 ## Permissions
 

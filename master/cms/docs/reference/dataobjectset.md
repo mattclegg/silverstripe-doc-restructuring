@@ -2,7 +2,7 @@
 
 This class represents a set of [database objects](dataobject), such as the results of a query. It is the base for all [datamodel](datamodel)-related querying. It implements the [Iterator interface](http://php.net/manual/en/language.oop5.iterations.php) introduced in PHP5.
 
-Relations (has_many/many_many) are described in [ComponentSet](http://api.silverstripe.org/trunk/sapphire/model/ComponentSet.html), a subclass of DataObjectSet.
+Relations (has_many/many_many) are described in `[api:ComponentSet]`, a subclass of DataObjectSet.
 
 # Usage
 

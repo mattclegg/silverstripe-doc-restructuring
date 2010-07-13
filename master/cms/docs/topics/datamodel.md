@@ -6,7 +6,7 @@ Silverstripe uses an [object-relational model](http://en.wikipedia.org/wiki/Obje
 *  Each database-row maps to a php-object
 *  Each database-column maps to a property on a php-object
  
-All data tables in Silverstripe are defined as subclasses of [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html). Inheritance is supported in the data model: seperate tables will be linked together, the data spread across these tables. The mapping and saving/loading logic is handled by sapphire, you don't need to worry about writing SQL most of the time. 
+All data tables in Silverstripe are defined as subclasses of `[api:DataObject]`. Inheritance is supported in the data model: seperate tables will be linked together, the data spread across these tables. The mapping and saving/loading logic is handled by sapphire, you don't need to worry about writing SQL most of the time. 
 
 The advanced object-relational layer in Silverstripe is one of the main reasons for requiring PHP5. Most of its customizations are possible through [PHP5 Object Overloading](http://www.onlamp.com/pub/a/php/2005/06/16/overloading.html) handled in the [Object](Object)-class.
 
@@ -38,7 +38,7 @@ CAUTION: Please make sure to properly escape your SQL-snippets (see [security](s
 
 ## Joining 
 
-Passing a //$join// statement to DataObject::get will filter results further by the JOINs performed against the foreign table. **It will NOT return the additionally joined data.**  The returned //$records// will always be a [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html).
+Passing a //$join// statement to DataObject::get will filter results further by the JOINs performed against the foreign table. **It will NOT return the additionally joined data.**  The returned //$records// will always be a `[api:DataObject]`.
 
 When using //$join// statements be sure the string is in the proper format for the respective database engine.  In  MySQL the use of backticks may be necessary when referring Table Names and potentially Columns. (see [MySQL Identifiers](http://dev.mysql.com/doc/refman/5.0/en/identifiers.html)):
 
@@ -171,7 +171,7 @@ A 1-to-1 relation creates a database-column called "<relationship-name>ID", in t
 	  );
 	}
 
-Silverstripe's [SiteTree](http://api.silverstripe.org/trunk/cms/SiteTree.html) base-class for content-pages uses a 1-to-1 relationship to link to its
+Silverstripe's `[api:SiteTree]` base-class for content-pages uses a 1-to-1 relationship to link to its
 parent element in the tree:
 
 	:::php
@@ -266,7 +266,7 @@ See [recipes:many_many-example](recipes/many_many-example) for a more in-depth e
 
 ## Adding relations
 
-Inside sapphire it doesn't matter if you're editing a //has_many//- or a //many_many//-relationship. You need to get a [ComponentSet](http://api.silverstripe.org/trunk/sapphire/model/ComponentSet.html) on one side of the relationship (even if it is empty its still a valid ComponentSet) and use the //add()//-function on this (it automatically sets the correct keys in either the many_many-join-table or the has_many-foreign-key).
+Inside sapphire it doesn't matter if you're editing a //has_many//- or a //many_many//-relationship. You need to get a `[api:ComponentSet]`.
 
 	:::php
 	class Team extends DataObject {
@@ -443,7 +443,7 @@ See [sqlquery](sqlquery) for custom //INSERT//, //UPDATE//, //DELETE// queries.
 # Decorating DataObjects
 
 You can add properties and methods to existing DataObjects like [Member](Member) (a core class) without hacking core code or subclassing.
-Please see [dataobjectdecorator](dataobjectdecorator) for a general description, and [Hierarchy](http://api.silverstripe.org/trunk/sapphire/model/Hierarchy.html)/[Versioned](http://api.silverstripe.org/trunk/sapphire/model/Versioned.html) for our most popular examples.
+Please see [dataobjectdecorator](dataobjectdecorator) for a general description, and `[api:Hierarchy]` for our most popular examples.
 
 
 
@@ -455,7 +455,7 @@ Please see [dataobjectdecorator](dataobjectdecorator) for a general description,
 
 ##### Whats the difference between DataObject::get() and a relation-getter?
 You can work with both in pretty much the same way, but relationship-getters return a special type of collection: 
-A [ComponentSet](http://api.silverstripe.org/trunk/sapphire/model/ComponentSet.html) which extends [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html) with relation-specific functionality.
+A `[api:ComponentSet]` with relation-specific functionality.
 
 	:::php
 	$myTeam = DataObject::get_by_id('Team',$myPlayer->TeamID); // returns DataObjectSet

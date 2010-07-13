@@ -83,7 +83,7 @@ In this example, $A and $B refer to $obj->Property()->A() and $obj->Property()->
 	<% end_control %>
 
 
-If the method/field returned is an iterator such as a [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html), then the control block will be repeated for each element of that iterator.  This is the cornerstone of all menu and list generation in SilverStripe.  
+If the method/field returned is an iterator such as a `[api:DataObject]`, then the control block will be repeated for each element of that iterator.  This is the cornerstone of all menu and list generation in SilverStripe.  
 
 In this example, Menu(1) returns a DataObjectSet listing each top level main menu item (for more info on Menu(1): [Making a Navigation System](http://doc.silverstripe.com/doku.php?id=tutorial:1-building-a-basic-site#making_a_navigation_system)).  The <a> tag is repeated once for each main menu item, and the $Link and $Title values for each menu item is substituted in.
 
@@ -210,7 +210,7 @@ Will give you the ability to call $MyCustomValue from anywhere in your template.
 	// output "I've got one thing to say to you: <i>Hi, this is my site</i>" 
 
 
-Your function could return a single value as above or it could be a subclass of [ArrayData](ArrayData) for example a [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html) with many values then each of these could be accessible via a control loop
+Your function could return a single value as above or it could be a subclass of [ArrayData](ArrayData) for example a `[api:DataObject]` with many values then each of these could be accessible via a control loop
 
 	:::php
 	..

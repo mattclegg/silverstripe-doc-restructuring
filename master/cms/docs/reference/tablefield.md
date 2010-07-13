@@ -1,13 +1,13 @@
 # Introduction
 
-TableField behaves in the same manner as [TableListField](http://api.silverstripe.org/trunk/forms/fields-relational/TableListField.html), however allows the editing of existing and adding of new rows.
+TableField behaves in the same manner as `[api:TableListField]`, however allows the editing of existing and adding of new rows.
 The data is saved back by the surrounding form-saving (mostly EditForm->save).
 
-See [TableListField](http://api.silverstripe.org/trunk/forms/fields-relational/TableListField.html) for more documentation on the base-class
+See `[api:TableListField]` for more documentation on the base-class
 
 # Source Input
 
-See [TableListField](http://api.silverstripe.org/trunk/forms/fields-relational/TableListField.html).
+See `[api:TableListField]`.
 
 # Features
 
@@ -42,7 +42,7 @@ In this example, you'll note that we're setting TeamID to $this->ID.  This works
 The '$RecordID' value is used when building forms that create new records.  It will be populated with whatever record id is created.
 ## Row Transformation
 
-You can apply a [FormTransformation](http://api.silverstripe.org/current/forms/transformations/FormTransformation.html) (e.g. readonly or disabled) to any given field,
+You can apply a `[api:FormTransformation]` to any given field,
 based on a eval()ed php-rule. You can access all columns on the generated DataObjects here.
 
 	:::php
@@ -58,8 +58,8 @@ based on a eval()ed php-rule. You can access all columns on the generated DataOb
 
 ## Required Fields
 
-Due to the nested nature of this fields dataset, you can't set any required columns as usual with the [RequiredFields](http://api.silverstripe.org/current/sapphire/form/RequiredFields.html)-class. Please use **setRequiredFields()** on the TableField-instance for this.
-Note: You still have to attach some form of [Validator](http://api.silverstripe.org/trunk/forms/validators/Validator.html) to the form to trigger any validation on this field.
+Due to the nested nature of this fields dataset, you can't set any required columns as usual with the `[api:RequiredFields]`** on the TableField-instance for this.
+Note: You still have to attach some form of `[api:Validator]` to the form to trigger any validation on this field.
 
 ## Nested Table Fields
 

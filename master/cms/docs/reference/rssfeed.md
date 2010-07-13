@@ -1,8 +1,8 @@
 # Introduction
 
-Generating RSS/Atom-feeds is just a matter of rendering a [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html) and the Page Comment Interface.
+Generating RSS/Atom-feeds is just a matter of rendering a `[api:DataObject]` and the Page Comment Interface.
 
-RSSFeed doesn't limit you to generating "article-based" feeds, it is just as easy to create a feed of your current staff-members. The only logical limitation here is that every item in the RSS-feed should be accessible through a URL on your website, so its advisable to just create feeds from subclasses of [SiteTree](http://api.silverstripe.org/trunk/cms/SiteTree.html).
+RSSFeed doesn't limit you to generating "article-based" feeds, it is just as easy to create a feed of your current staff-members. The only logical limitation here is that every item in the RSS-feed should be accessible through a URL on your website, so its advisable to just create feeds from subclasses of `[api:SiteTree]`.
 
 # Usage
 

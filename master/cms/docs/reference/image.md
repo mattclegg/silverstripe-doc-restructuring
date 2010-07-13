@@ -6,7 +6,7 @@ Represents an image object, inheriting all base functionality from the [file](fi
 
 ## Form Fields
 
-*  [Image](http://api.silverstripe.org/trunk/sapphire/model/Image.html). Designed to provide a complex image uploader for the CMS.
+*  `[api:Image]`. Designed to provide a complex image uploader for the CMS.
 *  [SimpleImageField](SimpleImageField). A Simple Image Upload Form
 *  See [recipes:imageupload](recipes/imageupload) for a example
 

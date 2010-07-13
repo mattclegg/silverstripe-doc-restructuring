@@ -112,7 +112,7 @@ Now that we have an //ArticlePage// page type, let's make it a little more usefu
 	 
 
 
-Every entry in the array is a key-value pair. The key is the name of the field, and the value is the type. We have a //[Date](http://api.silverstripe.org/current/sapphire/model/Date.html)// field called "Date" and a //[Text](http://api.silverstripe.org/current/sapphire/model/Text.html)// field called "Author". See [:data-types](/data-types) for a complete list of different data types.
+Every entry in the array is a key-value pair. The key is the name of the field, and the value is the type. We have a //`[api:Date]` for a complete list of different data types.
 
 Note: The names chosen for the fields you add must not already be used. Be careful using field names such as Title, Content etc. as these may already be defined in the page types your new page is extending from.
 
@@ -146,14 +146,14 @@ Let's walk through this method.
 	$fields = parent::getCMSFields();
 
 
-Firstly, we get the fields from the parent class; we want to add fields, not replace them. The //$fields// variable returned is a //[FieldSet](http://api.silverstripe.org/current/forms/fields-structural/FieldSet.html)// object.
+Firstly, we get the fields from the parent class; we want to add fields, not replace them. The //$fields// variable returned is a //`[api:FieldSet]`// object.
 
 	:::php
 	$fields->addFieldToTab('Root.Content.Main', new DateField('Date'), 'Content');
 	$fields->addFieldToTab('Root.Content.Main', new TextField('Author'), 'Content');
 
 
-We can then add our new fields with //addFieldToTab//. The first argument is the tab on which we want to add the field to: "Root.Content.Main" is the tab which the content editor is on. The second argument is the field to add; this is not a database field, but a //[FormField](http://api.silverstripe.org/current/forms/core/FormField.html)//. We must create new form fields, passing them the name of the database field we wish to edit. See the //[FormField](http://api.silverstripe.org/current/forms/core/FormField.html)// documentation for all the field types available. The last argument says that we wish to put our fields above the "Content" field: see the //[FieldSet](http://api.silverstripe.org/current/forms/fields-structural/FieldSet.html)// documentation for more details.
+We can then add our new fields with //addFieldToTab//. The first argument is the tab on which we want to add the field to: "Root.Content.Main" is the tab which the content editor is on. The second argument is the field to add; this is not a database field, but a //`[api:FormField]`// documentation for more details.
 
 	:::php
 	return $fields;
@@ -201,11 +201,11 @@ First, the template for displaying a single article:
 
 The first block of code is our regular second level menu; we also have our regular breadcrumbs code here. We will see how to remove these blocks of repetitive code in a bit.
 
-We use //$Date// and //$Author// to access the new fields. In fact, all template variables and page controls come from either the data object or the controller for the page being displayed. The //$Breadcrumbs// variable comes from the //Breadcrumbs()// method of the //[SiteTree](http://api.silverstripe.org/current/cms/SiteTree.html)// class. //$Date// and //$Author// come from the //Article// table through your data object. //$Content// comes from the //SiteTree// table through the same data object. The data for your page is spread across several tables in the database matched by id - e.g. //Content// is in the //SiteTree// table, and //Date// and //Author// are in the //Article// table. SilverStripe matches these records by their ids and collates them into the single data object.
+We use //$Date// and //$Author// to access the new fields. In fact, all template variables and page controls come from either the data object or the controller for the page being displayed. The //$Breadcrumbs// variable comes from the //Breadcrumbs()// method of the //`[api:SiteTree]`// class. //$Date// and //$Author// come from the //Article// table through your data object. //$Content// comes from the //SiteTree// table through the same data object. The data for your page is spread across several tables in the database matched by id - e.g. //Content// is in the //SiteTree// table, and //Date// and //Author// are in the //Article// table. SilverStripe matches these records by their ids and collates them into the single data object.
 
 {{tutorial:data-collation.png}}
 
-Rather than using //$Date// directly, we use //$Date.Nice//. If we look in the //[Date](http://api.silverstripe.org/current/sapphire/model/Date.html)// documentation, we can see that the //Nice// function returns the date in //dd/mm/yyyy// format, rather than the //yyyy-mm-dd// format stored in the database.
+Rather than using //$Date// directly, we use //$Date.Nice//. If we look in the //`[api:Date]`// documentation, we can see that the //Nice// function returns the date in //dd/mm/yyyy// format, rather than the //yyyy-mm-dd// format stored in the database.
 
 {{tutorial:news.png}}
 
@@ -226,7 +226,7 @@ Now we'll create a template for the article holder: we want our news section to 
 	</div>
 
 
-Here we use the page control //Children//. As the name suggests, this control allows you to iterate over the children of a page, which in this case is our news articles. The //$Link// variable will give the address of the article which we can use to create a link, and the //FirstParagraph// function of the [HTMLText](http://api.silverstripe.org/current/sapphire/model/HTMLText.html) field gives us a nice summary of the article.
+Here we use the page control //Children//. As the name suggests, this control allows you to iterate over the children of a page, which in this case is our news articles. The //$Link// variable will give the address of the article which we can use to create a link, and the //FirstParagraph// function of the `[api:HTMLText]` field gives us a nice summary of the article.
 
 {{tutorial:articleholder.png}}
 
@@ -350,7 +350,7 @@ It would be nice to greet page visitors with a summary of the latest news when t
 	...
 
 
-This function simply runs a database query that gets the latest news articles from the database. By default, this is five, but you can change it by passing a number to the function. See the //[DataObject](http://api.silverstripe.org/current/sapphire/model/DataObject.html)// documentation for details. We can reference this function as a page control in our //HomePage// template:
+This function simply runs a database query that gets the latest news articles from the database. By default, this is five, but you can change it by passing a number to the function. See the //`[api:DataObject]`// documentation for details. We can reference this function as a page control in our //HomePage// template:
 
 ** themes/tutorial/templates/Layout/Homepage.ss **
 
@@ -377,7 +377,7 @@ The controller for a page is only created when page is actually visited, while t
 
 # Creating a RSS feed
 
-An RSS feed is something that no news section should be without. SilverStripe makes it easy to create RSS feeds by providing an //[RSSFeed](http://api.silverstripe.org/current/sapphire/integration/RSSFeed.html)// class to do all the hard work for you. Create the following function in the //ArticleHolder_Controller//:
+An RSS feed is something that no news section should be without. SilverStripe makes it easy to create RSS feeds by providing an //`[api:RSSFeed]`// class to do all the hard work for you. Create the following function in the //ArticleHolder_Controller//:
 
 	:::php
 	function rss() {
@@ -392,7 +392,7 @@ Depending on your browser, you should see something like the picture below. If y
 
 {{tutorial:rss-feed.png}}
 
-Now all we need is to let the user know that our RSS feed exists. The //[RSSFeed](http://api.silverstripe.org/current/sapphire/integration/RSSFeed.html)// class provides a //linkToFeed// function that will create an embedded link inside your page that RSS aware browsers (such as Firefox or Internet Explorer 7) will pick up. The only question is where to call this function. If you create a function called //init()// in your controller, it will be called when the page is requested. Add this function to //ArticleHolder_Controller//:
+Now all we need is to let the user know that our RSS feed exists. The //`[api:RSSFeed]`// in your controller, it will be called when the page is requested. Add this function to //ArticleHolder_Controller//:
 
 	:::php
 	function init() {
@@ -498,7 +498,7 @@ The staff section templates aren't too difficult to create, thanks to the utilit
 	</div>
 
 
-This template is very similar to the //ArticleHolder// template. The //FirstSentence// method of the //[Text](http://api.silverstripe.org/current/sapphire/model/Text.html)// class is similar to //FirstParagraph// used earlier, but returns the first sentence. The //SetWidth// method of the //[Image](http://api.silverstripe.org/current/sapphire/filesystem/Image.html)// class will resize the image before sending it to the browser. The resized image is cached, so the server doesn't have to resize the image every time the page is viewed.
+This template is very similar to the //ArticleHolder// template. The //FirstSentence// method of the //`[api:Text]`// class will resize the image before sending it to the browser. The resized image is cached, so the server doesn't have to resize the image every time the page is viewed.
 
 {{tutorial:staff-section.png}}
 

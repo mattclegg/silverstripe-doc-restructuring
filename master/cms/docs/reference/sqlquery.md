@@ -1,6 +1,6 @@
 # Introduction
 
-An object representing a SQL query. It is easier to deal with object-wrappers than string-parsing a raw SQL-query. This object is used by [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html)::get()/get_one(). Using SQL directly can also be faster than tunneling everything through the [datamodel](datamodel). Please be wary of [premature optimization](http://en.wikipedia.org/wiki/Optimization_(computer_science)), though...
+An object representing a SQL query. It is easier to deal with object-wrappers than string-parsing a raw SQL-query. This object is used by `[api:DataObject]`, though...
 
 A word of caution: Dealing with low-level SQL is not encouraged in the Silverstripe [datamodel](datamodel) for various reasons. You'll break the behaviour of:
 
@@ -8,7 +8,7 @@ A word of caution: Dealing with low-level SQL is not encouraged in the Silverstr
 *  DataObject::onBeforeWrite/onBeforeDelete
 *  Automatic casting
 *  Default-setting through object-model
-*  [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html)
+*  `[api:DataObject]`
 *  Database abstraction
 
 We'll explain some ways to use //SELECT// with the full power of SQL, but still maintain a connection to the Silverstripe [datamodel](datamodel).
@@ -56,7 +56,7 @@ We'll explain some ways to use //SELECT// with the full power of SQL, but still 
 
 # Working with results
 
-The result is an array lightly wrapped in a database-specific subclass of [Query](http://api.silverstripe.org/trunk/sapphire/model/SS_Query.html). This class implements the //Iterator//-interface defined in PHP5, and provides convenience-methods for accessing the data.
+The result is an array lightly wrapped in a database-specific subclass of `[api:Query]`. This class implements the //Iterator//-interface defined in PHP5, and provides convenience-methods for accessing the data.
 
 ## Iterating
 
@@ -80,7 +80,7 @@ Raw SQL is handy for performance-optimized calls.
 	    return $sqlQuery->execute()->value();
 	}
 
-Way faster than dealing with [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html)s:
+Way faster than dealing with `[api:DataObject]`s:
 
 	:::php
 	$players = $myTeam->Players();
@@ -175,12 +175,12 @@ CAUTION: Depending on the selected columns in your query, you might get into one
 Be careful when saving back DataObjects created through //buildDataObjectSet//, you might get strange side-effects due to the issues noted above.
 ## Using FormFields with custom SQL
 
-Some subclasses of [FormField](http://api.silverstripe.org/current/forms/core/FormField.html) are constructed to deal with the SQLQuery-object for maximum flexibility. Have a look at [TableListField](http://api.silverstripe.org/trunk/forms/fields-relational/TableListField.html) and [ComplexTableField](ComplexTableField) for ways to create sophisticated report-tables based on SQL.
+Some subclasses of `[api:FormField]` for ways to create sophisticated report-tables based on SQL.
 
 # Related
 
 *  [datamodel](datamodel)
-*  [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html)
+*  `[api:DataObject]`
 *  [database-troubleshooting](database-troubleshooting)
 *  [database-structure](database-structure)
 

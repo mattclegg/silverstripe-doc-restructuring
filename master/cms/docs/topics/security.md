@@ -94,7 +94,7 @@ See [http://shiflett.org/articles/foiling-cross-site-attacks](http://shiflett.or
 
 ## Escaping model properties
 
-[SSViewer](SSViewer) (the SilverStripe template engine) automatically takes care of escaping HTML tags from specific object-properties by [casting](casting) its string value into a [DBField](http://api.silverstripe.org/current/sapphire/model/DBField.html) object.
+[SSViewer](SSViewer) (the SilverStripe template engine) automatically takes care of escaping HTML tags from specific object-properties by [casting](casting) its string value into a `[api:DBField]` object.
 
 PHP:
 

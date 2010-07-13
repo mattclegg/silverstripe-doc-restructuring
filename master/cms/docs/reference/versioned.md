@@ -1,6 +1,6 @@
 # Versioned
 
-The Versioned class is a [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html) that adds versioning and staging capabilities to the objects.
+The Versioned class is a `[api:DataObject]` that adds versioning and staging capabilities to the objects.
 
 ### Trapping the publication event
 

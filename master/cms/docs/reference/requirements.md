@@ -6,7 +6,7 @@ The requirements class takes care of including CSS and JavaScript into your appl
 # Usage
 
 ## Including inside PHP Code
-It is common practice to include most Requirements either in the //init()//-method of your [controller](controller), or as close to rendering as possible (e.g. in //[FormField](http://api.silverstripe.org/current/forms/core/FormField.html)->renderWith()//)
+It is common practice to include most Requirements either in the //init()//-method of your [controller](controller), or as close to rendering as possible (e.g. in //`[api:FormField]`
 
 	:::php
 	Requirements::javascript("cms/javascript/LeftAndMain.js");
@@ -121,7 +121,7 @@ In your controller's init() function, add:
 
 ## CMS Requirements
 
-The Silverstripe core includes a lot of Requirements by itself. Most of these are collated in [LeftAndMain](http://api.silverstripe.org/trunk/cms/core/LeftAndMain.html)->init(). If you want to add/remove Requirements in your LeftAndMain-subclass, make sure to call //parent::init()// first.
+The Silverstripe core includes a lot of Requirements by itself. Most of these are collated in `[api:LeftAndMain]`// first.
 
 # Motivation
 

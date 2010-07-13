@@ -1,7 +1,7 @@
 # Introduction
 
-Form field that embeds a list of [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html)s into a form, such as a member list or a file list.
-Provides customizeable columns, record-deletion by ajax, paging, sorting, CSV-export, printing, input by [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html) or raw SQL.
+Form field that embeds a list of `[api:DataObject]`s into a form, such as a member list or a file list.
+Provides customizeable columns, record-deletion by ajax, paging, sorting, CSV-export, printing, input by `[api:DataObject]` or raw SQL.
 
 # Example
 

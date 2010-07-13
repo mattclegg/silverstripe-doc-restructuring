@@ -4,7 +4,7 @@ This page introduces developers to using the CMS for creating content in multipl
 
 Please see [i18n](i18n) for a internationalization, globalization and localization support of built-in datatypes as well as translating templates and PHP code.
 
-Translations can be enabled for all subclasses of [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html) by default, but are mostly used for [SiteTree](http://api.silverstripe.org/trunk/cms/SiteTree.html) subclasses (so all "pages"). Translatable is a [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html), so it can easily be implemented into existing code with minimal interference.
+Translations can be enabled for all subclasses of `[api:DataObject]`, so it can easily be implemented into existing code with minimal interference.
 
 Warning: If you're upgrading from a SilverStripe version prior to 2.3.2, please migrate your datamodel before using the extension. See [multilingualcontent#migrating_from_2.1_datamodel](multilingualcontent#migrating_from_2.1_datamodel)
 

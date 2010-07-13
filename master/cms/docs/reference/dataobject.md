@@ -6,11 +6,11 @@ A single database record & abstract class for the data-access-model.
 
 *  [datamodel](datamodel): The basic pricinples
 *  [objectmodel](objectmodel): Casting and special property-parsing
-*  [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html): A "container" for DataObjects
+*  `[api:DataObject]`: A "container" for DataObjects
 
 ## Basics
 
-The call to ''DataObject->getCMSFields()'' is the centerpiece of every data administration interface in Silverstripe, which returns a [FieldSet](http://api.silverstripe.org/trunk/forms/core/FieldSet.html) suitable for a [Form](http://api.silverstripe.org/trunk/forms/core/Form.html) object. If not overloaded, we're using ''@link scaffoldFormFields()'' to automatically generate this set. To customize, overload this method in a subclass or decorate onto it by using ''DataObjectDecorator->updateCMSFields()''.
+The call to ''DataObject->getCMSFields()'' is the centerpiece of every data administration interface in Silverstripe, which returns a `[api:FieldSet]`''.
 
 	:::php
 	class MyPage extends Page {
@@ -24,7 +24,7 @@ The call to ''DataObject->getCMSFields()'' is the centerpiece of every data admi
 
 # Scaffolding Formfields
 
-These calls retrieve a [FieldSet](http://api.silverstripe.org/trunk/forms/core/FieldSet.html) that can be used to add or edit entries from the DataObject.  Use the following examples to get an appropriate [FieldSet](http://api.silverstripe.org/trunk/forms/core/FieldSet.html) for the area where you intend to work with the scaffolded form.
+These calls retrieve a `[api:FieldSet]` for the area where you intend to work with the scaffolded form.
 
 ## For the CMS
 

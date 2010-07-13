@@ -71,11 +71,11 @@ Visiting the URL (your-site)/db/build will run a script that automatically build
 
 The information documented in this page is reflected in a few places in the code:
 
-*  [DataObject](http://api.silverstripe.org/trunk/sapphire/model/DataObject.html)
+*  `[api:DataObject]`
     * requireTable() is responsible for specifying the required database schema
     * instance_get() and instance_get_one() are responsible for generating the database queries for selecting data.
     * write() is responsible for generating the database queries for writing data.
-*  [Versioned](http://api.silverstripe.org/trunk/sapphire/model/Versioned.html)
+*  `[api:Versioned]`
     * augmentWrite() is responsible for altering the normal database writing operation to handle versions.
     * augmentQuery() is responsible for altering the normal data selection queries to support versions.
     * augmentDatabase() is responsible for specifying the altered database schema to support versions.

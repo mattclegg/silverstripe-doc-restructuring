@@ -128,13 +128,13 @@ Here is an overview of everything you can add to a class that extends sitetree. 
 
 ### Automatic Child Selection
 
-By default, [SiteTree](http://api.silverstripe.org/trunk/cms/SiteTree.html) uses the [Hierarchy](http://api.silverstripe.org/trunk/sapphire/model/Hierarchy.html) class to build a tree using the ParentID field.  However, sometimes, you want to change this default behaviour.
+By default, `[api:SiteTree]` class to build a tree using the ParentID field.  However, sometimes, you want to change this default behaviour.
 
 For example, in our e-commerce module, we use a many-to-many join, Product::Parents, to let you put Products in multiple groups.  Here's how to implement such a change:
 
 *  **Set up your new data model:** Create the appropriate many-many join or whatever it is that you're going to use to store parents.
 
-*  **Define stageChildren method:** This method should return the children of the current page, for the current version.  If you use DataObject::get, the [Versioned](http://api.silverstripe.org/trunk/sapphire/model/Versioned.html) class will rewrite your query to access the live site when appropriate.
+*  **Define stageChildren method:** This method should return the children of the current page, for the current version.  If you use DataObject::get, the `[api:Versioned]` class will rewrite your query to access the live site when appropriate.
 
 *  **Define liveChildren method:** The method should return the children of the current page, for the live site.
 
@@ -180,7 +180,7 @@ Example:
 
 ### Multiple parents in the tree
 
-The [LeftAndMain](http://api.silverstripe.org/trunk/cms/core/LeftAndMain.html) tree supports multiple parents.  We overload CMSTreeClasses and make it include "manyparents" in the class list.
+The `[api:LeftAndMain]` tree supports multiple parents.  We overload CMSTreeClasses and make it include "manyparents" in the class list.
 
 	:::php
 	function CMSTreeClasses($controller) {
