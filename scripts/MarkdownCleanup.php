@@ -8,11 +8,11 @@ class MarkdownCleanup {
 	
 	function process($content) {
 		$content = $this->convertUnbalancedHeadlines($content);
-		// $content = $this->convertCodeBlocks($content);
-		// $content = $this->newlinesAfterHeadlines($content);
-		// $content = $this->newlinesBeforeLists($content);
-		// $content = $this->convertApiLinks($content);
-		// $content = $this->convertEmphasis($content);
+		$content = $this->convertCodeBlocks($content);
+		$content = $this->newlinesAfterHeadlines($content);
+		$content = $this->newlinesBeforeLists($content);
+		$content = $this->convertApiLinks($content);
+		$content = $this->convertEmphasis($content);
 		
 		return $content;
 	}
@@ -34,9 +34,9 @@ class MarkdownCleanup {
 		$lines = $this->getLines($content);
 		foreach($lines as $i => $line) {
 			foreach($inlineRules as $rule => $replace) {
-				$line = preg_replace($rule, $replace['rewrite'], $line);
+				$lines[$i] = preg_replace($rule, $replace['rewrite'], $lines[$i]);
 			}
-			$out[] = $line;
+			$out[] = $lines[$i];
 		}
 		
 		return implode("\n", $out);
@@ -90,7 +90,7 @@ class MarkdownCleanup {
 				$lines[$i] = "\n" . $lines[$i];
 			}
 			
-			$out[] = $line;
+			$out[] = $lines[$i];
 		}
 		
 		return implode("\n", $out);
@@ -108,7 +108,7 @@ class MarkdownCleanup {
 				$lines[$i+1] = "\n" . $lines[$i+1];
 			}
 			
-			$out[] = $line;
+			$out[] = $lines[$i];
 		}
 		
 		return implode("\n", $out);
@@ -125,30 +125,30 @@ class MarkdownCleanup {
 		
 		$lines = $this->getLines($content);
 		foreach($lines as $i => $line) {
-			if(preg_match('/^~~~(\s{(.*)})?/', $line, $matches)) {
+			if(preg_match('/^~~~(\s{(.*)})?/', $lines[$i], $matches)) {
 				// first line of code block
 				if($linemode == 'text') {
 					$linemode = 'code';
 
 					// add code formatting bit
-					$line = (isset($matches[2])) ? ":::" . $matches[2] : '';
+					$lines[$i] = (isset($matches[2])) ? ":::" . $matches[2] : '';
 					
 					// if previous line is not empty, add a newline
 					$extraPreNewline = (isset($lines[$i-1]) && !empty($lines[$i-1]));
 				} else {
 					// last line of code block
 					$linemode = 'text';
-					$line = ''; // remove line with closing tildes
+					$lines[$i] = ''; // remove line with closing tildes
 				}
 			} 
 			
 			// HACK Add tabs if starts with ':::' (shouldnt be necessary)
-			if($linemode == 'code' || preg_match('/^\n?:::/msi', $line)) $line = "\t" . $line;
+			if($linemode == 'code' || preg_match('/^\n?:::/msi', $lines[$i])) $lines[$i] = "\t" . $lines[$i];
 			
-			if($extraPreNewline) $line = "\n" . $line;
+			if($extraPreNewline) $lines[$i] = "\n" . $lines[$i];
 			$extraPreNewline = false;
 			
-			$out []= $line . ($i < count($lines)-1) ? "\n" : '';
+			$out[] = $lines[$i];
 		}
 		
 		return implode("\n", $out);
