@@ -99,7 +99,7 @@ git mv autocompletetextfield.md ../master/cms/docs/reference/
 git mv bbcode.md ../master/cms/docs/reference/
 git mv building-for-modularity.md ../master/cms/docs/topics/
 git mv built-in-page-controls.md ../master/cms/docs/reference/
-git mv cache-control.md ../master/cms/docs/reference/
+git mv cache-control.md ../master/cms/docs/howto/
 git mv casting.md ../master/cms/docs/topics/
 git mv checkboxfield.md ../master/cms/docs/reference/
 git mv checkboxsetfield.md ../master/cms/docs/reference/
@@ -247,6 +247,124 @@ git mv versioned.md ../master/cms/docs/reference/
 git mv virtualpage.md ../master/cms/docs/reference/
 git mv widgets.md ../master/cms/docs/reference/
 git mv themes/developing.md ../master/cms/docs/topics/theme-development.md
+git mv recipes/adding-a-file-to-a-page.md ../master/cms/docs/howto/file-to-page-linking.md
+git mv recipes/adding-print-stylesheet.md ../master/cms/docs/howto/print-stylesheets.md
+git rm recipes/ajax_basics.md
+git mv recipes/alphabetical-dataobjectset.md ../master/cms/docs/howto/alphabetized-dataobjectset.md
+git rm recipes/amazing_looking_forms_using_silverstripe_form_default_rendering.md
+git rm recipes/changingfields.md
+git rm recipes/combining_files.md
+git rm recipes/controllers.md
+git rm recipes/example_config_file.md
+git rm recipes/forms.md
+git rm recipes/css.md
+git mv recipes/dataobjectsearch.md ../master/cms/docs/howto/search-dataobjects.md
+git rm recipes/what_to_return_from_a_function.md
+git rm recipes/structural-guidelines.md
+git rm recipes/widget-forms-2.3.md
+git rm recipes/site-news.md
+git rm recipes/simplesignupform.md
+git rm recipes/requiredfieldsclass.md
+git rm recipes/publishing-to-web-server.md
+git rm recipes/previousornext.md
+git mv recipes/populatedefaults.md  ../master/cms/docs/howto/model-defaults.md
+git rm ../master/cms/docs/reference/security.md
+git rm recipes/imagerotator.txt.lock
+git rm recipes/members-only-page.md
+git rm recipes/many_many-example.md
+git mv recipes/list_by_month.md  ../master/cms/docs/howto/group-records-by-month.md
+git mv recipes/imageupload.md  ../master/cms/docs/howto/image-upload.md
+git rm recipes/installation-into-subversion.md
+git rm recipes/extending_the_event_calendar.md
+git rm recipes/examples_of_creating_and_saving_pages.md
+git mv recipes/customising-content-in-your-templates.md ../master/cms/docs/howto/custom-content-placeholders.md
+
+cd ../master/cms/docs
+git rm reference/arraydata.md
+git rm reference/autocompletefield.md
+git rm reference/autocompletetextfield.md
+git rm reference/checkboxfield.md
+git rm reference/checkboxsetfield.md
+git rm reference/cmsmenu.md
+git rm reference/compositefield.md
+git rm reference/confirmedpasswordfield.md
+git rm reference/currencyfield.md
+git rm reference/customrequiredfields.md
+git mv reference/database-abstraction.md howto/database-abstraction.md
+git mv reference/database-troubleshooting.md howto/database-troubleshooting.md
+git rm reference/datepickerfield.md
+git rm reference/db-build.md
+git rm reference/emailfield.md
+git rm reference/dropdownfield.md
+git rm reference/escape-types.md
+git rm reference/fieldgroup.md
+git rm reference/filefield.md
+git rm reference/formaction.md
+git rm reference/formresponse.md
+git rm reference/functionaltest.md
+git rm reference/getcmsfields.md
+git rm reference/groupeddropdownfield.md
+git rm reference/hasmanycomplextablefield.md
+git rm reference/hasonecomplextablefield.md
+git rm reference/headerfield.md
+git rm reference/hierarchy.md
+git rm reference/hiddenfield.md
+git mv reference/htmleditorconfig.md howto/customize-tinymce.md
+git rm reference/htmleditorfield.md
+git rm reference/pageless-controller.md
+git rm reference/imagefield.md
+git rm reference/inlineformaction.md
+git rm reference/css.md
+git rm reference/html.md
+git mv reference/javascript.md topics/javascript.md
+git rm reference/labelfield.md
+git rm reference/languagedropdownfield.md
+git rm reference/datefield.md
+git rm reference/listboxfield.md
+git rm reference/literalfield.md
+git rm reference/manifestbuilder.md
+git rm reference/manymanycomplextablefield.md
+git rm reference/mathspamprotection.md
+git rm reference/member_groupset.md
+git rm reference/membertablefield.md
+git rm reference/migrationtask.md
+git rm reference/numericfield.md
+git rm reference/object.md
+git rm reference/optionsetfield.md
+git rm reference/page.md
+git mv reference/pagecomment.md howto/comments.md
+git rm reference/passwordfield.md
+git rm reference/postgres.md
+git rm reference/profiler.md
+git rm reference/publishing-to-web-server.md
+git rm reference/readonlyfield.md
+git mv reference/recovering_password.md howto/recover-admin-passwords.md
+git rm reference/restfulserver.md
+git rm reference/rsyncmultihostpublisher.md
+git mv reference/sake.md topics/commandline.md
+git rm reference/scheduledtask.md
+git rm reference/searchform.md
+git mv reference/secure-development.md topics/security.md
+git rm reference/selectiongroup.md
+git rm reference/sessions.md
+git rm reference/shortcodes.md
+git rm reference/simpleimagefield.md
+git rm reference/soapmodelaccess.md
+git mv reference/widgets.md topics/widgets.md
+git rm reference/validator.md
+git mv reference/ssl.md howto/ssl.md
+git rm reference/staticexporter.md
+git rm reference/tab.md
+git rm reference/tabset.md
+git rm reference/virtualpage.md
+git rm reference/uniquerestrictedtextfield.md
+git rm reference/treemultiselectfield.md
+git rm reference/treedropdownfield.md
+git rm reference/treedropdownfield.md
+git rm reference/translatable.md
+git rm reference/textfield.md
+git rm reference/textareafield.md
+git rm reference/template-encoding.md
 
 # Cleanup afterwards
 rm -rf tutorial/
