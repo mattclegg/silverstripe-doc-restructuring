@@ -1,6 +1,7 @@
 # Introduction
 
-Represents an image object, inheriting all base functionality from the [file](file) class with extra functionality including resizing.
+Represents an image object, inheriting all base functionality from the [file](file) class with extra functionality
+including resizing.
 
 # Usage
 
@@ -12,7 +13,9 @@ Represents an image object, inheriting all base functionality from the [file](fi
 
 ## Resizing Images in PHP
 
-The following are methods defined on the GD class which you can call on Image Objects. Note to get the following to work you need to have GD2 support in your PHP installation and because these generate files you must have write access to your tmp folder. 
+The following are methods defined on the GD class which you can call on Image Objects. Note to get the following to work
+you need to have GD2 support in your PHP installation and because these generate files you must have write access to
+your tmp folder. 
 
 	:::php
 	// manipulation functions
@@ -32,7 +35,8 @@ The following are methods defined on the GD class which you can call on Image Ob
 
 ## Resizing in Templates
 
-You can call certain resize functions directly from the template, to use the inbuilt GD functions as the template parser supports these, for example SetWidth() or SetHeight().  
+You can call certain resize functions directly from the template, to use the inbuilt GD functions as the template parser
+supports these, for example SetWidth() or SetHeight().  
 
 For output of an image tag with the image automatically resized to 80px width, you can use:
 
@@ -60,7 +64,8 @@ Images are (like all other Files) synchronized with the SilverStripe database.
 This syncing happens whenever you load the "Files & Images" interface,
 and whenever you upload or modify an Image through SilverStripe.
 
-If you encounter problems with images not appearing, or have mysteriously disappeared, you can try manually flushing the image cache.
+If you encounter problems with images not appearing, or have mysteriously disappeared, you can try manually flushing the
+image cache.
 
 	
 	http://www.mysite.com/images/flush

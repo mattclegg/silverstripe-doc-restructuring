@@ -6,7 +6,9 @@ LeftAndMain is the base class of all the admin area controllers.
 
 ## Refreshing
 
-Please use LeftAndMain::ForceReload to reload the whole form-area after an Ajax-Request. If you just need to refresh parts of the form, please use javascript-replacement in the response of the original Ajax-Request. Consider using `[api:Form]` for  compiling Ajax-Responses and automatic detection of Ajax/Non-Ajax-Calls.
+Please use LeftAndMain::ForceReload to reload the whole form-area after an Ajax-Request. If you just need to refresh
+parts of the form, please use javascript-replacement in the response of the original Ajax-Request. Consider using
+`[api:Form]` for  compiling Ajax-Responses and automatic detection of Ajax/Non-Ajax-Calls.
 ## Custom Access Checking
 
 You can customize access control in `[api:LeftAndMain]`.
@@ -76,7 +78,8 @@ The PHP file defining your new subclass is the first step in the process.  This 
 
 Next, create templates, (classname)_left.ss and (classname)_right.ss.  Again, here are a couple of starting points:
 
- * On the left, we're using the tree as a way of providing navigation.  The left and side could be replaced with anything but LeftAndMain has built-in support for trees.
+ * On the left, we're using the tree as a way of providing navigation.  The left and side could be replaced with
+anything but LeftAndMain has built-in support for trees.
  * On the right, we have the skeleton that the form will be loaded into.
 
 MyAdmin_left.ss

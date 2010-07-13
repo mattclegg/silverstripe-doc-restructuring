@@ -1,11 +1,14 @@
 # Introduction
 
 Form field that embeds a list of `[api:DataObject]`s into a form, such as a member list or a file list.
-Provides customizeable columns, record-deletion by ajax, paging, sorting, CSV-export, printing, input by `[api:DataObject]` or raw SQL.
+Provides customizeable columns, record-deletion by ajax, paging, sorting, CSV-export, printing, input by
+`[api:DataObject]` or raw SQL.
 
 # Example
 
-Here's an example of a full featured TableListField implementation. It features editing members in the database directly as a button on each record, as well as filtering, and sorting. It also makes use of the 'export' permission, allowing export of data as a CSV.
+Here's an example of a full featured TableListField implementation. It features editing members in the database directly
+as a button on each record, as well as filtering, and sorting. It also makes use of the 'export' permission, allowing
+export of data as a CSV.
 
 	:::php
 	function getReportField() {		
@@ -115,7 +118,8 @@ Paging works by AJAX, but also works without javascript on link-basis.
 
 ## Sorting
 
-The easiest method is to add the sorting criteria as a constructor parameter. Sorting should be applied manually, where appropriate. Only direct columns from the produced SQL-query are supported. 
+The easiest method is to add the sorting criteria as a constructor parameter. Sorting should be applied manually, where
+appropriate. Only direct columns from the produced SQL-query are supported. 
 
 Example (sorting by "FirstName" column):
 
@@ -133,7 +137,8 @@ Example (sorting by "FirstName" column):
 	);
 
 
-If you want to sort by custom getters in your DataObject, please reformulate them to a custom SQL column. This restriction is needed to avoid performance-hits by caching and sorting potentially large datasets on PHP-level.
+If you want to sort by custom getters in your DataObject, please reformulate them to a custom SQL column. This
+restriction is needed to avoid performance-hits by caching and sorting potentially large datasets on PHP-level.
 
 ## Casting
 
@@ -218,7 +223,8 @@ You can influence the exported values by adjusting the generated SQL.
 
 ## Row-Summaries
 
-You can summarize specific columns in your result-set. The term "summary" is used in a broad sense, you can also implement averages etc.
+You can summarize specific columns in your result-set. The term "summary" is used in a broad sense, you can also
+implement averages etc.
 
 	:::php
 	$myTableListField->addSummary(
@@ -249,7 +255,8 @@ Please use only together with addSummary().
 
 ## Custom Sorting
 
-Please subclass TableListField to implement custom sorting, following the naming-convention "colFunction_<yourFunctionName>".
+Please subclass TableListField to implement custom sorting, following the naming-convention
+"colFunction_<yourFunctionName>".
 
 	:::php
 	class CustomTableListField extends TableListField {

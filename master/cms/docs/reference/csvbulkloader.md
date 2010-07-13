@@ -2,7 +2,8 @@
 
 ## Introduction
 
-Utility class to facilitate complex CSV-imports by defining column-mappings and custom converters. Uses the fgetcsv() function to process CSV input. Accepts a file-handler as input 
+Utility class to facilitate complex CSV-imports by defining column-mappings and custom converters. Uses the fgetcsv()
+function to process CSV input. Accepts a file-handler as input 
 
 ## Features
 
@@ -145,7 +146,8 @@ Sample implementation of a custom loader. Assumes a CSV-file in a certain format
 	?>
 
 
-Integration into a new [ModelAdmin](ModelAdmin) instance to get an upload form out of the box (accessible through */admin/players*):
+Integration into a new [ModelAdmin](ModelAdmin) instance to get an upload form out of the box (accessible through
+*/admin/players*):
 
 	:::php
 	<?php

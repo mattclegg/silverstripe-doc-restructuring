@@ -10,7 +10,8 @@ A single database record & abstract class for the data-access-model.
 
 ## Basics
 
-The call to ''DataObject->getCMSFields()'' is the centerpiece of every data administration interface in Silverstripe, which returns a `[api:FieldSet]`''.
+The call to ''DataObject->getCMSFields()'' is the centerpiece of every data administration interface in Silverstripe,
+which returns a `[api:FieldSet]`''.
 
 	:::php
 	class MyPage extends Page {
@@ -36,7 +37,9 @@ These calls retrieve a `[api:FieldSet]` for the area where you intend to work wi
 
 ## For the Frontend
 
-Used for simple frontend forms without relation editing or [TabSet](TabSet) behaviour. Uses ''scaffoldFormFields()'' by default. To customize, either overload this method in your subclass, or decorate it by ''DataObjectDecorator->updateFormFields()''.
+Used for simple frontend forms without relation editing or [TabSet](TabSet) behaviour. Uses ''scaffoldFormFields()'' by
+default. To customize, either overload this method in your subclass, or decorate it by
+''DataObjectDecorator->updateFormFields()''.
 
 // Requirements: SilverStripe 2.3.//
 
@@ -48,14 +51,16 @@ Used for simple frontend forms without relation editing or [TabSet](TabSet) beha
 
 // Requirements: SilverStripe 2.3.//
 
-This section covers how to enhance the default scaffolded form fields from above.  It is particularly useful when used in conjunction with the [ModelAdmin](ModelAdmin) in the CMS to make relevant data administration interfaces.
+This section covers how to enhance the default scaffolded form fields from above.  It is particularly useful when used
+in conjunction with the [ModelAdmin](ModelAdmin) in the CMS to make relevant data administration interfaces.
 
 
 ## Searchable Fields
 
 // Requirements: SilverStripe 2.3.//
 
-The ''$searchable_fields'' property uses a mixed array format that can be used to further customize your generated admin system. The default is a set of array values listing the fields.
+The ''$searchable_fields'' property uses a mixed array format that can be used to further customize your generated admin
+system. The default is a set of array values listing the fields.
 
 Example: Getting predefined searchable fields
 
@@ -74,7 +79,9 @@ Example: Simple Definition
 	}
 
 
-Searchable fields will be appear in the search interface with a default form field (usually a TextField) and a default search filter assigned (usually an ExactMatchFilter). To override these defaults, you can specify additional information on ''$searchable_fields'':
+Searchable fields will be appear in the search interface with a default form field (usually a TextField) and a default
+search filter assigned (usually an ExactMatchFilter). To override these defaults, you can specify additional information
+on ''$searchable_fields'':
 
 	:::php
 	class MyDataObject extends DataObject {
@@ -85,7 +92,8 @@ Searchable fields will be appear in the search interface with a default form fie
 	}
 
 
-If you assign a single string value, you can set it to be either a FormField or SearchFilter. To specify both, you can assign an array:
+If you assign a single string value, you can set it to be either a FormField or SearchFilter. To specify both, you can
+assign an array:
 
 	:::php
 	class MyDataObject extends DataObject {
@@ -133,7 +141,8 @@ To include relations (''$has_one'', ''$has_many'' and ''$many_many'') in your se
 
 // Requirements: SilverStripe 2.3.//
 
-Summary fields can be used to show a quick overview of the data for a specific DataObject record. Most common use is their display as table columns, e.g. in the search results of a [ModelAdmin](ModelAdmin) CMS interface.
+Summary fields can be used to show a quick overview of the data for a specific DataObject record. Most common use is
+their display as table columns, e.g. in the search results of a [ModelAdmin](ModelAdmin) CMS interface.
 
 Example: Getting predefined summary fields
 

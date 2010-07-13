@@ -1,6 +1,8 @@
 # Introduction
 
-This class represents a set of [database objects](dataobject), such as the results of a query. It is the base for all [datamodel](datamodel)-related querying. It implements the [Iterator interface](http://php.net/manual/en/language.oop5.iterations.php) introduced in PHP5.
+This class represents a set of [database objects](dataobject), such as the results of a query. It is the base for all
+[datamodel](datamodel)-related querying. It implements the [Iterator
+interface](http://php.net/manual/en/language.oop5.iterations.php) introduced in PHP5.
 
 Relations (has_many/many_many) are described in `[api:ComponentSet]`, a subclass of DataObjectSet.
 
@@ -34,7 +36,8 @@ Relations (has_many/many_many) are described in `[api:ComponentSet]`, a subclass
 
 ## Grouping
 
-You can group a set by a specific column. Consider using [SQLQuery](SQLQuery) with a *GROUP BY* statement for enhanced performance.
+You can group a set by a specific column. Consider using [SQLQuery](SQLQuery) with a *GROUP BY* statement for enhanced
+performance.
 `$groupedSet = $mySet->groupBy('Lastname');`{php}
 
 ## Sorting
@@ -55,7 +58,8 @@ This works on the object itself, so do NOT do something like this:
 
 ## Mapping for Dropdowns
 
-When using [DropdownField](DropdownField) and its numerous subclasses to select a value from a set, you can easily map the records to a compatible array:
+When using [DropdownField](DropdownField) and its numerous subclasses to select a value from a set, you can easily map
+the records to a compatible array:
 
 	:::php
 	$map = $mySet->toDropDownMap('ID', 'Title');
@@ -68,7 +72,8 @@ When using [DropdownField](DropdownField) and its numerous subclasses to select 
 
 ## Output as HTML-list
 
-Use [buildNestedUL](http://doc.silverstripe.com/assets/classes/default/DataObjectSet.html#buildNestedUL) to return a nested unordered list out of a "chain" of DataObject-relations.
+Use [buildNestedUL](http://doc.silverstripe.com/assets/classes/default/DataObjectSet.html#buildNestedUL) to return a
+nested unordered list out of a "chain" of DataObject-relations.
 
 ## Checking for existence
 

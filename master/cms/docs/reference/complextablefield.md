@@ -2,7 +2,8 @@
 
 Shows a group of DataObjects as a (readonly) tabular list (similiar to `[api:TableListField]`.  
 
-You can specify limits and filters for the resultset by customizing query-settings (mostly the ID-field on the other side of a one-to-many-relationship).
+You can specify limits and filters for the resultset by customizing query-settings (mostly the ID-field on the other
+side of a one-to-many-relationship).
 
 See [complextablefieldExamples](complextablefieldExamples)
 
@@ -14,7 +15,9 @@ See `[api:TableListField]`.
 
 ## Setting Parent/Child-Relations
 
-ComplexTableField tries to determine the parent-relation automatically by looking at the $has_one property on the listed child, or the record loaded into the surrounding form (see getParentClass() and getParentIdName()). You can force a specific parent relation:
+ComplexTableField tries to determine the parent-relation automatically by looking at the $has_one property on the listed
+child, or the record loaded into the surrounding form (see getParentClass() and getParentIdName()). You can force a
+specific parent relation:
 
 	:::php
 	$myCTF->setParentClass('ProductGroup');
@@ -59,14 +62,16 @@ You can override this behaviour in various ways:
 
 If you don't want several functions to appear (e.g. no add-link), there's several ways:
 
-*  Use ComplexTableField->setPermissions(array("show","edit")) to limit the functionality without touching the template (more secure). Possible values are "show","edit", "delete" and "add".  
+*  Use ComplexTableField->setPermissions(array("show","edit")) to limit the functionality without touching the template
+(more secure). Possible values are "show","edit", "delete" and "add".  
 
 *  Subclass ComplexTableField and override the rendering-mechanism
 *  Use ComplexTableField->setTemplate() and ComplexTableField->setTemplatePopup() to provide custom templates
 
 #### Customising fields and Requirements in the popup
 
-There are several ways to customise the fields in the popup. Often you would want to display more information in the popup as there is more real-estate for you to play with. 
+There are several ways to customise the fields in the popup. Often you would want to display more information in the
+popup as there is more real-estate for you to play with. 
 
 ComplexTableField gives you several options to do this. You can either
 
@@ -74,15 +79,19 @@ ComplexTableField gives you several options to do this. You can either
 *  Pass a String in the constructor. 
 
 The first will simply add the fieldset to the form, and populate it with the source class. 
-The second will call the String as a method on the source class (Which should return a FieldSet) of fields for the Popup. 
+The second will call the String as a method on the source class (Which should return a FieldSet) of fields for the
+Popup. 
 
-You can also customise Javascript which is loaded for the Lightbox. As Requirements::clear() is called when the popup is instantiated, ComplexTableField will look for a function to gather any specific requirements that you might need on your source class. (e.g. Inline Javascript or styling).
+You can also customise Javascript which is loaded for the Lightbox. As Requirements::clear() is called when the popup is
+instantiated, ComplexTableField will look for a function to gather any specific requirements that you might need on your
+source class. (e.g. Inline Javascript or styling).
 
 For this, create a function called "getRequirementsForPopup". 
 
 ## Getting it working on the front end (not the CMS)
 
-Sometimes you'll want to have a nice table on the front end, so you can move away from relying on the CMS for maintaing parts of your site.
+Sometimes you'll want to have a nice table on the front end, so you can move away from relying on the CMS for maintaing
+parts of your site.
 
 You'll have to do something like this in your form:
 
@@ -107,9 +116,11 @@ You'll have to do something like this in your form:
 
 You have to hack in an ID on the form, as the CMS forms have this, and front end forms usually do not.
 
-It's not a perfect solution, but it works relatively well to get a simple ComplexTableField up and running on the front end.
+It's not a perfect solution, but it works relatively well to get a simple ComplexTableField up and running on the front
+end.
 
-To come: Make it a lot more flexible so tables can be easily used on the front end. It also needs to be flexible enough to use a popup as well, out of the box.
+To come: Make it a lot more flexible so tables can be easily used on the front end. It also needs to be flexible enough
+to use a popup as well, out of the box.
 
 ## Subclassing
 
@@ -126,11 +137,13 @@ Most of the time, you need to override the following methods:
 
 # API Documentation
 
-[Click here for the API documentation](http://api.silverstripe.org/trunk/forms/fields-relational/ComplexTableField.html).
+[Click here for the API
+documentation](http://api.silverstripe.org/trunk/forms/fields-relational/ComplexTableField.html).
 
 ## Todo
 
-*  Find a less fragile solution for accessing this field through the main controller and ReferencedField, e.g. build a seperate CTF-instance (doesn't necessarly have to be connected to the original by ReferencedField)
+*  Find a less fragile solution for accessing this field through the main controller and ReferencedField, e.g. build a
+seperate CTF-instance (doesn't necessarly have to be connected to the original by ReferencedField)
 *  Control width/height of popup by constructor (hardcoded at the moment)
 *  Integrate search from MemberTableField.php directly on ComplexTableField
 *  Less performance-hungry implementation of detail-view paging (don't return all items on a single view)

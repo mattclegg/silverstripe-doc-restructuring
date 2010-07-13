@@ -1,8 +1,11 @@
 # Introduction
 
-RestfulService enables connecting to remote web services which supports REST interface and consume those web services (for example Flickr, Youtube, Amazon and etc). RestfulService can parse the XML response (sorry no JSON support) returned from the web service. Further it supports caching of the response, and you can customize the cache interval. 
+RestfulService enables connecting to remote web services which supports REST interface and consume those web services
+(for example Flickr, Youtube, Amazon and etc). RestfulService can parse the XML response (sorry no JSON support)
+returned from the web service. Further it supports caching of the response, and you can customize the cache interval. 
 
-To gain the functionality you can either create a new RestfulService object or create a class extending the RestfulService (refer [flickrservice](flickrservice) or [youtubeservice](youtubeservice)).
+To gain the functionality you can either create a new RestfulService object or create a class extending the
+RestfulService (refer [flickrservice](flickrservice) or [youtubeservice](youtubeservice)).
 
 
 
@@ -88,7 +91,8 @@ to extract the values (the names) of the entries use:
 
 ## Searching for Values & Attributes
 
-If you don't know the exact position of dom tree where the node will appear you can use xpath to search for the node.Recommended for retrieving values of namespaced nodes.
+If you don't know the exact position of dom tree where the node will appear you can use xpath to search for the
+node.Recommended for retrieving values of namespaced nodes.
 
 	:::xml
 	  <media:guide>
@@ -107,7 +111,8 @@ to get the value of entry node with the namespace media, use:
 
 ## Handling Errors
 
-If the web service returned an error (for example, API key not available or inadequate parameters) RestfulService could delgate the error handling to it's descendant class. To handle the errors define a function called errorCatch
+If the web service returned an error (for example, API key not available or inadequate parameters) RestfulService could
+delgate the error handling to it's descendant class. To handle the errors define a function called errorCatch
 
 	:::php
 	        /*
@@ -137,7 +142,8 @@ If you want to bypass error handling on your sub-classes you could define that i
 # Other Uses
 
 ## How to use RestfulService to easily embed an RSS feed
-[RestfulService](RestfulService) can be used to easily embed an RSS feed (since it's also an xml response) from a site such as del.icio.us
+[RestfulService](RestfulService) can be used to easily embed an RSS feed (since it's also an xml response) from a site
+such as del.icio.us
 
 *  Put something like this code in mysite/code/Page.php inside class Page_Controller
 

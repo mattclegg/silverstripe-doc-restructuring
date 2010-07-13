@@ -1,6 +1,7 @@
 # How to generate a smart list of alphabetically categorised items from a DataObjectSet
 
-Let's say you've got a class called Film (which extends DataObject) and you want to output a list of films in alphabetical order in a clean fashion with individual letter headings.
+Let's say you've got a class called Film (which extends DataObject) and you want to output a list of films in
+alphabetical order in a clean fashion with individual letter headings.
 
 Something like this:
 ----
@@ -55,7 +56,8 @@ And a corresponding template that looks like this:
 </html>
 ----
 
-Note: if you don't have a relationship available to grab films using $this->Films() you can always do it the old fashioned way using this instead
+Note: if you don't have a relationship available to grab films using $this->Films() you can always do it the old
+fashioned way using this instead
 
 	:::php
 	'Listings' => DataObject::get('Films',$filter,'Title ASC');

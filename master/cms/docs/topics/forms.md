@@ -1,13 +1,18 @@
 # Forms
 
-Form is the base class of all forms in a sapphire application. Forms in your application can be created either by instantiating the Form class itself, or by subclassing it. See [our form recipes](recipes/forms) for more specific information.
+Form is the base class of all forms in a sapphire application. Forms in your application can be created either by
+instantiating the Form class itself, or by subclassing it. See [our form recipes](recipes/forms) for more specific
+information.
 
 ## Instantiating a form
 
-Creating a form is a matter of defining a method to represent that form.  This method should return a form object.  The constructor takes the following arguments:
+Creating a form is a matter of defining a method to represent that form.  This method should return a form object.  The
+constructor takes the following arguments:
 
 *  ''$controller'': This must be the controller that contains the form.
-*  ''$name'': This must be the name of the method on that controller that is called to return the form.  The first two fields allow the form object to be re-created after submission.  **It's vital that they are properly set - if you ever have problems with form action handler not working, check that these values are correct.*
+*  ''$name'': This must be the name of the method on that controller that is called to return the form.  The first two
+fields allow the form object to be re-created after submission.  **It's vital that they are properly set - if you ever
+have problems with form action handler not working, check that these values are correct.*
 *  ''$fields'': A `[api:FieldSet]`s that make up the editable portion of the form.
 *  ''$actions'': A `[api:FieldSet]`s that make up the control portion of the form - the butons at the bottom.
 *  ''$validator'': An optional `[api:Validator]` for more information.
@@ -30,7 +35,8 @@ It's the reponsibility of your subclass' constructor to call
 	:::php
 	parent::__construct()
 
-with the right parameters.  You may choose to take $fields and $actions as arguments if you wish, but $controller and $name must be passed - their values depend on where the form is instantiated.
+with the right parameters.  You may choose to take $fields and $actions as arguments if you wish, but $controller and
+$name must be passed - their values depend on where the form is instantiated.
 
 	:::php
 	class MyForm extends Form {
@@ -64,7 +70,8 @@ Full overview at [form-field-types](form-field-types)
 
 ## Using Form Fields
 
-To get these fields automatically rendered into a form element, all you need to do is create a new instance of the class, and add it to the fieldset of the form. 
+To get these fields automatically rendered into a form element, all you need to do is create a new instance of the
+class, and add it to the fieldset of the form. 
 
 	:::php
 	$form = new Form(
@@ -148,9 +155,11 @@ Readonly on a FormField
 
 You can use a custom form template to render with, instead of *Form.ss*
 
-It's recommended you only do this if you've got a lot of presentation text, graphics that surround the form fields. This is better than defining those as *LiteralField* objects, as it doesn't clutter the data layer with presentation junk.
+It's recommended you only do this if you've got a lot of presentation text, graphics that surround the form fields. This
+is better than defining those as *LiteralField* objects, as it doesn't clutter the data layer with presentation junk.
 
-First of all, you need to create your form on it's own class, that way you can define a custom template using a ''forTemplate()'' method on your Form class.
+First of all, you need to create your form on it's own class, that way you can define a custom template using a
+''forTemplate()'' method on your Form class.
 
 	:::php
 	class MyForm extends Form {
@@ -182,9 +191,11 @@ First of all, you need to create your form on it's own class, that way you can d
 	}
 
 
-''forTemplate()'' tells the Form class to render with a template of return value of ''$this->class'', which in this case is *MyForm*, the name of the class. If the template doesn't exist, then it falls back to using Form.ss
+''forTemplate()'' tells the Form class to render with a template of return value of ''$this->class'', which in this case
+is *MyForm*, the name of the class. If the template doesn't exist, then it falls back to using Form.ss
 
-//MyForm.ss// should then be placed into your *templates/Includes* directory for your project. Here is an example of basic customisation:
+//MyForm.ss// should then be placed into your *templates/Includes* directory for your project. Here is an example of
+basic customisation:
 
 	:::html
 	<form $FormAttributes>
@@ -216,13 +227,19 @@ First of all, you need to create your form on it's own class, that way you can d
 	</form>
 
 
-''$dataFieldByName(FirstName)'' will return the form control contents of ''Field()'' for the particular field object, in this case ''TextField->Field()'' or ''EmailField->Field()'' which returns an ''<input>'' element with specific markup for the type of field. Pass in the name of the field as the first parameter, as done above, to render it into the template.
+''$dataFieldByName(FirstName)'' will return the form control contents of ''Field()'' for the particular field object, in
+this case ''TextField->Field()'' or ''EmailField->Field()'' which returns an ''<input>'' element with specific markup
+for the type of field. Pass in the name of the field as the first parameter, as done above, to render it into the
+template.
 
-To find more methods, have a look at the Form class, as there is a lot of different methods of customising the form templates, for example, you could use ''<% control Fields %>'' instead of specifying each field manually, as we've done above.
+To find more methods, have a look at the Form class, as there is a lot of different methods of customising the form
+templates, for example, you could use ''<% control Fields %>'' instead of specifying each field manually, as we've done
+above.
 
 ## Securing forms against Cross-Site Request Forgery (CSRF)
 
-SilverStripe tries to protect users against //Cross-Site Request Forgery (CSRF)// by adding a hidden *SecurityID* parameter to each form. See [secure-development](secure-development) for details.
+SilverStripe tries to protect users against //Cross-Site Request Forgery (CSRF)// by adding a hidden *SecurityID*
+parameter to each form. See [secure-development](secure-development) for details.
 
 ## Remove existing fields
 

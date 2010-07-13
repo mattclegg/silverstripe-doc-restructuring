@@ -1,14 +1,19 @@
 # Introduction
 
-Silverstripe uses an [object-relational model](http://en.wikipedia.org/wiki/Object-relational_model) that assumes the following connections:
+Silverstripe uses an [object-relational model](http://en.wikipedia.org/wiki/Object-relational_model) that assumes the
+following connections:
 
 *  Each database-table maps to a php-class
 *  Each database-row maps to a php-object
 *  Each database-column maps to a property on a php-object
  
-All data tables in Silverstripe are defined as subclasses of `[api:DataObject]`. Inheritance is supported in the data model: seperate tables will be linked together, the data spread across these tables. The mapping and saving/loading logic is handled by sapphire, you don't need to worry about writing SQL most of the time. 
+All data tables in Silverstripe are defined as subclasses of `[api:DataObject]`. Inheritance is supported in the data
+model: seperate tables will be linked together, the data spread across these tables. The mapping and saving/loading
+logic is handled by sapphire, you don't need to worry about writing SQL most of the time. 
 
-The advanced object-relational layer in Silverstripe is one of the main reasons for requiring PHP5. Most of its customizations are possible through [PHP5 Object Overloading](http://www.onlamp.com/pub/a/php/2005/06/16/overloading.html) handled in the [Object](Object)-class.
+The advanced object-relational layer in Silverstripe is one of the main reasons for requiring PHP5. Most of its
+customizations are possible through [PHP5 Object
+Overloading](http://www.onlamp.com/pub/a/php/2005/06/16/overloading.html) handled in the [Object](Object)-class.
 
 See [database-structure](database-structure) for in-depth information on the database-schema.
 See [objectmodel](objectmodel) for further details about casting values and the underlying property-transformations.
@@ -23,7 +28,8 @@ Note: You need to be logged in as an administrator to perform this command.
 
 ## Querying Data
 
-There are static methods available for querying data. They automatically compile the necessary SQL to query the database so they are very helpful. In case you need to fall back to plain-jane SQL, have a look at [sqlquery](sqlquery).
+There are static methods available for querying data. They automatically compile the necessary SQL to query the database
+so they are very helpful. In case you need to fall back to plain-jane SQL, have a look at [sqlquery](sqlquery).
 
 	:::php
 	$records = DataObject::get($obj, $filter, $sort, $join, $limit);
@@ -34,13 +40,18 @@ There are static methods available for querying data. They automatically compile
 	:::php
 	$record = DataObject::get_by_id($obj, $id);
 
-CAUTION: Please make sure to properly escape your SQL-snippets (see [security](security) and [escape-types](escape-types)).
+CAUTION: Please make sure to properly escape your SQL-snippets (see [security](security) and
+[escape-types](escape-types)).
 
 ## Joining 
 
-Passing a *$join* statement to DataObject::get will filter results further by the JOINs performed against the foreign table. **It will NOT return the additionally joined data.**  The returned *$records* will always be a `[api:DataObject]`.
+Passing a *$join* statement to DataObject::get will filter results further by the JOINs performed against the foreign
+table. **It will NOT return the additionally joined data.**  The returned *$records* will always be a
+`[api:DataObject]`.
 
-When using *$join* statements be sure the string is in the proper format for the respective database engine.  In  MySQL the use of backticks may be necessary when referring Table Names and potentially Columns. (see [MySQL Identifiers](http://dev.mysql.com/doc/refman/5.0/en/identifiers.html)):
+When using *$join* statements be sure the string is in the proper format for the respective database engine.  In  MySQL
+the use of backticks may be necessary when referring Table Names and potentially Columns. (see [MySQL
+Identifiers](http://dev.mysql.com/doc/refman/5.0/en/identifiers.html)):
 
 	:::php
 	// Example from the forums: http://www.silverstripe.org/archive/show/79865#post79865
@@ -76,7 +87,9 @@ See [data-types](data-types) for all available types.
 
 ## Overloading
 
-"Getters" and "Setters" are functions that help us save fields to our data objects. By default, the methods getField() and setField() are used to set data object fields.  They save to the protected array, $obj->record. We can overload the default behaviour by making a function called "get<fieldname>" or "set<fieldname>". 
+"Getters" and "Setters" are functions that help us save fields to our data objects. By default, the methods getField()
+and setField() are used to set data object fields.  They save to the protected array, $obj->record. We can overload the
+default behaviour by making a function called "get<fieldname>" or "set<fieldname>". 
 
 	:::php
 	class Player extends DataObject {
@@ -111,12 +124,15 @@ Here we combined a Player's first- and surname, accessible through $myPlayer->Ti
 	  }
 	}
 
-CAUTION: It is common practice to make sure that pairs of custom getters/setter deal with the same data, in a consistent format. \\
-CAUTION: Custom setters can be hard to debug: Please doublecheck if you could transform your data in more straight-forward logic embedded to your custom controller or form-saving.
+CAUTION: It is common practice to make sure that pairs of custom getters/setter deal with the same data, in a consistent
+format. \\
+CAUTION: Custom setters can be hard to debug: Please doublecheck if you could transform your data in more
+straight-forward logic embedded to your custom controller or form-saving.
 
 ## Default Values
 
-Define the default values for all the $db fields. This example sets the "Status"-column on Player to "Active" whenever a new object is created.
+Define the default values for all the $db fields. This example sets the "Status"-column on Player to "Active" whenever a
+new object is created.
 
 	:::php
 	class Player extends DataObject {
@@ -125,7 +141,8 @@ Define the default values for all the $db fields. This example sets the "Status"
 	  );
 	}
 
-Note: Alternatively you can set defaults directly in the database-schema (rather than the object-model). See [data-types](data-types) for details.
+Note: Alternatively you can set defaults directly in the database-schema (rather than the object-model). See
+[data-types](data-types) for details.
 
 ## Casting
 
@@ -161,7 +178,8 @@ Relations are built through static array definitions on a class, in the format:\
 
 ## has_one
 
-A 1-to-1 relation creates a database-column called "<relationship-name>ID", in the example below this would be "TeamID" on the "Player"-table.
+A 1-to-1 relation creates a database-column called "<relationship-name>ID", in the example below this would be "TeamID"
+on the "Player"-table.
 
 	:::php
 	// access with $myPlayer->Team()
@@ -186,7 +204,8 @@ parent element in the tree:
 
 Defines 1-to-many joins. A database-column named ""<relationship-name>ID"" will to be created in the child-class.
 
-**CAUTION:** Please specify a $has_one-relationship on the related child-class as well, in order to have the necessary accessors available on both ends.
+**CAUTION:** Please specify a $has_one-relationship on the related child-class as well, in order to have the necessary
+accessors available on both ends.
 
 	:::php
 	// access with $myTeam->Players() or $player->Team()
@@ -244,7 +263,8 @@ Multiple $has_one relationships are okay if they aren't linking to the same obje
 
 Defines many-to-many joins. A new table, (this-class)_(relationship-name), will be created with a pair of ID fields.
 
-CAUTION: Please specify a $belongs_many_many-relationship on the related class as well, in order to have the necessary accessors available on both ends.
+CAUTION: Please specify a $belongs_many_many-relationship on the related class as well, in order to have the necessary
+accessors available on both ends.
 
 	:::php
 	// access with $myTeam->Categories() or $myCategory->Teams()
@@ -266,7 +286,8 @@ See [recipes:many_many-example](recipes/many_many-example) for a more in-depth e
 
 ## Adding relations
 
-Inside sapphire it doesn't matter if you're editing a *has_many*- or a *many_many*-relationship. You need to get a `[api:ComponentSet]`.
+Inside sapphire it doesn't matter if you're editing a *has_many*- or a *many_many*-relationship. You need to get a
+`[api:ComponentSet]`.
 
 	:::php
 	class Team extends DataObject {
@@ -295,7 +316,9 @@ Inside sapphire it doesn't matter if you're editing a *has_many*- or a *many_man
 
 ## Custom Relation Getters
 
-You can use the flexible datamodel to get a filtered result-list without writing any SQL. For example, this snippet gets you the "Players"-relation on a team, but only containing active players. (See [#has_many](#has_many) for more info on the described relations).
+You can use the flexible datamodel to get a filtered result-list without writing any SQL. For example, this snippet gets
+you the "Players"-relation on a team, but only containing active players. (See [#has_many](#has_many) for more info on
+the described relations).
 
 	:::php
 	class Team extends DataObject {
@@ -352,7 +375,8 @@ You have to make sure though that certain properties are not overwritten, e.g. *
 	);
 
 
-Alternatively you can use //castedUpdate()// to respect the [data-types](data-types). This is preferred to manually casting data before saving.
+Alternatively you can use //castedUpdate()// to respect the [data-types](data-types). This is preferred to manually
+casting data before saving.
 
 	:::php
 	$myPlayer->castedUpdate(
@@ -369,7 +393,8 @@ Alternatively you can use //castedUpdate()// to respect the [data-types](data-ty
 
 ## onBeforeWrite
 
-You can customize saving-behaviour for each DataObject, e.g. for adding security. These functions are private, obviously it wouldn't make sense to call them externally on the object. They are triggered when calling //write()//.
+You can customize saving-behaviour for each DataObject, e.g. for adding security. These functions are private, obviously
+it wouldn't make sense to call them externally on the object. They are triggered when calling //write()//.
 
 Example: Disallow creation of new players if the currently logged-in player is not a team-manager.
 
@@ -401,7 +426,8 @@ Example: Disallow creation of new players if the currently logged-in player is n
 	}
 
 
-Note: There are no separate methods for *onBeforeCreate* and *onBeforeUpdate*. Please check for the existence of $this->ID to toggle these two modes, as shown in the example above.
+Note: There are no separate methods for *onBeforeCreate* and *onBeforeUpdate*. Please check for the existence of
+$this->ID to toggle these two modes, as shown in the example above.
 
 ## onBeforeDelete
 
@@ -442,8 +468,10 @@ See [sqlquery](sqlquery) for custom *INSERT*, *UPDATE*, *DELETE* queries.
 
 # Decorating DataObjects
 
-You can add properties and methods to existing DataObjects like [Member](Member) (a core class) without hacking core code or subclassing.
-Please see [dataobjectdecorator](dataobjectdecorator) for a general description, and `[api:Hierarchy]` for our most popular examples.
+You can add properties and methods to existing DataObjects like [Member](Member) (a core class) without hacking core
+code or subclassing.
+Please see [dataobjectdecorator](dataobjectdecorator) for a general description, and `[api:Hierarchy]` for our most
+popular examples.
 
 
 

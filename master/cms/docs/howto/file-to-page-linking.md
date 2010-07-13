@@ -4,7 +4,9 @@ This will add a file to a page very simply
 
 ### Step 1: Set up the Database!
 
-First we need to add a file field to our page so we have somewhere to store our file. Open up the Page type you want to add the file uploader to. For example we will use Page.php which is located in mysite/code/. So go ahead and open that up.
+First we need to add a file field to our page so we have somewhere to store our file. Open up the Page type you want to
+add the file uploader to. For example we will use Page.php which is located in mysite/code/. So go ahead and open that
+up.
 
 If we want to add an File to our database we need to add it in the $has_one array (at the top) of a type 'File'
 
@@ -20,7 +22,8 @@ Now visit yoursite.com/db/build?flush=1 and recreate our database.
 
 ###  Step 2: Add a file uploader to the CMS
 
-We need to add a field to the CMS so that we can upload a file. So underneath that $db array we need to add this getCMSFields function which overloads the CMS so we can add our field
+We need to add a field to the CMS so that we can upload a file. So underneath that $db array we need to add this
+getCMSFields function which overloads the CMS so we can add our field
 
 ** mysite/code/Page.php **
 
@@ -37,7 +40,8 @@ Now reload the admin panel and you should be able to click a page and see a docu
 
 ### Step 3: Mod the Template to output the document
 
-If you upload the file inside the CMS, all you need to do to output that file is to add a $Document variable to the template file.
+If you upload the file inside the CMS, all you need to do to output that file is to add a $Document variable to the
+template file.
 
 ** themes/blackcandy/templates/Page.ss **
 
@@ -49,7 +53,8 @@ If you upload the file inside the CMS, all you need to do to output that file is
 
 Thats all you need to do to create an file upload form and to output it in your template.
 
-The variable $Document uses the extensions from the file sapphire/Filesystem/Field.php. Some others you can use are listed below:
+The variable $Document uses the extensions from the file sapphire/Filesystem/Field.php. Some others you can use are
+listed below:
 
 $Document.Name
 $Document.Title

@@ -2,14 +2,18 @@
 
 ## Introduction
 
-Manages searching of properties on one or more `[api:DataObject]` types, based on a given set of input parameters. SearchContext is intentionally decoupled from any controller-logic,
+Manages searching of properties on one or more `[api:DataObject]` types, based on a given set of input parameters.
+SearchContext is intentionally decoupled from any controller-logic,
 it just receives a set of search parameters and an object class it acts on.
 
-The default output of a SearchContext is either a [SQLQuery](SQLQuery) object for further refinement, or a `[api:DataObject]` instance.
+The default output of a SearchContext is either a [SQLQuery](SQLQuery) object for further refinement, or a
+`[api:DataObject]` instance.
 
-In case you need multiple contexts, consider namespacing your request parameters by using ''FieldSet->namespace()'' on the $fields constructor parameter.
+In case you need multiple contexts, consider namespacing your request parameters by using ''FieldSet->namespace()'' on
+the $fields constructor parameter.
 
-SearchContext is mainly used by [ModelAdmin](ModelAdmin), our generic data administration interface. Another implementation can be found in generic frontend search forms through [modules:genericviews](modules/genericviews).
+SearchContext is mainly used by [ModelAdmin](ModelAdmin), our generic data administration interface. Another
+implementation can be found in generic frontend search forms through [modules:genericviews](modules/genericviews).
 
 ## Requirements
 
@@ -29,7 +33,10 @@ See [dataobject#searchable_fields](dataobject#searchable_fields)
 
 ### Customizing fields and filters
 
-In this example we're defining three attributes on our MyDataObject subclasss: ''PublicProperty'', ''HiddenProperty'' and ''MyDate''. The attribute ''HiddenProperty'' should not be searchable, and ''MyDate'' should only search for dates *after* the search entry (with a ''GreaterThanFilter''). Similiar to the built-in ''DataObject->getDefaultSearchContext()'' method, we're building our own ''getCustomSearchContext()'' variant.
+In this example we're defining three attributes on our MyDataObject subclasss: ''PublicProperty'', ''HiddenProperty''
+and ''MyDate''. The attribute ''HiddenProperty'' should not be searchable, and ''MyDate'' should only search for dates
+*after* the search entry (with a ''GreaterThanFilter''). Similiar to the built-in
+''DataObject->getDefaultSearchContext()'' method, we're building our own ''getCustomSearchContext()'' variant.
 
 	:::php
 	class MyDataObject extends DataObject {
@@ -92,7 +99,9 @@ In this example we're defining three attributes on our MyDataObject subclasss: '
 
 ### Pagination
 
-For paginating records on multiple pages, you need to get the generated ''SQLQuery'' before firing off the actual search. This way we can set the "page limits" on the result through ''setPageLimits()'', and only retrieve a fraction of the whole result set.
+For paginating records on multiple pages, you need to get the generated ''SQLQuery'' before firing off the actual
+search. This way we can set the "page limits" on the result through ''setPageLimits()'', and only retrieve a fraction of
+the whole result set.
 
 
 	:::php
@@ -125,14 +134,17 @@ notice that if you want to use this getResults function, you need to change the 
 
 The change is in **$results = $this->getResults($data);**, because you are using a custom getResults function.
 
-Another thing you cant forget is to check the name of the singleton you are using in your project. the example uses **MyDataObject**, you need to change it for the one you are using
+Another thing you cant forget is to check the name of the singleton you are using in your project. the example uses
+**MyDataObject**, you need to change it for the one you are using
 
-For more information on how to paginate your results within the template, see [Tutorial: Site Search](tutorial/4-site-search).
+For more information on how to paginate your results within the template, see [Tutorial: Site
+Search](tutorial/4-site-search).
 
 
 ### The Pagination Template
 
-to show the results of your custom search you need at least this content in your template, notice that Results.PaginationSummary(4) defines how many pages the search will show in the search results. something like:
+to show the results of your custom search you need at least this content in your template, notice that
+Results.PaginationSummary(4) defines how many pages the search will show in the search results. something like:
 
 **Next   1 2  *3*  4  5  … 558**  
 

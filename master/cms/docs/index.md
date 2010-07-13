@@ -1,7 +1,9 @@
 # Welcome to the SilverStripe developer documentation wiki
 
-This wiki documents high-level features of the [SilverStripe open source platform](http://www.silverstripe.org), aimed at developers. 
-If you would like to contribute, you can [register](http://doc.silverstripe.com/doku.php?id=start&do=register) and then [login](http://doc.silverstripe.com/doku.php?do=login&id=start).
+This wiki documents high-level features of the [SilverStripe open source platform](http://www.silverstripe.org), aimed
+at developers. 
+If you would like to contribute, you can [register](http://doc.silverstripe.com/doku.php?id=start&do=register) and then
+[login](http://doc.silverstripe.com/doku.php?do=login&id=start).
 
 
 ###  Getting support
@@ -13,8 +15,10 @@ If you would like to contribute, you can [register](http://doc.silverstripe.com/
 
 ### Overview
 
-*  [Why SilverStripe?](http://silverstripe.com/overview/): Find out about our unique features as a new entrant in a crowded market
-*  [Feature Overview](http://silverstripe.com/overview/): Find out how many capabilities hide behind the simple interface
+*  [Why SilverStripe?](http://silverstripe.com/overview/): Find out about our unique features as a new entrant in a
+crowded market
+*  [Feature Overview](http://silverstripe.com/overview/): Find out how many capabilities hide behind the simple
+interface
 *  [Contributing](http://www.silverstripe.com/how-to-contribute/) and [Contributors](Contributors)
 *  [Changelog](Changelog)
 *  [Roadmap](http://open.silverstripe.com/roadmap)
@@ -30,7 +34,8 @@ If you would like to contribute, you can [register](http://doc.silverstripe.com/
 
 [{{ :silverstripe-cms-book-front-cover-design-june2009preview.png?100}}](http://www.silverstripe.org/silverstripe-book)
 
-*  [Official book on SilverStripe in English](http://www.silverstripe.org/silverstripe-book) ([Errata](silverstripe-book-errata)).
+*  [Official book on SilverStripe in English](http://www.silverstripe.org/silverstripe-book)
+([Errata](silverstripe-book-errata)).
 *  [Official book on SilverStripe in German](http://www.silverstripe.org/das-silverstripe-buch).
 
 
@@ -107,4 +112,7 @@ If you would like to contribute, you can [register](http://doc.silverstripe.com/
 *  [Maintainers](module-maintainers)
 *  [Creating Modules](creating-modules)
 
-If you're interested in how work is being done on the SilverStripe documentation, you can see a [high-level view of the number of changes here](http://doc.silverstripe.com/changegraph.php). If you are a customer of SilverStripe and are looking for our company website, please visit [www.silverstripe.com](http://www.silverstripe.com). [Contact us](http://www.silverstripe.com/contact).
+If you're interested in how work is being done on the SilverStripe documentation, you can see a [high-level view of the
+number of changes here](http://doc.silverstripe.com/changegraph.php). If you are a customer of SilverStripe and are
+looking for our company website, please visit [www.silverstripe.com](http://www.silverstripe.com). [Contact
+us](http://www.silverstripe.com/contact).

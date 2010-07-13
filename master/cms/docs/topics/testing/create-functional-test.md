@@ -7,7 +7,8 @@ Functional tests test your controllers.  The core of these are the same as unit 
 *  Create methods that start with "test" to create your tests.
 *  Assertions are used to work out if a test passed or failed.
 
-The code of the tests is a little different.  Instead of examining the behaviour of objects, we example the results of URLs.  Here is an example from the subsites module:
+The code of the tests is a little different.  Instead of examining the behaviour of objects, we example the results of
+URLs.  Here is an example from the subsites module:
 
 	:::php
 	class SubsiteAdminTest extends SapphireTest {
@@ -48,7 +49,8 @@ The code of the tests is a little different.  Instead of examining the behaviour
 
 We are using a new static method here: **Director::test($url, $postVars, $sessionObj)**
 
-Director::test() lets us execute a URL and see what happens.  It bypasses HTTP, instead relying on the cleanly encapsulated execution model of Controller.
+Director::test() lets us execute a URL and see what happens.  It bypasses HTTP, instead relying on the cleanly
+encapsulated execution model of Controller.
 
 It takes 3 arguments:
 
@@ -56,8 +58,10 @@ It takes 3 arguments:
 *  $postVars: Post variables to pass to the URL
 *  $sessionObj: A Session object representing the current session.
 
-And it returns an HTTPResponse object, which will give you the response headers (including redirection), status code, and body.
+And it returns an HTTPResponse object, which will give you the response headers (including redirection), status code,
+and body.
 
 We can use string processing on the body of the response to then see if it fits with our expectations.
 
-If you're testing for natural language responses like error messages, make sure to use [i18n](i18n) translations through the //_t()// method to avoid tests failing when i18n is enabled.
+If you're testing for natural language responses like error messages, make sure to use [i18n](i18n) translations through
+the //_t()// method to avoid tests failing when i18n is enabled.

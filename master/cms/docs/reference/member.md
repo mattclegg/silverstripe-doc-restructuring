@@ -11,7 +11,8 @@ The Member class comes with 2 static methods for getting information about the c
 
 **Member::currentUserID()**
 
-Retrieves the ID (int) of the current logged in member.  Returns *0* if user is not logged in.  Much lighter than the next method for testing if you just need to test.
+Retrieves the ID (int) of the current logged in member.  Returns *0* if user is not logged in.  Much lighter than the
+next method for testing if you just need to test.
 
 	:::php
 	// Is a member logged in?
@@ -37,7 +38,8 @@ Returns the full *Member* Object for the current user, returns *null* if user is
 
 ## Subclassing
 
-<note>This is the least desirable way of extending the Member class. It's better to use DataObjectDecorator (see below).</note>
+<note>This is the least desirable way of extending the Member class. It's better to use DataObjectDecorator (see
+below).</note>
 
 You can defined subclasses of member to add extra fields or functionality to the built-in membership system.
 
@@ -50,7 +52,8 @@ You can defined subclasses of member to add extra fields or functionality to the
 	}
 
 
-To ensure that all new members are created using this class, put a call to Object::useCustomClass in (project)/_config.php:
+To ensure that all new members are created using this class, put a call to Object::useCustomClass in
+(project)/_config.php:
 
 	:::php
 	Object::useCustomClass("Member", "ParishouseMember");
@@ -59,7 +62,9 @@ Note that if you want to look this class-name up, you can call Object::getCustom
 
 ### Overloading getCMSFields()
 
-If you overload the built-in function getCMSFields(), then you can change the form that is used to view & edit member details in the newsletter system.  This function returns a FieldSet object.  You should generally start by calling parent::getCMSFields() and manipulate the FieldSet from there.
+If you overload the built-in function getCMSFields(), then you can change the form that is used to view & edit member
+details in the newsletter system.  This function returns a FieldSet object.  You should generally start by calling
+parent::getCMSFields() and manipulate the FieldSet from there.
 
 	:::php
 	function getCMSFields() {
@@ -74,15 +79,19 @@ If you overload the built-in function getCMSFields(), then you can change the fo
 ## Extending Member or DataObject?
 
 Basic rule: Class "Member" should just be extended for entities who have some kind of login.
-If you have different types of Members in the system, you have to make sure that those with login-capabilities have unique email-addresses (as this is used for login-credentials). 
-For persons without login-capabilities (e.g. for an address-database), you shouldn't extend member to avoid conflicts with the Member-database. This enables us to have a different subclass of Member for an email-address with login-data, and another subclass for the same email-address in the address-database.
+If you have different types of Members in the system, you have to make sure that those with login-capabilities have
+unique email-addresses (as this is used for login-credentials). 
+For persons without login-capabilities (e.g. for an address-database), you shouldn't extend member to avoid conflicts
+with the Member-database. This enables us to have a different subclass of Member for an email-address with login-data,
+and another subclass for the same email-address in the address-database.
 
 
 
 
 ### New Idea: Member Role Decorator
 
-Using inheritance to add extra behaviour or data fields to a member is limiting, because you can only inherit from 1 class.  A better way is to use role decorators to add this behaviour.
+Using inheritance to add extra behaviour or data fields to a member is limiting, because you can only inherit from 1
+class.  A better way is to use role decorators to add this behaviour.
 
 	:::php
 	DataObject::add_extension('Member', 'ForumRole');
@@ -90,7 +99,9 @@ Using inheritance to add extra behaviour or data fields to a member is limiting,
 	Member::add_role('ForumRole');
 
 
-A role decorator is simply a subclass of DataObjectDecorator that is designed to be used to add behaviour to Member.  The roles affect the entire class - all members will get the additional behaviour.  However, if you want to restrict things, you should add appropriate Permission::checkMember() calls to the role's methods.
+A role decorator is simply a subclass of DataObjectDecorator that is designed to be used to add behaviour to Member. 
+The roles affect the entire class - all members will get the additional behaviour.  However, if you want to restrict
+things, you should add appropriate Permission::checkMember() calls to the role's methods.
 
 	:::php
 	class ForumRole extends DataObjectDecorator {
@@ -121,7 +132,8 @@ Sam is going to implement this change; Romain will be using it to create a Forum
 
 *  MemberTableField has to determine which fields is should display based on the subclass of the requested record
 *  MemberTableField needs to have a switch for creating new Members with different fields
-*  We should add a getOverviewFields() to each Member-class which specifiy which fields to use in the overview (and accordingly have different tables for each subclass of members)
+*  We should add a getOverviewFields() to each Member-class which specifiy which fields to use in the overview (and
+accordingly have different tables for each subclass of members)
 
 # API Documentation
 

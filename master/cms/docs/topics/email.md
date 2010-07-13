@@ -6,7 +6,8 @@ Features include sending plaintext- and HTML emails, sending bulk emails, subscr
 # Configuration
 
 Your PHP configuration needs to include the SMTP module for sending emails.
-If you are not running an SMTP server together with your webserver, you might need to setup PHP with the credentials for an external SMTP server (see [PHP documentation for mail()](http://php.net/mail)).
+If you are not running an SMTP server together with your webserver, you might need to setup PHP with the credentials for
+an external SMTP server (see [PHP documentation for mail()](http://php.net/mail)).
 
 # Usage
 
@@ -39,7 +40,8 @@ The default HTML template is located in ''sapphire/templates/email/GenericEmail.
 **Requirements: SilverStripe 2.3+**
 
 *  Create a SS-template file called, in this example we will use 'MyEmail.ss' inside mysite/templates/email.
-*  Fill this out with the body text for your email. You can use any [SS-template syntax](templates) (e.g. <% control %>, <% if %>, $FirstName etc)
+*  Fill this out with the body text for your email. You can use any [SS-template syntax](templates) (e.g. <% control %>,
+<% if %>, $FirstName etc)
 *  Choose your template with **setTemplate()**
 *  Populate any custom data into the template before sending with **populateTemplate()**
 
@@ -88,12 +90,15 @@ Usage:
 
 ## Administrator Emails
 
-The static function ''Email::setAdminEmail()'' can be called from a _config.php file to set the address that these emails should originate from. This address is used if the ''from'' field is empty.
+The static function ''Email::setAdminEmail()'' can be called from a _config.php file to set the address that these
+emails should originate from. This address is used if the ''from'' field is empty.
 
 ## Redirecting Emails
 
 *  Email::send_all_emails_to($address) will redirect all emails sent to the given address.  Handy for testing!
-*  Email::cc_all_emails_to() and Email::bcc_all_emails_to() will keep the email going to its original recipients, but add an additional receipient in the BCC/CC header.  Good for monitoring system-generated correspondence on the live systems.
+*  Email::cc_all_emails_to() and Email::bcc_all_emails_to() will keep the email going to its original recipients, but
+add an additional receipient in the BCC/CC header.  Good for monitoring system-generated correspondence on the live
+systems.
 
 	:::php
 	if(Director::isLive()) Email::bcc_all_emails_to("client@example.com");
@@ -102,7 +107,8 @@ The static function ''Email::setAdminEmail()'' can be called from a _config.php 
 
 ## Setting Custom Headers
 
-For email headers which do not have getters or setters (like setTo(), setFrom()) you can use **addCustomHeader($header, $value)**
+For email headers which do not have getters or setters (like setTo(), setFrom()) you can use **addCustomHeader($header,
+$value)**
 
 	:::php
 	$email = new Email(...);

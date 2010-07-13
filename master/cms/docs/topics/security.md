@@ -1,18 +1,22 @@
 # Introduction
 
-This page details notes on how to ensure that we develop secure SilverStripe applications. See [security](security) for the Silverstripe-class as a starting-point for most security-related functionality.
+This page details notes on how to ensure that we develop secure SilverStripe applications. See [security](security) for
+the Silverstripe-class as a starting-point for most security-related functionality.
 
-See our [contributing guidelines](http://doc.silverstripe.org/doku.php?id=contributing#reporting_security_issues) on how to report security issues.
+See our [contributing guidelines](http://doc.silverstripe.org/doku.php?id=contributing#reporting_security_issues) on how
+to report security issues.
 
 # SQL Injection
 
-The [coding-conventions](coding-conventions) help guard against SQL injection attacks but still require developer dilligence: ensure that any variable you insert into a filter / sort / join clause has been escaped.
+The [coding-conventions](coding-conventions) help guard against SQL injection attacks but still require developer
+dilligence: ensure that any variable you insert into a filter / sort / join clause has been escaped.
 
 See [http://shiflett.org/articles/sql-injection](http://shiflett.org/articles/sql-injection).
 
 ## Automatic escaping
 
-Silverstripe automatically runs [addslashes()](http://php.net/addslashes) in DataObject::write() wherever possible. Data is escaped when saving back to the database, not when writing to object-properties.
+Silverstripe automatically runs [addslashes()](http://php.net/addslashes) in DataObject::write() wherever possible. Data
+is escaped when saving back to the database, not when writing to object-properties.
 
 *  DataObject::get_by_id()
 *  DataObject::update()
@@ -23,11 +27,14 @@ Silverstripe automatically runs [addslashes()](http://php.net/addslashes) in Dat
 *  FormField->saveInto()
 *  DBField->saveInto()
 
-Note: It is NOT good practice to "be sure" and convert the data passed to the functions below manually. This might result in *double escaping* and alters the actually saved data (e.g. by adding slashes to your content).
+Note: It is NOT good practice to "be sure" and convert the data passed to the functions below manually. This might
+result in *double escaping* and alters the actually saved data (e.g. by adding slashes to your content).
 
 ## Manual escaping
 
-As a rule of thumb, whenever you're creating raw queries (or just chunks of SQL), you need to take care of escaping yourself. See [coding-conventions](coding-conventions) and [escape-types](escape-types) for ways to cast and convert your data.
+As a rule of thumb, whenever you're creating raw queries (or just chunks of SQL), you need to take care of escaping
+yourself. See [coding-conventions](coding-conventions) and [escape-types](escape-types) for ways to cast and convert
+your data.
 
 *  SQLQuery
 *  DataObject::buildSQL()
@@ -80,21 +87,29 @@ This means if you've got a chain of functions passing data through, escaping sho
 	}
 
 
-This might not be applicable in all cases - especially if you are building an API thats likely to be customized. If you're passing unescaped data, make sure to be explicit about it by writing *phpdoc*-documentation and *prefixing* your variables ($RAW_data instead of $data).
+This might not be applicable in all cases - especially if you are building an API thats likely to be customized. If
+you're passing unescaped data, make sure to be explicit about it by writing *phpdoc*-documentation and *prefixing* your
+variables ($RAW_data instead of $data).
 
 
 
 # XSS (Cross-Site-Scripting)
 
-SilverStripe helps you guard any output against clientside attacks initiated by malicious user input, commonly known as XSS (Cross-Site-Scripting). With some basic guidelines, you can ensure your output is safe for a specific use case (e.g. displaying a blog post in HTML from a trusted author, or escaping a search parameter from an untrusted visitor before redisplaying it).
+SilverStripe helps you guard any output against clientside attacks initiated by malicious user input, commonly known as
+XSS (Cross-Site-Scripting). With some basic guidelines, you can ensure your output is safe for a specific use case (e.g.
+displaying a blog post in HTML from a trusted author, or escaping a search parameter from an untrusted visitor before
+redisplaying it).
 
-Note: SilverStripe templates do not remove tags, please use [strip_tags()](http://php.net/strip_tags) for this purpose or [sanitize](http://htmlpurifier.org/) it correctly.
+Note: SilverStripe templates do not remove tags, please use [strip_tags()](http://php.net/strip_tags) for this purpose
+or [sanitize](http://htmlpurifier.org/) it correctly.
 
-See [http://shiflett.org/articles/foiling-cross-site-attacks](http://shiflett.org/articles/foiling-cross-site-attacks) for in-depth information about "Cross-Site-Scripting".
+See [http://shiflett.org/articles/foiling-cross-site-attacks](http://shiflett.org/articles/foiling-cross-site-attacks)
+for in-depth information about "Cross-Site-Scripting".
 
 ## Escaping model properties
 
-[SSViewer](SSViewer) (the SilverStripe template engine) automatically takes care of escaping HTML tags from specific object-properties by [casting](casting) its string value into a `[api:DBField]` object.
+[SSViewer](SSViewer) (the SilverStripe template engine) automatically takes care of escaping HTML tags from specific
+object-properties by [casting](casting) its string value into a `[api:DBField]` object.
 
 PHP:
 
@@ -116,11 +131,13 @@ Template:
 	</ul>
 
 
-The example below assumes that data wasn't properly filtered when saving to the database, but are escaped before outputting through SSViewer.
+The example below assumes that data wasn't properly filtered when saving to the database, but are escaped before
+outputting through SSViewer.
 
 ## Overriding default escaping in templates
 
-You can force escaping on a casted value/object by using an [escape type](escape-types) method in your template, e.g. "XML" or "ATT". 
+You can force escaping on a casted value/object by using an [escape type](escape-types) method in your template, e.g.
+"XML" or "ATT". 
 
 Template (see above):
 
@@ -136,7 +153,8 @@ Template (see above):
 
 ## Escaping custom attributes and getters
 
-Every object attribute or getter method used for template purposes should have its escape type defined through the static *$casting* array. Caution: Casting only applies when using values in a template, not in PHP.
+Every object attribute or getter method used for template purposes should have its escape type defined through the
+static *$casting* array. Caution: Casting only applies when using values in a template, not in PHP.
 
 PHP:
 
@@ -166,13 +184,16 @@ Template:
 	</ul>
 
 
-Note: Avoid generating HTML by string concatenation in PHP wherever possible to minimize risk and separate your presentation from business logic.
+Note: Avoid generating HTML by string concatenation in PHP wherever possible to minimize risk and separate your
+presentation from business logic.
 
 ## Manual escaping in PHP
 
-When using //customise()// or //renderWith()// calls in your controller, or otherwise forcing a custom context for your template, you'll need to take care of casting and escaping yourself in PHP. 
+When using //customise()// or //renderWith()// calls in your controller, or otherwise forcing a custom context for your
+template, you'll need to take care of casting and escaping yourself in PHP. 
 
-The [Convert](Convert) class has utilities for this, mainly //Convert::raw2xml()// and //Convert::raw2att()// (which is also used by *XML* and *ATT* in template code).
+The [Convert](Convert) class has utilities for this, mainly //Convert::raw2xml()// and //Convert::raw2att()// (which is
+also used by *XML* and *ATT* in template code).
 
 PHP:
 
@@ -200,7 +221,8 @@ You can also use the built-in casting in PHP by using the //obj()// wrapper, see
 
 ## Escaping URLs
 
-Whenever you are generating a URL that contains querystring components based on user data, use urlencode() to escape the user data, not //Convert::raw2att()//.  Use raw ampersands in your URL, and cast the URL as a "Text" DBField:
+Whenever you are generating a URL that contains querystring components based on user data, use urlencode() to escape the
+user data, not //Convert::raw2att()//.  Use raw ampersands in your URL, and cast the URL as a "Text" DBField:
 
 PHP:
 
@@ -230,7 +252,10 @@ Some rules of thumb:
 
 # Cross-Site Request Forgery (CSRF)
 
-SilverStripe has built-in countermeasures against this type of identity theft for all form submissions. A form object will automatically contain a *SecurityID* parameter which is generated as a secure hash on the server, connected to the currently active session of the user. If this form is submitted without this parameter, or if the parameter doesn't match the hash stored in the users session, the request is discarded.
+SilverStripe has built-in countermeasures against this type of identity theft for all form submissions. A form object
+will automatically contain a *SecurityID* parameter which is generated as a secure hash on the server, connected to the
+currently active session of the user. If this form is submitted without this parameter, or if the parameter doesn't
+match the hash stored in the users session, the request is discarded.
 
 If you know what you're doing, you can disable this behaviour:
 
@@ -238,17 +263,22 @@ If you know what you're doing, you can disable this behaviour:
 	$myForm->disableSecurityToken();
 
 
-See [http://shiflett.org/articles/cross-site-request-forgeries](http://shiflett.org/articles/cross-site-request-forgeries)
+See
+[http://shiflett.org/articles/cross-site-request-forgeries](http://shiflett.org/articles/cross-site-request-forgeries)
 
 
 
 ======= Casting user input =======
 
-When working with ''$_GET'', ''$_POST'' or ''Director::urlParams'' variables, and you know your variable has to be of a certain type, like an integer, then it's essential to cast it as one. *Why?* To be sure that any processing of your given variable is done safely, with the assumption that it's an integer.
+When working with ''$_GET'', ''$_POST'' or ''Director::urlParams'' variables, and you know your variable has to be of a
+certain type, like an integer, then it's essential to cast it as one. *Why?* To be sure that any processing of your
+given variable is done safely, with the assumption that it's an integer.
 
 To cast the variable as an integer, place ''(int)'' or ''(integer)'' before the variable.
 
-For example: a page with the URL paramaters *mysite.com/home/add/1* requires that ''Director::urlParams['ID']'' be an integer. We cast it by adding ''(int)'' - ''(int)Director::urlParams['ID']''. If a value other than an integer is passed, such as *mysite.com/home/add/dfsdfdsfd*, then it returns 0.
+For example: a page with the URL paramaters *mysite.com/home/add/1* requires that ''Director::urlParams['ID']'' be an
+integer. We cast it by adding ''(int)'' - ''(int)Director::urlParams['ID']''. If a value other than an integer is
+passed, such as *mysite.com/home/add/dfsdfdsfd*, then it returns 0.
 
 Below is an example with different ways you would use this casting technique:
 
@@ -269,7 +299,8 @@ Below is an example with different ways you would use this casting technique:
 	}
 
 
-The same technique can be employed anywhere in your PHP code you know something must be of a certain type. A list of PHP cast types can be found here:
+The same technique can be employed anywhere in your PHP code you know something must be of a certain type. A list of PHP
+cast types can be found here:
 
 *  ''(int)'', ''(integer)'' - cast to integer
 *  ''(bool)'', ''(boolean)'' - cast to boolean
@@ -278,7 +309,8 @@ The same technique can be employed anywhere in your PHP code you know something 
 *  ''(array)'' - cast to array
 *  ''(object)'' - cast to object
 
-Note that there is also a 'SilverStripe' way of casting fields on a class, this is a different type of casting to the standard PHP way. See [ casting](casting ).
+Note that there is also a 'SilverStripe' way of casting fields on a class, this is a different type of casting to the
+standard PHP way. See [ casting](casting ).
 
 
 
@@ -287,7 +319,9 @@ Note that there is also a 'SilverStripe' way of casting fields on a class, this 
 
 ## Don't allow script-execution in /assets
 
-As all uploaded files are stored by default on the /assets-directory, you should disallow script-execution for this folder. This is just an additional security-measure to making sure you avoid directory-traversal, check for filesize and disallow certain filetypes.
+As all uploaded files are stored by default on the /assets-directory, you should disallow script-execution for this
+folder. This is just an additional security-measure to making sure you avoid directory-traversal, check for filesize and
+disallow certain filetypes.
 
 Example configuration for Apache2:
 
@@ -301,7 +335,8 @@ Example configuration for Apache2:
 	</VirtualHost>
 
 
-If you are using shared hosting or in a situation where you cannot alter your Vhost definitions, you can use a .htaccess file in the assets directory.  This requires PHP to be loaded as an Apache module (not CGI or FastCGI).
+If you are using shared hosting or in a situation where you cannot alter your Vhost definitions, you can use a .htaccess
+file in the assets directory.  This requires PHP to be loaded as an Apache module (not CGI or FastCGI).
 
 **/assets/.htaccess**
 

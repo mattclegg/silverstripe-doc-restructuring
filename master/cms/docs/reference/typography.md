@@ -1,4 +1,5 @@
-SilverStripe lets you customise the style of content in the CMS.  This is done by setting up a CSS file called (projectname)/css/typography.css
+SilverStripe lets you customise the style of content in the CMS.  This is done by setting up a CSS file called
+(projectname)/css/typography.css
 
 You also need to create a file called (projectname)/css/editor.css with the following content:
 
@@ -30,9 +31,13 @@ In typography.css you can define styles of any of the tags that will get created
 * STRONG, EM, U
 * A
 
-It's important to realise that this CSS file is included directly into the CMS system, and if you aren't careful, you can alter the styling of other parts of the interface.  While this is novel, it can be dangerous and is probably not what you're after.
+It's important to realise that this CSS file is included directly into the CMS system, and if you aren't careful, you
+can alter the styling of other parts of the interface.  While this is novel, it can be dangerous and is probably not
+what you're after.
 
-The way around this is to limit all your styling selectors to elements inside something with class="typography".  The other half of this is to put class="typography" onto any area in your template where you would like the styling to be applied.
+The way around this is to limit all your styling selectors to elements inside something with class="typography".  The
+other half of this is to put class="typography" onto any area in your template where you would like the styling to be
+applied.
 
 **WRONG**
 
@@ -62,7 +67,9 @@ The way around this is to limit all your styling selectors to elements inside so
 	</div>
 
 
-If you would to include different styles for different sections of your site, you can use class names the same as the name of the data fields. This example sets up different paragraph styles for 2 HTML editor fieldsc alled Content and OtherContent:
+If you would to include different styles for different sections of your site, you can use class names the same as the
+name of the data fields. This example sets up different paragraph styles for 2 HTML editor fieldsc alled Content and
+OtherContent:
 
 	:::css
 	.Content.typography p {
@@ -76,7 +83,8 @@ If you would to include different styles for different sections of your site, yo
 
 ** Removing the typography class **
 
-Sometimes, it's not enough to add a class, you also want to remove the typography class.  You can use the HTMLEditorField method setCSSClass.
+Sometimes, it's not enough to add a class, you also want to remove the typography class.  You can use the
+HTMLEditorField method setCSSClass.
 
 This example sets another CSS class typographybis:
 

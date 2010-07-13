@@ -1,6 +1,7 @@
 # Adding a dynamic default value to a field
 
-If you wand to add a dynamic default value to a field you need to use populateDefaults(), not the defaults array (static $defaults).
+If you wand to add a dynamic default value to a field you need to use populateDefaults(), not the defaults array (static
+$defaults).
 
 Here's a simple example for a Date field to insert the current date by default:
 

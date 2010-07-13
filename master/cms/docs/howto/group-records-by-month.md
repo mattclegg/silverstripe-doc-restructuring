@@ -1,4 +1,5 @@
-The following code example shows how to sort your entries by month (in this example, a bunch of training pages, each with its associated date):
+The following code example shows how to sort your entries by month (in this example, a bunch of training pages, each
+with its associated date):
 
 Add the following code to your training holder (the parent page for your training pages):
 

@@ -1,8 +1,10 @@
 ## Introduction
 
-Many sites get too much traffic to justify dynamically sending every request.  Caching is needed.  The static publication system will generate static versions of your content that can be served without ever hitting PHP.
+Many sites get too much traffic to justify dynamically sending every request.  Caching is needed.  The static
+publication system will generate static versions of your content that can be served without ever hitting PHP.
 
-See [StaticExporter](StaticExporter) for a less flexible, but easier way of building a local static cache from all of your pages.
+See [StaticExporter](StaticExporter) for a less flexible, but easier way of building a local static cache from all of
+your pages.
 
 ## Requirements
 
@@ -10,7 +12,10 @@ See [StaticExporter](StaticExporter) for a less flexible, but easier way of buil
 
 ## Usage
 
-SilverStripe doesn't have enough information about your template and data-structures to automatically determine which URLs need to be cached, and at which time they are considered outdated. By adding a custom method allPagesToCache() to your Page class, you can determine which URLs need caching, and hook in custom logic. This array of URLs is used by the publisher to generate folders and HTML-files.
+SilverStripe doesn't have enough information about your template and data-structures to automatically determine which
+URLs need to be cached, and at which time they are considered outdated. By adding a custom method allPagesToCache() to
+your Page class, you can determine which URLs need caching, and hook in custom logic. This array of URLs is used by the
+publisher to generate folders and HTML-files.
 
 	:::php
 	class Page extends SiteTree {
@@ -77,11 +82,14 @@ This setup will store the cached content on the same server as the CMS.  This is
 	Object::add_extension("SiteTree", "FilesystemPublisher('cache/', 'html')");
 
 
-*  Put this into your .htaccess.  It will serve requests from the cache, statically, if the cache file exists.  Replace **sitedir** with the a subdirectory that you would like to serve the site from (for example, in your dev environment).
+*  Put this into your .htaccess.  It will serve requests from the cache, statically, if the cache file exists.  Replace
+**sitedir** with the a subdirectory that you would like to serve the site from (for example, in your dev environment).
 
-[View .htaccess example](http://open.silverstripe.com/browser/modules/cms/trunk/code/staticpublisher/htaccess_example_rsyncsingleserver)
+[View .htaccess
+example](http://open.silverstripe.com/browser/modules/cms/trunk/code/staticpublisher/htaccess_example_rsyncsingleserver)
 
-*  **New for 2.4:** In 2.4, we use a simple PHP script, static-main.php, to control cache lookup.  This make the .htaccess update simpler.
+*  **New for 2.4:** In 2.4, we use a simple PHP script, static-main.php, to control cache lookup.  This make the
+.htaccess update simpler.
 
 Just look for this line:
 
@@ -140,7 +148,8 @@ Instead of the above code snippet for Page.php, use the following code:
 	}
 
 
-And the last thing you need to do is adding your main site's host mapping to subsites/host-map.php. For example, your main site's host is mysite.com the content of the file would be: 
+And the last thing you need to do is adding your main site's host mapping to subsites/host-map.php. For example, your
+main site's host is mysite.com the content of the file would be: 
 
 	:::php
 	<?php 
@@ -150,19 +159,27 @@ And the last thing you need to do is adding your main site's host mapping to sub
 	);
 
 
-Remember that you need to add main site's host mapping every time a subsite is added or modified because the operation overwrites your manual modification to the file and subsite module does not add main site's hot mapping automatically at the moment.
+Remember that you need to add main site's host mapping every time a subsite is added or modified because the operation
+overwrites your manual modification to the file and subsite module does not add main site's hot mapping automatically at
+the moment.
 
 Another note for host-map.php file. This file doesn't not exist until you have created at least one subsite. 
 
 ## Multiple Server Caching
 
-In this setup, you have one server that is your dynamic CMS server, and one or more separate servers that are responsible for serving static content.  The publication system on the CMS will rsync changes to the static content servers as needed. No PHP files will be synced to the static content servers unless explicitly requested. All static assets (images, javascript, etc.) will be rsynced from their original locations. You can then put a load-balancer on the front of the static content servers. 
+In this setup, you have one server that is your dynamic CMS server, and one or more separate servers that are
+responsible for serving static content.  The publication system on the CMS will rsync changes to the static content
+servers as needed. No PHP files will be synced to the static content servers unless explicitly requested. All static
+assets (images, javascript, etc.) will be rsynced from their original locations. You can then put a load-balancer on the
+front of the static content servers. 
 
-This approach is very secure, because you can lock the CMS right down (for example, by IP) and hide all the PHP code away from potential hackers.  It is also good for high-traffic situations.
+This approach is very secure, because you can lock the CMS right down (for example, by IP) and hide all the PHP code
+away from potential hackers.  It is also good for high-traffic situations.
 
 ### Setup
 
-*  Add the RsyncMultiHostPublisher extension to your SiteTree objects in mysite/_config.php.  This will create static content in a "cache/" subdirectory, with an HTML suffix.
+*  Add the RsyncMultiHostPublisher extension to your SiteTree objects in mysite/_config.php.  This will create static
+content in a "cache/" subdirectory, with an HTML suffix.
 
 	:::php
 	Object::add_extension("SiteTree", "RsyncMultiHostPublisher('cache/', 'html')");
@@ -172,19 +189,31 @@ This approach is very secure, because you can lock the CMS right down (for examp
 	));
 
 
-Where ''<rsyncuser>'' is a unix account with write permissions to ''<webroot>'' (e.g. ''/var/www''), and ''<static-server1>'' and ''<static-server2>'' are the names of your static content servers.  The number of servers is flexible and depends on your infrastructure and scalability needs.
+Where ''<rsyncuser>'' is a unix account with write permissions to ''<webroot>'' (e.g. ''/var/www''), and
+''<static-server1>'' and ''<static-server2>'' are the names of your static content servers.  The number of servers is
+flexible and depends on your infrastructure and scalability needs.
 
-*  Ensure that the ''rsync'' unix tool is installed on the CMS server, and ssh access is enabled on the static content servers.
+*  Ensure that the ''rsync'' unix tool is installed on the CMS server, and ssh access is enabled on the static content
+servers.
 
-*  No password can be specified for the SSH connection . The class assumes a key-based authentication without requiring a password for the username specified in <rsyncuser> (see [http://www.csua.berkeley.edu/~ranga/notes/ssh_nopass.html tutorial](http://www.csua.berkeley.edu/~ranga/notes/ssh_nopass.html tutorial)).
+*  No password can be specified for the SSH connection . The class assumes a key-based authentication without requiring
+a password for the username specified in <rsyncuser> (see [http://www.csua.berkeley.edu/~ranga/notes/ssh_nopass.html
+tutorial](http://www.csua.berkeley.edu/~ranga/notes/ssh_nopass.html tutorial)).
 
-*  Put the .htaccess file linked below into the webroot of each static content server (and rename it to ''.htaccess'').  It will serve requests from the cache, statically, if the cache file exists.  Replace **sitedir** with the a subdirectory that you would like to serve the site from (for example, in your dev environment).
+*  Put the .htaccess file linked below into the webroot of each static content server (and rename it to ''.htaccess''). 
+It will serve requests from the cache, statically, if the cache file exists.  Replace **sitedir** with the a
+subdirectory that you would like to serve the site from (for example, in your dev environment).
 
-[View .htaccess example](http://open.silverstripe.com/browser/modules/cms/trunk/code/staticpublisher/htaccess_example_rsyncmultiservers)
+[View .htaccess
+example](http://open.silverstripe.com/browser/modules/cms/trunk/code/staticpublisher/htaccess_example_rsyncmultiservers)
 
 ## Cache Control 
 
-There is also the option to wrap some PHP logic around the static HTML content served by the content servers, which can greatly reduce the bandwidth required on your content servers. This code takes care of cache control through HTTP headers (''Cache-control'', ''If-modified-since''), meaning the files will only be delivered if they changed since the browser client last requested them. The last modification date for each static file is controlled by the publication script, meaning the cache gets invalidated on each publication.
+There is also the option to wrap some PHP logic around the static HTML content served by the content servers, which can
+greatly reduce the bandwidth required on your content servers. This code takes care of cache control through HTTP
+headers (''Cache-control'', ''If-modified-since''), meaning the files will only be delivered if they changed since the
+browser client last requested them. The last modification date for each static file is controlled by the publication
+script, meaning the cache gets invalidated on each publication.
 
 To enable cache control, specify "php" instead of "html" in the RsyncMultiHostPublisher definition.
 
@@ -194,11 +223,13 @@ To enable cache control, specify "php" instead of "html" in the RsyncMultiHostPu
 
 And use this slightly different .htaccess file. Make sure that index.php can be used as a directory index!
 
-[View .htaccess example](http://open.silverstripe.com/browser/modules/cms/trunk/code/staticpublisher/htaccess_example_rsyncwithphp)
+[View .htaccess
+example](http://open.silverstripe.com/browser/modules/cms/trunk/code/staticpublisher/htaccess_example_rsyncwithphp)
 
 ## Deployment
 
-Once you've set up your rewrite rules and defined which pages need caching, you can build the static HTML files. This is done by the [RebuildStaticCacheTask](RebuildStaticCacheTask).
+Once you've set up your rewrite rules and defined which pages need caching, you can build the static HTML files. This is
+done by the [RebuildStaticCacheTask](RebuildStaticCacheTask).
 
 Execution via URL
 
@@ -212,9 +243,12 @@ Execution on CLI (via [sake](sake))
 	sake dev/buildcache flush=1
 
 
-Depending on which extension you've set up for your SiteTree (FilesystemPublisher or RsyncMultiHostPublisher), the method publishPages() either stores the generated HTML-files on the server's filesystem, or deploys them to other servers via rsync.
+Depending on which extension you've set up for your SiteTree (FilesystemPublisher or RsyncMultiHostPublisher), the
+method publishPages() either stores the generated HTML-files on the server's filesystem, or deploys them to other
+servers via rsync.
 
-It is adviseable to set dev/buildcache up as an automated task (e.g. unix cron) which continually rebuilds and redeploys the cache. 
+It is adviseable to set dev/buildcache up as an automated task (e.g. unix cron) which continually rebuilds and redeploys
+the cache. 
 
 ## Related
 

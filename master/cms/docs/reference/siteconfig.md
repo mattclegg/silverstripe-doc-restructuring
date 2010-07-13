@@ -1,6 +1,7 @@
 # Site Config
 
-The SiteConfig panel was introduced in 2.4 for providing a generic interface for managing site wide settings or functionality which is used throughout the site. Out of the box it provides 2 fields 'Site Name' and 'Site Tagline'.
+The SiteConfig panel was introduced in 2.4 for providing a generic interface for managing site wide settings or
+functionality which is used throughout the site. Out of the box it provides 2 fields 'Site Name' and 'Site Tagline'.
 
 ## Accessing SiteConfig Options
 
@@ -59,6 +60,8 @@ Then add a link to your extension in the _config.php file like below.
 
 This tells SilverStripe to add the CustomSiteConfig extension to the SiteConfig class. 
 
-After adding those two pieces of code, rebuild your database by visiting http://yoursite.com/dev/build and then reload the admin interface. You may need to reload it with a ?flush=1 on the end.
+After adding those two pieces of code, rebuild your database by visiting http://yoursite.com/dev/build and then reload
+the admin interface. You may need to reload it with a ?flush=1 on the end.
 
-You can define as many extensions for SiteConfig as you need. For example if you are developing a module you can define your own global settings for the dashboard.
+You can define as many extensions for SiteConfig as you need. For example if you are developing a module you can define
+your own global settings for the dashboard.

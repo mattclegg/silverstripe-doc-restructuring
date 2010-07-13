@@ -1,8 +1,10 @@
 # Introduction
 
-An object representing a SQL query. It is easier to deal with object-wrappers than string-parsing a raw SQL-query. This object is used by `[api:DataObject]`, though...
+An object representing a SQL query. It is easier to deal with object-wrappers than string-parsing a raw SQL-query. This
+object is used by `[api:DataObject]`, though...
 
-A word of caution: Dealing with low-level SQL is not encouraged in the Silverstripe [datamodel](datamodel) for various reasons. You'll break the behaviour of:
+A word of caution: Dealing with low-level SQL is not encouraged in the Silverstripe [datamodel](datamodel) for various
+reasons. You'll break the behaviour of:
 
 *  Custom getters/setters
 *  DataObject::onBeforeWrite/onBeforeDelete
@@ -11,7 +13,8 @@ A word of caution: Dealing with low-level SQL is not encouraged in the Silverstr
 *  `[api:DataObject]`
 *  Database abstraction
 
-We'll explain some ways to use *SELECT* with the full power of SQL, but still maintain a connection to the Silverstripe [datamodel](datamodel).
+We'll explain some ways to use *SELECT* with the full power of SQL, but still maintain a connection to the Silverstripe
+[datamodel](datamodel).
 
 # Usage
 
@@ -56,7 +59,8 @@ We'll explain some ways to use *SELECT* with the full power of SQL, but still ma
 
 # Working with results
 
-The result is an array lightly wrapped in a database-specific subclass of `[api:Query]`. This class implements the *Iterator*-interface defined in PHP5, and provides convenience-methods for accessing the data.
+The result is an array lightly wrapped in a database-specific subclass of `[api:Query]`. This class implements the
+*Iterator*-interface defined in PHP5, and provides convenience-methods for accessing the data.
 
 ## Iterating
 
@@ -110,7 +114,8 @@ This is not recommended for most cases, but you can also use the Silverstripe da
 
 ## "Semi-raw" SQL with buildSQL()
 
-You can gain some ground on the datamodel-side when involving the selected class for querying. You don't necessarily need to call *buildSQL* from a specific object-instance, a *singleton* will do just fine.
+You can gain some ground on the datamodel-side when involving the selected class for querying. You don't necessarily
+need to call *buildSQL* from a specific object-instance, a *singleton* will do just fine.
 
 	:::php
 	$sqlQuery = singleton('Player')->buildSQL(
@@ -127,7 +132,8 @@ This form of building a query has the following advantages:
 
 ## Transforming a result to DataObjectSet
 
-This is a commonly used technique inside Silverstripe: Use raw SQL, but transfer the resulting rows back into DataObjects.
+This is a commonly used technique inside Silverstripe: Use raw SQL, but transfer the resulting rows back into
+DataObjects.
 
 	:::php
 	$sqlQuery = new SQLQuery();
@@ -168,11 +174,14 @@ This is a commonly used technique inside Silverstripe: Use raw SQL, but transfer
 CAUTION: Depending on the selected columns in your query, you might get into one of the following scenarios:
 
 *  Not all object-properties accessible: You need to take care of selecting the right stuff yourself
-*  Overlayed object-properties: If you *LEFT JOIN* a table which also has a column 'Birthdate' and do a global select on this table, you might not be able to access original object-properties.
+*  Overlayed object-properties: If you *LEFT JOIN* a table which also has a column 'Birthdate' and do a global select on
+this table, you might not be able to access original object-properties.
 *  You can't create DataObjects where no scalar record-data is available, e.g. when using *GROUP BY*
-*  Naming conflicts with custom getters: A getter like Player->getName() will overlay the column-data selected in the above example
+*  Naming conflicts with custom getters: A getter like Player->getName() will overlay the column-data selected in the
+above example
 
-Be careful when saving back DataObjects created through *buildDataObjectSet*, you might get strange side-effects due to the issues noted above.
+Be careful when saving back DataObjects created through *buildDataObjectSet*, you might get strange side-effects due to
+the issues noted above.
 ## Using FormFields with custom SQL
 
 Some subclasses of `[api:FormField]` for ways to create sophisticated report-tables based on SQL.

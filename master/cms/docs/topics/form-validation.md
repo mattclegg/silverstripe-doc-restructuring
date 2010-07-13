@@ -5,7 +5,9 @@ Form validation is a combination of PHP and JavaScript
 
 ### Introduction
 
-Validators are implemented as an argument to the [api:Form] constructor.  You create a required fields validator like so.  In this case, we're creating a [api:RequiredFields] validator - the [api:Validator] class itself is an abstract class.
+Validators are implemented as an argument to the [api:Form] constructor.  You create a required fields validator like
+so.  In this case, we're creating a [api:RequiredFields] validator - the [api:Validator] class itself is an abstract
+class.
 
 
 	:::php
@@ -30,7 +32,8 @@ Validators are implemented as an argument to the [api:Form] constructor.  You cr
 To create your own validator, you need to subclass validator and define two methods:
 
  *  **javascript()** Should output a snippet of JavaScript that will get called to perform javascript validation.
- *  **php($data)** Should return true if the given data is valid, and call $this->validationError() if there were any errors.
+ *  **php($data)** Should return true if the given data is valid, and call $this->validationError() if there were any
+errors.
 
 ## JavaScript
 
@@ -38,7 +41,9 @@ To create your own validator, you need to subclass validator and define two meth
 
 TODO Describe behaviour.js solution easily, how to disable it
 
-Setting fieldEl.requiredErrorMsg or formEl.requiredErrorMsg will override the default error message.  Both can include the string '$FieldLabel', which will be replaced with the field's label. Otherwise, the message is "Please fill out "$FieldLabel", it is required".
+Setting fieldEl.requiredErrorMsg or formEl.requiredErrorMsg will override the default error message.  Both can include
+the string '$FieldLabel', which will be replaced with the field's label. Otherwise, the message is "Please fill out
+"$FieldLabel", it is required".
 
 You can use Behaviour to load in the appropriate value:
 
@@ -51,7 +56,9 @@ You can use Behaviour to load in the appropriate value:
 
 ### Other validation libraries
 
-By default, SilverStripe forms with an attached Validator instance use the custom Validator.js clientside logic. It is quite hard to customize, and might not be appropriate for all use-cases. You can disable integrated clientside validation, and use your own (e.g. [jquery.validate](http://docs.jquery.com/Plugins/Validation)).
+By default, SilverStripe forms with an attached Validator instance use the custom Validator.js clientside logic. It is
+quite hard to customize, and might not be appropriate for all use-cases. You can disable integrated clientside
+validation, and use your own (e.g. [jquery.validate](http://docs.jquery.com/Plugins/Validation)).
 
 Disable for all forms (in `mysite/_config.php`):
 

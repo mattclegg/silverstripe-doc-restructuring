@@ -1,8 +1,12 @@
-Below is a good example of a menu. It can be used for two levels of nesting. Beyond that, you'll probably need to create functionality to recursively generate templating based on the level your pages are in.
+Below is a good example of a menu. It can be used for two levels of nesting. Beyond that, you'll probably need to create
+functionality to recursively generate templating based on the level your pages are in.
 
-What's special about this? We're using `<% if LinkingMode = current %>` to find out what the current page you're on in the menu is. We then make that item in the menu a `<span>` element, so it isn't clickable (since you shouldn't be able to click on the page you're currently on).
+What's special about this? We're using `<% if LinkingMode = current %>` to find out what the current page you're on in
+the menu is. We then make that item in the menu a `<span>` element, so it isn't clickable (since you shouldn't be able
+to click on the page you're currently on).
 
-Menu items are also abstracted, so you're not relying on a certain element to be there, like a `<span>` or `<a>`. The abstracted item has a class name of `.item`, so you style menu items using the class instead of the element.
+Menu items are also abstracted, so you're not relying on a certain element to be there, like a `<span>` or `<a>`. The
+abstracted item has a class name of `.item`, so you style menu items using the class instead of the element.
 
 	:::html
 	<% if Menu(2) %>

@@ -1,4 +1,6 @@
-In the recipe below, we manage a dataobject (table, piece of information) called House, which lists houses (name) and a type(small or large). We then list these houses in a housepage and allow them to be searched. This is a silly example, but you can use the same code for more meaningful purposes.
+In the recipe below, we manage a dataobject (table, piece of information) called House, which lists houses (name) and a
+type(small or large). We then list these houses in a housepage and allow them to be searched. This is a silly example,
+but you can use the same code for more meaningful purposes.
 
 Also see: [http://doc.silverstripe.com/doku.php?id=searchcontext](http://doc.silverstripe.com/doku.php?id=searchcontext)
 

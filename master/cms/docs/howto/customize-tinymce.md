@@ -2,13 +2,16 @@
 
 To customize the default tinymce configuration you can use HTMLEditorConfig class. 
 
-**Note this functionality is likely to be changed in future releases.** and should only be considered as a temporary way of modifying the editor.
+**Note this functionality is likely to be changed in future releases.** and should only be considered as a temporary way
+of modifying the editor.
 
 ## How to Use
 
-You can customize the installation by adding the following examples to your  getCMSFields(). This will normally be found in /mysite/code/Page.php, chances are if it's not there, you know where to find it.
+You can customize the installation by adding the following examples to your  getCMSFields(). This will normally be found
+in /mysite/code/Page.php, chances are if it's not there, you know where to find it.
 
-Or if you want to apply the TinyMCE changes over all the text area fields you can add the code to your mysite/_config.php file.
+Or if you want to apply the TinyMCE changes over all the text area fields you can add the code to your
+mysite/_config.php file.
 
 	:::php
 	// mysite/code/Page.php
@@ -35,11 +38,13 @@ Or if you want to apply the TinyMCE changes over all the text area fields you ca
 
 ## Setting TinyMCE Options (eg valid elements)
 
-You can customize any of the [TinyMCE](http://wiki.moxiecode.com/index.php/TinyMCE:Configuration) options by calling setOption('optionname', 'value').
+You can customize any of the [TinyMCE](http://wiki.moxiecode.com/index.php/TinyMCE:Configuration) options by calling
+setOption('optionname', 'value').
 
 ### Customizing allowed HTML
 
-If you want to extend the HTML that the textarea can support you can do so by adding the elements to the valid_elements or extended_valid_elements list. If the HTML you want to insert is not in one of these arrays it will be stripped out.
+If you want to extend the HTML that the textarea can support you can do so by adding the elements to the valid_elements
+or extended_valid_elements list. If the HTML you want to insert is not in one of these arrays it will be stripped out.
 
 For example if you wanted to allow an html element <foo> you can add it to the list
 
@@ -51,18 +56,22 @@ For example if you wanted to allow an html element <foo> you can add it to the l
 	));
 
 
-The [ ] define what attributes you can add to <foo> for example <foo class="baz" title="Bar"> would be represented as foo[class|title]
+The [ ] define what attributes you can add to <foo> for example <foo class="baz" title="Bar"> would be represented as
+foo[class|title]
 
 ### Allowing javascript in the content editor
 
-A common situation is a page requires its own javascript to be added in the cms. You can extend the valid options to allow for javascript by adding this to your mysite/_config file
+A common situation is a page requires its own javascript to be added in the cms. You can extend the valid options to
+allow for javascript by adding this to your mysite/_config file
 
 	:::php
 	HtmlEditorConfig::get('cms')->setOption('extended_valid_elements', "script[type|src],img[class|src|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name|usemap],iframe[src|name|width|height|align|frameborder|marginwidth|marginheight|scrolling],object[width|height|data|type],param[name|value],map[class|name|id],area[shape|coords|href|target|alt]");
 
 ### Turning off all HTML Validation
 
-By default TinyMCE provides a restrictive set of HTML which it deems as 'safe'. Please remember that malformed or malicious HTML is a very real threat so disabling HTML validation for fields which accept user contributed content is risky. You should only disable validation and extend valid elements as a last resort.
+By default TinyMCE provides a restrictive set of HTML which it deems as 'safe'. Please remember that malformed or
+malicious HTML is a very real threat so disabling HTML validation for fields which accept user contributed content is
+risky. You should only disable validation and extend valid elements as a last resort.
 
 	:::php
 	// mysite/_config.php

@@ -1,6 +1,7 @@
 #### Installing SilverStripe on an existing lighttpd webserver
 
-1. Lighttpd works fine so long as you provide a custom config. Add the following to lighttpd.conf **BEFORE** installing Silverstripe. Replace "yoursite.com" and "/home/yoursite/public_html/" below.
+1. Lighttpd works fine so long as you provide a custom config. Add the following to lighttpd.conf **BEFORE** installing
+Silverstripe. Replace "yoursite.com" and "/home/yoursite/public_html/" below.
 
 	
 	$HTTP["host"] == "yoursite.com" {
@@ -34,13 +35,18 @@
 	}
 
 
-Rewrite rules do not check for file existence as they do on Apache. There is a ticket about it for Lighttpd: [http://redmine.lighttpd.net/issues/985](http://redmine.lighttpd.net/issues/985).
+Rewrite rules do not check for file existence as they do on Apache. There is a ticket about it for Lighttpd:
+[http://redmine.lighttpd.net/issues/985](http://redmine.lighttpd.net/issues/985).
 
-2. Extract the SilverStripe software to your lighttpd installation, and run http://yoursite.com/install.php and the installation should proceed normally.
+2. Extract the SilverStripe software to your lighttpd installation, and run http://yoursite.com/install.php and the
+installation should proceed normally.
 
 #### Multiple installations of SilverStripe on the same host (www.yourhost.com)
 
-Running multiple installations of Silverstripe on the same host is a bit more tricky, but not impossible.  I would recommend using subdomains instead if you can, for exampe: site1.yourdomain.com and site2.yourdomain.com, it makes things a lot simpler, as you just use two of the above host example blocks. But if you really must run multiple copies of Silverstripe on the same host, you can use something like this (be warned, it's quite nasty):
+Running multiple installations of Silverstripe on the same host is a bit more tricky, but not impossible.  I would
+recommend using subdomains instead if you can, for exampe: site1.yourdomain.com and site2.yourdomain.com, it makes
+things a lot simpler, as you just use two of the above host example blocks. But if you really must run multiple copies
+of Silverstripe on the same host, you can use something like this (be warned, it's quite nasty):
 
 	
 	$HTTP["host"] == "yoursite.com" {
@@ -59,12 +65,17 @@ Running multiple installations of Silverstripe on the same host is a bit more tr
 	}
 
 
-Note: It doesn't work properly if the directory name copy1 or copy2 on your server has a dot in it, and you then open the image editor inside admin, I found that out the hard way when using a directory name of silverstripe-v2.2.2 after directly unzipping the Silverstripe tarball leaving the name as is. I haven't found a solution for that yet, but for now this method still works properly if you just don't use dots in the directory names.
+Note: It doesn't work properly if the directory name copy1 or copy2 on your server has a dot in it, and you then open
+the image editor inside admin, I found that out the hard way when using a directory name of silverstripe-v2.2.2 after
+directly unzipping the Silverstripe tarball leaving the name as is. I haven't found a solution for that yet, but for now
+this method still works properly if you just don't use dots in the directory names.
 
 #### Installing lighttpd on Debian
 
 *  aptitude install lighttpd //(and php5-cgi, mysql-server, etc, as necessary.)//
-    * if apache is already running, lighttpd can still be safely installed. It will complain it cannot start because port 80 is in use. After installing lighttpd, edit /etc/lighttpd/lighttpd.conf  and set: "server.port = 81" for example, and run /etc/init.d/lighttpd restart
+    * if apache is already running, lighttpd can still be safely installed. It will complain it cannot start because
+port 80 is in use. After installing lighttpd, edit /etc/lighttpd/lighttpd.conf  and set: "server.port = 81" for example,
+and run /etc/init.d/lighttpd restart
     * edit /etc/lighttpd/conf-available/10-fastcgi.conf and set socket to: /var/run/lighttpd/php.socket
     * enable fastcgi module with /usr/sbin/lighty-enable-mod
 *  /etc/init.d/lighttpd restart

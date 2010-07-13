@@ -1,6 +1,7 @@
 # Site Reports
 
-A report is a little bit of functionally in the CMS designed to provide a report of your data or content. You can access the site reports by clicking "Site Reports" in the left hand side bar and selecting the report you wish to view.
+A report is a little bit of functionally in the CMS designed to provide a report of your data or content. You can access
+the site reports by clicking "Site Reports" in the left hand side bar and selecting the report you wish to view.
 
 {{:sitereport.png|:sitereport.png}} 
 
@@ -9,15 +10,19 @@ By default the CMS ships with a couple basic reports -
 ### Default Reports
 
 *  "Empty Pages" which will generate a list of pages without content 
-*  "Pages edited in the last 2 weeks" which will list all the pages edited in the last 2 weeks in order of most recently edited.
-*  "To Do" which displays all the ToDo notes you have added to each page and a link to the page. This is in 2.2.2 and later
+*  "Pages edited in the last 2 weeks" which will list all the pages edited in the last 2 weeks in order of most recently
+edited.
+*  "To Do" which displays all the ToDo notes you have added to each page and a link to the page. This is in 2.2.2 and
+later
 *  Also the Ecommerce module provides 2 or 3 reports out of box. Such as All Products, Orders...
 
 ## Creating Custom Reports
 
-You can create reports for you own data quickly and easily. A general knowledge of Silverstripes [Datamodel](http://doc.silverstripe.com/doku.php?id=datamodel) would help before you attempt this. 
+You can create reports for you own data quickly and easily. A general knowledge of Silverstripes
+[Datamodel](http://doc.silverstripe.com/doku.php?id=datamodel) would help before you attempt this. 
 
-Inside the Mysite/Code folder - your projects code, create a file called CustomSideReport or MyProjectSiteReport and inside this file we can add our site reports.
+Inside the Mysite/Code folder - your projects code, create a file called CustomSideReport or MyProjectSiteReport and
+inside this file we can add our site reports.
 
 CustomSideReport.php 
 
@@ -37,7 +42,9 @@ CustomSideReport.php
 	?>
 
 
-Now this won't do anything! You will just get a blank report that doesn't work! So for this to do something we have to fill in these 3 methods title() records() and fieldsToShow() till we have something like this. For example if you want to list every Page on your site!
+Now this won't do anything! You will just get a blank report that doesn't work! So for this to do something we have to
+fill in these 3 methods title() records() and fieldsToShow() till we have something like this. For example if you want
+to list every Page on your site!
 
 CustomSideReport.php
 
@@ -74,7 +81,8 @@ Reload the CMS and test it out for your self! You should be able to select the r
 ## Further on.. Notes
 
 *  Your CustomSideReport_ReportName must extend SideReport!
-*  You can have more then 1 report in the 1 file. Actually its recommended!. You should create 1 CustomSideReport.php file and add class's as you need them inside that for each report.
+*  You can have more then 1 report in the 1 file. Actually its recommended!. You should create 1 CustomSideReport.php
+file and add class's as you need them inside that for each report.
 
 ## TODO
 

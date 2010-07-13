@@ -1,18 +1,25 @@
 # ** Site Map Module Released **
 
-A module has been released that supersedes the code used in this tutorial and makes it even simpler to create a human-readable HTML site map page for your website. You can easily configure the Title, URL, page types to hide and permissions check. It also includes 2 themes out of the box and more can be added.
+A module has been released that supersedes the code used in this tutorial and makes it even simpler to create a
+human-readable HTML site map page for your website. You can easily configure the Title, URL, page types to hide and
+permissions check. It also includes 2 themes out of the box and more can be added.
 
 Check it out here: http://silverstripe.org/site-map-module-module/
 
-If you have any queries, amendments or new themes to discuss, you can find the module maintainer DesignCity on IRC most weeks.
+If you have any queries, amendments or new themes to discuss, you can find the module maintainer DesignCity on IRC most
+weeks.
 
 # Overview
 
-This is a short tutorial demonstrating how to quickly add a Site Map to a SilverStripe site. While it is recommended that you have completed the earlier tutorials, you should be able to simply copy/paste your way through this. You can add the Site Map to a fresh install or to the tutorial site.
+This is a short tutorial demonstrating how to quickly add a Site Map to a SilverStripe site. While it is recommended
+that you have completed the earlier tutorials, you should be able to simply copy/paste your way through this. You can
+add the Site Map to a fresh install or to the tutorial site.
 
 # What are we working towards?
 
-We are going to add a site map to your site. The site map will contain a list of all of the pages on your site, even if you have deselected the "Show in menus?" option on the Behaviour tab (To obey your "Show in menus?" option for top-level pages, uncomment line 26 in SiteTree.php) . The site map will also ignore all pages with the ErrorPage type.
+We are going to add a site map to your site. The site map will contain a list of all of the pages on your site, even if
+you have deselected the "Show in menus?" option on the Behaviour tab (To obey your "Show in menus?" option for top-level
+pages, uncomment line 26 in SiteTree.php) . The site map will also ignore all pages with the ErrorPage type.
 
 {{:tutorial:site-map-final.jpg|:tutorial:site-map-final.jpg}}
 
@@ -23,7 +30,8 @@ We are going to add a site map to your site. The site map will contain a list of
 
 # Step 1: Creating the page type
 
-We now need to create a page type so we can display the site map. Navigate to your */mysite/code* directory and create a new file called **SiteMap.php**. SiteMap.php should contain the following:
+We now need to create a page type so we can display the site map. Navigate to your */mysite/code* directory and create a
+new file called **SiteMap.php**. SiteMap.php should contain the following:
 
 	:::php
 	<?php
@@ -82,7 +90,8 @@ We now need to create a page type so we can display the site map. Navigate to yo
 
 # Step 2: Rebuild the Database
 
-Before continuing, we need to flush the database so that SilverStripe knows that we've just added a new page type. Visit *http:*yoursite.com/dev/build //.  You should be presented with a screen that looks like the following:
+Before continuing, we need to flush the database so that SilverStripe knows that we've just added a new page type. Visit
+*http:*yoursite.com/dev/build //.  You should be presented with a screen that looks like the following:
 
 {{:tutorial:site-map-build.jpg|:tutorial:site-map-build.jpg}}
 
@@ -91,15 +100,20 @@ Before continuing, we need to flush the database so that SilverStripe knows that
 
 Now we need to create a new page in the CMS. 
 
-Launch the CMS (or refresh if the CMS was open when you rebuilt the database) and create a new SiteMap page. Save & Publish and we're done in the CMS. You don't need to enter anything into the Content box.
+Launch the CMS (or refresh if the CMS was open when you rebuilt the database) and create a new SiteMap page. Save &
+Publish and we're done in the CMS. You don't need to enter anything into the Content box.
 
 {{:tutorial:site-map-cms.jpg|:tutorial:site-map-cms.jpg}}
 
 # Step 4: Create the template for the site map
 
-Next we need to create the template used to display the site map. You need to create a file called **SiteMap.ss** in the following location: */mysite/templates/Layout/SiteMap.ss*. You'll know that you have the right directory becuase there should already be a Page.ss file in there. If you're following the turotials, you might find /tutorial/templates/Layout/SiteMap.ss will work for you.
+Next we need to create the template used to display the site map. You need to create a file called **SiteMap.ss** in the
+following location: */mysite/templates/Layout/SiteMap.ss*. You'll know that you have the right directory becuase there
+should already be a Page.ss file in there. If you're following the turotials, you might find
+/tutorial/templates/Layout/SiteMap.ss will work for you.
 
-SiteMap needs to include "**$SiteMap**" where you want the site map to appear. Here's an example from the Blackcandy theme:
+SiteMap needs to include "**$SiteMap**" where you want the site map to appear. Here's an example from the Blackcandy
+theme:
 
 	:::php
 	<div class="typography">
@@ -124,7 +138,8 @@ SiteMap needs to include "**$SiteMap**" where you want the site map to appear. H
 		<% end_if %>
 	</div>
 
-If you don't have any experience using the templates, use the contents of mysite/templates/Layout/Page.ss as a base and add in "**$SiteMap**" below "$Content".
+If you don't have any experience using the templates, use the contents of mysite/templates/Layout/Page.ss as a base and
+add in "**$SiteMap**" below "$Content".
 
 # Look mum, a site map!
 
@@ -142,9 +157,11 @@ There are plenty of resources for how to style a site map well:
 *  Try A List Apart's article "Spruced-Up Site Maps" (http://www.alistapart.com/articles/sprucemaps)
 *  Or BeTech's CSS Sitemap (http://betech.virginia.edu/index.php/2007/10/03/css-sitemap/)
 *  Or Zab Design's work (http://www.zabdesign.de/pro/public/sitemap/sitemap-styled.html)
-*  Or make it really easy for yourself and design it exactly like Silverstripe's Tree with two simple includes (http://www.silverstripe.com/tree-control/)
+*  Or make it really easy for yourself and design it exactly like Silverstripe's Tree with two simple includes
+(http://www.silverstripe.com/tree-control/)
 
-However, if you're looking to get it the way you want it, there's nothing to do other than get your hands dirty. Here's some code that can get you started:
+However, if you're looking to get it the way you want it, there's nothing to do other than get your hands dirty. Here's
+some code that can get you started:
 
 	:::css
 	/************************
