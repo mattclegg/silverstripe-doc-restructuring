@@ -13,8 +13,29 @@ class MarkdownCleanup {
 		$content = $this->newlinesBeforeLists($content);
 		$content = $this->convertApiLinks($content);
 		$content = $this->convertEmphasis($content);
+		$content = $this->fixedWidth($content);
+		
 		
 		return $content;
+	}
+	
+	/**
+	 * Put everything thats not in a code block into a fixed width of 120 characters.
+	 * Its important that this runs after {@link convertCodeBlocks()}.
+	 */
+	protected function fixedWidth($content) {
+		$out = array();
+		
+		$lines = $this->getLines($content);
+		foreach($lines as $i => $line) {
+			if(!preg_match('/^\t/', $lines[$i])) {
+				$lines[$i] = wordwrap($lines[$i], 120);
+			}
+			
+			$out[] = $lines[$i];
+		}
+		
+		return implode("\n", $out);
 	}
 	
 	/**
