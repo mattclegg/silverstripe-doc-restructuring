@@ -1,27 +1,45 @@
-# SAKE: Sapphire make
+# Commandline usage in SilverStripe
 
-**NOTE:** This feature is currently only available in trunk and will be released in SilverStripe 2.3.
+## Introduction
 
-Sake is a wrapper around Sapphire's cli-script.php, designed to be used for build related tasks such as testing and
-database upgrades.
+SilverStripe can call controllers through commandline `php` just as easily as through a web browser.
+This can be handy to automate tasks with cron jobs, run unit tests and maintenance tasks,
+and a whole bunch of other scripted goodness.
+
+The main entry point for any commandline execution is `cli-script.php`. For example, to run a database rebuild
+from the commandline, use this command:
+
+	cd your-webroot/
+	php sapphire/cli-script.php dev/build
+	
+Make sure that your commandline php version uses the same configuration as your webserver (run `php -i` to find out more).
+	
+## GET parameters as arguments
+
+You can add parameters to the command by using normal form encoding.
+All parameters will be available in `$_GET` within SilverStripe.
+
+	cd your-webroot/
+	php sapphire/cli-script.php myurl myparam=1 myotherparam=2
+
+## SAKE: Sapphire make
+
+Sake is a simple wrapper around `cli-script.php`. It also tries to detect which `php` executable to use
+if more than one are available.
 
 **If you are using a debian server:** Check you have the php-cli package installed for sake to work. 
 If you get an error when running the command php -v, then you may not have php-cli installed so sake won't work.
 
-#### Installation
+### Installation
 
-**Linux / Mac**
+You can copy the `sake` file into `/usr/bin/sake` for easier access (this is optional):
 
-	
-	cd /your/site/folder
+	cd your-webroot/
 	sudo ./sapphire/sake installsake
 
+Note: This currently only works on unix-like systems, not on Windows.
 
-** Windows **
-
-Coming soon....
-
-#### Setting up your environment for command-line support
+## Configuration
 
 Sometimes SilverStripe needs to know the URL of your site, for example, when sending an email.  When you're visiting
 your site in a web browser this is easy to work out, but if you're executing scripts on the command-line, it has no way
@@ -48,9 +66,9 @@ You can add multiple file to url mapping definitions.  The most specific mapping
 Using this example, /Users/sminnee/Sites/mysite/ would be accessed at http://mysite.localhost/, and
 /Users/sminnee/Sites/othersite/ would be accessed at http://localhost/othersite/
 
-#### Use
+## Usage
 
-Sake will either run ./sapphire/cli-script.php or ./cli-script.php, depending on what's available.
+Sake will either run `./sapphire/cli-script.php` or `./cli-script.php`, depending on what's available.
 
 It's particularly useful for running build tasks...
 
@@ -108,12 +126,3 @@ Step 3: Use sake to start and stop your process
 
 Note that sake processes are currently a little brittle, in that the pid and log files are placed in the site root
 directory, rather than somewhere sensible like /var/log or /var/run.
-
-#### To Do
-
-*  Build sake.bat for windows users
-*  Have a tighter integration between sake and Mark's task runner work.  For example, we might signal that either sake
-can run only URLs in the dev/ namespace, or that any action without a "/" is assumed to be a command in the dev/
-namespsace.
-*  Add a bunch of task runner tasks to do the command-line-esque things.
-*  If you just run sake, then show a list of possible commands
