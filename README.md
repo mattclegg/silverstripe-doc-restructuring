@@ -25,3 +25,37 @@ Note: This is only possible by SilverStripe staff.
 
 	cd scripts
 	php TranslateSSDocs.php
+	
+## Contributing
+
+### Requirements
+
+You'll need to [install git](http://help.github.com/git-installation-redirect), which is quite straightforward on most operating systems.
+
+To edit the files, you just need a text editor. They're written in [Markdown](http://daringfireball.net/projects/markdown/), which many editors have syntax highlighting for (e.g. through the [Textmate plugin](http://github.com/textmate/markdown.tmbundle)).
+
+### Forking the project
+
+You can **fork** this project within github, as described on [help.github.com](http://help.github.com/forking/).
+This fork will show up on your own github profile, and can be checked out to your local machine.
+You don't need a webserver on there, or run any project-specific scripts.
+
+### Documentation Guidelines
+
+Its important to read the [documentation guidelines](http://doc.silverstripe.org/contributing#writing_documentation), in order to keep a consistent
+writing and formatting style (TODO: Adjust to Markdown). We use a customized version of [Markdown](http://daringfireball.net/projects/markdown/syntax) and [Markdown Extra](http://michelf.com/projects/php-markdown/extra/).
+
+### Previewing your changes
+
+Github allows you to preview some of the Markdown formatting straight on the website 
+(in [github flavoured markdown](http://github.github.com/github-flavored-markdown/)). 
+It is less powerful than our version of Markdown, but will give you a good idea.
+
+You can also [preview Markdown Extra online](http://michelf.com/projects/php-markdown/dingus/).
+
+**We're still working on the actual parser and test website, so currently the only way to accurately preview
+your changes is to send us a pull request**
+
+### Contributing your changes
+
+After **pushing your changes** to your own github fork, you can send us **pull requests**.
