@@ -1,8 +1,6 @@
-# SilverStripe Testing Guide - Introduction
+# Why Unit Test?
 
-//Part of the [SilverStripe Testing Guide](testing-guide).//
-
-## Why Unit Test?
+*Note: This is part of the [SilverStripe Testing Guide](testing-guide).*
 
 So at this point, you might be thinking, *"that's way too complicated, I don't have time to write unit tests on top of
 all the things I'm already doing"*. Fair enough. But, maybe you're already doing things that are close to unit testing
@@ -89,7 +87,6 @@ happy that it works the way we want it to.
 
 ## See Also
 
-*  [Testing Guide - Glossary](testing-guide-glossary)
 *  [Testing Guide - How To](testing-guide-howto)
 *  [Getting to Grips with SilverStripe
 Testing](http://www.slideshare.net/maetl/getting-to-grips-with-silverstripe-testing)

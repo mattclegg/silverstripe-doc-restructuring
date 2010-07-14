@@ -366,6 +366,8 @@ git rm reference/textfield.md
 git rm reference/textareafield.md
 git rm reference/template-encoding.md
 git rm topics/installation/installation-on-windows.md
+git rm topics/testing/testing-guide-glossary.md
+git mv topics/testing/testing-guide-intro.md topics/testing/why-test.md
 
 # Cleanup afterwards
 rm -rf tutorial/
