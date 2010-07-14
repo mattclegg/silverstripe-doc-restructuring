@@ -365,6 +365,7 @@ git rm reference/translatable.md
 git rm reference/textfield.md
 git rm reference/textareafield.md
 git rm reference/template-encoding.md
+git rm topics/installation/installation-on-windows.md
 
 # Cleanup afterwards
 rm -rf tutorial/

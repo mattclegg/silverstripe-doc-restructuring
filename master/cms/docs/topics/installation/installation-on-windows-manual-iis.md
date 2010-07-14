@@ -1,8 +1,8 @@
-This page explains installing SilverStripe manually, without the use of (the easy to use) Web Platform Installer, and
-instead of Apache on Windows. See [installation-on-windows](installation-on-windows) to learn about those ways to
-install SilverStripe on Windows.
+# Installation on Windows and IIS 7.0 and later
 
-## IIS 7.0 and later
+This page explains installing SilverStripe manually, without the use of (the easy to use) [Web Platform Installer](installation-on-windows-pi).
+
+## Configure an existing IIS server
 
 First we need to configure the server:
 
@@ -29,29 +29,31 @@ version of the [SQL Server Driver for PHP
 1.1](http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=ccdf728b-1ea0-48a8-a84a-5052214caad9)
 "sqlsrv". VC9 of both is also preferred.
 
+## Install SilverStripe
+
 Then it's time to install the SilverStripe installation package, and modify it to work with IIS:
 
 *  Download SilverStripe from http://www.silverstripe.org/stable-download/ and unpack it into your web-root, most likely
 ''c:\inetpub\wwwroot''.
 *  Create a file called ''web.config'' in the silverstripe folder with the following content.
 
-	:::xml
-	<?xml version="1.0" encoding="UTF-8"?>
-	<configuration>
-	  <system.webServer>
-	    <rewrite>
-	      <rules>
-	        <rule name="SilverStripe Clean URLs" stopProcessing="true">
-	          <match url="^(.*)$" />
-	          <conditions>
-	            <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
-	          </conditions>
-	          <action type="Rewrite" url="sapphire/main.php?url={R:1}" appendQueryString="true" />
-	        </rule>
-	      </rules>
-	    </rewrite>
-	  </system.webServer>
-	</configuration>
+		:::xml
+		<?xml version="1.0" encoding="UTF-8"?>
+		<configuration>
+		  <system.webServer>
+		    <rewrite>
+		      <rules>
+		        <rule name="SilverStripe Clean URLs" stopProcessing="true">
+		          <match url="^(.*)$" />
+		          <conditions>
+		            <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+		          </conditions>
+		          <action type="Rewrite" url="sapphire/main.php?url={R:1}" appendQueryString="true" />
+		        </rule>
+		      </rules>
+		    </rewrite>
+		  </system.webServer>
+		</configuration>
 
 
 *  Visit the folder that you just extracted in your web browser.  For example, the URL might be
@@ -62,11 +64,9 @@ to install now.
 *  You are encouraged to manually configure PHP to allow its mail() command to work, so that SilverStripe can send
 emails. This is used to email password reset, ecommerce checkouts, and other areas of the system.
 
-Your site should be running at http://localhost/silverstripe-v2.3/
+Your site should be running at `http://localhost/silverstripe-v2.3/`
 
-
-
-### Troubleshooting
+## Troubleshooting
 
 On high traffic sites you might find that you start getting "The FastCGI process exited unexpectedly" errors.  This is
 related to PHP/IIS on FastCGI rather than anything SQL specific.  There are plenty of resources on the internet if you
@@ -79,7 +79,7 @@ FastCGI applications on IIS.
 IMPORTANT: You should ensure you are using the latest version of the sqlsrv driver. sqlsrv 1.1 is the latest, and works
 considerably better than 1.0. If possible, use PHP 5.3 as well.
 
-### Performance
+## Performance
 
 A non-thread safe of PHP is recommended for use with IIS. Thread safety checks are not required, and you'll get a
 performance boost by not using a thread safe version. If possible, use a version compiled in VC9 instead of VC6. To use

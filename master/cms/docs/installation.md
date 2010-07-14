@@ -1,5 +1,7 @@
 # How to install SilverStripe
 
+## Download
+
 SilverStripe is a web application.  This means that you will need to have a web server meeting SilverStripe's 
 [requirements](server-requirements) running.
 
@@ -7,57 +9,34 @@ The installation instructions below will take you through setting up an appropri
 installation instructions will set you up with a SilverStripe website very similar to our [our demo
 site](http://demo.silverstripe.com/) uses. 
 
-#### Windows
+You can [download](http://silverstripe.org/download) SilverStripe as a *.tar.gz archive or from subversion.
 
-{{http://doc.silverstripe.com/assets/windows.png }}
+If you already have an installed version of SilverStripe, please see our [upgrading](upgrading) guide.
 
-If you run Windows, we recommend that you use [Microsoft's free Web Platform installer](installation-on-windows-pi). If
-you are more technically inclined you can install using [Apache on Windows](installation-on-windows-wamp) or [Manually
-install on IIS](installation-on-windows-manual-iis).
-#### Mac OS X
+## Windows
 
-{{http://doc.silverstripe.com/assets/osx.png }}
+We recommend that you use [Microsoft's free Web Platform installer](installation-on-windows-pi). 
 
-If you run Mac OS X, we recommend that you install MAMP first, and then install SilverStripe.
+The more technically inclined can install using 
+[Apache/WAMP](installation-on-windows-wamp) or [IIS](installation-on-windows-manual-iis).
 
-**[Instructions for installing on Mac OS X](installation-on-mac-osx)** or 
-[ Watch installation video contributed by an open source
-member](http://www.silverstripe.org/assets/screencasts/Tutorial-InstallingMAMP-SW08.swf )
+## Mac OS X
 
-#### Linux
+Mac OS X comes with a built-in webserver, but we recommend that you [install SilverStripe using MAMP](installation-on-mac-osx).
 
-{{http://doc.silverstripe.com/assets/linux.png }}
+## Linux/Unix
 
-If you run Linux, we assume that you know how to get a web-server going.
+If you run Linux/Unix, we generally assume that you know how to get a web-server going.
 
-**[Instructions for installing on an existing webserver](installation-on-webserver)**
-
-#### Installation on existing webservers
-
-*  [Apache](installation-on-webserver)
-*  [Lighttpd (lighty)](installation-on-lighttpd)
-*  [Microsoft IIS](installation-on-windows)
+*  [Apache](installation-on-webserver) - our preferred platform
+*  [Lighttpd (lighty)](installation-on-lighttpd) - fast, but a bit tricker to get going
 *  [Nginx](installation-on-nginx)
-*  [Other](installation-on-webserver)
-## Further reading
+
+## Troubleshooting
 
 If you run into trouble, see [common-problems](common-problems) or post to [the SilverStripe
-forum](http://www.silverstripe.com/silverstripe-forum/).
+forum](http://silverstripe.com/silverstripe-forum/).
 
-If your installation does not allow PHP short tags i.e. you must have <%php, there is a bug in the current install
-package (2.3.1, 20 March 2009) that prevents Silverstripe installing. See this [forum
-thread](http://silverstripe.org/installing-silverstripe/show/256795?start=0) for details and how to fix it.
+## Module Installation
 
-For advanced set-ups, see these pages.  These describe our the core SilverStripe team manage their own projects:
-
-*  [installation-into-subversion](installation-into-subversion)
-*  [environment-management](environment-management)
-
-You might also be interested in some of these related topic:
-
-*  [http://silverstripe.org/download](http://silverstripe.org/download)
-*  [upgrading](upgrading)
-*  [installing-modules](installing-modules)
-*  [server-requirements](server-requirements)
-*  [daily-builds](daily-builds)
-*  [common-problems](common-problems)
+See [installing-modules](installing-modules).
