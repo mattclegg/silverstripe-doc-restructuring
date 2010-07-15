@@ -368,6 +368,7 @@ git rm reference/template-encoding.md
 git rm topics/installation/installation-on-windows.md
 git rm topics/testing/testing-guide-glossary.md
 git mv topics/testing/testing-guide-intro.md topics/testing/why-test.md
+git mv reference/csvbulkloader.md howto/csv-import.php
 
 # Cleanup afterwards
 rm -rf tutorial/

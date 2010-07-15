@@ -1,11 +1,18 @@
-# CsvBulkLoader
+# Howto: Import CSV data
 
 ## Introduction
 
-Utility class to facilitate complex CSV-imports by defining column-mappings and custom converters. Uses the fgetcsv()
-function to process CSV input. Accepts a file-handler as input 
+CSV import can be easily achieved through PHP's built-in `fgetcsv()` method,
+but this method doesn't know anything about your datamodel. In SilverStripe,
+this can be handled through the a specialized CSV importer class that can
+be customized to fit your data.
 
-## Features
+## The CsvBulkLoader class
+
+The [api:CsvBulkLoader] class facilitate complex CSV-imports by defining column-mappings and custom converters. 
+It uses PHP's built-in `fgetcsv()` function to process CSV input, and accepts a file handle as an input.
+
+Feature overview:
 
 *  Custom column mapping
 *  Auto-detection of CSV-header rows
@@ -15,13 +22,49 @@ function to process CSV input. Accepts a file-handler as input
 *  Optional deletion of existing records if they're not present in the CSV-file
 *  Results grouped by "imported", "updated" and "deleted"
 
-## Requirements
-
-*  *SilverStripe 2.3*
 ## Usage
 
-Simple upload form (creates new ''MyDataObject'' instances). You can access it through 
-///MyController/?flush=all//.
+You can use the CsvBulkLoader without subclassing or other customizations, if the column names
+in your CSV file match `$db` properties in your dataobject. E.g. a simple import for the
+`[api:Member]` class could have this data in a file:
+
+	:::csv
+	FirstName,LastName,Email
+	Donald,Duck,donald@disney.com
+	Daisy,Duck,daisy@disney.com
+	
+The loader would be triggered through the `load()` method:
+
+	:::php
+	$loader = new CsvBulkLoader('Member');
+	$result = $loader->load('<my-file-path>');
+	
+By the way, you can import `[api:Member]` and `[api:Group]` data through `http://localhost/admin/security`
+interface out of the box.
+
+## Import through ModelAdmin
+
+The simplest way to use [api:CsvBulkLoader] is through a [ModelAdmin](ModelAdmin) interface - you get an upload form out of the box.
+
+	:::php
+	<?php
+	class PlayerAdmin extends ModelAdmin {
+	   static $managed_models = array(
+	      'Player'
+	   );
+	   static $model_importers = array(
+	      'Player' => 'PlayerCsvBulkLoader', 
+	   );
+	   static $url_segment = 'players';
+	}
+	?>
+	
+The new admin interface will be available under `http://localhost/admin/players`, the import form is located
+below the search form on the left.
+
+## Import through a custom controller
+
+You can have more customized logic and interface feedback through a custom controller. Let's create a simple upload form (which is used for `MyDataObject` instances). You can access it through  `http://localhost/MyController/?flush=all`.
 
 	:::php
 	<?php
@@ -60,19 +103,24 @@ Simple upload form (creates new ''MyDataObject'' instances). You can access it t
 			return $this->redirectBack();
 		}
 	}
+	
+Note: This interface is not secured, consider using [api:Permission::check()] to limit the controller to users
+with certain access rights.
 
-## Example
+## Column mapping and relation import
+
+We're going to use our knowledge from the previous example to import a more sophisticated CSV file.
 
 Sample CSV Content
 
-	
+	:::csv
 	"SpielerNummer","Name","Geburtsdatum","Gruppe"
 	11,"John Doe",1982-05-12,"FC Bayern"
 	12,"Jane Johnson", 1982-05-12,"FC Bayern"
 	13,"Jimmy Dole",,"Schalke 04"
 
 
-Datamodel for TeamMember
+Datamodel for Player
 
 	:::php
 	<?php
@@ -112,6 +160,7 @@ Sample implementation of a custom loader. Assumes a CSV-file in a certain format
 *  Avoids duplicate imports by a custom ''$duplicateChecks'' definition
 *  Creates ''Team'' relations automatically based on the ''Gruppe'' colum in the CSV data
 
+
 	:::php
 	<?php
 	class PlayerCsvBulkLoader extends CsvBulkLoader {
@@ -144,28 +193,6 @@ Sample implementation of a custom loader. Assumes a CSV-file in a certain format
 	   }
 	}
 	?>
-
-
-Integration into a new [ModelAdmin](ModelAdmin) instance to get an upload form out of the box (accessible through
-*/admin/players*):
-
-	:::php
-	<?php
-	class PlayerAdmin extends ModelAdmin {
-	   static $managed_models = array(
-	      'Player'
-	   );
-	   static $model_importers = array(
-	      'Player' => 'PlayerCsvBulkLoader', 
-	   );
-	   static $url_segment = 'players';
-	}
-	?>
-
-
-## API Documentation
-
-[Click here for the API documentation](http://doc.silverstripe.com/assets/classes/cms/bulkloading/CsvBulkLoader.html).
 
 ## Related
 
