@@ -16,7 +16,7 @@ PageComment::enableBBCode();
 
 
 
-==== Currently Supported Tags ====
+===== Currently Supported Tags =====
 ^Tag^Output^
 |//Basic: //||
 |[b]Bold Text[/b]|**Bold Text**|
