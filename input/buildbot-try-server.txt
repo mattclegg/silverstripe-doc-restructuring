@@ -1,8 +1,10 @@
+====== Buildbot Try Server ======
+
 **NOTE:** The try server is experimental and this information may not be up to date.  Talk to Sam Minnée if you want more information.
 
 Buildbot, our continuous integration server, has a facility called the "try server".  This will let you test your changes before they are committed.
 
-=== How to set up your machine ===
+===== How to set up your machine =====
 
   - First, install buildbot.
     * Windows users: http://buildbot.net/trac/wiki/RunningBuildbotOnWindows
@@ -18,6 +20,6 @@ buildbot try --wait --connect=pb --master=buildbot.silverstripe.com:8031 \
 
 Alternatively, you can remove the ''--wait'' option and just watch progress at http://buildbot.silverstripe.com/waterfall
 
-=== How to get a username and password ===
+===== How to get a username and password =====
 
 To access the try server, you will need a username and password.  Because the try server is still experimental, we're limiting access to currently active developers.
