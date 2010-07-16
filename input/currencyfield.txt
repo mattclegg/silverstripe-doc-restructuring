@@ -7,7 +7,7 @@ Validation accepts only currency values
 
 {{:currencyfieldvalidation2.png|:currencyfieldvalidation2.png}}
 
-==== Example use ====
+===== Example use =====
 
 <code php>
 new CurrencyField(
@@ -17,5 +17,5 @@ new CurrencyField(
 );
 </code>
 
-==== API documentation ====
+===== API documentation =====
 [[http://api.silverstripe.org/trunk/forms/fields-formattedinput/CurrencyField.html|Click here for the API documentation]].
