@@ -34,6 +34,13 @@ You'll need to [install git](http://help.github.com/git-installation-redirect), 
 
 To edit the files, you just need a text editor. They're written in [Markdown](http://daringfireball.net/projects/markdown/), which many editors have syntax highlighting for (e.g. through the [Textmate plugin](http://github.com/textmate/markdown.tmbundle)).
 
+### Folders
+
+ * `master`: The new markdown files - please edit in here
+ * `scripts`: Helper scripts for conversion and file management
+ * `input`: Original DokuWiki files
+ * `output`: First draft of automated conversion files (now empty)
+
 ### Forking the project
 
 You can **fork** this project within github, as described on [help.github.com](http://help.github.com/forking/).
