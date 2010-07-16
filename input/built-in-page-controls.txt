@@ -192,10 +192,11 @@ $URLSegment
 
 ===== Properties of a datafeed itself, rather than one of its items ======
 If we have a control such as <% control SearchResults %>, there are some properties, such as $SearchResults.NextLink, that aren't accessible within <% control SearchResults %>.  These can be used on any datafeed.
-==== Pagination ====
+
+==== Search Results ====
 === <% if SearchResults.MoreThanOnePage %> ===
 Returns true when we have a multi-page datafeed, restricted with a limit.
-==== Search Results ====
+
 === $SearchResults.NextLink, $SearchResults.PrevLink ===
 This returns links to the next and previous page in a multi-page datafeed.  They will return blank if there's no appropriate page to go to, so $PrevLink will return blank when you're on the first page.  You can therefore use <% if PrevLink %> to keep your template tidy.
 
