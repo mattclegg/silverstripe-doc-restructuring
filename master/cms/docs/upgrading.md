@@ -1,24 +1,12 @@
 # Introduction
 
 Usually an update or upgrade your SilverStripe installation just means overwriting files and updating your
-database-schema.
-
+database-schema. Please see your [upgrade notes and changelogs](changelogs).
 
 # Related
 
-*  [Detailed changelogs](http://open.silverstripe.org/wiki/ChangeLog)
+*  [Release Announcements](http://groups.google.com/group/silverstripe-announce/)
 *  [Blog posts about releases on silverstripe.org](http://silverstripe.org/blog/tag/release)
-
-# Versions
-
-*  [trunk](upgrading/trunk)
-*  [2.4.0](upgrading/2.4.0)
-*  [2.3.3](upgrading/2.3.3)
-*  [2.3.2](upgrading/2.3.2)
-*  [2.3.1](upgrading/2.3.1)
-*  [2.3.0](upgrading/2.3.0)
-*  [2.2.0](upgrading/2.2.0)
-*  [2.1.0](upgrading/2.1.0)
 
 # Process
 
