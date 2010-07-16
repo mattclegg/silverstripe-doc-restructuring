@@ -121,9 +121,9 @@ Do not use a ''<ul>'' inside a ''<span>'', which is the same as saying 'Don't us
 </span>
 </code>
 
-====== Formatting your CSS and Keeping it Clean ======
+===== Formatting your CSS and Keeping it Clean =====
 
-===== Commenting =====
+==== Commenting ====
 
 If you've got some CSS that you know will become complex, or will be viewed by other developers - please make sure you comment at least one line in the stylesheet for each selector you know will require it. Adding a little comment will go a long way for another developer to figure out what you're trying to do.
 
@@ -139,7 +139,7 @@ If you've got some CSS that you know will become complex, or will be viewed by o
 }
 </code>
 
-===== Tabbing out CSS =====
+==== Tabbing out CSS ====
 
 Consider the following HTML markup.
 
@@ -165,9 +165,9 @@ A good way to make up the CSS is by tabbing out relating elements.
       }
 </code>
 
-====== Debugging CSS ======
+===== Debugging CSS =====
 
-===== Box model issues =====
+==== Box model issues ====
 
 Avoid using padding and width on the same element, unless it's just top/bottom padding (''padding: 10px 0;''). IE doesn't use the same box model as the W3C specification.
 
@@ -196,7 +196,7 @@ A great write-up on the box model in IE can be found here:
 [[http://www.456bereastreet.com/archive/200612/internet_explorer_and_the_css_box_model/]]
 
 
-===== IE6/7 gotcha: hasLayout =====
+==== IE6/7 gotcha: hasLayout ====
 
 IE6 and 7 have some interesting thing called 'hasLayout', where it changes the way elements render with CSS. I would suggest reading up in the article below about it in terms of creating a ''display: block'' anchor element, and having the entire area clickable - which will not occur if there lacks a hasLayout CSS property like ''width'', or an IE proprietry value ''zoom''.
 
@@ -225,7 +225,7 @@ Practical problem solving: **IE/Win: Clickable area of block anchors and hasLayo
 }
 </code>
 
-==== Input widths problem (and fix) ====
+=== Input widths problem (and fix) ===
 
 IE6 and 7 have funny gaps around input action buttons even if there is padding 0 and margin 0 applied. There is, however, a way around it.
 
@@ -255,7 +255,7 @@ If you build a site testing in a broken browser, your code begins relying on the
 
 [[http://www.mezzoblue.com/archives/2003/11/17/css_best_pra/]]
 
-== IE ==
+=== IE ===
 
 IE 6 or higher statement. Only IE 6 or higher will use this stylesheet.
 <code html>
@@ -275,7 +275,7 @@ You can find a whole write up on these conditional statements here, on the Micro
 
 [[http://msdn2.microsoft.com/en-us/library/ms537512.aspx]]
 
-== IE Expressions ==
+=== IE Expressions ===
 
 If required, IE supports inline expressions in CSS. You can do the below expression, which selectively styles the previous element to a P tag if it's an H1-6 element. Nice as a replacement for H1 + p adjacent selectors.
 
@@ -289,7 +289,7 @@ If required, IE supports inline expressions in CSS. You can do the below express
 
 The best way to apply the hack is to put it in it's own stylesheet using the conditions for IE. Don't put it in the ''<style>'' element in the header like the above example.
 
-== IE Conditionals using Requirements ==
+=== IE Conditionals using Requirements ===
 In Silverstripe you cant add IE specific Stylesheets correctly (it will load over the Requirements) so things will not work as expected
 
 a better(?) way to doit is using this in your Page_Controller : 
@@ -320,9 +320,9 @@ Requirements::insertHeadTags("<!--[if IE 6]><style type='text/css'>@import url(t
 Requirements::insertHeadTags("<!--[if IE 7]><style type='text/css'>@import url(themes/" . SSViewer::current_theme() . "/css/ie7.css);</style><![endif]-->");
 </code>
 
-====== Form Styling ======
+===== Form Styling =====
 
-=== Structure ===
+==== Structure ====
 
 **''<form>'' is the main element for a form, you then place your fields inside a ''<fieldset>''.**
 
@@ -334,7 +334,7 @@ Requirements::insertHeadTags("<!--[if IE 7]><style type='text/css'>@import url(t
 </form>
 </code>
 
-=== Organising ===
+==== Organising ====
 
 A good way to structure your fields inside a ''<fieldset>'' is to wrap the ''<label>'' and ''<input>'' or ''<textarea>'' / ''<select>'' in a ''<div>'', like the following:
 
@@ -347,13 +347,13 @@ A good way to structure your fields inside a ''<fieldset>'' is to wrap the ''<la
 
 There's an ID on the container ''<div>'', as well as an ID for the ''<input>'' itself - so you've got plenty of selectors to apply CSS to.
 
-=== Usability ===
+==== Usability ====
 
-== For attribute on label ==
+=== For attribute on label ===
 
 //It's a good usability practise to use a ''for'' attribute on your ''<label>'' elements, as shown in the above example. This means if you click the label, it will focus on the input associated with it.//
 
-== Legend element ==
+=== Legend element ===
 
 It's a good idea to use a ''<legend>'' element (one for each fieldset), inside the ''<fieldset>'' element. This labels your ''<fieldset>'' appropriately, and makes it more usable.
 
@@ -365,13 +365,13 @@ It's a good idea to use a ''<legend>'' element (one for each fieldset), inside t
 </form>
 </code>
 
-=== Sapphire ===
+==== Sapphire ====
 
 //Usually sapphire (SilverStripe's core module) generates the form for you anyway - but this is advice for when, and if, you're marking up the form yourself, and bypassing the sapphire form generation. Sometimes you may not want it to generate for you - to be more specific with your HTML.//
 
 
 
-====== Short hand tricks ======
+===== Short hand tricks =====
 
 ** Margins **
 
@@ -483,7 +483,7 @@ Read more about this here, from Eric Meyer:
 }
 </code>
 
-====== Other tricks ======
+===== Other tricks =====
 ==== Table widths ====
 
 If you're applying an implicit width on a table it's recommend to use this CSS property on the ''<table>'' element to stop it from overflowing (if the content gets too large), which could ultimately break your layout:
