@@ -29,7 +29,7 @@ i18n::set_locale('de_DE'); //Setting the locale to German (Germany)
 i18n::set_locale('ca_AD'); //Setting to Catalan (Andorra)
 </code>
 
-Once we set a locale, all the calls to the translator function will return strings according to the set locale value, if these translations are available. See [[http://unicode.org/cldr/data/diff/supplemental/languages_and_territories.html|unicode.org]] for a complete listing of available locales.
+Once we set a locale, all the calls to the translator function will return strings according to the set locale value, if these translations are available. See [[http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_territory_information.html|unicode.org]] for a complete listing of available locales.
 
 ===== Getting the locale =====
 
