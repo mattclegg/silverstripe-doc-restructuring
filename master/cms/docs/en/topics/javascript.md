@@ -10,7 +10,7 @@ practices can be applied to other libraries as well.
 ## File Inclusion
 
 SilverStripe-driven code should use the ''Requirements'' class to manage clientside dependencies like CSS and JavaScript
-files, rather than including ''<script>'' and ''<link>'' tags in your templates. This has the advantage that a registry
+files, rather than including `<script>` and `<link>` tags in your templates. This has the advantage that a registry
 of requirements can be built up from different places outside of the main controller, for example included ''FormField''
 instances.
 

@@ -16,7 +16,7 @@ an external SMTP server (see [PHP documentation for mail()](http://php.net/mail)
 By default, emails are sent in both HTML and Plaintext format.
 A plaintext representation is automatically generated from the system
 by stripping HTML markup, or transformining it where possible
-(e.g. ''<strong>text</strong>'' is converted to ''*text*'').
+(e.g. `<strong>text</strong>` is converted to `*text*`).
 
 	:::php
 	$email = new Email($from, $to, $subject, $body);
@@ -31,17 +31,13 @@ The default HTML template is located in ''sapphire/templates/email/GenericEmail.
 	$email = new Email($from, $to, $subject, $body);
 	$email->sendPlain();
 
-
-
-
-
 ## Templates
 
 **Requirements: SilverStripe 2.3+**
 
 *  Create a SS-template file called, in this example we will use 'MyEmail.ss' inside mysite/templates/email.
-*  Fill this out with the body text for your email. You can use any [SS-template syntax](templates) (e.g. <% control %>,
-<% if %>, $FirstName etc)
+*  Fill this out with the body text for your email. You can use any [SS-template syntax](templates) (e.g. `<% control %>`,
+`<% if %>`, $FirstName etc)
 *  Choose your template with **setTemplate()**
 *  Populate any custom data into the template before sending with **populateTemplate()**
 

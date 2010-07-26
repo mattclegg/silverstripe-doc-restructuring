@@ -115,7 +115,7 @@ that returns the form, which is 'BrowserPollForm' in our case. The third and fou
 
 After creating the form function, we need to add the form to our home page template.
 
-Add the following code to the home page template, just before the ''</div>'' that ends the ContentContainer DIV element:
+Add the following code to the home page template, just before the `</div>` that ends the ContentContainer DIV element:
 
 *themes/tutorial/templates/Layout/HomePage.ss*
 

@@ -68,7 +68,7 @@ TODO
 
 ## CSS and JavaScript files
 
-TODO Using <% require %> vs Requirements class in Controller::init(), combine_files, different media types,
+TODO Using `<% require %>` vs Requirements class in Controller::init(), combine_files, different media types,
 typography.css
 
 ## Base Tag
@@ -118,7 +118,7 @@ own base templates.
 
 * Most of your templates should be Layout templates
 * Build your templates as a [[theme]] so you can easily re-use and exchange them
-* Your layout template should include a standard markup structure (`<div id="Layout">$Layout</div>`)
+* Your layout template should include a standard markup structure (`<div id="Layout">`$Layout`</div>`)
 * Layout templates only include content that could be completely replaced by another module (e.g. a forum thread). It
 might be infeasible to do this 100%, but remember that every piece of navigation that needs to appear inside `$Layout`
 will mean that you have to customise templates when integrating the module.

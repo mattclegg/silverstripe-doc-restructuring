@@ -113,13 +113,13 @@ control codes. Because of this, you can have as much control of your site’s HT
 
 Every page in your site has a **page type**. We will briefly talk about page types later, and go into much more detail
 in tutorial two; right now all our pages will be of the page type *Page*. When rendering a page, SilverStripe will look
-for a template file in the *tutorial/templates* folder, with the name *<PageType>*.ss - in our case *Page.ss*.
+for a template file in the *tutorial/templates* folder, with the name `<PageType>`.ss - in our case *Page.ss*.
 
-Open *themes/tutorial/templates/Page.ss*. It uses standard HTML with three exceptions: *<% base_tag %>*, *$Content* and
+Open *themes/tutorial/templates/Page.ss*. It uses standard HTML with three exceptions: `<% base_tag %>`, *$Content* and
 *$SilverStripeNavigator*. These template markers are processed by SilverStripe into HTML before being sent to your
 browser.
 
-*<% base_tag %>* is replaced with the HTML [base element](http://www.w3.org/TR/html401/struct/links.html#h-12.4). This
+`<% base_tag %>` is replaced with the HTML [base element](http://www.w3.org/TR/html401/struct/links.html#h-12.4). This
 ensures the browser knows where to locate your site's images and css files.
 
 *$Content* is replaced with the content of the page currently being viewed. This allows you to make all changes to
@@ -185,7 +185,7 @@ a **control block**. Control blocks allow us to iterate over a data set, and ren
 **page control** *Menu(1)* returns the set of the first level menu items. We can then use the template variable
 *$MenuTitle* to show the title of the page we are linking to.
 
-Open up *themes/tutorial/templates/Page.ss*, and insert the following code inside *<div id="Main">*:
+Open up *themes/tutorial/templates/Page.ss*, and insert the following code inside `<div id="Main">`:
 
 	:::html
 	<ul id="Menu1">
@@ -248,7 +248,7 @@ something like this:
 
 Great, we now have a hierarchical site structure, but we still have no way of getting to these second level pages.
 Adding a second level menu is very similar to adding the first level menu. Open up our *Page.ss* template, and find the
-*<div id="ContentContainer">* tag. Underneath it, add the following code:
+`<div id="ContentContainer">` tag. Underneath it, add the following code:
 
 	:::html
 	<ul id="Menu2">

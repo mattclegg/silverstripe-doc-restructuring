@@ -28,11 +28,11 @@ given set of fields in a given set of tables
 
 ## Structure
 
-*  [CompositeField](CompositeField): Base class for all fields that contain other fields. Uses <div> in template, but
+*  [CompositeField](CompositeField): Base class for all fields that contain other fields. Uses `<div>` in template, but
 doesn't necessarily have any visible styling.
 *  [FieldGroup](FieldGroup): Same as CompositeField, but has default styling (indentation) attached in CMS-context.
 *  `[api:FieldSet]`: Basic container for sequential fields, or nested fields through CompositeField. Does NOT render a
-<fieldgroup>.
+`<fieldgroup>`.
 *  [TabSet](TabSet)
 *  [Tab](Tab)
 
@@ -76,7 +76,7 @@ dropdown-like element
 
 *  [DatalessField](DatalessField) - Base class for fields which add some HTML to the form but don't submit any data or
 save it to the database
-*  [HeaderField](HeaderField): Renders a simple <h1>-<h6> header
+*  [HeaderField](HeaderField): Renders a simple `<h1>`-`<h6>` header
 *  [HiddenField](HiddenField)
 *  [LabelField](LabelField)
 *  [LiteralField](LiteralField): Renders arbitrary HTML into a form.

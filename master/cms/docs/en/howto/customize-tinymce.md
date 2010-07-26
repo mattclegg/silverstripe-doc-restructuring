@@ -46,7 +46,7 @@ setOption('optionname', 'value').
 If you want to extend the HTML that the textarea can support you can do so by adding the elements to the valid_elements
 or extended_valid_elements list. If the HTML you want to insert is not in one of these arrays it will be stripped out.
 
-For example if you wanted to allow an html element <foo> you can add it to the list
+For example if you wanted to allow an html element `<foo>` you can add it to the list
 
 	:::php
 	// mysite/_config.php or in your specific form
@@ -56,7 +56,7 @@ For example if you wanted to allow an html element <foo> you can add it to the l
 	));
 
 
-The [ ] define what attributes you can add to <foo> for example <foo class="baz" title="Bar"> would be represented as
+The [ ] define what attributes you can add to `<foo>` for example `<foo class="baz" title="Bar">` would be represented as
 foo[class|title]
 
 ### Allowing javascript in the content editor

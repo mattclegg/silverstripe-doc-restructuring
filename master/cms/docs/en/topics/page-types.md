@@ -13,7 +13,7 @@ All the pages on the base installation are of the page type "Page". See
 Each page type on your website is a sub-class of the SiteTree class. Usually, you’ll define a class called ‘Page’
 and use this template to lay out the basic design elements that don’t change. Take a look at mysite/templates/Page.ss.
 It contains standard HTML markup, with some differences. We’ll go over these later, but for now, you can see that this
-file only generates some of the content – it sets up the <html> tags, deals with the <head> section, creates the
+file only generates some of the content – it sets up the `<html>` tags, deals with the `<head>` section, creates the
 first-level navigation, and then closes it all off again. See $Layout? That’s what is doing most of the work when you
 visit a page. Now take a look at mysite/templates/Layout/Page.ss. This as you can see has a lot more markup in it –
 it’s what is included into $Layout when the ‘Page’ page type is rendered. Similarly,

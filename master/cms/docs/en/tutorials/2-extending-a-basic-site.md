@@ -303,7 +303,7 @@ Remember that the visual styles are not part of the CMS, they are defined in the
 # Using include files in templates
 
 The second level menu is something we want in most, but not all, pages so we can't put it in the base template. By
-putting it in a separate file in the *tutorial/templates/Includes* folder, we can use *<% include templatename %>* to
+putting it in a separate file in the *tutorial/templates/Includes* folder, we can use `<% include templatename %>` to
 include it in our other templates. Separate the second level menu into a new file
 *themes/tutorial/templates/Includes/Menu2.ss*.
 
@@ -319,7 +319,7 @@ include it in our other templates. Separate the second level menu into a new fil
 	<% end_if %>
 
 
-And then replace the second level menu with *<% include Menu2 %>* in *Page.ss* and *ArticlePage.ss* like so:
+And then replace the second level menu with `<% include Menu2 %>` in *Page.ss* and *ArticlePage.ss* like so:
 
 ** themes/tutorial/templates/Layout/Page.ss**, ** themes/tutorial/templates/Layout/ArticlePage.ss**
 

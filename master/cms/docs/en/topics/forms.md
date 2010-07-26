@@ -228,12 +228,12 @@ basic customisation:
 
 
 ''$dataFieldByName(FirstName)'' will return the form control contents of ''Field()'' for the particular field object, in
-this case ''TextField->Field()'' or ''EmailField->Field()'' which returns an ''<input>'' element with specific markup
+this case ''TextField->Field()'' or ''EmailField->Field()'' which returns an `<input>` element with specific markup
 for the type of field. Pass in the name of the field as the first parameter, as done above, to render it into the
 template.
 
 To find more methods, have a look at the Form class, as there is a lot of different methods of customising the form
-templates, for example, you could use ''<% control Fields %>'' instead of specifying each field manually, as we've done
+templates, for example, you could use `<% control Fields %>` instead of specifying each field manually, as we've done
 above.
 
 ## Securing forms against Cross-Site Request Forgery (CSRF)

@@ -21,9 +21,9 @@ See [objectmodel](objectmodel) for further details about casting values and the 
 ## Generating the database-schema
 
 The Silverstripe database-schema is generated automatically by visiting the URL.
-`http://<mysite>/dev/build`
+`http://`<mysite>`/dev/build`
 Or, for older versions of SilverStripe:
-`http://<mysite>/db/build`
+`http://`<mysite>`/db/build`
 Note: You need to be logged in as an administrator to perform this command.
 
 ## Querying Data
@@ -70,7 +70,7 @@ Identifiers](http://dev.mysql.com/doc/refman/5.0/en/identifiers.html)):
 ## Definition
 
 Data is defined in the static variable $db on each class, in the format:
-<property-name> => "data-type"
+`<property-name>` => "data-type"
 
 	:::php
 	class Player extends DataObject {
@@ -89,7 +89,7 @@ See [data-types](data-types) for all available types.
 
 "Getters" and "Setters" are functions that help us save fields to our data objects. By default, the methods getField()
 and setField() are used to set data object fields.  They save to the protected array, $obj->record. We can overload the
-default behaviour by making a function called "get<fieldname>" or "set<fieldname>". 
+default behaviour by making a function called "get`<fieldname>`" or "set`<fieldname>`". 
 
 	:::php
 	class Player extends DataObject {
@@ -174,11 +174,11 @@ but using the *obj()*-method or accessing through a template will cast the value
 # Relations
 
 Relations are built through static array definitions on a class, in the format:\\
-`<relationship-name> => <classname>`{php}
+`<relationship-name>` => `<classname>`{php}
 
 ## has_one
 
-A 1-to-1 relation creates a database-column called "<relationship-name>ID", in the example below this would be "TeamID"
+A 1-to-1 relation creates a database-column called "`<relationship-name>`ID", in the example below this would be "TeamID"
 on the "Player"-table.
 
 	:::php
@@ -202,7 +202,7 @@ parent element in the tree:
 
 ## has_many
 
-Defines 1-to-many joins. A database-column named ""<relationship-name>ID"" will to be created in the child-class.
+Defines 1-to-many joins. A database-column named ""`<relationship-name>`ID"" will to be created in the child-class.
 
 **CAUTION:** Please specify a $has_one-relationship on the related child-class as well, in order to have the necessary
 accessors available on both ends.

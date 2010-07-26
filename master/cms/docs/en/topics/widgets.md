@@ -55,7 +55,7 @@ Widget Form to manage the widgets. An example of this is below
 
 Then in your Template you need to call $SideBar whereever you want to render the widget
 
-Eg for blackcandy I put this above the closing </div>
+Eg for blackcandy I put this above the closing `</div>`
 
 ** themes/myThemeName/templates/Includes/Sidebar.ss **
 

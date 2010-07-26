@@ -34,7 +34,7 @@ redirectBack().
 
 You can influence the way URLs are resolved one of 2 ways
 
-1.  Adding rules to Director in <yourproject>/_config.php (See Default Rewrite Rules below for examples)
+1.  Adding rules to Director in `<yourproject>/_config.php` (See Default Rewrite Rules below for examples)
 2.  Adding rules in your extended Controller class via the *$url_handlers* static variable 
 
 See [controller](controller) for examples and explanations on how the rules get processed for both 1 and 2 above. 
@@ -47,7 +47,8 @@ See [controller](controller) for examples and explanations on how the rules get 
 	));
 
 
-======= Default Rewrite Rules =======
+# Default Rewrite Rules
+
 SilverStripe comes with certain rewrite rules (e.g. for *admin/assets*).
 
 *  [sapphire/_config.php](http://open.silverstripe.org/browser/modules/sapphire/trunk/_config.php)

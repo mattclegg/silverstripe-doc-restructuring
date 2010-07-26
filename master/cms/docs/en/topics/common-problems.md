@@ -19,14 +19,14 @@ Putting ?flush=1 on the end of any SilverStripe URL will clear out all cached co
 to a lot of development problems.  Here are some specifics situations:
 
 *  You've created a new SS or PHP file
-*  You've edited a nested template (one inserted with the <% include %> tag)
+*  You've edited a nested template (one inserted with the `<% include %>` tag)
 *  You've published a new copy of your site
 *  You've upgraded your version of SilverStripe
 
 ## A SQL query fails with "Column not found" or "Table not found"
 
 Whenever you change the model definitions in PHP (e.g. when adding a property to the [$db](api:DataObject::$db) array,
-creating a new page type), SilverStripe will need to update the database. Visiting `http://<my-domain>/dev/build` in
+creating a new page type), SilverStripe will need to update the database. Visiting `http://`<my-domain>`/dev/build` in
 your browser runs a script that will check the database schema and update it as necessary.  Putting `?flush=1` on the
 end makes sure that nothing that's linked to the old database structure will be carried over.  If things aren't saving,
 pages aren't loading, or other random things aren't working it's possible that the database hasn't been updated to

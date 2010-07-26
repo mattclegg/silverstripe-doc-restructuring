@@ -22,8 +22,8 @@ following additional server configuration:
 *  Install the [SQL Server Driver for PHP
 1.1](http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=ccdf728b-1ea0-48a8-a84a-5052214caad9),
 "sqlsrv".
-    * <del>You will have to use the threadsafe version of the library (php_sqlsrv_ts.dll). On some configurations, PHP
-will just silently not load a non-threadsafe extension</del>.
+    * `<del>`You will have to use the threadsafe version of the library (php_sqlsrv_ts.dll). On some configurations, PHP
+will just silently not load a non-threadsafe extension`</del>`.
     * IMPORTANT: You should install a non-thread safe version of [PHP](http://windows.php.net/) AND a non-thread safe
 version of the [SQL Server Driver for PHP
 1.1](http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=ccdf728b-1ea0-48a8-a84a-5052214caad9)
