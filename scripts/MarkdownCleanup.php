@@ -69,6 +69,8 @@ class MarkdownCleanup {
 				// Copy the image file
 				if(file_exists($origImgPath)) {
 					copy($origImgPath, $targetImgPath);
+					// shell_exec("git add $targetImgFolder");
+					// shell_exec("git mv $origImgPath $targetImgPath");
 				} else {
 					echo sprintf('Original image not found: %s' . "\n", $origImgPath);
 				}
