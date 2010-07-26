@@ -144,7 +144,10 @@ class MarkdownCleanup {
 		
 		$lines = $this->getLines($content);
 		foreach($lines as $i => $line) {
-			$lines[$i] = preg_replace('/\s\/\/([^\s][^\]\)]*?)\/\//', ' *$1*', $lines[$i]);
+			// Mandate space before tags to avoid converting protocol links
+			$lines[$i] = preg_replace('/\s\/\/([^\s][^\]]*?)\/\//', ' *$1*', $lines[$i]);
+			// Fix tags without space at start, but at file start
+			$lines[$i] = preg_replace('/^\/\/([^\s][^\]]*?)\/\//', '*$1*', $lines[$i]);
 			$out[] = $lines[$i];
 		}
 		
