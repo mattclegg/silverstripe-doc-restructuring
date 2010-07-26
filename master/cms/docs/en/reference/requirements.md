@@ -7,7 +7,7 @@ hardcoding any references in the <head>-tag of your template, as it enables a mo
 # Usage
 
 ## Including inside PHP Code
-It is common practice to include most Requirements either in the //init()//-method of your [controller](controller), or
+It is common practice to include most Requirements either in the *init()*-method of your [controller](controller), or
 as close to rendering as possible (e.g. in //`[api:FormField]`
 
 	:::php

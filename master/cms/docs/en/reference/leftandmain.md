@@ -125,7 +125,7 @@ MyAdmin_right.ss
 
 ### Customising the main menu
 
-//Minimum Requirement: Silverstripe 2.3//
+*Minimum Requirement: Silverstripe 2.3*
 
 The static variable $url_segment determines the sub url of the controller.
 The static variable $url_rule has the url format for the actions performed by the class.

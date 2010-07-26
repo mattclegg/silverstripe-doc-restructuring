@@ -149,7 +149,7 @@ Note: Alternatively you can set defaults directly in the database-schema (rather
 Properties defined in *static $db* are automatically casted to their [data-types](data-types) when used in templates. 
 You can also cast the return-values of your custom functions (e.g. your "virtual properties").
 Calling those functions directly will still return whatever type your php-code generates,
-but using the //obj()//-method or accessing through a template will cast the value accordig to the $casting-definition.
+but using the *obj()*-method or accessing through a template will cast the value accordig to the $casting-definition.
 
 	:::php
 	class Player extends DataObject {
@@ -375,7 +375,7 @@ You have to make sure though that certain properties are not overwritten, e.g. *
 	);
 
 
-Alternatively you can use //castedUpdate()// to respect the [data-types](data-types). This is preferred to manually
+Alternatively you can use *castedUpdate()* to respect the [data-types](data-types). This is preferred to manually
 casting data before saving.
 
 	:::php
@@ -394,7 +394,7 @@ casting data before saving.
 ## onBeforeWrite
 
 You can customize saving-behaviour for each DataObject, e.g. for adding security. These functions are private, obviously
-it wouldn't make sense to call them externally on the object. They are triggered when calling //write()//.
+it wouldn't make sense to call them externally on the object. They are triggered when calling *write()*.
 
 Example: Disallow creation of new players if the currently logged-in player is not a team-manager.
 
@@ -431,7 +431,7 @@ $this->ID to toggle these two modes, as shown in the example above.
 
 ## onBeforeDelete
 
-Triggered before executing //delete()// on an existing object.
+Triggered before executing *delete()* on an existing object.
 
 Example: Checking for a specific [permission](permission) to delete this type of object.
 It checks if a member is logged in who belongs to a group containing the permission "PLAYER_DELETE".

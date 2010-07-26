@@ -26,7 +26,7 @@ can have independent configuration-rules.
 classes (see [common-problems](common-problems)).//
 
 You can call most static methods from _config.php - classes will be loaded as required. Here's a list - **this is
-incomplete - please add to it** //Try to keep it in alphabetical order too! :)//
+incomplete - please add to it** *Try to keep it in alphabetical order too! :)*
 
  | Call                                                                | Description |                                  
                                                                                                                         
@@ -111,8 +111,8 @@ Some constants are user-defineable within *_ss_environment.php*.
                                                                                                                         
                                                                | 
  | *TEMP_FOLDER* | Absolute file path to store temporary files such as cached templates or the class manifest. Needs to
-be writeable by the webserver user. Defaults to //sys_get_temp_dir()//, and falls back to *silverstripe-cache* in the
-webroot. See //getTempFolder()// in *sapphire/core/Core.php* | 
+be writeable by the webserver user. Defaults to *sys_get_temp_dir()*, and falls back to *silverstripe-cache* in the
+webroot. See *getTempFolder()* in *sapphire/core/Core.php* | 
 
 ## User-level: Member-object
 

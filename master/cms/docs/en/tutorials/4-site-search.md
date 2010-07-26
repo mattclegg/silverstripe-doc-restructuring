@@ -75,7 +75,7 @@ search on your site is to create a form for the user to type their query. Create
 We then just need to add the search form to the template. Add *$SearchForm* to the 'Header' div in
 *themes/tutorial/templates/Page.ss*.
 
-//themes/tutorial/templates/Page.ss//
+*themes/tutorial/templates/Page.ss*
 
 	:::html
 	<div id="Header">
@@ -90,7 +90,7 @@ We then just need to add the search form to the template. Add *$SearchForm* to t
 
 Next we need to create the *results* function.
 
-//mysite/code/Page.php//
+*mysite/code/Page.php*
 
 	:::php
 	class Page_Controller extends ContentController {
@@ -136,7 +136,7 @@ Lastly we need to create the template for the search page. This template uses al
 tutorials. It also uses a number of pagination variables, which are provided by the [:DataObjectSet](/DataObjectSet)
 class.
 
-//themes/tutorial/templates/Layout/Page_results.ss//
+*themes/tutorial/templates/Layout/Page_results.ss*
 
 	:::html
 	<div id="Content" class="searchResults">

@@ -8,7 +8,7 @@ your pages.
 
 ## Requirements
 
-//Requires SilverStripe 2.3//
+*Requires SilverStripe 2.3*
 
 ## Usage
 

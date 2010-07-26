@@ -25,7 +25,7 @@ We will be creating a form for a poll on the home page.
 The poll will ask the user's name and favourite web browser, and then collate the results into a bar graph. We create
 the form in a method on *HomePage_Controller*.
 
-//mysite/code/HomePage.php//
+*mysite/code/HomePage.php*
 
 	:::php
 	...
@@ -117,7 +117,7 @@ After creating the form function, we need to add the form to our home page templ
 
 Add the following code to the home page template, just before the ''</div>'' that ends the ContentContainer DIV element:
 
-//themes/tutorial/templates/Layout/HomePage.ss//
+*themes/tutorial/templates/Layout/HomePage.ss*
 
 	:::html
 	...
@@ -149,7 +149,7 @@ If you recall, in tutorial two we said that all objects that inherit from DataOb
 the database. Also recall that all pages extend DataObject indirectly through [:SiteTree](/SiteTree). Here instead of
 extending SiteTree (or [:Page](/Page)) to create a page type, we extend DataObject directly.
 
-//mysite/code/BrowserPollSubmission.php//
+*mysite/code/BrowserPollSubmission.php*
 
 	:::php
 	<?php
@@ -167,7 +167,7 @@ extending SiteTree (or [:Page](/Page)) to create a page type, we extend DataObje
 If we then rebuild the database ([http://localhost/db/build?flush=1](http://localhost/db/build?flush=1)), we will see
 that the *BrowserPollSubmission* table is created. Now we just need to define 'doBrowserPoll' on *HomePage_Controller*.
 
-//mysite/code/HomePage.php//
+*mysite/code/HomePage.php*
 
 	:::php
 	...
@@ -240,7 +240,7 @@ otherwise show the results.
 We can do this using a session variable. The [:Session](/Session) class handles all session variables in SilverStripe.
 First modify the 'doBrowserPoll' to set the session variable 'BrowserPollVoted' when a user votes.
 
-//mysite/code/HomePage.php//
+*mysite/code/HomePage.php*
 
 	:::php
 	...

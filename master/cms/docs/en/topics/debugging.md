@@ -102,10 +102,10 @@ SQL-queries.
 
 The Debug class contains a number of static methods
 
-*  //Debug::show($myVariable)//: performs a kind of //print_r($myVariable)//, but shows it in a more useful format.
-*  //Debug::message("Wow, that's great")//: prints a short debugging message.
-*  //SS_Backtrace::backtrace()// (2.3: //Debug::backtrace()//): prints a calls-stack
-*  //Debug::sendLiveErrorsTo("sam@silverstripe.com")//: On the live site, all errors will get sent to this address.
+*  *Debug::show($myVariable)*: performs a kind of *print_r($myVariable)*, but shows it in a more useful format.
+*  *Debug::message("Wow, that's great")*: prints a short debugging message.
+*  *SS_Backtrace::backtrace()* (2.3: *Debug::backtrace()*): prints a calls-stack
+*  *Debug::sendLiveErrorsTo("sam@silverstripe.com")*: On the live site, all errors will get sent to this address.
 
 ## Error handling
 
@@ -118,12 +118,12 @@ On live sites, all errors are emailed to the address specified in Debug::sendLiv
 
 Since we don't have a decent interactive debugger going, we use the following debugging techniques:
 
-*  Putting //Debug::show()// and //Debug::message()// at key places in the code can help you know what's going on. 
+*  Putting *Debug::show()* and *Debug::message()* at key places in the code can help you know what's going on. 
 Sometimes, it helps to put this debugging information into the core modules, although, if possible, try and get what you
 need by using [url querystring variables](urlvariabletools).
 
-*  Calling //user_error("breakpoint", E_USER_ERROR)// will kill execution at that point and give you a call stack to see
-where you came from.  Alternatively, //SS_Backtrace::backtrace()// gives you similar information without killing
+*  Calling *user_error("breakpoint", E_USER_ERROR)* will kill execution at that point and give you a call stack to see
+where you came from.  Alternatively, *SS_Backtrace::backtrace()* gives you similar information without killing
 execution.
 
 *  There are some special [url querystring variables](urlvariabletools) that can be helpful in seeing what's going on

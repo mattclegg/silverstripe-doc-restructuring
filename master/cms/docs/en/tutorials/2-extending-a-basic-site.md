@@ -160,7 +160,7 @@ Content etc. as these may already be defined in the page types your new page is 
 If we rebuild the database, we will see that now the *ArticlePage* table is created. Even though we had an *ArticlePage*
 page type before, the table was not created because we had no fields that were unique to the article page type. We now
 have the extra fields in the database, but still no way of changing them. To add these fields to the CMS we have to
-override the //getCMSFields()// method, which is called by the CMS when it creates the form to edit a page. Add the
+override the *getCMSFields()* method, which is called by the CMS when it creates the form to edit a page. Add the
 method to the *ArticlePage* class.
 
 	:::php
@@ -257,7 +257,7 @@ how to remove these blocks of repetitive code in a bit.
 
 We use *$Date* and *$Author* to access the new fields. In fact, all template variables and page controls come from
 either the data object or the controller for the page being displayed. The *$Breadcrumbs* variable comes from the
-//Breadcrumbs()// method of the //`[api:SiteTree]`// class. *$Date* and *$Author* come from the *Article* table through
+*Breadcrumbs()* method of the //`[api:SiteTree]`// class. *$Date* and *$Author* come from the *Article* table through
 your data object. *$Content* comes from the *SiteTree* table through the same data object. The data for your page is
 spread across several tables in the database matched by id - e.g. *Content* is in the *SiteTree* table, and *Date* and
 *Author* are in the *Article* table. SilverStripe matches these records by their ids and collates them into the single

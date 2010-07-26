@@ -50,7 +50,7 @@ content.  This means that database access isn't required to provide a 500 error 
 
 ### From SilverStripe
 
-//Requires SilverStripe 2.3//
+*Requires SilverStripe 2.3*
 You can indicate a log file relative to the site root. The named file will have a terse log sent to it, and the full log
 (an encoded file containing backtraces and things) will go to a file of a similar name, but with the suffix ".full"
 added.

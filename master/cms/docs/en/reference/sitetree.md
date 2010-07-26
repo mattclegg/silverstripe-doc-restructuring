@@ -16,7 +16,7 @@ Basic data-object representing all pages within the site tree. The omnipresent *
 
 ## Querying
 
-Use //SiteTree::get_by_link()// to correctly retrieve a page by URL, as it taked nested URLs into account (a page URL
+Use *SiteTree::get_by_link()* to correctly retrieve a page by URL, as it taked nested URLs into account (a page URL
 might consist of more than one *URLSegment*).
 
 	:::php

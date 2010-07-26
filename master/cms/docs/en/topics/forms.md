@@ -151,7 +151,7 @@ Readonly on a FormField
 
 # Using a custom template
 
-//Required Silverstripe 2.3 for some displayed functionality//
+*Required Silverstripe 2.3 for some displayed functionality*
 
 You can use a custom form template to render with, instead of *Form.ss*
 
@@ -194,7 +194,7 @@ First of all, you need to create your form on it's own class, that way you can d
 ''forTemplate()'' tells the Form class to render with a template of return value of ''$this->class'', which in this case
 is *MyForm*, the name of the class. If the template doesn't exist, then it falls back to using Form.ss
 
-//MyForm.ss// should then be placed into your *templates/Includes* directory for your project. Here is an example of
+*MyForm.ss* should then be placed into your *templates/Includes* directory for your project. Here is an example of
 basic customisation:
 
 	:::html
@@ -238,7 +238,7 @@ above.
 
 ## Securing forms against Cross-Site Request Forgery (CSRF)
 
-SilverStripe tries to protect users against //Cross-Site Request Forgery (CSRF)// by adding a hidden *SecurityID*
+SilverStripe tries to protect users against *Cross-Site Request Forgery (CSRF)* by adding a hidden *SecurityID*
 parameter to each form. See [secure-development](secure-development) for details.
 
 ## Remove existing fields

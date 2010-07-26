@@ -119,13 +119,13 @@ Open *themes/tutorial/templates/Page.ss*. It uses standard HTML with three excep
 *$SilverStripeNavigator*. These template markers are processed by SilverStripe into HTML before being sent to your
 browser.
 
-//<% base_tag %>// is replaced with the HTML [base element](http://www.w3.org/TR/html401/struct/links.html#h-12.4). This
+*<% base_tag %>* is replaced with the HTML [base element](http://www.w3.org/TR/html401/struct/links.html#h-12.4). This
 ensures the browser knows where to locate your site's images and css files.
 
-//$Content// is replaced with the content of the page currently being viewed. This allows you to make all changes to
+*$Content* is replaced with the content of the page currently being viewed. This allows you to make all changes to
 your site's content in the CMS.
 
-//$SilverStripeNavigator// inserts the HTML for the navigator at the bottom of the page, which allows you to move
+*$SilverStripeNavigator* inserts the HTML for the navigator at the bottom of the page, which allows you to move
 quickly between the CMS and the draft and published version of your page.
 
 ![The SilverStripe Navigator](images/navigator.png)
@@ -140,7 +140,7 @@ changes to the template, we must flush the cache in order for the changes to tak
 
 Let's introduce two new template variables - *$Title* and *$MetaTags*.
 
-//$Title// is simply replaced with the name of the page ('Page name' on the 'Main' tab in the editor). Open
+*$Title* is simply replaced with the name of the page ('Page name' on the 'Main' tab in the editor). Open
 *themes/tutorial/templates/Page.ss*. Find the following code:
 
 	:::html
@@ -156,7 +156,7 @@ and replace it with
 	</div>
 
 
-//$MetaTags// adds meta tags for search engines, as well as the page title ('Title' on the 'Meta-data' tab in the
+*$MetaTags* adds meta tags for search engines, as well as the page title ('Title' on the 'Meta-data' tab in the
 editor). You can define your metatags in the meta-data tab off the content editor in the CMS. Add *$MetaTags* to the
 head so that it looks like this:
 
@@ -182,7 +182,7 @@ Your page should now look something like this (with your own content of course):
 
 So far we have made several pages, but we have no way to navigate between them. We can create a menu for our site using
 a **control block**. Control blocks allow us to iterate over a data set, and render each item using a sub-template. The
-**page control** //Menu(1)// returns the set of the first level menu items. We can then use the template variable
+**page control** *Menu(1)* returns the set of the first level menu items. We can then use the template variable
 *$MenuTitle* to show the title of the page we are linking to.
 
 Open up *themes/tutorial/templates/Page.ss*, and insert the following code inside *<div id="Main">*:
@@ -196,7 +196,7 @@ Open up *themes/tutorial/templates/Page.ss*, and insert the following code insid
 
 
 Here we've created an unordered list called *Menu1*, which *themes/tutorial/css/layout.css* will style into the menu.
-Then, using a control block over the page control //Menu(1)//, we add a link to the list for each menu item. All going
+Then, using a control block over the page control *Menu(1)*, we add a link to the list for each menu item. All going
 to plan, your page should look like this:
 
 ![](images/menu.png)
@@ -260,7 +260,7 @@ Adding a second level menu is very similar to adding the first level menu. Open 
 
 
 This should look very familiar. It is exactly the same as our first menu, except we have named our linked list *Menu2*
-and we are using the control //Menu(2)// instead of //Menu(1)//. As we can see here, the *Menu* control takes a single
+and we are using the control *Menu(2)* instead of *Menu(1)*. As we can see here, the *Menu* control takes a single
 argument - the level of the menu we want to get. Our css file will style this linked list into the second level menu,
 using our usual *$LinkingMode* technique to highlight the current page.
 
@@ -279,7 +279,7 @@ like this:
 
 
 The if block only includes the code inside it if the condition is true. In this case, it checks for the existence of
-//Menu(2)//. If it exists then the code inside will be processed and the menu will be shown. Otherwise the code will not
+*Menu(2)*. If it exists then the code inside will be processed and the menu will be shown. Otherwise the code will not
 be processed and the menu will not be shown.
 
 Now that we have two levels of navigation, it would also be useful to include some "breadcrumbs". Find *<div
@@ -302,8 +302,8 @@ the top level with another if statement.
 	<% end_if %>
 
 
-The *Level* page control allows you to get data from the page's parents, eg if you used //Level(1)//, you could use
-//$Level(1).Title// to get the top level page title. In this case, we merely use it to check the existence of a second
+The *Level* page control allows you to get data from the page's parents, eg if you used *Level(1)*, you could use
+*$Level(1).Title* to get the top level page title. In this case, we merely use it to check the existence of a second
 level page; if one exists then we include the breadcrumbs.
 
 We now have a fully functioning two level navigation system. Both menus should be updating and highlighting as you move

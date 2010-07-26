@@ -221,13 +221,13 @@ This returns the value inputted in the CMS, if it's set or what is in the $title
 
 ### Forms within Widgets
 
-//Requires SilverStripe 2.4 or newer//
+*Requires SilverStripe 2.4 or newer*
 
 To implement a form inside a widget, you need to implement a custom controller for your widget to return this form. Make
 sure that your controller follows the usual naming conventions, and it will be automatically picked up by the
 [:WidgetArea](http://api.silverstripe.org/trunk/sapphire/widgets/WidgetArea.html) rendering in your *Page.ss* template.
 
-//mysite/code/MyWidget.php//
+*mysite/code/MyWidget.php*
 
 	:::php
 	class MyWidget extends Widget {
@@ -258,7 +258,7 @@ sure that your controller follows the usual naming conventions, and it will be a
 
 To output this form, modify your widget template.
 
-//mysite/templates/MyWidget.ss//
+*mysite/templates/MyWidget.ss*
 
 	:::html
 	$Content
@@ -266,7 +266,7 @@ To output this form, modify your widget template.
 
 
 Note: The necessary controller actions are only present in subclasses of [Page_Controller](Page_Controller). To use
-widget forms in other controller subclasses, have a look at //ContentController->handleWidget()// and
+widget forms in other controller subclasses, have a look at *ContentController->handleWidget()* and
 *ContentController::$url_handlers*.
 
 See an [alternative recipe for SilverStripe 2.3 or earlier](/recipes/widget-forms-2.3).

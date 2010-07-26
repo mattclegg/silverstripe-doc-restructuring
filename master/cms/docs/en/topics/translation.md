@@ -13,26 +13,26 @@ extension. See [multilingualcontent#migrating_from_2.1_datamodel](multilingualco
 
 # Requirements
 
-//SilverStripe 2.3.2//
+*SilverStripe 2.3.2*
 
 # Screenshots
 
 ![](images/translatable4_small.png)
 
-//Translated website//
+*Translated website*
 
 
 ![](images/translatable1.png)
 
-//CMS: Language dropdown//
+*CMS: Language dropdown*
 
 ![](images/translatable2.png)
 
-//CMS: Translatable field with original value//
+*CMS: Translatable field with original value*
 
 ![](images/translatable3.png)
 
-//CMS: Create a new translation//
+*CMS: Create a new translation*
 
 
 # Usage
@@ -40,7 +40,7 @@ extension. See [multilingualcontent#migrating_from_2.1_datamodel](multilingualco
 =====Configuration=====
 ### ThroughObject::add_extension()====
 
-Enabling Translatable through //Object::add_extension()// in your *mysite/_config.php*:
+Enabling Translatable through *Object::add_extension()* in your *mysite/_config.php*:
 
 	:::php
 	Object::add_extension('SiteTree', 'Translatable');
@@ -281,7 +281,7 @@ has only one language. But how does a user coming to your English default langua
 of this page? 
 By default, SilverStripe core doesn't provide any switching of languages through sessions or browser cookies. As a
 SEO-friendly CMS, it contains all this information in the URL. Each page in SilverStripe is aware of its translations
-through the //getTranslations()// method. We can use this method in our template to build a simple language switcher. It
+through the *getTranslations()* method. We can use this method in our template to build a simple language switcher. It
 shows all available translations in an unordered list with links to the same page in a different language. The example
 below can be inserted in any of your templates, for example *themes/blackcandy/templates/Layout/Page.ss*.
 
