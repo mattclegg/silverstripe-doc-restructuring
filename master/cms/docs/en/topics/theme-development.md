@@ -19,7 +19,7 @@ layout of your folders. First you need to create a folder in the themes director
 using "blackcandy"). Please note that underscores in the theme name are reserved to denote "sub-themes" (e.g.
 "blackcandy_blog").
 
-{{:themes:basicfilestructure.gif|:themes:basicfilestructure.gif}}
+![themes:basicfilestructure.gif](images/basicfilestructure.gif)
 
 Inside your theme, you need the css, images and templates folders. Each of these folders contain parts of your theme and
 keeping a good folder structure is super important. Now we have this structure we can put our CSS in the css folder,
@@ -42,7 +42,7 @@ and the [:HTML](/HTML) pages for more in-depth discussion about the HTML templat
 we need a Page.ss file (note the .ss extenstion - Don't worry its just HTML and any text editor will still read it). So
 go ahead and create 2 Page.ss files. One in templates, the other in Layout.
 
-{{:themes:basicfiles.gif|:themes:basicfiles.gif}}
+![themes:basicfiles.gif](images/basicfiles.gif)
 
 Whats with the 2 Page.ss files? Well we have 2 so when the user visits a page they get redirected to the top level
 Page.ss then, depending on what page they are on, we can have a custom template for that page in the Layout folder. If

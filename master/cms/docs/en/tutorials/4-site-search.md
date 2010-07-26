@@ -4,8 +4,8 @@ This is a short tutorial demonstrating how to add search functionality to a Silv
 you have completed the earlier tutorials, especially the tutorial on forms, before attempting this tutorial. While this
 tutorial will add search functionality to the site built in the previous tutorials, it should be straight forward to
 follow this tutorial on any site of your own. If you are adding the search form to the tutorial site, please get
-{{layout.css|this updated css file}} and place it in *themes/tutorial/css* (as layout.css) and this
-{{search-file.gif|search file tree icon}} search file tree icon and place it in *themes/tutorial/images/treeicons* (as
+![this updated css file](images/layout.css) and place it in *themes/tutorial/css* (as layout.css) and this
+![search file tree icon](images/search-file.gif) search file tree icon and place it in *themes/tutorial/images/treeicons* (as
 search-file.gif).
 
 # What are we working towards?
@@ -13,7 +13,7 @@ search-file.gif).
 We are going to add a search box on the top of the page. When a user types something in the box, they are taken to a
 results page.
 
-{{searchresults-small.png}}
+![](images/searchresults-small.png)
 
 
 
@@ -84,7 +84,7 @@ We then just need to add the search form to the template. Add *$SearchForm* to t
 	</div>
 
 
-{{searchform.png}}
+![](images/searchform.png)
 
 # Showing the results
 
@@ -189,7 +189,7 @@ class.
 	</div>
 
 
-{{searchresults.png}}
+![](images/searchresults.png)
 
 
 # Summary

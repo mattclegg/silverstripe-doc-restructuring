@@ -51,7 +51,7 @@ Example Forum:
  | forum/code | PHP code for model and controller (subdirectories are optional)     | 
  | ...        | ...                                                                 | 
 
-{{:modules_folder.jpg|:modules_folder.jpg}}
+![](images/modules_folder.jpg)
 
 
 ## PHP Include Paths

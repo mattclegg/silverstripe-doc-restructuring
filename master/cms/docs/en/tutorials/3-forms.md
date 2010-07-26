@@ -15,7 +15,7 @@ Defined Forms see
 We will create a poll on the home page that asks the user their favourite web browser, and displays a bar graph of the
 results.
 
-{{:tutorial:pollresults-small.png|:tutorial:pollresults-small.png}}
+![tutorial:pollresults-small.png](images/pollresults-small.png)
 
 
 ## Creating the form
@@ -134,7 +134,7 @@ Add the following code to the home page template, just before the ''</div>'' tha
 The CSS files will ensure that it is formatted and positioned correctly. All going according to plan, if you visit
 [http://localhost/home?flush=1](http://localhost/home?flush=1) it should look something like below.
 
-{{pollform.png}}
+![](images/pollform.png)
 
 
 ## Processing the form
@@ -226,7 +226,7 @@ Change the end of the 'BrowserPollForm' function so it looks like this:
 If we then open the homepage and attempt to submit the form without filling in the required fields an error will be
 shown.
 
-{{validation.png}}
+![](images/validation.png)
 
 
 
@@ -386,7 +386,7 @@ We use the normal tactic of putting the data into an unordered list and using CS
 styles to display a bar that is sized proportionate to the number of votes the browser has received. You should now have
 a complete poll.
 
-{{pollresults.png}}
+![](images/pollresults.png)
 
 
 # Summary

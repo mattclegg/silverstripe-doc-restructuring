@@ -17,20 +17,20 @@ extension. See [multilingualcontent#migrating_from_2.1_datamodel](multilingualco
 
 # Screenshots
 
-{{:translatable4_small.png|:translatable4_small.png}}
+![](images/translatable4_small.png)
 
 //Translated website//
 
 
-{{:translatable1.png|:translatable1.png}}
+![](images/translatable1.png)
 
 //CMS: Language dropdown//
 
-{{:translatable2.png|:translatable2.png}}
+![](images/translatable2.png)
 
 //CMS: Translatable field with original value//
 
-{{:translatable3.png|:translatable3.png}}
+![](images/translatable3.png)
 
 //CMS: Create a new translation//
 
