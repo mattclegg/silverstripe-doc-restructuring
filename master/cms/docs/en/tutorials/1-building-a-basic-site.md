@@ -170,9 +170,9 @@ head so that it looks like this:
 	</head>
 
 
-<note tip>
+[note]
 Don't forget to flush the cache each time you change a template by adding *?flush=1* onto the end of the URL.
-</note>
+[/note]
 
 Your page should now look something like this (with your own content of course):
 

@@ -125,11 +125,12 @@ Now that we have created our page types, we need to let SilverStripe rebuild the
 [http://localhost/dev/build?flush=1](http://localhost/dev/build?flush=1). SilverStripe will detect that there are two
 new page types and add them to the list of page types in the database.
 
-<note>
+[note]
 It is SilverStripe convention to suffix general page types with "Page", and page types that hold other page types with
 "Holder". This is to ensure that we don't have URLs with the same name as a page type; if we named our *ArticleHolder*
 page type "News", it would conflict with the page name also called "News".
-</note>
+[/note]
+
 # Adding date and author fields
 
 Now that we have an *ArticlePage* page type, let's make it a little more useful. Remember the *$db* array? We can use
