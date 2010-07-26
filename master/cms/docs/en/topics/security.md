@@ -268,7 +268,7 @@ See
 
 
 
-======= Casting user input =======
+## Casting user input
 
 When working with ''$_GET'', ''$_POST'' or ''Director::urlParams'' variables, and you know your variable has to be of a
 certain type, like an integer, then it's essential to cast it as one. *Why?* To be sure that any processing of your
