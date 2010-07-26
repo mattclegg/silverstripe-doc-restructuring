@@ -66,6 +66,3 @@ your changes is to send us a pull request**
 ### Contributing your changes
 
 After **pushing your changes** to your own github fork, you can send us **pull requests**.
-
-test
-test
