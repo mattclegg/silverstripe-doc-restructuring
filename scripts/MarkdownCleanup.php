@@ -9,6 +9,7 @@ class MarkdownCleanup {
 	function process($filepath) {
 		$content = file_get_contents($filepath);
 		
+		$content = $this->convertInlineHTML($content);
 		$content = $this->convertUnbalancedHeadlines($content);
 		$content = $this->convertCodeBlocks($content);
 		$content = $this->newlinesAfterHeadlines($content);
@@ -19,6 +20,22 @@ class MarkdownCleanup {
 		$content = $this->relocateImages($content, $filepath);
 		
 		return $content;
+	}
+	
+	protected function convertInlineHTML($content) {
+		$out = array();
+		
+		$lines = $this->getLines($content);
+		foreach($lines as $i => $line) {
+			// TODO Don't convert HTML in headlines
+			if(!preg_match('/^\t/', $line)) {
+				$lines[$i] = preg_replace('/[\*\'`]*(<[^>]*?>)[\*\'`]*/', '`$1`', $lines[$i]);
+			}
+			
+			$out[] = $lines[$i];
+		}
+		
+		return implode("\n", $out);
 	}
 	
 	/**
