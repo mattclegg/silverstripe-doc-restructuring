@@ -1,7 +1,7 @@
 # Page Controls
 
  
-Ever wonder when you use $Title and <% Control Children %> what else you can do / call in the templates?. This page is
+Ever wonder when you use $Title and `<% Control Children %>` what else you can do / call in the templates?. This page is
 here to help with a guide on what template controls you can call.
 
 **Note for advanced users:** These built-in page controls are defined in the `[api:SiteTree]` classes, which are the
@@ -19,7 +19,7 @@ within another page control.
 ##### <% control Menu(1) %>, <% control Menu(2) %>, ...
 
 Returns a fixed level menu.  Because this only works in the top level, you can't use it for nested menus.  Used <%
-control Children %> instead. You can nest <% control Children %>.
+control Children %> instead. You can nest `<% control Children %>`.
 
 ##### <% control ChildrenOf(page-url) %>
 
@@ -32,13 +32,13 @@ the staff) on the homepage etc
 Returns the current section of the site that we're in, at the level specified by the numbers.  For example, imagine
 you're on the page __about us > staff > bob marley__:
 
-*  <% control Level(1) %> would return the about us page
-*  <% control Level(2) %> would return the staff page
-*  <% control Level(3) %> would return the bob marley page
+*  `<% control Level(1) %>` would return the about us page
+*  `<% control Level(2) %>` would return the staff page
+*  `<% control Level(3) %>` would return the bob marley page
 
 ##### <% control Page(my-page) %>$Title<% end_control %>
 
-"Page" will return a single page from the site tree, looking it up by URL.  You can use it in the <% control %> format.
+"Page" will return a single page from the site tree, looking it up by URL.  You can use it in the `<% control %>` format.
 Can't be called using $Page(my-page).Title.
 
 # Page controls that can be used anywhere
@@ -94,7 +94,7 @@ could display the breadcrumbs of every search result if you wanted.  It has a fe
 Will return a maximum of 3 pages in the breadcrumb list, this can be handy if you're wanting to put breadcrumbs in a
 place without spilling
 
-#####  <% control Breadcrumbs(3, true) %>
+##### <% control Breadcrumbs(3, true) %>
 
 Will return the same, but without any links. This is handy if you're wanting to put the breadcrumb list into another
 link tag.
@@ -152,7 +152,7 @@ This if block will pass if we're currently on the page-url page or one of its ch
 
 ##### $MetaTags
 
-This returns a segment of HTML appropriate for putting into the <head> tag.  It will set up title, keywords and
+This returns a segment of HTML appropriate for putting into the `<head>` tag.  It will set up title, keywords and
 description meta-tags, based on the CMS content. If you don't want to include the title-tag (for custom templating), use
 **$MetaTags(false)**.
 
@@ -186,15 +186,15 @@ will return "HomePage"
 
 ##### $BaseHref
 
-Returns the base URL for the current site. This is used to populate the ''<base>'' tag by default, so if you want to
-override ''<% base_tag %>'' with a specific piece of HTML, you can do something like ''<base href="$BaseHref"></base>''
+Returns the base URL for the current site. This is used to populate the `<base>` tag by default, so if you want to
+override `<% base_tag %>` with a specific piece of HTML, you can do something like `<base href="$BaseHref">``</base>`
 
 ## Controlling Members and Visitors Data
 
 ##### <% control CurrentMember %>, <% if CurrentMember %> or $CurrentMember.FirstName
 
 CurrentMember returns the currently logged in member, if there is one.  All of their details or any special Member page
-controls can be called on this.  Alternately, you can use <% if CurrentMember %> to detect whether someone has logged
+controls can be called on this.  Alternately, you can use `<% if CurrentMember %>` to detect whether someone has logged
 in. To Display a welcome message you can do
 
 	:::html
@@ -243,7 +243,7 @@ These controls can be used to do zebra-striping.  $EvenOdd will return 'even' or
 
 ##### <% if First %>, <% if Last %>, <% if Middle %>, $FirstLast
 
-These controls can be used to set up special behaviour for the first and last records of a datafeed.  <% if Middle %> is
+These controls can be used to set up special behaviour for the first and last records of a datafeed.  `<% if Middle %>` is
 set when neither first not last are set.  $FirstLast will be 'first', 'last', or ''
 
 ##### $Pos, $TotalItems
@@ -265,8 +265,8 @@ breaking out of the loop to get it, you can use $Top to do so. For example:
 
 #  Properties of a datafeed itself, rather than one of its items
 
-If we have a control such as <% control SearchResults %>, there are some properties, such as $SearchResults.NextLink,
-that aren't accessible within <% control SearchResults %>.  These can be used on any datafeed.
+If we have a control such as `<% control SearchResults %>`, there are some properties, such as $SearchResults.NextLink,
+that aren't accessible within `<% control SearchResults %>`.  These can be used on any datafeed.
 
 ##### <% if SearchResults.MoreThanOnePage %>
 
@@ -297,14 +297,14 @@ available:
 
 *  **$PageNum:** page number, starting at 1
 *  **$Link:** a link straight to that page
-*  **<% if CurrentBool %>:** returns true if you're currently on that page
+*  `<% if CurrentBool %>`:** returns true if you're currently on that page
 
-<% control SearchResults.Pages(30) %> will show a maximum of 30 pages, useful in situations where you could get 100s of
+`<% control SearchResults.Pages(30) %>` will show a maximum of 30 pages, useful in situations where you could get 100s of
 pages returned.
 
 ##### $SearchResults.UL
 
-This is a quick way of generating a <ul> containing an <li> and <a> for each item in the datafeed.  Usually too
+This is a quick way of generating a `<ul>` containing an `<li>` and `<a>` for each item in the datafeed.  Usually too
 restricted to use in a final application, but handy for debugging stuff.
 
 

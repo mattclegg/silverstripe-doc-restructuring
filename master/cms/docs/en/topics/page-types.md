@@ -13,7 +13,7 @@ All the pages on the base installation are of the page type "Page". See
 Each page type on your website is a sub-class of the SiteTree class. Usually, you’ll define a class called ‘Page’
 and use this template to lay out the basic design elements that don’t change. Take a look at mysite/templates/Page.ss.
 It contains standard HTML markup, with some differences. We’ll go over these later, but for now, you can see that this
-file only generates some of the content – it sets up the <html> tags, deals with the <head> section, creates the
+file only generates some of the content – it sets up the `<html>` tags, deals with the `<head>` section, creates the
 first-level navigation, and then closes it all off again. See $Layout? That’s what is doing most of the work when you
 visit a page. Now take a look at mysite/templates/Layout/Page.ss. This as you can see has a lot more markup in it –
 it’s what is included into $Layout when the ‘Page’ page type is rendered. Similarly,
@@ -24,7 +24,7 @@ Why do we sub-class Page for everything? The easiest way to explain this is to u
 create a search form on the Page class, then any other sub-class can also use it in their templates. This saves us
 re-defining commonly used forms or controls in every class we use.
 
-{{tutorial:pagetype-inheritance.png}}
+![](images/pagetype-inheritance.png)
 
 Each page type is represented by two classes: a data object and a controller. In the diagrams above and below, the data
 objects are black and the controllers are blue. The page controllers are only used when the page type is actually
@@ -32,7 +32,7 @@ visited on the website. In our example above, the search form would become a met
 Any methods put on the data object will be available wherever we use this page. For example, we put any customizations
 we want to do to the CMS for this page type in here.
 
-{{:controllers-and-dataobjects.png|:controllers-and-dataobjects.png}}
+![](images/controllers-and-dataobjects.png)
 
 Page types are created using PHP classes. If you’re not sure about how these work, [click here for a gentler
 introduction to PHP classes](http://www-128.ibm.com/developerworks/opensource/library/os-phpobj/). 

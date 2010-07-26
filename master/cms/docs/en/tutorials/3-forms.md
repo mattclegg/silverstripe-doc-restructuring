@@ -15,7 +15,7 @@ Defined Forms see
 We will create a poll on the home page that asks the user their favourite web browser, and displays a bar graph of the
 results.
 
-{{:tutorial:pollresults-small.png|:tutorial:pollresults-small.png}}
+![tutorial:pollresults-small.png](images/pollresults-small.png)
 
 
 ## Creating the form
@@ -25,7 +25,7 @@ We will be creating a form for a poll on the home page.
 The poll will ask the user's name and favourite web browser, and then collate the results into a bar graph. We create
 the form in a method on *HomePage_Controller*.
 
-//mysite/code/HomePage.php//
+*mysite/code/HomePage.php*
 
 	:::php
 	...
@@ -115,9 +115,9 @@ that returns the form, which is 'BrowserPollForm' in our case. The third and fou
 
 After creating the form function, we need to add the form to our home page template.
 
-Add the following code to the home page template, just before the ''</div>'' that ends the ContentContainer DIV element:
+Add the following code to the home page template, just before the `</div>` that ends the ContentContainer DIV element:
 
-//themes/tutorial/templates/Layout/HomePage.ss//
+*themes/tutorial/templates/Layout/HomePage.ss*
 
 	:::html
 	...
@@ -134,7 +134,7 @@ Add the following code to the home page template, just before the ''</div>'' tha
 The CSS files will ensure that it is formatted and positioned correctly. All going according to plan, if you visit
 [http://localhost/home?flush=1](http://localhost/home?flush=1) it should look something like below.
 
-{{pollform.png}}
+![](images/pollform.png)
 
 
 ## Processing the form
@@ -149,7 +149,7 @@ If you recall, in tutorial two we said that all objects that inherit from DataOb
 the database. Also recall that all pages extend DataObject indirectly through [:SiteTree](/SiteTree). Here instead of
 extending SiteTree (or [:Page](/Page)) to create a page type, we extend DataObject directly.
 
-//mysite/code/BrowserPollSubmission.php//
+*mysite/code/BrowserPollSubmission.php*
 
 	:::php
 	<?php
@@ -167,7 +167,7 @@ extending SiteTree (or [:Page](/Page)) to create a page type, we extend DataObje
 If we then rebuild the database ([http://localhost/db/build?flush=1](http://localhost/db/build?flush=1)), we will see
 that the *BrowserPollSubmission* table is created. Now we just need to define 'doBrowserPoll' on *HomePage_Controller*.
 
-//mysite/code/HomePage.php//
+*mysite/code/HomePage.php*
 
 	:::php
 	...
@@ -226,7 +226,7 @@ Change the end of the 'BrowserPollForm' function so it looks like this:
 If we then open the homepage and attempt to submit the form without filling in the required fields an error will be
 shown.
 
-{{validation.png}}
+![](images/validation.png)
 
 
 
@@ -240,7 +240,7 @@ otherwise show the results.
 We can do this using a session variable. The [:Session](/Session) class handles all session variables in SilverStripe.
 First modify the 'doBrowserPoll' to set the session variable 'BrowserPollVoted' when a user votes.
 
-//mysite/code/HomePage.php//
+*mysite/code/HomePage.php*
 
 	:::php
 	...
@@ -386,7 +386,7 @@ We use the normal tactic of putting the data into an unordered list and using CS
 styles to display a bar that is sized proportionate to the number of votes the browser has received. You should now have
 a complete poll.
 
-{{pollresults.png}}
+![](images/pollresults.png)
 
 
 # Summary

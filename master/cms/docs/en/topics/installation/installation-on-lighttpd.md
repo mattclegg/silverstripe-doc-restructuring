@@ -72,7 +72,7 @@ this method still works properly if you just don't use dots in the directory nam
 
 #### Installing lighttpd on Debian
 
-*  aptitude install lighttpd //(and php5-cgi, mysql-server, etc, as necessary.)//
+*  aptitude install lighttpd *(and php5-cgi, mysql-server, etc, as necessary.)*
     * if apache is already running, lighttpd can still be safely installed. It will complain it cannot start because
 port 80 is in use. After installing lighttpd, edit /etc/lighttpd/lighttpd.conf  and set: "server.port = 81" for example,
 and run /etc/init.d/lighttpd restart

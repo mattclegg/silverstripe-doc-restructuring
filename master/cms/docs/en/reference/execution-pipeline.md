@@ -12,28 +12,30 @@ Silverstripe uses **[mod_rewrite](http://httpd.apache.org/docs/2.0/mod/mod_rewri
 So instead of having your normal everyday ''index.php'' file which tells all, you need to look elsewhere. 
 
 The basic .htaccess file after installing SilverStripe look like this:
-<file>
-### SILVERSTRIPE START ###
 
-<Files *.ss>
-Order deny,allow
-Deny from all
-Allow from 127.0.0.1
-</Files>
+	<file>
+	### SILVERSTRIPE START ###
 
-<IfModule mod_rewrite.c>
-RewriteEngine On
+	<Files *.ss>
+	Order deny,allow
+	Deny from all
+	Allow from 127.0.0.1
+	</Files>
 
-RewriteCond %{REQUEST_URI} !(\.gif$)|(\.jpg$)|(\.png$)|(\.css$)|(\.js$)
+	<IfModule mod_rewrite.c>
+	RewriteEngine On
 
-RewriteCond %{REQUEST_URI} ^(.*)$
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule .* sapphire/main.php?url=%1&%{QUERY_STRING} [L]
-</IfModule>
-### SILVERSTRIPE END ###
+	RewriteCond %{REQUEST_URI} !(\.gif$)|(\.jpg$)|(\.png$)|(\.css$)|(\.js$)
 
-</file>
-The ''<Files>'' section denies direct access to the template files from anywhere but the server itself.
+	RewriteCond %{REQUEST_URI} ^(.*)$
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule .* sapphire/main.php?url=%1&%{QUERY_STRING} [L]
+	</IfModule>
+	### SILVERSTRIPE END ###
+
+	</file>
+	
+The `<Files>` section denies direct access to the template files from anywhere but the server itself.
 
 The next section enables the rewriting engine and rewrites requests to ''sapphire/main.php'' if they meet the following
 criteria:
@@ -84,7 +86,7 @@ Controllers are the building blocks of your application.
 
 **See:** [The API documentation for Controller](http://api.silverstripe.org/trunk/sapphire/control/Controller.html)
 
-*  You can access the following controller-method with /team/signup
+You can access the following controller-method with /team/signup
 
 	:::php
 	class Team extends DataObject {}

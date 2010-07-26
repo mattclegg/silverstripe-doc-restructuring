@@ -1,13 +1,13 @@
 # Introduction
 
 The requirements class takes care of including CSS and JavaScript into your applications. This is preferred to
-hardcoding any references in the <head>-tag of your template, as it enables a more flexible handling.
+hardcoding any references in the `<head>`-tag of your template, as it enables a more flexible handling.
 
 
 # Usage
 
 ## Including inside PHP Code
-It is common practice to include most Requirements either in the //init()//-method of your [controller](controller), or
+It is common practice to include most Requirements either in the *init()*-method of your [controller](controller), or
 as close to rendering as possible (e.g. in //`[api:FormField]`
 
 	:::php
@@ -15,7 +15,7 @@ as close to rendering as possible (e.g. in //`[api:FormField]`
 	Requirements::css("cms/css/TreeSelector.css");
 
 
-If you're using the CSS method a second argument can be used. This argument defines the 'media' attribute of the <link>
+If you're using the CSS method a second argument can be used. This argument defines the 'media' attribute of the `<link>`
 element, so you can define 'screen' or 'print' for example.
 
 	

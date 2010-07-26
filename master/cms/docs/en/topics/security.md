@@ -189,10 +189,10 @@ presentation from business logic.
 
 ## Manual escaping in PHP
 
-When using //customise()// or //renderWith()// calls in your controller, or otherwise forcing a custom context for your
+When using *customise()* or *renderWith()* calls in your controller, or otherwise forcing a custom context for your
 template, you'll need to take care of casting and escaping yourself in PHP. 
 
-The [Convert](Convert) class has utilities for this, mainly //Convert::raw2xml()// and //Convert::raw2att()// (which is
+The [Convert](Convert) class has utilities for this, mainly *Convert::raw2xml()* and *Convert::raw2att()* (which is
 also used by *XML* and *ATT* in template code).
 
 PHP:
@@ -217,12 +217,12 @@ Template:
 
 Whenever you insert a variable into an HTML attribute within a template, use $VarName.ATT, no not $VarName.
 
-You can also use the built-in casting in PHP by using the //obj()// wrapper, see [objectmodel](objectmodel)  .
+You can also use the built-in casting in PHP by using the *obj()* wrapper, see [objectmodel](objectmodel)  .
 
 ## Escaping URLs
 
 Whenever you are generating a URL that contains querystring components based on user data, use urlencode() to escape the
-user data, not //Convert::raw2att()//.  Use raw ampersands in your URL, and cast the URL as a "Text" DBField:
+user data, not *Convert::raw2att()*.  Use raw ampersands in your URL, and cast the URL as a "Text" DBField:
 
 PHP:
 
@@ -247,7 +247,7 @@ Template:
 Some rules of thumb:
 
 *  Don't concatenate URLs in a template.  It only works in extremely simple cases that usually contain bugs.
-*  Use //Controller::join_links()// to concatenate URLs.  It deals with querystrings and other such edge cases.
+*  Use *Controller::join_links()* to concatenate URLs.  It deals with querystrings and other such edge cases.
 
 
 # Cross-Site Request Forgery (CSRF)

@@ -8,7 +8,7 @@ your pages.
 
 ## Requirements
 
-//Requires SilverStripe 2.3//
+*Requires SilverStripe 2.3*
 
 ## Usage
 
@@ -189,15 +189,15 @@ content in a "cache/" subdirectory, with an HTML suffix.
 	));
 
 
-Where ''<rsyncuser>'' is a unix account with write permissions to ''<webroot>'' (e.g. ''/var/www''), and
-''<static-server1>'' and ''<static-server2>'' are the names of your static content servers.  The number of servers is
+Where `<rsyncuser>` is a unix account with write permissions to `<webroot>` (e.g. ''/var/www''), and
+`<static-server1>` and `<static-server2>` are the names of your static content servers.  The number of servers is
 flexible and depends on your infrastructure and scalability needs.
 
 *  Ensure that the ''rsync'' unix tool is installed on the CMS server, and ssh access is enabled on the static content
 servers.
 
 *  No password can be specified for the SSH connection . The class assumes a key-based authentication without requiring
-a password for the username specified in <rsyncuser> (see [http://www.csua.berkeley.edu/~ranga/notes/ssh_nopass.html
+a password for the username specified in `<rsyncuser>` (see [http://www.csua.berkeley.edu/~ranga/notes/ssh_nopass.html
 tutorial](http://www.csua.berkeley.edu/~ranga/notes/ssh_nopass.html tutorial)).
 
 *  Put the .htaccess file linked below into the webroot of each static content server (and rename it to ''.htaccess''). 

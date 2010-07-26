@@ -4,13 +4,14 @@ This class represents a set of [database objects](dataobject), such as the resul
 [datamodel](datamodel)-related querying. It implements the [Iterator
 interface](http://php.net/manual/en/language.oop5.iterations.php) introduced in PHP5.
 
-Relations (has_many/many_many) are described in `[api:ComponentSet]`, a subclass of DataObjectSet.
+Relations (`has_many`/`many_many`) are described in `[api:ComponentSet]`, a subclass of DataObjectSet.
 
 # Usage
 
 ## Getting the size
 
-`$mySet->Count();`{php}
+	:::php
+	$mySet->Count();
 
 ## Getting an single element
 
@@ -32,22 +33,26 @@ Relations (has_many/many_many) are described in `[api:ComponentSet]`, a subclass
 	:::php
 	$myIDArray = $mySet->column('ID');
 
-
-
 ## Grouping
 
 You can group a set by a specific column. Consider using [SQLQuery](SQLQuery) with a *GROUP BY* statement for enhanced
 performance.
-`$groupedSet = $mySet->groupBy('Lastname');`{php}
+
+	:::php
+	$groupedSet = $mySet->groupBy('Lastname');
 
 ## Sorting
 
 Sort a set by a specific column. 
-<code php>$mySet->sort('Lastname'); //ascending
-$mySet->sort('Lastname', 'DESC'); //descending</code>
+
+	:::php
+	$mySet->sort('Lastname'); //ascending
+	$mySet->sort('Lastname', 'DESC'); //descending
 
 This works on the object itself, so do NOT do something like this:
-`$sortedSet = $mySet->sort('Lastname'); //ascending`{php}
+
+	:::php
+	$sortedSet = $mySet->sort('Lastname'); //ascending
 
 ## Merge with other DataObjectSets
 
@@ -68,7 +73,8 @@ the records to a compatible array:
 
 ## Converting to array
 
-`$myArray = $mySet->toArray();`{php}
+	:::php
+	$myArray = $mySet->toArray();
 
 ## Output as HTML-list
 
@@ -82,9 +88,6 @@ It is good practice to check for empty sets before doing any iteration.
 	:::php
 	$mySet = DataObject::get('Players');
 	if($mySet->exists()) foreach($mySet as $player)
-	// ...
-
-
 
 ## Paging
 
