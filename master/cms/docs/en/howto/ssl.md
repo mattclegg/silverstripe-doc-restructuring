@@ -1,6 +1,6 @@
 # Introduction
 
-Switching between SSL and Non-SSL is handled by the [Director](director) class.
+Switching between SSL and Non-SSL is handled by the [api:Director] class.
 
 **Note:** Director::forceSSL() does not work if your site is in Dev mode, see ticket
 [#4509](http://open.silverstripe.org/ticket/4509) if you need to test in Dev.

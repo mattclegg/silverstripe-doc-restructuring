@@ -100,6 +100,6 @@ You can access the following controller-method with /team/signup
 
 ## SSViewer template rendering
 
-See [templates](templates) for information on the SSViewer template system.
+See [templates](/topics/templates) for information on the SSViewer template system.
 
 **See:** [The API documentation for SSViewer](http://api.silverstripe.org/trunk/sapphire/view/SSViewer.html)

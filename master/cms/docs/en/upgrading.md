@@ -1,7 +1,7 @@
 # Introduction
 
 Usually an update or upgrade your SilverStripe installation just means overwriting files and updating your
-database-schema. Please see your [upgrade notes and changelogs](changelogs).
+database-schema. Please see your [upgrade notes and changelogs](/changelogs).
 
 # Related
 
@@ -10,7 +10,7 @@ database-schema. Please see your [upgrade notes and changelogs](changelogs).
 
 # Process
 
-*  Check if any [modules](modules) (e.g. blog or forum) in your installation are compatible and need to be upgraded as
+*  Check if any modules (e.g. blog or forum) in your installation are compatible and need to be upgraded as
 well
 *  Backup your database
 *  Backup your webroot
@@ -24,7 +24,7 @@ ensures that files removed from the new SilverStripe release are not persisting 
 cache)
 *  Check if you need to adapt your code to changed APIs
 *  Check if you need to adapt your code to changed CSS/HTML/JS
-*  See [common-problems](common-problems) for a list of likely mistakes that could happen during an upgrade.
+*  See [common-problems](/topics/common-problems) for a list of likely mistakes that could happen during an upgrade.
 
 #  Decision Helpers
 

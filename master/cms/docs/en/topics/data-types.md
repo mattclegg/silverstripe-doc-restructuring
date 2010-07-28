@@ -33,5 +33,4 @@ going to risk double-escaping your data, forgetting to escape your data, and gen
 
 # Usage
 
-*  See [datamodel](datamodel) for information about **database schemas** implementing these types
-*  See [objectmodel](objectmodel) for information about **casting** values to these types
+*  See [datamodel](/topics/datamodel) for information about **database schemas** implementing these types

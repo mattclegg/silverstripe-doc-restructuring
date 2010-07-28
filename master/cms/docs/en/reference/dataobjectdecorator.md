@@ -3,7 +3,7 @@
  Extensions (also referred to as decorators) allow for adding additional functionality to a `[api:DataObject]`.
 
 In some cases, it can be easier to completely replace the used class throughout the core with your custom
-implementation. Have a look at [Object](Object)->useCustomClass().
+implementation. Have a look at `[api:Object->useCustomClass()]`.
 
 # Usage
 
@@ -115,8 +115,7 @@ If you have customised the generated database, then you probably want to change 
 used by Versioned to get an entry written in ClassName_versions whenever an insert/update happens.
 
 To do this, define the **augmentWrite(&$manipulation)** method.  This method is passed a manipulation array representing
-the write about to happen, and is able to amend this as desired, since it is passed by reference.  For more information
-about manipulation arrays, see [manipulation-arrays](manipulation-arrays).
+the write about to happen, and is able to amend this as desired, since it is passed by reference. 
 
 ## Custom relation queries
 
@@ -124,7 +123,7 @@ The other queries that you will want to customise are the selection queries, cal
 Versioned object has code to redirect every request to ClassName_live, if you are browsing the live site.
 
 To do this, define the **augmentSQL(SQLQuery &$query)** method.  Again, the $query object is passed by reference and can
-be modified as needed by your method.  Instead of a manipulation array, we have a [SQLQuery](SQLQuery) object.
+be modified as needed by your method.  Instead of a manipulation array, we have a `[api:SQLQuery]` object.
 
 ## Additional methods
 

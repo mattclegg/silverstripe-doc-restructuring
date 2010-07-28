@@ -35,7 +35,7 @@ To add the ModelAdmin to your CMS menu, you simply need to define a couple of st
 `[api:LeftAndMain]` on how to make your menu title translatable.
 
 
-2. Add a ''$searchable_fields'' (See [ModelAdmin#searchable_fields](ModelAdmin#searchable_fields)) property to your data
+2. Add a ''$searchable_fields'' (See `[api:ModelAdmin::$searchable_fields]`) property to your data
 models, to define the fields and filters for the search interface:
 
 Datamodel ''Product'':
@@ -104,7 +104,6 @@ customized for each DataObject's search results using ''$summary_fields''.
 
 ## Related
 
-*  [SearchContext](SearchContext)
-*  [genericviews Module](modules/genericviews)
-*  [Presentation about ModelAdmin at SupperHappyDevHouse
-Wellington](http://www.slideshare.net/chillu/modeladmin-in-silverstripe-23)
+*  `[api:SearchContext]`
+*  [genericviews Module](http://silverstripe.org/genericviews-module)
+*  [Presentation about ModelAdmin at SupperHappyDevHouse Wellington](http://www.slideshare.net/chillu/modeladmin-in-silverstripe-23)

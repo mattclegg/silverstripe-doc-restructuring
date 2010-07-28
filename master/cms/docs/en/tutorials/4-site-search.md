@@ -133,7 +133,7 @@ function, and then attempt to render it with *Page_results.ss*, falling back to 
 # Creating the template
 
 Lastly we need to create the template for the search page. This template uses all the same techniques used in previous
-tutorials. It also uses a number of pagination variables, which are provided by the [:DataObjectSet](/DataObjectSet)
+tutorials. It also uses a number of pagination variables, which are provided by the `[api:DataObjectSet]`
 class.
 
 *themes/tutorial/templates/Layout/Page_results.ss*
@@ -197,4 +197,4 @@ class.
 This tutorial has demonstrated how easy it is to have full text searching on your site. To add search to a SilverStripe
 site, only a search form and a results page need to be created.
 
-[Next Tutorial >>](tutorial/site-map)
+[Next Tutorial >>](/tutorials/site-map)

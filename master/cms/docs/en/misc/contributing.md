@@ -26,13 +26,19 @@ Only use the provided link to submit patches, as it prefills information about o
 [Submit a patch (requires account on
 open.silverstripe.org)](http://open.silverstripe.com/newticket?field_type=patch&field_owner=ischommer&attachment=1)
 
-The [core team](contributors) is responsible for reviewing the patches and deciding if they will make it into core.  If
+The core team is responsible for reviewing the patches and deciding if they will make it into core.  If
 there are any problems they will assign the ticket back to you, so make sure you have an email address loaded into Trac
 so that it will notify you! The Trac report [Active Patches](http://open.silverstripe.com/report/10) will let you see
 where all the patches are at.
 
-*  Submit your patch in *diff -u* or *diff -c format*. See [subversion](subversion) for more information on creating
-patches.
+You can create a patch file through the svn diff-command on the command-line. 
+More info in the [svn redbook](http://svnbook.red-bean.com/en/1.1/ch03s05.html#svn-ch-3-sect-5.3.2). 
+Note: Your code-editor might have a GUI for creating patches.
+
+	# in a working copy folder (e.g /myproject)
+	svn diff sapphire/ > ~/patch.diff
+
+*  Submit your patch in *diff -u* or *diff -c format*. 
 
 *  **Check your patches against a svn checkout of the [current trunk](http://open.silverstripe.com/browser/modules)**. 
 Please not that the latest stable release will often not be sufficient! (of all modules)
@@ -41,7 +47,7 @@ Please not that the latest stable release will often not be sufficient! (of all 
 forum]([[http///www.silverstripe.com/silverstripe-forum/) (optimally before doing any serious coding)
 
 *  Adhere to our [coding conventions](http://doc.silverstripe.com/doku.php?id=coding-conventions)
-*  Provide complete [unit test coverage](testing-guide) - depending on the complexity of your work, this is a required
+*  Provide complete [unit test coverage](/topics/testing) - depending on the complexity of your work, this is a required
 step.
 
 *  Describe specifics on how to test the effects of the patch
@@ -96,12 +102,11 @@ of text somewhere?
 forms of documenting sourcecode (PHPDoc/wiki) are valueable ressources, **one should complement the other**.
 
 *  Refer to wiki documentation inside your **PHPDoc**.
-*  Use the **wiki-syntax** correctly ([syntax](wiki/syntax))
 *  Linking your page: A wiki lives by **interlinking content**, so please make sure your contribution doesn't become an
 inaccessible island. Check the startpage for common index-repositories to extend.
 
-*  Linking other pages: Make sure to **refer to related topics** (e.g. [templates](templates) could refer to
-[css](css)).
+*  Linking other pages: Make sure to **refer to related topics** (e.g. [templates](/topics/templates) could refer to
+[javascript](/topics/javascript)).
 
 *  Consider **namespacing** your page to keep things coherent (e.g. "tutorial:customizing-contact-forms" instead of
 "customizing-contact-forms"). Please contact Silverstripe-staff before adding any new namespaces.

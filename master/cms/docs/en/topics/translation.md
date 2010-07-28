@@ -2,14 +2,14 @@
 
 This page introduces developers to using the CMS for creating content in multiple languages.
 
-Please see [i18n](i18n) for a internationalization, globalization and localization support of built-in datatypes as well
+Please see [i18n](/topics/i18n) for a internationalization, globalization and localization support of built-in datatypes as well
 as translating templates and PHP code.
 
 Translations can be enabled for all subclasses of `[api:DataObject]`, so it can easily be implemented into existing code
 with minimal interference.
 
 Warning: If you're upgrading from a SilverStripe version prior to 2.3.2, please migrate your datamodel before using the
-extension. See [multilingualcontent#migrating_from_2.1_datamodel](multilingualcontent#migrating_from_2.1_datamodel)
+extension (see below).
 
 # Requirements
 
@@ -37,8 +37,9 @@ extension. See [multilingualcontent#migrating_from_2.1_datamodel](multilingualco
 
 # Usage
 
-=====Configuration=====
-### ThroughObject::add_extension()====
+## Configuration
+
+### ThroughObject::add_extension()
 
 Enabling Translatable through *Object::add_extension()* in your *mysite/_config.php*:
 
@@ -47,7 +48,7 @@ Enabling Translatable through *Object::add_extension()* in your *mysite/_config.
 	Object::add_extension('SiteConfig', 'Translatable'); // 2.4 or newer only
 
 
-### Through$extensions====
+### Through$extensions
 
 	:::php
 	class Page extends SiteTree {
@@ -61,7 +62,7 @@ Make sure to rebuild the database through /dev/build after enabling translatable
 Use the correct set_default_locale() before building the database
 for the first time, as this locale will be written on all new records.
 
-### Setting the defaultlocale====
+### Setting the defaultlocale
 
 Important: If the "default language" of your site is not english (en_US), 
 please ensure to set the appropriate default language for
@@ -77,7 +78,7 @@ For the Translatable class, a "locale" consists of a language code plus a region
 for example "de_AT" for German language ("de") in the region Austria ("AT").
 See http://www.w3.org/International/articles/language-tags/ for a detailed description.
 
-=====Usage=====
+# Usage
 
 Getting a translation for an existing instance: 
 
@@ -110,7 +111,7 @@ Creating a translation:
 
 
 
-## Usage forSiteTree=====
+## Usage for SiteTree
 
 Translatable can be used for subclasses of SiteTree as well. 
 If a child page translation is requested without the parent
@@ -181,7 +182,7 @@ attach this behaviour to custom fields by using Translatable_Transformation as s
 
 
 
-## Translating theHomepage=====
+## Translating theHomepage
 
 Every homepage has a distinct URL, the default language is /home, a German translation by default would be /home-de_DE.
 They can be accessed like any other translated page. If you want to access different homepages from the "root" without a
@@ -190,7 +191,7 @@ URL, add a "locale" GET parameter. The German homepage would also be accessible 
 For this to work, please ensure that the translated homepage is a direct translation of the default homepage, and not a
 new page created through "Create page...".
 
-## Translationgroups=====
+## Translationgroups
 
 Each translation can have an associated "master" object in another language which it is based on,
 as defined by the "MasterTranslationID" property. This relation is optional, meaning you can
@@ -216,13 +217,13 @@ SiteTree_translationgroups database table
  | 199                | 3          | 
 
  *
-## CharacterSets=====
+## CharacterSets
 
 Caution: Does not apply any character-set conversion, it is assumed that all content
 is stored and represented in UTF-8 (Unicode). Please make sure your database and
 HTML-templates adjust to this.
 
-## "Default"languages=====
+## "Default"languages
 
 Important: If the "default language" of your site is not english (en_US), 
 please ensure to set the appropriate default language for
@@ -233,13 +234,13 @@ your content before building the database with Translatable enabled:
 
 
  *
-## Locales and languagetags=====
+## Locales and languagetags
 
 For the Translatable class, a "locale" consists of a language code plus a region code separated by an underscore, 
 for example "de_AT" for German language ("de") in the region Austria ("AT").
 See http://www.w3.org/International/articles/language-tags/ for a detailed description.
 
-=====Uninstalling/Disabling=====
+Uninstalling/Disabling
 
 Disabling Translatable after creating translations will lead to all
 pages being shown in the default sitetree regardless of their language.
@@ -400,10 +401,8 @@ This should e.g. enable you to use ''$Locale.Nice'' in template code.
 
 # Related
 
-*  [translation](translation): Starting point for community-driven translation of the Silverstripe UI
+*  [translate.silverstripe.org](http://translate.silverstripe.org): Starting point for community-driven translation of the Silverstripe UI
 *  [i18n](i18n): Developer-level documentation of Silverstripe's i18n capabilities
-*  [modules:translation](modules/translation): The module powering our translation server
-*  [translatable](translatable): DataObject-interface powering the website-content translations
-*  [translation-offers](translation-offers)
+*  `[api:Translatable]`: DataObject-interface powering the website-content translations
 *  ["Translatable ModelAdmin" module](http://silverstripe.org/translatablemodeladmin-module/): An extension which allows
-translations of DataObjects inside [ModelAdmin](ModelAdmin)
+translations of DataObjects inside `[api:ModelAdmin]`

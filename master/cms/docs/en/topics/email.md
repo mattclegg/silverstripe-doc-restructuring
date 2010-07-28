@@ -36,7 +36,7 @@ The default HTML template is located in ''sapphire/templates/email/GenericEmail.
 **Requirements: SilverStripe 2.3+**
 
 *  Create a SS-template file called, in this example we will use 'MyEmail.ss' inside mysite/templates/email.
-*  Fill this out with the body text for your email. You can use any [SS-template syntax](templates) (e.g. `<% control %>`,
+*  Fill this out with the body text for your email. You can use any [SS-template syntax](/topics/templates) (e.g. `<% control %>`,
 `<% if %>`, $FirstName etc)
 *  Choose your template with **setTemplate()**
 *  Populate any custom data into the template before sending with **populateTemplate()**
@@ -120,7 +120,7 @@ See http://en.wikipedia.org/wiki/E-mail#Message_header for a list of header name
 
 ## Newsletters
 
-The [newsletter module](modules/newsletter) provides a UI and logic to send batch emails.
+The [newsletter module](http://silverstripe.org/newsletter-module) provides a UI and logic to send batch emails.
 
 # API Documentation
 

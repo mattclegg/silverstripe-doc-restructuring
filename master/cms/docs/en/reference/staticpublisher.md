@@ -3,7 +3,7 @@
 Many sites get too much traffic to justify dynamically sending every request.  Caching is needed.  The static
 publication system will generate static versions of your content that can be served without ever hitting PHP.
 
-See [StaticExporter](StaticExporter) for a less flexible, but easier way of building a local static cache from all of
+See `[api:StaticExporter]` for a less flexible, but easier way of building a local static cache from all of
 your pages.
 
 ## Requirements
@@ -229,7 +229,7 @@ example](http://open.silverstripe.com/browser/modules/cms/trunk/code/staticpubli
 ## Deployment
 
 Once you've set up your rewrite rules and defined which pages need caching, you can build the static HTML files. This is
-done by the [RebuildStaticCacheTask](RebuildStaticCacheTask).
+done by the `[api:RebuildStaticCacheTask]`
 
 Execution via URL
 
@@ -237,7 +237,7 @@ Execution via URL
 	http://www.example.com/dev/buildcache?flush=1
 
 
-Execution on CLI (via [sake](sake))
+Execution on CLI (via [sake](/topics/commandline))
 
 	
 	sake dev/buildcache flush=1
@@ -252,4 +252,4 @@ the cache.
 
 ## Related
 
-*  [StaticExporter](StaticExporter)
+*  `[api:StaticExporter]`

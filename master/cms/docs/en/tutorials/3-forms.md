@@ -5,10 +5,8 @@ two tutorials.
 
 This tutorial explores forms in SilverStripe. It will look at coded forms. Forms which need to be written in PHP.
 
-Another method which allows you to construct forms via the CMS is by using the [userforms module](/modules/userforms). A
-UserDefinedForm is much quicker to implement, but lacks the flexibility of a coded form. For more infomation on User
-Defined Forms see
-[http://doc.silverstripe.com/doku.php?id=modules:userforms](http://doc.silverstripe.com/doku.php?id=modules:userforms)
+Another method which allows you to construct forms via the CMS is by using the [userforms module](http://silverstripe.org/user-forms-module). A
+UserDefinedForm is much quicker to implement, but lacks the flexibility of a coded form. 
 
 # What are we working towards?
 
@@ -78,13 +76,13 @@ Let's step through this code.
 
 First we create our form fields.
 
-We do this by creating a [:FieldSet](/FieldSet) and passing our fields as arguments. The first field is a new
-[:TextField](/TextField) with the name 'Name'.
+We do this by creating a `[api:FieldSet]` and passing our fields as arguments. The first field is a new
+`[api:TextField]` with the name 'Name'.
 
 There is a second argument when creating a field which specifies the text on the label of the field. If no second
 argument is passed, as in this case, it is assumed the label is the same as the name of the field.
 
-The second field we create is an [:OptionsetField](/OptionsetField). This is a dropdown, and takes a third argument - an
+The second field we create is an `[api:OptionsetField]`. This is a dropdown, and takes a third argument - an
 array mapping the values to the options listed in the dropdown.
 
 	:::php
@@ -100,18 +98,18 @@ button.
 
 Here we create a 'Submit' button which calls the 'doBrowserPoll' method, which we will create later.
 
-All the form actions (in this case only one) are collected into a [:FieldSet](/FieldSet) object the same way we did with
+All the form actions (in this case only one) are collected into a `[api:FieldSet]` object the same way we did with
 the fields.
 
 	:::php
 	return new Form($this, 'BrowserPollForm', $fields, $actions);
 
 
-Finally we create the [:Form](/Form) object and return it.
+Finally we create the `[api:Form]` object and return it.
 
 The first argument is the controller that contains the form, in most cases '$this'. The second is the name of the method
 that returns the form, which is 'BrowserPollForm' in our case. The third and fourth arguments are the
-[:FieldSet](/FieldSet)s containing the fields and form actions respectively.
+`[api:FieldSet]`s containing the fields and form actions respectively.
 
 After creating the form function, we need to add the form to our home page template.
 
@@ -143,11 +141,11 @@ Great! We now have a browser poll form, but it doesn't actually do anything. In 
 implement the 'doBrowserPoll' method that we told it about.
 
 First, we need some way of saving the poll submissions to the database, so we can retrieve the results later. We can do
-this by creating a new object that extends from [:DataObject](/DataObject).
+this by creating a new object that extends from `[api:DataObject]`.
 
 If you recall, in tutorial two we said that all objects that inherit from DataObject and that add fields are stored in
-the database. Also recall that all pages extend DataObject indirectly through [:SiteTree](/SiteTree). Here instead of
-extending SiteTree (or [:Page](/Page)) to create a page type, we extend DataObject directly.
+the database. Also recall that all pages extend DataObject indirectly through `[api:SiteTree]`. Here instead of
+extending SiteTree (or `[api:Page]`) to create a page type, we extend DataObject directly.
 
 *mysite/code/BrowserPollSubmission.php*
 
@@ -237,7 +235,7 @@ Now that we have a working form, we need some way of showing the results.
 The first thing to do is make it so a user can only vote once per session. If the user hasn't voted, show the form,
 otherwise show the results.
 
-We can do this using a session variable. The [:Session](/Session) class handles all session variables in SilverStripe.
+We can do this using a session variable. The `api:Session` class handles all session variables in SilverStripe.
 First modify the 'doBrowserPoll' to set the session variable 'BrowserPollVoted' when a user votes.
 
 *mysite/code/HomePage.php*
@@ -286,10 +284,10 @@ We now need some way of getting the data from the database into the template.
 
 In the second tutorial we got the latest news articles for the home page by using the 'DataObject::get' function. We
 can't use the 'DataObject::get' function here directly as we wish to count the total number of votes for each browser.
-By looking at the documentation for 'DataObject::get', we can see that it returns a [:DataObjectSet](/DataObjectSet)
+By looking at the documentation for 'DataObject::get', we can see that it returns a `[api:DataObjectSet]`
 object. In fact, all data that can be iterated over in a template with a page control is contained in a DataObjectSet.
 
-A [:DataObjectSet](/DataObjectSet) is a set of not just DataObjects, but of ViewableData, which the majority of
+A `[api:DataObjectSet]` is a set of not just DataObjects, but of ViewableData, which the majority of
 SilverStripe's classes (including DataObject) inherit from. We can create a DataObjectSet, fill it with our data, and
 then create our graph using a page control in the template. Create the function 'BrowserPollResults' on the
 *HomePage_Controller* class.
@@ -322,7 +320,7 @@ This introduces a few new concepts, so let's step through it.
 
 
 First we get all of the *BrowserPollSubmission*s from the database. This returns the submissions as a
-[:DataObjectSet](/DataObjectSet), which contains the submissions as *BrowserPollSubmission* objects.
+DataObjectSet, which contains the submissions as *BrowserPollSubmission* objects.
 
 	:::php
 	$total = $submissions->Count();
@@ -342,20 +340,20 @@ We get the total number of submissions, which is needed to calculate the percent
 	}
 
 
-Now we create an empty [:DataObjectSet](/DataObjectSet) to hold our data. The 'groupBy' method of
-[:DataObjectSet](/DataObjectSet) splits our [:DataObjectSet](/DataObjectSet) by the field passed to it, in this case the
-'Browser' field. It puts these new [:DataObjectSet](/DataObjectSet)s into an array indexed by the value of the field,
+Now we create an empty DataObjectSet to hold our data. The 'groupBy' method of
+DataObjectSet splits our DataObjectSet by the field passed to it, in this case the
+'Browser' field. It puts these new DataObjectSets into an array indexed by the value of the field,
 which we can then iterate over. We can then calculate the percentage for each browser using the size of the
-[:DataObjectSet](/DataObjectSet).
+DataObjectSet.
 
-The [:ArrayData](/ArrayData) class wraps an array into a ViewableData object, so we simply put our data in an array and
-create a new [:ArrayData](/ArrayData) object, which we can add to our [:DataObjectSet](/DataObjectSet) of results.
+The `[api:ArrayData]` class wraps an array into a ViewableData object, so we simply put our data in an array and
+create a new ArrayData object, which we can add to our DataObjectSet of results.
 
 	:::php
 	return $doSet;
 
 
-After we have iterated through all the browsers, the [:DataObjectSet](/DataObjectSet) contains all the results, which is
+After we have iterated through all the browsers, the DataObjectSet contains all the results, which is
 returned.
 
 The final step is to create the template to display our data. Change the 'BrowserPoll' div in
@@ -392,7 +390,7 @@ a complete poll.
 # Summary
 
 In this tutorial we have explored forms, and seen the different approaches to creating and using forms. Whether you
-decide to use a [:UserDefinedForm](/UserDefinedForm) or create a form in PHP depends on the situation and flexibility
+decide to use the [userforms module](http://silverstripe.org/user-forms-module) or create a form in PHP depends on the situation and flexibility
 required.
 
-[Next Tutorial >>](tutorial/4-site-search)data
+[Next Tutorial >>](/tutorials/4-site-search)data

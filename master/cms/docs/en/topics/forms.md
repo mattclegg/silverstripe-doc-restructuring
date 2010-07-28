@@ -1,8 +1,7 @@
 # Forms
 
 Form is the base class of all forms in a sapphire application. Forms in your application can be created either by
-instantiating the Form class itself, or by subclassing it. See [our form recipes](recipes/forms) for more specific
-information.
+instantiating the Form class itself, or by subclassing it. 
 
 ## Instantiating a form
 
@@ -66,7 +65,7 @@ There are many classes extending `[api:FormField]`. Some examples:
 *  `[api:OptionsetField]`
 *  `[api:CheckboxSetField]`
 
-Full overview at [form-field-types](form-field-types)
+Full overview at [form-field-types](/reference/form-field-types)
 
 ## Using Form Fields
 
@@ -239,7 +238,7 @@ above.
 ## Securing forms against Cross-Site Request Forgery (CSRF)
 
 SilverStripe tries to protect users against *Cross-Site Request Forgery (CSRF)* by adding a hidden *SecurityID*
-parameter to each form. See [secure-development](secure-development) for details.
+parameter to each form. See [secure-development](/topics/security) for details.
 
 ## Remove existing fields
 
@@ -270,10 +269,9 @@ Adds a new text field called FavouriteColour next to the Content field in the CM
 
 # Related
 
-*  [form-field-types](form-field-types)
-*  [formfield](formfield)
-*  [recipes:forms](recipes/forms)
-*  [modules:multiform](modules/multiform)
+*  [form-field-types](/reference/form-field-types)
+*  `[api:FormField]` class
+*  [multiform module](http://silverstripe.org/multiform-module)
 
 #  API Documentation
 

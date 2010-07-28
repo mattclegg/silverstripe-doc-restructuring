@@ -487,11 +487,11 @@ to build a basic but fully functional site. You have also been briefly introduce
 correspond to templates and subtemplates. By using these templates, you have seen how to customize the site content
 according to the page type of the page you are displaying.
 
-In the next tutorial, [Extending a Basic Site](tutorial/2-extending-a-basic-site), we will explore page types on a
+In the next tutorial, [Extending a Basic Site](/tutorials/2-extending-a-basic-site), we will explore page types on a
 deeper level, and see how you can customize your own page types to extend SilverStripe to do much more interesting
 things.
 
-[Next Tutorial >>]([tutorial/2-extending-a-basic-site)
+[Next Tutorial >>]([/tutorials/2-extending-a-basic-site)
 
 # Books on SilverStripe 
 

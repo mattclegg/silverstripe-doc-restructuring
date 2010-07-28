@@ -36,7 +36,7 @@ warnings.
 An HTTP 500 error will be sent when there has been a fatal error on either a test or production site.  You can make this
 friendlier - much like the 404 page, the error content can be edited within the CMS.
 
-*  Create a page of type [ErrorPage](ErrorPage).
+*  Create a page of type `[api:ErrorPage]`
 *  Set the error code to 500
 *  Publish the page.
 

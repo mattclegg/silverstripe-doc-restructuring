@@ -37,8 +37,8 @@ Layout template.
 ### HTML Templates
 
 Once you have created your folders you need to start to fill it out with a couple 'Core' files. First and most
-importantly is we need a HTML template for our design. Read the [Tutorial 1](tutorial/1-building-a-basic-site#templates)
-and the [:HTML](/HTML) pages for more in-depth discussion about the HTML templates and how they work. At the very least
+importantly is we need a HTML template for our design. Read the [Tutorial 1](/tutorials/1-building-a-basic-site#templates)
+and the HTML pages for more in-depth discussion about the HTML templates and how they work. At the very least
 we need a Page.ss file (note the .ss extenstion - Don't worry its just HTML and any text editor will still read it). So
 go ahead and create 2 Page.ss files. One in templates, the other in Layout.
 
@@ -49,7 +49,7 @@ Page.ss then, depending on what page they are on, we can have a custom template 
 you dont get it now, you will hopefully pick it up over the rest of this.
 
 So you have 2 blank Page.ss files. What are we going to do with them? How bout we put some HTML in them so we can see
-our theme in action. The code for mine is below (copied from [:HTML](/HTML))
+our theme in action. The code for mine is below.
 
 ** yourtheme/templates/Page.ss **
 
@@ -130,7 +130,7 @@ these three Requirements::themedCSS lines, and you will be free to add your own 
 Most Web page designers 10 years ago used a table-based layout to achieve a consistent look. Now, (Thankfully) there's a
 different way to achieve the same look.
 
-Using **[CSS](css)** and tags (including ''DIV''s) reduces markup code, speeds up page downloads, separates content from
+Using CSS and tags (including ''DIV''s) reduces markup code, speeds up page downloads, separates content from
 it's visual presentation, and brings your code closer to web standards compliance--all while making your website more
 appealing to search engine spiders.
 
@@ -281,10 +281,7 @@ Following some set standards and conventions makes life easy for you and I.
 
 Some conventions for SilverStripe websites, which we suggest following. Take a look at each:
 
-*  [:CSS](/CSS)
-*  [:HTML](/HTML)
-*  [:Coding-Conventions](/Coding-Conventions)
-*  [:Typography](/Typography)
-*  [:Building-For-Modularity](/Building-For-Modularity)
+*  [Coding-Conventions](/misc/coding-conventions)
+*  [:Typography](/reference/typography)
 
 We also suggest following various [industry standards](http://www.w3.org/) and conventions.

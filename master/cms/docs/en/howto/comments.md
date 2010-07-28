@@ -1,7 +1,7 @@
 # Enabling Comments for Pages
 
 All SilverStripe pages can have a simple comment interface added to them, simply by checking the checkbox in the CMS.
-Technically, comments are managed through the [PageComment](api:PageComment) and
+Technically, comments are managed through the [api:PageComment] and
 [PageCommentInterface](api:PageCommentInterface) classes.
 
 ## Administration

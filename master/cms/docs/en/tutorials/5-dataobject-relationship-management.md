@@ -1,10 +1,10 @@
 # Overview
 
-In the [second tutorial](tutorial/2-extending-a-basic-site) we have learned how to add extrafields to a page type thanks
+In the [second tutorial](/tutorials/2-extending-a-basic-site) we have learned how to add extrafields to a page type thanks
 to the *$db* array and how to add an image using the *$has_one* array and so create a relationship between a table and
 the *Image* table by storing the id of the respective *Image* in the first table. This tutorial explores all this
-relations between [DataObjects](/datamodel#relations) and the way to manage them easily thanks to
-[RelationTables](/relationtable).
+relations between [DataObjects](/topics/datamodel#relations) and the way to manage them easily.
+
 # What are we working towards?
 
 To simulate these relations between objects, we are going to simulate the management via the CMS of the **[Google Summer
@@ -32,7 +32,7 @@ This is a table which sums up the relations between them :
  | Usability           | Elijah Lofgren      | Sean Harvey   | Cms, Sapphire, UsabilityElijah                | 
  | Safari 3 Support    | Meg Risen           | Sean Harvey   | Cms, Sapphire, UsabilityMeg                   | 
 
-You can also play with the [RelationTables](/relationtable) on the
+You can also play with the table display on the
 //[demo](http://demo.silverstripe.com/gsoc-projects)// website of Silverstripe.
 
 # GSOC Projects
@@ -153,7 +153,7 @@ this tutorial.
 
 Now that we have created our *Project* page type and *Student* data object, let’s add some content. Go into the CMS
 and create one *Project* page for each project listed
-[above](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?) under a *ProjectsHolder* page named
+[above](#What_are_we_working_towards?) under a *ProjectsHolder* page named
 **GSOC Projects** for instance.
 
 ![tutorial:gsoc-project-creation.png](images/gsoc-project-creation.png)
@@ -166,7 +166,7 @@ modify this title, you have to add this code in the *getCMSFields* method of the
 
 
 Select now one of the *Project* page that you have created, go in the tab panel *Student* and add all the students
-listed [above](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?) by clicking on the link **Add
+listed [above](#What_are_we_working_towards?) by clicking on the link **Add
 A Student** of your *HasOneComplexTableField* table.
 
 ![tutorial:gsoc-student-creation.png](images/gsoc-student-creation.png)
@@ -175,7 +175,7 @@ After having added all the students, you will see that, in the tab panel *Studen
 *HasOneComplexTableField* tables have the same content.
 
 For each *Project* page, you can now affect **one and only one** student to it ( see the
-[list](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?) ).
+[list](#What_are_we_working_towards?) ).
 
 ![tutorial:gsoc-project-student-selection.png](images/gsoc-project-student-selection.png)
 
@@ -298,7 +298,7 @@ The second step is to add the table in the method *getCMSFields* which will allo
 	}
 
 To know more about the parameters of the *HasManyComplexTableField* constructor,
-[check](tutorial/5-dataobject-relationship-management#project_-_student_relation) those of the *HasOneComplexTableField*
+[check](#project_-_student_relation) those of the *HasOneComplexTableField*
 constructor.
 
 Don't forget to rebuild the database using
@@ -306,13 +306,13 @@ Don't forget to rebuild the database using
 this tutorial.
 
 Now that we have created our *Mentor* page type, go into the CMS and create one *Mentor* page for each mentor listed
-[above](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?) under a simple *Page* named
+[above](#What_are_we_working_towards?) under a simple *Page* named
 **Mentors** for instance.
 
 ![tutorial:gsoc-mentor-creation.png](images/gsoc-mentor-creation.png)
 
 For each *Mentor* page, you can now affect **many** students created previously ( see the
-[list](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?) ) by going in the tab panel
+[list](#What_are_we_working_towards?) ) by going in the tab panel
 *Students*.
 
 ![tutorial:gsoc-mentor-student-selection.png](images/gsoc-mentor-student-selection.png)
@@ -410,7 +410,7 @@ relation.
 	}
 
 To know more about the parameters of the *ManyManyComplexTableField* constructor,
-[check](tutorial/5-dataobject-relationship-management#project_-_student_relation) those of the *HasOneComplexTableField*
+[check](#project_-_student_relation) those of the *HasOneComplexTableField*
 constructor.
 
 Don't forget to rebuild the database using
@@ -418,13 +418,13 @@ Don't forget to rebuild the database using
 this tutorial.
 
 Select now one of the *Project* page, go in the tab panel *Modules* and add all the modules listed
-[above](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?) by clicking on the link **Add A
+[above](#What_are_we_working_towards?) by clicking on the link **Add A
 Module** of your *ManyManyComplexTableField* table.
 
 ![tutorial:gsoc-module-creation.png](images/gsoc-module-creation.png)
 
 For each *Project* page, you can now affect **many** modules created previously ( see the
-[list](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?) ) by going in the tab panel
+[list](#What_are_we_working_towards?) ) by going in the tab panel
 *Modules*.
 
 ![tutorial:gsoc-project-module-selection.png](images/gsoc-project-module-selection.png)
@@ -439,46 +439,10 @@ module which will make your *Project* page without any module affected to it.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Displaying the data on your website
 
 Now that we have created all the *Page* and *DataObject* classes necessary and the [RelationTables](/relationtable) to
-manage the [relations](/datamodel#relations) between them, we would like to see these relations on the website.
+manage the [relations](../topics/datamodel#relations) between them, we would like to see these relations on the website.
 
 We will see in this section how to display all these relations but also how to create a template for a *DataObject*.
 
@@ -487,7 +451,7 @@ For every kind of *Page* or *DataObject*, you can access to their relations than
 **__1. GSOC Projects__**
 
 Let's start with the *ProjectsHolder* page created before. For this template, we are will display the same table than
-[above](tutorial/5-dataobject-relationship-management#What_are_we_working_towards?).
+[above](#What_are_we_working_towards?).
 
 ![tutorial:gsoc-projects-table.png](images/gsoc-projects-table.png)
 
@@ -583,7 +547,7 @@ Let's start with the *ProjectsHolder* page created before. For this template, we
 
 **__2. Project__**
 
-We know now how to easily access and show [relations](/datamodel#relations) between *DataObject* in a template.
+We know now how to easily access and show [relations](../topics/datamodel#relations) between *DataObject* in a template.
 
 We can now do the same for every *Project* page by creating its own template.
 

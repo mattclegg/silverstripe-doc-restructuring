@@ -44,7 +44,7 @@ interface out of the box.
 
 ## Import through ModelAdmin
 
-The simplest way to use [api:CsvBulkLoader] is through a [ModelAdmin](ModelAdmin) interface - you get an upload form out of the box.
+The simplest way to use [api:CsvBulkLoader] is through a [api:ModelAdmin] interface - you get an upload form out of the box.
 
 	:::php
 	<?php
@@ -196,5 +196,5 @@ Sample implementation of a custom loader. Assumes a CSV-file in a certain format
 
 ## Related
 
-*  [CsvParser](CsvParser)
-*  [ModelAdmin](ModelAdmin)
+*  [api:CsvParser]
+*  [api:ModelAdmin]

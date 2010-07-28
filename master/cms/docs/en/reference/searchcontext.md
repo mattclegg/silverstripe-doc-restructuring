@@ -6,14 +6,14 @@ Manages searching of properties on one or more `[api:DataObject]` types, based o
 SearchContext is intentionally decoupled from any controller-logic,
 it just receives a set of search parameters and an object class it acts on.
 
-The default output of a SearchContext is either a [SQLQuery](SQLQuery) object for further refinement, or a
+The default output of a SearchContext is either a `[api:SQLQuery]` object for further refinement, or a
 `[api:DataObject]` instance.
 
 In case you need multiple contexts, consider namespacing your request parameters by using ''FieldSet->namespace()'' on
 the $fields constructor parameter.
 
-SearchContext is mainly used by [ModelAdmin](ModelAdmin), our generic data administration interface. Another
-implementation can be found in generic frontend search forms through [modules:genericviews](modules/genericviews).
+SearchContext is mainly used by `[api:ModelAdmin]`, our generic data administration interface. Another
+implementation can be found in generic frontend search forms through the [genericviews](http://silverstripe.org/genericviews-module) module.
 
 ## Requirements
 
@@ -29,7 +29,7 @@ Getting results
 
 ### Defining fields on your DataObject
 
-See [dataobject#searchable_fields](dataobject#searchable_fields)
+See `[api:DataObject::$searchable_fields]`.
 
 ### Customizing fields and filters
 
@@ -199,7 +199,6 @@ See [SearchFilter API Documentation](http://api.silverstripe.org/current/sapphir
 
 ## Related
 
-*  [ModelAdmin](ModelAdmin)
-*  [RestfulServer](RestfulServer)
-*  [Tutorial: Site Search](tutorial/4-site-search)
-*  [genericviews Module](modules/genericviews)
+*  `[api:ModelAdmin]`
+*  `[api:RestfulServer]`
+*  [Tutorial: Site Search](/tutorials/4-site-search)

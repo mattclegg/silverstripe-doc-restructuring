@@ -1,7 +1,7 @@
 # Overview
 
-In the [first tutorial](tutorial/1-building-a-basic-site) we learned how to create a basic site using SilverStripe. This
-tutorial builds on what you have learned in [the first tutorial](tutorial/1-building-a-basic-site), so it is recommended
+In the [first tutorial](/tutorials/1-building-a-basic-site) we learned how to create a basic site using SilverStripe. This
+tutorial builds on what you have learned in [the first tutorial](/tutorials/1-building-a-basic-site), so it is recommended
 that you complete it first. 
 
 In this tutorial you will explore extending SilverStripe by creating your own page types. In doing this you will get a
@@ -31,16 +31,16 @@ is dependent on the page type. Using both your templates and css, you are able t
 presentation of your site.
 
 All content on your site is stored in a database. There is a table in the database corresponding for every class that is
-a child of the //[:DataObject](/DataObject)// class. Every object of that class corresponds to a row in that table -
+a child of the `[api:DataObject]` class. Every object of that class corresponds to a row in that table -
 this is your "data object", the "model" of Model-View-Controller. A page type has a data object that represents all the
-data for your page - rather than inheriting directly from //[:DataObject](/DataObject)// it inherits from
-//[:SiteTree](/SiteTree)//. We generally create a "Page" data object, and subclass this for the rest of the page types.
+data for your page - rather than inheriting directly from `[api:DataObject]` it inherits from
+`[api:SiteTree]`. We generally create a "Page" data object, and subclass this for the rest of the page types.
 This allows us to define behavior that is consistent across all pages in our site.
 
 A page type also has a *controller*. A controller contains all the code used to manipulate your data before it is
 rendered. For example, suppose you were making an auction site, and you only wanted to display the auctions closing in
 the next ten minutes. You would implement this in the controller. The controller for a page should inherit from
-//[:ContentController](/ContentController)//. Just as we create a "Page" data object and subclass it for the rest of the
+`[api:ContentController]`. Just as we create a "Page" data object and subclass it for the rest of the
 site, we also create a "Page_Controller" that is subclassed.
 
 Creating a new page type simply requires creating these three things. You can then have full control over presentation,
@@ -119,7 +119,7 @@ to be children of the page in the site tree. As we only want news articles in th
 *ArticlePage* pages for children. We can enforce this in the CMS by setting the *$allowed_children* field.
 
 We will be introducing other fields like this as we progress; there is a full list in the documentation for
-//[:SiteTree](/SiteTree)//.
+`[api:SiteTree]`.
 
 Now that we have created our page types, we need to let SilverStripe rebuild the database. Go to
 [http://localhost/dev/build?flush=1](http://localhost/dev/build?flush=1). SilverStripe will detect that there are two

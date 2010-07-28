@@ -50,10 +50,3 @@ You can also extend this idea and include a whole separate template by using ren
 
 	:::html
 	<p>This could be HTML/Text/Images or PHP</p>
-	
-
-
-# Related
-
-*  See [:custom-page-controls](/custom-page-controls) for more copy/paste snippets to easily customize the data
-available to your templates.
