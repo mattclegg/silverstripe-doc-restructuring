@@ -443,7 +443,7 @@ a set of components that communicate. Event handlers are a great way of getting 
 two-way communication isn't required.  Set up a number of custom event names that your component will trigger.  List
 them in the component documentation comment.
 
-jQuery can bind to DOM events and trigger them through custom code (see [documentation](documentation)). It can also
+jQuery can bind to DOM events and trigger them through custom code. It can also
 [trigger custom events](http://docs.jquery.com/Events/trigger), and supports [namespaced
 events](http://docs.jquery.com/Namespaced_Events).
 

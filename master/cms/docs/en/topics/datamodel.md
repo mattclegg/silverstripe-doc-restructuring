@@ -13,10 +13,9 @@ logic is handled by sapphire, you don't need to worry about writing SQL most of 
 
 The advanced object-relational layer in Silverstripe is one of the main reasons for requiring PHP5. Most of its
 customizations are possible through [PHP5 Object
-Overloading](http://www.onlamp.com/pub/a/php/2005/06/16/overloading.html) handled in the [Object](Object)-class.
+Overloading](http://www.onlamp.com/pub/a/php/2005/06/16/overloading.html) handled in the `[api:Object]`-class.
 
-See [database-structure](database-structure) for in-depth information on the database-schema.
-See [objectmodel](objectmodel) for further details about casting values and the underlying property-transformations.
+See [database-structure](/reference/database-structure) for in-depth information on the database-schema.
 
 ## Generating the database-schema
 
@@ -29,7 +28,7 @@ Note: You need to be logged in as an administrator to perform this command.
 ## Querying Data
 
 There are static methods available for querying data. They automatically compile the necessary SQL to query the database
-so they are very helpful. In case you need to fall back to plain-jane SQL, have a look at [sqlquery](sqlquery).
+so they are very helpful. In case you need to fall back to plain-jane SQL, have a look at `[api:SQLQuery]`.
 
 	:::php
 	$records = DataObject::get($obj, $filter, $sort, $join, $limit);
@@ -40,7 +39,7 @@ so they are very helpful. In case you need to fall back to plain-jane SQL, have 
 	:::php
 	$record = DataObject::get_by_id($obj, $id);
 
-CAUTION: Please make sure to properly escape your SQL-snippets (see [security](security) and
+CAUTION: Please make sure to properly escape your SQL-snippets (see [security](/topics/security) and
 [escape-types](escape-types)).
 
 ## Joining 
@@ -280,7 +279,7 @@ accessors available on both ends.
 	}
 
 
-See [recipes:many_many-example](recipes/many_many-example) for a more in-depth example
+See [recipes:many_many-example](http://doc.silverstripe.org/recipes/many_many-example) for a more in-depth example
 
 
 
@@ -317,7 +316,7 @@ Inside sapphire it doesn't matter if you're editing a *has_many*- or a *many_man
 ## Custom Relation Getters
 
 You can use the flexible datamodel to get a filtered result-list without writing any SQL. For example, this snippet gets
-you the "Players"-relation on a team, but only containing active players. (See [#has_many](#has_many) for more info on
+you the "Players"-relation on a team, but only containing active players. (See `[api:DataObject::$has_many]` for more info on
 the described relations).
 
 	:::php
@@ -331,15 +330,6 @@ the described relations).
 	    return $this->Players("Status='Active'");
 	  }
 	}
-
-
-
-
-
-
-
-
-
 
 # Data Handling
 
@@ -375,7 +365,7 @@ You have to make sure though that certain properties are not overwritten, e.g. *
 	);
 
 
-Alternatively you can use *castedUpdate()* to respect the [data-types](data-types). This is preferred to manually
+Alternatively you can use *castedUpdate()* to respect the [data-types](/topics/data-types). This is preferred to manually
 casting data before saving.
 
 	:::php
@@ -433,7 +423,7 @@ $this->ID to toggle these two modes, as shown in the example above.
 
 Triggered before executing *delete()* on an existing object.
 
-Example: Checking for a specific [permission](permission) to delete this type of object.
+Example: Checking for a specific [permission](/reference/permission) to delete this type of object.
 It checks if a member is logged in who belongs to a group containing the permission "PLAYER_DELETE".
 
 	:::php
@@ -457,20 +447,20 @@ It checks if a member is logged in who belongs to a group containing the permiss
 
 ## Saving data with forms
 
-See [form](form) and [recipes:forms](recipes/forms)
+See [forms](/topics/forms).
 
 ## Saving data with custom SQL
 
-See [sqlquery](sqlquery) for custom *INSERT*, *UPDATE*, *DELETE* queries.
+See `[api:SQLQuery]` for custom *INSERT*, *UPDATE*, *DELETE* queries.
 
 
 
 
 # Decorating DataObjects
 
-You can add properties and methods to existing DataObjects like [Member](Member) (a core class) without hacking core
+You can add properties and methods to existing DataObjects like `[api:Member]` (a core class) without hacking core
 code or subclassing.
-Please see [dataobjectdecorator](dataobjectdecorator) for a general description, and `[api:Hierarchy]` for our most
+Please see `[api:DataObjectDecorator]` for a general description, and `[api:Hierarchy]` for our most
 popular examples.
 
 
@@ -492,12 +482,3 @@ A `[api:ComponentSet]` with relation-specific functionality.
 	$myTeam = $myPlayer->Team(); // returns Componentset
 	$myTeam->add(new Player()); // works
 
-
-
-
-# Related
-
-*  [objectmodel](objectmodel)
-*  [many_many-example](many_many-example)
-*  [database-troubleshooting](database-troubleshooting)
-*  [database-structure](database-structure)

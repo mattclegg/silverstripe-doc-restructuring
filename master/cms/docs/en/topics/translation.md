@@ -2,14 +2,14 @@
 
 This page introduces developers to using the CMS for creating content in multiple languages.
 
-Please see [i18n](i18n) for a internationalization, globalization and localization support of built-in datatypes as well
+Please see [i18n](/topics/i18n) for a internationalization, globalization and localization support of built-in datatypes as well
 as translating templates and PHP code.
 
 Translations can be enabled for all subclasses of `[api:DataObject]`, so it can easily be implemented into existing code
 with minimal interference.
 
 Warning: If you're upgrading from a SilverStripe version prior to 2.3.2, please migrate your datamodel before using the
-extension. See [multilingualcontent#migrating_from_2.1_datamodel](multilingualcontent#migrating_from_2.1_datamodel)
+extension (see below).
 
 # Requirements
 
@@ -401,10 +401,8 @@ This should e.g. enable you to use ''$Locale.Nice'' in template code.
 
 # Related
 
-*  [translation](translation): Starting point for community-driven translation of the Silverstripe UI
+*  [translate.silverstripe.org](http://translate.silverstripe.org): Starting point for community-driven translation of the Silverstripe UI
 *  [i18n](i18n): Developer-level documentation of Silverstripe's i18n capabilities
-*  [modules:translation](modules/translation): The module powering our translation server
-*  [translatable](translatable): DataObject-interface powering the website-content translations
-*  [translation-offers](translation-offers)
+*  `[api:Translatable]`: DataObject-interface powering the website-content translations
 *  ["Translatable ModelAdmin" module](http://silverstripe.org/translatablemodeladmin-module/): An extension which allows
-translations of DataObjects inside [ModelAdmin](ModelAdmin)
+translations of DataObjects inside `[api:ModelAdmin]`

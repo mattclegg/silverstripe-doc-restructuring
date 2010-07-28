@@ -1,6 +1,6 @@
 # Introduction
 
-This page details notes on how to ensure that we develop secure SilverStripe applications. See [security](security) for
+This page details notes on how to ensure that we develop secure SilverStripe applications. See [security](/topics/security) for
 the Silverstripe-class as a starting-point for most security-related functionality.
 
 See our [contributing guidelines](http://doc.silverstripe.org/doku.php?id=contributing#reporting_security_issues) on how
@@ -8,7 +8,7 @@ to report security issues.
 
 # SQL Injection
 
-The [coding-conventions](coding-conventions) help guard against SQL injection attacks but still require developer
+The [coding-conventions](/misc/coding-conventions) help guard against SQL injection attacks but still require developer
 dilligence: ensure that any variable you insert into a filter / sort / join clause has been escaped.
 
 See [http://shiflett.org/articles/sql-injection](http://shiflett.org/articles/sql-injection).
@@ -33,7 +33,7 @@ result in *double escaping* and alters the actually saved data (e.g. by adding s
 ## Manual escaping
 
 As a rule of thumb, whenever you're creating raw queries (or just chunks of SQL), you need to take care of escaping
-yourself. See [coding-conventions](coding-conventions) and [escape-types](escape-types) for ways to cast and convert
+yourself. See [coding-conventions](/misc/coding-conventions) and [escape-types](escape-types) for ways to cast and convert
 your data.
 
 *  SQLQuery
@@ -108,7 +108,7 @@ for in-depth information about "Cross-Site-Scripting".
 
 ## Escaping model properties
 
-[SSViewer](SSViewer) (the SilverStripe template engine) automatically takes care of escaping HTML tags from specific
+`[api:SSViewer]` (the SilverStripe template engine) automatically takes care of escaping HTML tags from specific
 object-properties by [casting](casting) its string value into a `[api:DBField]` object.
 
 PHP:
@@ -192,7 +192,7 @@ presentation from business logic.
 When using *customise()* or *renderWith()* calls in your controller, or otherwise forcing a custom context for your
 template, you'll need to take care of casting and escaping yourself in PHP. 
 
-The [Convert](Convert) class has utilities for this, mainly *Convert::raw2xml()* and *Convert::raw2att()* (which is
+The `[api:Convert]` class has utilities for this, mainly *Convert::raw2xml()* and *Convert::raw2att()* (which is
 also used by *XML* and *ATT* in template code).
 
 PHP:

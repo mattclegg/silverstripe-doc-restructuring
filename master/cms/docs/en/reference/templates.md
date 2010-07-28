@@ -30,7 +30,7 @@ Here is a very simple template:
 
 # Template Syntax
 
-The following control codes are available. For a more details list see [built-in-page-controls](built-in-page-controls):
+The following control codes are available. For a more details list see [built-in-page-controls](/reference/built-in-page-controls):
 
 ## Variables
 
@@ -155,7 +155,7 @@ for adding notes for other developers but for things you don't want published in
 
 ## Formatting Template Values
 
-The following example takes the Title field of our object, casts it to a [Varchar](data-types) object, and then calls
+The following example takes the Title field of our object, casts it to a `[api:Varchar]` object, and then calls
 the $XML object on that Varchar object.
 
 	:::html
@@ -170,7 +170,7 @@ Note that this code can be more concisely represented as follows:
 	$Title.XML
 
 
-See [data-types](data-types) for more information.
+See [data-types](/topics/data-types) for more information.
 
 ## Escaping
 
@@ -202,13 +202,13 @@ From SilverStripe 2.4 you can specify a block to cache between requests
 	<% end_cacheblock %>
 
 
-See [partial-caching](partial-caching) for more information.
+See [partial-caching](/reference/partial-caching) for more information.
 
 
 # Built In Template Variables and Controls
 
 Out of the box, the template engine gives you lots of neat little variables and controls which you will find useful. For
-a list of all the controls see [built-in-page-controls](built-in-page-controls).
+a list of all the controls see [built-in-page-controls](/reference/built-in-page-controls).
 
 # Creating your own Template Variables and Controls
 
@@ -233,7 +233,7 @@ Will give you the ability to call $MyCustomValue from anywhere in your template.
 	// output "I've got one thing to say to you: <i>Hi, this is my site</i>" 
 
 
-Your function could return a single value as above or it could be a subclass of [ArrayData](ArrayData) for example a
+Your function could return a single value as above or it could be a subclass of `[api:ArrayData]` for example a
 `[api:DataObject]` with many values then each of these could be accessible via a control loop
 
 	:::php

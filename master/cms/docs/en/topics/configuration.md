@@ -11,19 +11,19 @@ CMS"](http://www.silverstripe.com/core-team-discussion/flat/2723) for further re
 In addition to these principle, some settings are 
  * Author-level configuration like interface language or date/time formats can be performed in the CMS "My Profile" section (`admin/myprofile`). 
  * Group-related configuration like [api:HTMLEditorField] settings can be found in the "Security" section (`admin/security`).
- * Site-wide settings like page titles can be set (and extended) on the root tree element in the CMS "Content" section (through the [siteconfig](../reference/siteconfig) API).
+ * Site-wide settings like page titles can be set (and extended) on the root tree element in the CMS "Content" section (through the [siteconfig](/reference/siteconfig) API).
 
 ## _ss_environment.php
 
-See [environment-management](environment-management).
+See [environment-management](/topics/environment-management).
 
 ## mysite/_config.php
 
-This file is detected in each folder by [ManifestBuilder](ManifestBuilder). This way, every toplevel-folder (=module)
+This file is detected in each folder by `[api:ManifestBuilder]`. This way, every toplevel-folder (=module)
 can have independent configuration-rules.
 
 //Please note that this is the only place where you can put in procedural code - all other functionality is wrapped in
-classes (see [common-problems](common-problems)).//
+classes (see [common-problems](/topics/common-problems)).//
 
 You can call most static methods from _config.php - classes will be loaded as required. Here's a list - **this is
 incomplete - please add to it** *Try to keep it in alphabetical order too! :)*
@@ -35,7 +35,7 @@ incomplete - please add to it** *Try to keep it in alphabetical order too! :)*
                                                                                                                         
                                                                                    
  | Authenticator::register_authenticator($authenticator);              | Enable an authentication method (for more
-details see [security](security)).                                                                                      
+details see [security](/topics/security)).                                                                                      
                                                                                           |        
  | Authenticator::set_default_authenticator($authenticator);           | Modify tab-order on login-form.                
                                                                                                                         
@@ -50,7 +50,6 @@ into links when bbcode is parsed.
                                                                                                                         
                                                                                     |        
  | ContentNegotiator::set_encoding(string $encoding)                   | The encoding charset to use - UTF-8 by default
-(see [template-encoding](template-encoding) for more)                                                                   
                                                                                      |        
  | ContentNegotiator::disable()                                        | Disables the negotiation of content type -
 usually used to stop it from rewriting the DOCTYPE of the document                                                      
@@ -87,13 +86,13 @@ forms
                                                                                                                         
                                                                                     |        
  | Security::encrypt_passwords($encrypt_passwords);                    | Specify if you want store your passwords in
-clear text or encrypted (for more details see [security](security))                                                     
+clear text or encrypted (for more details see [security](/topics/security))                                                     
                                                                                         |        
  | Security::set_password_encryption_algorithm($algorithm, $use_salt); | If you choose to encrypt your passwords, you
 can choose which algorithm is used to and if a salt should be used to increase the security level even more (for more
-details see [security](security)).                                                        |        
+details see [security](/topics/security)).                                                        |        
  | Security::setDefaultAdmin('admin','password');                      | Set default admin email and password, helpful
-for [recovering_password](recovering_password)                                                                          
+for recovering your password                                                                          
                                                                                       |        
  | SSAkismet::setAPIKey(string $key)                                   | Enables use of the Akismet spam filter. The key
 must be a valid WordPress API key.                                                                                      
@@ -116,9 +115,9 @@ webroot. See *getTempFolder()* in *sapphire/core/Core.php* |
 
 ## User-level: Member-object
 
-All user-related preferences are stored as a property of the [Member](Member)-class (and as a database-column in the
+All user-related preferences are stored as a property of the `[api:Member]`-class (and as a database-column in the
 *Member*-table). You can "mix in" your custom preferences by using `[api:DataObject]` for details.
 
 ## Permissions
 
-See [security](security) and [permission](permission)
+See [security](/topics/security) and [permission](/reference/permission)

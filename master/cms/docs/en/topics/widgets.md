@@ -10,8 +10,6 @@ out the demo site http://silverstripe.com/assets/screencasts/SilverStripe-Blog-D
 ### Downloading and Contributing Widgets
 
 *  To download widgets visit [Widgets section](http://silverstripe.org/widgets)
-*  Visit [widget-ideas](widget-ideas) for some ideas on what kind of widget to build (just check the [Widgets
-section](http://silverstripe.org/widgets) first to make sure it hasn't already been built!)
 *  Upload widgets you want to share to
 [http://silverstripe.org/widgets/manage/add](http://silverstripe.org/widgets/manage/add). Make sure you read the
 packaging instructions at the bottom of the page about how to make your widget package.
@@ -265,11 +263,11 @@ To output this form, modify your widget template.
 	$MyFormName
 
 
-Note: The necessary controller actions are only present in subclasses of [Page_Controller](Page_Controller). To use
+Note: The necessary controller actions are only present in subclasses of `[api:Page_Controller]`. To use
 widget forms in other controller subclasses, have a look at *ContentController->handleWidget()* and
 *ContentController::$url_handlers*.
 
-See an [alternative recipe for SilverStripe 2.3 or earlier](/recipes/widget-forms-2.3).
+See an [alternative recipe for SilverStripe 2.3 or earlier](http://doc.silverstripe.org/recipes/widget-forms-2.3).
 
 ##  But what if I have widgets on my blog currently??
 

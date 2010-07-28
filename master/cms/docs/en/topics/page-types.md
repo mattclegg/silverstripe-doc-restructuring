@@ -67,12 +67,12 @@ especially useful if you know how long your source data needs to be.
 	}
 
 
-See [datamodel](datamodel) for a more detailed explanation on adding database fields, and how the SilverStripe data
+See [datamodel](/topics/datamodel) for a more detailed explanation on adding database fields, and how the SilverStripe data
 model works.
 
 ## Adding formfields and tabs
 
-See [form](form) and [tutorial:2-extending-a-basic-site](tutorial/2-extending-a-basic-site)
+See [form](/topics/forms) and [tutorial:2-extending-a-basic-site](tutorial/2-extending-a-basic-site)
 
 ## Removing inherited form fields and tabs
 
@@ -126,8 +126,8 @@ required on a certain page-type.
 This will also work if you want to remove a whole tab e.g. $fields->removeByName('Metadata'); will remove the whole
 Metadata tab.
 
-For more information on forms, see [form](form), [tutorial:2-extending-a-basic-site](tutorial/2-extending-a-basic-site)
-and [tutorial:3-forms](tutorial/3-forms).
+For more information on forms, see [form](/topics/forms), [tutorial:2-extending-a-basic-site](/tutorials/2-extending-a-basic-site)
+and [tutorial:3-forms](/tutorials/3-forms).
 
 ## Creating a new page:
 

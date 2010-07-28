@@ -5,8 +5,6 @@ Shows a group of DataObjects as a (readonly) tabular list (similiar to `[api:Tab
 You can specify limits and filters for the resultset by customizing query-settings (mostly the ID-field on the other
 side of a one-to-many-relationship).
 
-See [complextablefieldExamples](complextablefieldExamples)
-
 See `[api:TableListField]` for more documentation on the base-class
 
 ## Source Input
@@ -132,8 +130,8 @@ Most of the time, you need to override the following methods:
 
 ## Examples
 
-*  [AssetTableField](AssetTableField)
-*  [MemberTableField](MemberTableField)
+*  `[api:AssetTableField]`
+*  `[api:MemberTableField]`
 
 # API Documentation
 

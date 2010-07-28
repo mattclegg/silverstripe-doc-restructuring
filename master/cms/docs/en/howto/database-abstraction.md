@@ -44,8 +44,3 @@ for switching the query:
 	}
 	
 	if(defined('DB::USE_ANSI_SQL')) $filter = str_replace('`BlogEntry`', '"BlogEntry"', $filter);
-
-
-#### See also
-
-For more in-depth information on database compatability, see [sql-syntax-compatibility](sql-syntax-compatibility)

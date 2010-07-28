@@ -67,7 +67,7 @@ Making this work well is a subtle business and should be discussed with a few de
 
 *  On an individual data record, $page->can("View", $member = null) and be called.  If a member isn't passed, the
 currently logged in member is assumed.
-*  On a request, $request->hasPermission("View", $member = null) can be called.  See [DataModel](DataModel) for
+*  On a request, $request->hasPermission("View", $member = null) can be called.  See [datamodel](/topics/datamodel) for
 information on request objects.
 
 

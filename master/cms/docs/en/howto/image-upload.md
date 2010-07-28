@@ -161,4 +161,4 @@ that you can call see http://doc.silverstripe.com/doku.php?id=gd
 
 ## Form Image Upload
 
-See [simpleimagefield](simpleimagefield)
+See [api:SimpleImageField]
