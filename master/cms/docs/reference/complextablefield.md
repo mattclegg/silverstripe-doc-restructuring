@@ -1,3 +1,5 @@
+﻿# ComplexTableField
+
 ##  Introduction
 
 Shows a group of DataObjects as a (readonly) tabular list (similiar to `[api:TableListField]`.  
@@ -68,7 +70,7 @@ If you don't want several functions to appear (e.g. no add-link), there's severa
 *  Subclass ComplexTableField and override the rendering-mechanism
 *  Use ComplexTableField->setTemplate() and ComplexTableField->setTemplatePopup() to provide custom templates
 
-#### Customising fields and Requirements in the popup
+### Customising fields and Requirements in the popup
 
 There are several ways to customise the fields in the popup. Often you would want to display more information in the
 popup as there is more real-estate for you to play with. 
@@ -135,7 +137,7 @@ Most of the time, you need to override the following methods:
 *  [AssetTableField](AssetTableField)
 *  [MemberTableField](MemberTableField)
 
-# API Documentation
+## API Documentation
 
 [Click here for the API
 documentation](http://api.silverstripe.org/trunk/forms/fields-relational/ComplexTableField.html).

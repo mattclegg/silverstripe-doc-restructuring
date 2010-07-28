@@ -21,4 +21,4 @@ BBCode can be enabled in comments by adding the following to _config.php
 
 
 
-### Currently Supported Tags
+## Currently Supported Tags

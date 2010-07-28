@@ -1,11 +1,13 @@
-# Introduction
+#DataObjectDecorator
+
+## Introduction
 
  Extensions (also referred to as decorators) allow for adding additional functionality to a `[api:DataObject]`.
 
 In some cases, it can be easier to completely replace the used class throughout the core with your custom
 implementation. Have a look at [Object](Object)->useCustomClass().
 
-# Usage
+## Usage
 
 Your Decorator will nee to be a subclass of DataObjectDecorator or the Extension class.
 
@@ -23,7 +25,7 @@ This defines your own extension where you can add your own functions, database f
 After you create this extension however it does not yet apply it to your object. Next you need to tell SilverStripe what
 class you want to extend.
 
-## Adding a decorator to a built-in class
+### Adding a decorator to a built-in class
 
 Sometimes you will want to add decorators to classes that you didn't make.  For example, you might want to add the
 ForumRole decorator to the Member object.
@@ -42,12 +44,12 @@ For example above we want to override Member with a Custom Member so we would wr
 	
 	
 	
-	##  Implementation
+##  Implementation
 	
 	
-	###  Adding extra database fields
+###  Adding extra database fields
 	
-	Extra database fields can be added with a decorator by defining an **extraStatics()** method.  These will be added to the table of the base object - the decorator will actually edit the $db, $has_one, etc static variables on load.
+Extra database fields can be added with a decorator by defining an **extraStatics()** method.  These will be added to the table of the base object - the decorator will actually edit the $db, $has_one, etc static variables on load.
 	
 	The function should return a map where the keys are the names of the static variables to update:
 	<code php>
@@ -76,7 +78,7 @@ to a class that didn't have static $has_one explicitly declared on the object.  
 for statics.
 
 
-## Modifying CMS Fields
+### Modifying CMS Fields
 
 The member class demonstrates an extension that allows you to update the default CMS fields for an object in a
 decorator:
@@ -99,7 +101,7 @@ The $fields parameter is passed by reference, as it is an object.
 
 
 
-## Custom database generation
+### Custom database generation
 
 Some decorators are designed to transparently add more sophisticated data-collection capabilities to your data object. 
 For example, Versioned adds version tracking and staging to any data object that it is applied to.  To do this, you need
@@ -111,7 +113,7 @@ To do this, define an **augmentDatabase()** method on your decorator.  This will
 *  You can use **DB::requireTable($tableName, $fieldList, $indexList)** to set up your new tables.  This function takes
 care of creating, modifying, or leaving tables as required, based on your desired schema.
 
-## Custom write queries
+### Custom write queries
 
 If you have customised the generated database, then you probably want to change the way that writes happen.  This is
 used by Versioned to get an entry written in ClassName_versions whenever an insert/update happens.
@@ -120,7 +122,7 @@ To do this, define the **augmentWrite(&$manipulation)** method.  This method is 
 the write about to happen, and is able to amend this as desired, since it is passed by reference.  For more information
 about manipulation arrays, see [manipulation-arrays](manipulation-arrays).
 
-## Custom relation queries
+### Custom relation queries
 
 The other queries that you will want to customise are the selection queries, called by get & get_one.  For example, the
 Versioned object has code to redirect every request to ClassName_live, if you are browsing the live site.
@@ -128,7 +130,7 @@ Versioned object has code to redirect every request to ClassName_live, if you ar
 To do this, define the **augmentSQL(SQLQuery &$query)** method.  Again, the $query object is passed by reference and can
 be modified as needed by your method.  Instead of a manipulation array, we have a [SQLQuery](SQLQuery) object.
 
-## Additional methods
+### Additional methods
 
 The other thing you may want to do with a decorator is provide a method that can be called on the DataObject that is
 being decorated.  For instance, you may add a publish() method to every DataObject that is decorated with Versioned.
@@ -173,6 +175,6 @@ decorated by.
 	}
 
 
-# API Documentation
+## API Documentation
 
 [Click here for the API documentation](http://api.silverstripe.org/trunk/sapphire/DataObjectDecorator.html). 
