@@ -256,7 +256,7 @@ Please use only together with addSummary().
 ## Custom Sorting
 
 Please subclass TableListField to implement custom sorting, following the naming-convention
-"colFunction_<yourFunctionName>".
+"`colFunction_<yourFunctionName>`".
 
 	:::php
 	class CustomTableListField extends TableListField {

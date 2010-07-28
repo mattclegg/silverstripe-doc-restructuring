@@ -30,7 +30,7 @@ Here is a very simple template:
 
 # Template Syntax
 
-The following control codes are available. For a more details list see [built-in-page-controls](built-in-page-controls):
+The following control codes are available. For a more details list see [built-in-page-controls](/reference/built-in-page-controls):
 
 ## Variables
 
@@ -78,9 +78,9 @@ Templates](requirements#including_inside_template_files) for more details and ex
 
 
 Control blocks reference the same methods / fields as variables. Think of it as a foreach loop in PHP or other template
-languages. <% control Property %> gets the same data as $Property.  However, instead of interpreting the result as a
-string, control blocks interpret the result as an object or a array of objects.  The content between <% control %> and
-<% end_control %> acts as a sub-template that is used to render the object returned.
+languages. `<% control Property %>` gets the same data as $Property.  However, instead of interpreting the result as a
+string, control blocks interpret the result as an object or a array of objects.  The content between `<% control %>` and
+`<% end_control %>` acts as a sub-template that is used to render the object returned.
 
 In this example, $A and $B refer to $obj->Property()->A() and $obj->Property()->B().
 
@@ -96,7 +96,7 @@ each element of that iterator.  This is the cornerstone of all menu and list gen
 
 In this example, Menu(1) returns a DataObjectSet listing each top level main menu item (for more info on Menu(1):
 [Making a Navigation
-System](http://doc.silverstripe.com/doku.php?id=tutorial:1-building-a-basic-site#making_a_navigation_system)).  The <a>
+System](http://doc.silverstripe.com/doku.php?id=tutorial:1-building-a-basic-site#making_a_navigation_system)).  The `<a>`
 tag is repeated once for each main menu item, and the $Link and $Title values for each menu item is substituted in.
 
 	:::html
@@ -134,8 +134,8 @@ If blocks let you mark off optional content in your template.  The optional cont
 field / method returns a nonzero value.  In the second syntax, the optional content will only be shown if the requested
 field / method returns the value you specify.  You should **not** include quotes around the value.
 
-The <% else %> blocks perform as you would expect - content between <% else %> and <% end_if %> is shown if the first
-block fails.  <% else %> is an optional part of the syntax - you can just use <% if %> and <% end_if %> if that's
+The `<% else %>` blocks perform as you would expect - content between `<% else %>` and `<% end_if %>` is shown if the first
+block fails.  `<% else %>` is an optional part of the syntax - you can just use `<% if %>` and `<% end_if %>` if that's
 appropriate.
 
 
@@ -155,7 +155,7 @@ for adding notes for other developers but for things you don't want published in
 
 ## Formatting Template Values
 
-The following example takes the Title field of our object, casts it to a [Varchar](data-types) object, and then calls
+The following example takes the Title field of our object, casts it to a `[api:Varchar]` object, and then calls
 the $XML object on that Varchar object.
 
 	:::html
@@ -170,7 +170,7 @@ Note that this code can be more concisely represented as follows:
 	$Title.XML
 
 
-See [data-types](data-types) for more information.
+See [data-types](/topics/data-types) for more information.
 
 ## Escaping
 
@@ -202,13 +202,13 @@ From SilverStripe 2.4 you can specify a block to cache between requests
 	<% end_cacheblock %>
 
 
-See [partial-caching](partial-caching) for more information.
+See [partial-caching](/reference/partial-caching) for more information.
 
 
 # Built In Template Variables and Controls
 
 Out of the box, the template engine gives you lots of neat little variables and controls which you will find useful. For
-a list of all the controls see [built-in-page-controls](built-in-page-controls).
+a list of all the controls see [built-in-page-controls](/reference/built-in-page-controls).
 
 # Creating your own Template Variables and Controls
 
@@ -233,7 +233,7 @@ Will give you the ability to call $MyCustomValue from anywhere in your template.
 	// output "I've got one thing to say to you: <i>Hi, this is my site</i>" 
 
 
-Your function could return a single value as above or it could be a subclass of [ArrayData](ArrayData) for example a
+Your function could return a single value as above or it could be a subclass of `[api:ArrayData]` for example a
 `[api:DataObject]` with many values then each of these could be accessible via a control loop
 
 	:::php
@@ -288,7 +288,7 @@ will give "1, 1, 1", not "1, 2, 3"
 
 This is all very well and good, but how do the templates actually get called?  
 
-Templates do nothing on their own.  Rather, they are used to render *a particular object*.  All of the <% if %>, <%
+Templates do nothing on their own.  Rather, they are used to render *a particular object*.  All of the `<% if %>`, <%
 control %>, and variable codes are methods or parameters that are called *on that object*.  All that is necessary is
 that the object is an instance of ViewableData (or one of its subclasses).
 
@@ -358,7 +358,7 @@ For, example, we might have this on http://www.example.com/my-long-page/
 	</ul>
 
 
-So far, so obvious.  However, things get tricky because of we have set our ''<base>'' tag to point to the root of your
+So far, so obvious.  However, things get tricky because of we have set our `<base>` tag to point to the root of your
 site.  So, when you click the first link you will be sent to http://www.example.com/#section1 instead of
 http://www.example.com/my-long-page/#section1
 

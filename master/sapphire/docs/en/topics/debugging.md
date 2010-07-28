@@ -2,7 +2,7 @@
 
 Silverstripe knows three different environment-types (or "debug-levels"). Each of the levels gives you different tools
 and functionality. "//dev//", "//test//" and "//live//". You can either configure the environment of the site in the
-mysite/_config.php file or in your [environment configuration file](environment-management).
+mysite/_config.php file or in your [environment configuration file](/topics/environment-management).
 
 The definition of setting an environment in your mysite/_config.php looks like
 
@@ -96,16 +96,16 @@ You can customize "friendly error messages" in test/live-mode by creating *asset
 # URL Variable Tools
 
 You can get lots of information on the current rendering context without writing any code or launching a debugger: Just
-attach some [Debug Parameters](urlvariabletools) to your current URL to see the compiled template, or all performed
+attach some [Debug Parameters](/reference/urlvariabletools) to your current URL to see the compiled template, or all performed
 SQL-queries.
 # Debugging methods
 
 The Debug class contains a number of static methods
 
-*  //Debug::show($myVariable)//: performs a kind of //print_r($myVariable)//, but shows it in a more useful format.
-*  //Debug::message("Wow, that's great")//: prints a short debugging message.
-*  //SS_Backtrace::backtrace()// (2.3: //Debug::backtrace()//): prints a calls-stack
-*  //Debug::sendLiveErrorsTo("sam@silverstripe.com")//: On the live site, all errors will get sent to this address.
+*  *Debug::show($myVariable)*: performs a kind of *print_r($myVariable)*, but shows it in a more useful format.
+*  *Debug::message("Wow, that's great")*: prints a short debugging message.
+*  *SS_Backtrace::backtrace()* (2.3: *Debug::backtrace()*): prints a calls-stack
+*  *Debug::sendLiveErrorsTo("sam@silverstripe.com")*: On the live site, all errors will get sent to this address.
 
 ## Error handling
 
@@ -118,15 +118,15 @@ On live sites, all errors are emailed to the address specified in Debug::sendLiv
 
 Since we don't have a decent interactive debugger going, we use the following debugging techniques:
 
-*  Putting //Debug::show()// and //Debug::message()// at key places in the code can help you know what's going on. 
+*  Putting *Debug::show()* and *Debug::message()* at key places in the code can help you know what's going on. 
 Sometimes, it helps to put this debugging information into the core modules, although, if possible, try and get what you
-need by using [url querystring variables](urlvariabletools).
+need by using [url querystring variables](/reference/urlvariabletools).
 
-*  Calling //user_error("breakpoint", E_USER_ERROR)// will kill execution at that point and give you a call stack to see
-where you came from.  Alternatively, //SS_Backtrace::backtrace()// gives you similar information without killing
+*  Calling *user_error("breakpoint", E_USER_ERROR)* will kill execution at that point and give you a call stack to see
+where you came from.  Alternatively, *SS_Backtrace::backtrace()* gives you similar information without killing
 execution.
 
-*  There are some special [url querystring variables](urlvariabletools) that can be helpful in seeing what's going on
+*  There are some special [url querystring variables](/reference/urlvariabletools) that can be helpful in seeing what's going on
 with core modules, such as the templates.
 
 *  You can also use *$Debug* with *ViewableData* in templates.

@@ -17,7 +17,7 @@ We are going to create a site in which all the content can be edited in the Silv
 navigation system, which will be generated on the fly to include all pages you add in the CMS. We will use two different
 templates - one for the home page, and one for the rest of the site.
 
-{{tutorial:home-small.png}}{{tutorial:menu-two-level-small.png}}
+![](images/home-small.png)![](images/menu-two-level-small.png)
 
 
 #  Installation
@@ -59,7 +59,7 @@ The CMS is the area in which you can manage your site content. You can access th
 will be presented with a login screen. You can login with the details you provided at installation. After logging in you
 should be greeted with the CMS, pictured below (we've entered some test content).
 
-{{tutorial:cms-numbered.png}}
+![](images/cms-numbered.png)
 
 1.  These buttons allow you to move between the different sections in the CMS. There are three core sections in the CMS
 - Site Content, Files & Images and Security. Modules installed will have their own sections here as well, if any are
@@ -88,7 +88,7 @@ specifies the templates used to render the page, the fields that are able to be 
 behavior. We will explain page types in more depth as we progress; for now, make all pages of the type "Page".
 
 
-{{tutorial:home-first.png}}
+![](images/home-first.png)
 
 **SilverStripe's virtual URLs**
 
@@ -96,7 +96,7 @@ While you are on the draft or live SilverStripe site, you may notice the URLs po
 http://localhost/contact. SilverStripe uses the URL field on the Meta-Data tab of the editor to look up the appropriate
 page in the database.
 
-{{tutorial:url.png}}
+![](images/url.png)
 
 When you create a new page, SilverStripe automatically creates an appropriate URL for it. For example, *About Us* will
 become *about-us*. You are able to change it yourself so that you can make long titles more usable or descriptive. For
@@ -113,22 +113,22 @@ control codes. Because of this, you can have as much control of your site’s HT
 
 Every page in your site has a **page type**. We will briefly talk about page types later, and go into much more detail
 in tutorial two; right now all our pages will be of the page type *Page*. When rendering a page, SilverStripe will look
-for a template file in the *tutorial/templates* folder, with the name *<PageType>*.ss - in our case *Page.ss*.
+for a template file in the *tutorial/templates* folder, with the name `<PageType>`.ss - in our case *Page.ss*.
 
-Open *themes/tutorial/templates/Page.ss*. It uses standard HTML with three exceptions: *<% base_tag %>*, *$Content* and
+Open *themes/tutorial/templates/Page.ss*. It uses standard HTML with three exceptions: `<% base_tag %>`, *$Content* and
 *$SilverStripeNavigator*. These template markers are processed by SilverStripe into HTML before being sent to your
 browser.
 
-//<% base_tag %>// is replaced with the HTML [base element](http://www.w3.org/TR/html401/struct/links.html#h-12.4). This
+`<% base_tag %>` is replaced with the HTML [base element](http://www.w3.org/TR/html401/struct/links.html#h-12.4). This
 ensures the browser knows where to locate your site's images and css files.
 
-//$Content// is replaced with the content of the page currently being viewed. This allows you to make all changes to
+*$Content* is replaced with the content of the page currently being viewed. This allows you to make all changes to
 your site's content in the CMS.
 
-//$SilverStripeNavigator// inserts the HTML for the navigator at the bottom of the page, which allows you to move
+*$SilverStripeNavigator* inserts the HTML for the navigator at the bottom of the page, which allows you to move
 quickly between the CMS and the draft and published version of your page.
 
-{{tutorial:navigator.png|The SilverStripe Navigator}}
+![The SilverStripe Navigator](images/navigator.png)
 
 **Flushing the cache**
 
@@ -140,7 +140,7 @@ changes to the template, we must flush the cache in order for the changes to tak
 
 Let's introduce two new template variables - *$Title* and *$MetaTags*.
 
-//$Title// is simply replaced with the name of the page ('Page name' on the 'Main' tab in the editor). Open
+*$Title* is simply replaced with the name of the page ('Page name' on the 'Main' tab in the editor). Open
 *themes/tutorial/templates/Page.ss*. Find the following code:
 
 	:::html
@@ -156,7 +156,7 @@ and replace it with
 	</div>
 
 
-//$MetaTags// adds meta tags for search engines, as well as the page title ('Title' on the 'Meta-data' tab in the
+*$MetaTags* adds meta tags for search engines, as well as the page title ('Title' on the 'Meta-data' tab in the
 editor). You can define your metatags in the meta-data tab off the content editor in the CMS. Add *$MetaTags* to the
 head so that it looks like this:
 
@@ -170,22 +170,22 @@ head so that it looks like this:
 	</head>
 
 
-<note tip>
+[note]
 Don't forget to flush the cache each time you change a template by adding *?flush=1* onto the end of the URL.
-</note>
+[/note]
 
 Your page should now look something like this (with your own content of course):
 
-{{tutorial:title.png}}
+![](images/title.png)
 
 #  Making a Navigation System
 
 So far we have made several pages, but we have no way to navigate between them. We can create a menu for our site using
 a **control block**. Control blocks allow us to iterate over a data set, and render each item using a sub-template. The
-**page control** //Menu(1)// returns the set of the first level menu items. We can then use the template variable
+**page control** *Menu(1)* returns the set of the first level menu items. We can then use the template variable
 *$MenuTitle* to show the title of the page we are linking to.
 
-Open up *themes/tutorial/templates/Page.ss*, and insert the following code inside *<div id="Main">*:
+Open up *themes/tutorial/templates/Page.ss*, and insert the following code inside `<div id="Main">`:
 
 	:::html
 	<ul id="Menu1">
@@ -196,10 +196,10 @@ Open up *themes/tutorial/templates/Page.ss*, and insert the following code insid
 
 
 Here we've created an unordered list called *Menu1*, which *themes/tutorial/css/layout.css* will style into the menu.
-Then, using a control block over the page control //Menu(1)//, we add a link to the list for each menu item. All going
+Then, using a control block over the page control *Menu(1)*, we add a link to the list for each menu item. All going
 to plan, your page should look like this:
 
-{{tutorial:menu.png}}
+![](images/menu.png)
 
 The menu isn't really very useful until each button links to the relevant page. We can get the link for the menu item in
 question by using the *$Link* template variable. Replace the list item line with this one:
@@ -231,7 +231,7 @@ item line in *Page.ss* so it looks like this:
 
 You should now have a fully functional top menu.
 
-{{tutorial:menu-highlighted.png}}
+![](images/menu-highlighted.png)
 
 
 # Adding a second level
@@ -244,11 +244,11 @@ pages "What we do" and "Our History" of the type "Page" inside. You can also cre
 tree, and use the reorganize button to drag and drop the pages into place. Either way, your site tree should now look
 something like this:
 
-{{tutorial:2nd_level-cut.png}}
+![](images/2nd_level-cut.png)
 
 Great, we now have a hierarchical site structure, but we still have no way of getting to these second level pages.
 Adding a second level menu is very similar to adding the first level menu. Open up our *Page.ss* template, and find the
-*<div id="ContentContainer">* tag. Underneath it, add the following code:
+`<div id="ContentContainer">` tag. Underneath it, add the following code:
 
 	:::html
 	<ul id="Menu2">
@@ -260,7 +260,7 @@ Adding a second level menu is very similar to adding the first level menu. Open 
 
 
 This should look very familiar. It is exactly the same as our first menu, except we have named our linked list *Menu2*
-and we are using the control //Menu(2)// instead of //Menu(1)//. As we can see here, the *Menu* control takes a single
+and we are using the control *Menu(2)* instead of *Menu(1)*. As we can see here, the *Menu* control takes a single
 argument - the level of the menu we want to get. Our css file will style this linked list into the second level menu,
 using our usual *$LinkingMode* technique to highlight the current page.
 
@@ -279,7 +279,7 @@ like this:
 
 
 The if block only includes the code inside it if the condition is true. In this case, it checks for the existence of
-//Menu(2)//. If it exists then the code inside will be processed and the menu will be shown. Otherwise the code will not
+*Menu(2)*. If it exists then the code inside will be processed and the menu will be shown. Otherwise the code will not
 be processed and the menu will not be shown.
 
 Now that we have two levels of navigation, it would also be useful to include some "breadcrumbs". Find *<div
@@ -302,15 +302,15 @@ the top level with another if statement.
 	<% end_if %>
 
 
-The *Level* page control allows you to get data from the page's parents, eg if you used //Level(1)//, you could use
-//$Level(1).Title// to get the top level page title. In this case, we merely use it to check the existence of a second
+The *Level* page control allows you to get data from the page's parents, eg if you used *Level(1)*, you could use
+*$Level(1).Title* to get the top level page title. In this case, we merely use it to check the existence of a second
 level page; if one exists then we include the breadcrumbs.
 
 We now have a fully functioning two level navigation system. Both menus should be updating and highlighting as you move
 from page to page. They will also mirror changes done in the SilverStripe CMS, such as renaming pages or moving them
 around.
 
-{{tutorial:menu-two-level.png}}
+![](images/menu-two-level.png)
 
 
 
@@ -366,7 +366,7 @@ As we have just created a new page type, SilverStripe will add this to the list 
 After building the database, we can change the page type of the homepage in the CMS, under the "Behaviour" tab. Change
 it to *HomePage*, and click "Save Draft" and "Publish".
 
-{{tutorial:homepage-type.png}}
+![](images/homepage-type.png)
 
 Our homepage is now of the page type *HomePage*. However, even though it is of the *HomePage* page type, it is still
 rendered with the *Page* template. SilverStripe still renders the homepage using the *Page* template because when we
@@ -389,7 +389,7 @@ for the homepage. Let's replace the title with our image. Add this line above th
 	</div>
 
 
-{{tutorial:home-template.png}}
+![](images/home-template.png)
 
 ## Using a subtemplate
 
@@ -478,7 +478,7 @@ it will use the *Page.ss* for both *Page* and *HomePage* page types. When it com
 then descend into the *themes/tutorial/templates/Layout* folder, and will use *Page.ss* for the *Page* page type, and
 *HomePage.ss* for the *HomePage* page type.
 
-{{tutorial:subtemplates-diagram.png}}
+![](images/subtemplates-diagram.png)
 
 # Summary
 
@@ -487,15 +487,15 @@ to build a basic but fully functional site. You have also been briefly introduce
 correspond to templates and subtemplates. By using these templates, you have seen how to customize the site content
 according to the page type of the page you are displaying.
 
-In the next tutorial, [Extending a Basic Site](tutorial/2-extending-a-basic-site), we will explore page types on a
+In the next tutorial, [Extending a Basic Site](/tutorials/2-extending-a-basic-site), we will explore page types on a
 deeper level, and see how you can customize your own page types to extend SilverStripe to do much more interesting
 things.
 
-[Next Tutorial >>]([tutorial/2-extending-a-basic-site)
+[Next Tutorial >>]([/tutorials/2-extending-a-basic-site)
 
 # Books on SilverStripe 
 
-{{ :silverstripe-cms-book-front-cover-design-june2009preview.png?100}}
+![](images/silverstripe-cms-book-front-cover-design-june2009preview.png)
 
 *  [Official book on SilverStripe in English](http://www.silverstripe.org/silverstripe-book).
 *  [Official book on SilverStripe in German](http://www.silverstripe.org/das-silverstripe-buch).

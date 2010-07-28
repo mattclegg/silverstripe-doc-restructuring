@@ -16,7 +16,7 @@ Basic data-object representing all pages within the site tree. The omnipresent *
 
 ## Querying
 
-Use //SiteTree::get_by_link()// to correctly retrieve a page by URL, as it taked nested URLs into account (a page URL
+Use *SiteTree::get_by_link()* to correctly retrieve a page by URL, as it taked nested URLs into account (a page URL
 might consist of more than one *URLSegment*).
 
 	:::php
@@ -34,7 +34,7 @@ your site. In SilverStripe 2.3 and earlier, all page URLs would be on the top le
 nested under other pages or not. In 2.4 however, the URLs now map directly to the chain of parent and child pages. The
 below table shows a quick summary of what these changes mean for your site:
 
-{{http://silverstripe.org/assets/screenshots/Nested-URLs-Table.png|url table}}
+![url table](http://silverstripe.org/assets/screenshots/Nested-URLs-Table.png)
 
 This feature is enabled by default in SilverStripe 2.4 or newer. To activate it for older sites, insert the following
 code in your *mysite/_config.php*:

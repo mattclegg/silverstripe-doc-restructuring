@@ -1,6 +1,6 @@
 # Installation on Windows and IIS 7.0 and later
 
-This page explains installing SilverStripe manually, without the use of (the easy to use) [Web Platform Installer](installation-on-windows-pi).
+This page explains installing SilverStripe manually, without the use of (the easy to use) [Web Platform Installer](/topics/installatin/installation-on-windows-pi).
 
 ## Configure an existing IIS server
 
@@ -22,8 +22,8 @@ following additional server configuration:
 *  Install the [SQL Server Driver for PHP
 1.1](http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=ccdf728b-1ea0-48a8-a84a-5052214caad9),
 "sqlsrv".
-    * <del>You will have to use the threadsafe version of the library (php_sqlsrv_ts.dll). On some configurations, PHP
-will just silently not load a non-threadsafe extension</del>.
+    * `<del>`You will have to use the threadsafe version of the library (php_sqlsrv_ts.dll). On some configurations, PHP
+will just silently not load a non-threadsafe extension`</del>`.
     * IMPORTANT: You should install a non-thread safe version of [PHP](http://windows.php.net/) AND a non-thread safe
 version of the [SQL Server Driver for PHP
 1.1](http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=ccdf728b-1ea0-48a8-a84a-5052214caad9)
@@ -113,7 +113,7 @@ friendly URLs you must you must buy or use other URL rewriting software
         * http://www.micronovae.com/ModRewrite/ModRewrite.html
 *  Instructions for installing PHP IIS 5.1 and 6 may be different that for 7. See
 http://learn.iis.net/page.aspx/248/configuring-fastcgi-extension-for-iis60/
-*  On XP, you need to disable 'Check that file exists' (See [installation-on-windows-pi](installation-on-windows-pi))
+*  On XP, you need to disable 'Check that file exists' (See [installation-on-windows-pi](/topics/installation/installation-on-windows-pi))
 
 Matthew Poole has expanded on these instructions with this tutorial:
 http://cubiksoundz.blogspot.com/2008/12/tech-note-installing-silverstripe-cms.html

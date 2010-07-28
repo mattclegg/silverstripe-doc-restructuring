@@ -4,9 +4,7 @@ function.' (E.g. if your email is different/unknown.). It requires file-system/F
 You cannot actually retrieve your current password, only set it to something new.
 
 1.  Edit your mysite/_config.php
-2.  Add the following line, replacing 'username' and 'password' with something temporary.<code>
-Security::setDefaultAdmin('ussername', 'password');
-</code>
+2.  Add the following line, replacing 'username' and 'password' with something temporary. `Security::setDefaultAdmin('ussername', 'password');`
 1.  Log in to the CMS (http://www.yourwebsite.com/admin ) using the username and password above.
 2.  You are now logged in as one of the admin accounts stored in the system.
 3.  Visit the Security section of CMS.

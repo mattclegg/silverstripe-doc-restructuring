@@ -5,8 +5,7 @@ RestfulService enables connecting to remote web services which supports REST int
 returned from the web service. Further it supports caching of the response, and you can customize the cache interval. 
 
 To gain the functionality you can either create a new RestfulService object or create a class extending the
-RestfulService (refer [flickrservice](flickrservice) or [youtubeservice](youtubeservice)).
-
+RestfulService (see `flickrservice` and `youtubeservice` modules).
 
 
 # Examples

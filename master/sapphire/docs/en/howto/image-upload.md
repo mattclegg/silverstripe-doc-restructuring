@@ -133,7 +133,7 @@ generatePageBanner). If I was to have another one called generateThumbnail then 
 
 $Banner.Thumbnail.URL
 
-This goes inside your <img> tag as the src attribute.
+This goes inside your `<img>` tag as the src attribute.
 
 You may also notice that there is else logic in this statement. What this does it use the banner from the Home page if
 subsequent pages don't have one uploaded yet. This is a simple way of making the template fall back to using a 'default'
@@ -161,4 +161,4 @@ that you can call see http://doc.silverstripe.com/doku.php?id=gd
 
 ## Form Image Upload
 
-See [simpleimagefield](simpleimagefield)
+See [api:SimpleImageField]

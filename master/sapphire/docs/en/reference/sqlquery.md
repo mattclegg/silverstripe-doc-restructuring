@@ -3,7 +3,7 @@
 An object representing a SQL query. It is easier to deal with object-wrappers than string-parsing a raw SQL-query. This
 object is used by `[api:DataObject]`, though...
 
-A word of caution: Dealing with low-level SQL is not encouraged in the Silverstripe [datamodel](datamodel) for various
+A word of caution: Dealing with low-level SQL is not encouraged in the Silverstripe [datamodel](/topics/datamodel) for various
 reasons. You'll break the behaviour of:
 
 *  Custom getters/setters
@@ -14,7 +14,7 @@ reasons. You'll break the behaviour of:
 *  Database abstraction
 
 We'll explain some ways to use *SELECT* with the full power of SQL, but still maintain a connection to the Silverstripe
-[datamodel](datamodel).
+[datamodel](/topics/datamodel).
 
 # Usage
 

@@ -46,10 +46,10 @@ works.
 #### Loading the admin page: looking at security
 
 If you go to [your site]/admin -- how does that work?
-//Director.php// maps the 'admin' URL request through a *Director* rule to the CMSMain controller (see
+*Director.php* maps the 'admin' URL request through a *Director* rule to the CMSMain controller (see
 [cmsmain](cmsmain), with no arguments. 
 
-//CMSMain.init()// calls its parent which, of all things is called *LeftAndMain*. It's in *LeftAndMain* that the
+*CMSMain.init()* calls its parent which, of all things is called *LeftAndMain*. It's in *LeftAndMain* that the
 important security checks are made by calling *Permission::check*. 
 
 //Security::`[api:permissionFailure]`// is the next utility function you can use to redirect to the login form. 

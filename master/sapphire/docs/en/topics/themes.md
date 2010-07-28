@@ -13,9 +13,7 @@ as a .tar.gz file.
 #### Install
 
 1.  Simply unpack the contents of the zip file into the /themes directory in your SilverStripe installation.
-2.  Change to the theme by putting the following line in your ./mysite/_config.php: <code php>
-SSViewer::set_theme("themename");
-</code>
+2.  Change to the theme by putting the following line in your ./mysite/_config.php: `SSViewer::set_theme("themename");`
 1.  Visit your homepage, ensuring you flush the cache (append ?flush=1 to the URL).
 
 # Developing a Theme

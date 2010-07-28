@@ -10,8 +10,6 @@ out the demo site http://silverstripe.com/assets/screencasts/SilverStripe-Blog-D
 ### Downloading and Contributing Widgets
 
 *  To download widgets visit [Widgets section](http://silverstripe.org/widgets)
-*  Visit [widget-ideas](widget-ideas) for some ideas on what kind of widget to build (just check the [Widgets
-section](http://silverstripe.org/widgets) first to make sure it hasn't already been built!)
 *  Upload widgets you want to share to
 [http://silverstripe.org/widgets/manage/add](http://silverstripe.org/widgets/manage/add). Make sure you read the
 packaging instructions at the bottom of the page about how to make your widget package.
@@ -55,7 +53,7 @@ Widget Form to manage the widgets. An example of this is below
 
 Then in your Template you need to call $SideBar whereever you want to render the widget
 
-Eg for blackcandy I put this above the closing </div>
+Eg for blackcandy I put this above the closing `</div>`
 
 ** themes/myThemeName/templates/Includes/Sidebar.ss **
 
@@ -221,13 +219,13 @@ This returns the value inputted in the CMS, if it's set or what is in the $title
 
 ### Forms within Widgets
 
-//Requires SilverStripe 2.4 or newer//
+*Requires SilverStripe 2.4 or newer*
 
 To implement a form inside a widget, you need to implement a custom controller for your widget to return this form. Make
 sure that your controller follows the usual naming conventions, and it will be automatically picked up by the
 [:WidgetArea](http://api.silverstripe.org/trunk/sapphire/widgets/WidgetArea.html) rendering in your *Page.ss* template.
 
-//mysite/code/MyWidget.php//
+*mysite/code/MyWidget.php*
 
 	:::php
 	class MyWidget extends Widget {
@@ -258,18 +256,18 @@ sure that your controller follows the usual naming conventions, and it will be a
 
 To output this form, modify your widget template.
 
-//mysite/templates/MyWidget.ss//
+*mysite/templates/MyWidget.ss*
 
 	:::html
 	$Content
 	$MyFormName
 
 
-Note: The necessary controller actions are only present in subclasses of [Page_Controller](Page_Controller). To use
-widget forms in other controller subclasses, have a look at //ContentController->handleWidget()// and
+Note: The necessary controller actions are only present in subclasses of `[api:Page_Controller]`. To use
+widget forms in other controller subclasses, have a look at *ContentController->handleWidget()* and
 *ContentController::$url_handlers*.
 
-See an [alternative recipe for SilverStripe 2.3 or earlier](/recipes/widget-forms-2.3).
+See an [alternative recipe for SilverStripe 2.3 or earlier](http://doc.silverstripe.org/recipes/widget-forms-2.3).
 
 ##  But what if I have widgets on my blog currently??
 
@@ -330,7 +328,7 @@ This way, the CMS remains an application designed for content authors, and not d
 
 
 ** Example Widget Structure **
-{{:widget_demo.gif|:widget_demo.gif}}
+![](images/widget_demo.gif)
 
 #### How to make the Package
 

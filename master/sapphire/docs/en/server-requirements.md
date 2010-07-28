@@ -1,18 +1,14 @@
 # Introduction
 
 We try to be as wide as possible in our server requirements.  However, there are some limitations.
-Please check our [suggested-web-hosts](suggested-web-hosts) (and add your host if the installation was successful).
+Please check our [suggested-web-hosts](http://doc.silverstripe.org/suggested-web-hosts) (and add your host if the installation was successful).
 
-If you're running Windows, we recommend using the [Windows Platform Installer](installation-on-windows-pi) or
-[WAMP](installation-on-windows-wamp).
+If you're running Windows, we recommend using the [Windows Platform Installer](/topics/installation/installation-on-windows-pi) or
+[WAMP](/topics/installation/installation-on-windows-wamp).
 
 If you're using Mac OS X, we recommend the [MAMP package](http://www.mamp.info/en/mamp.html), see
-[silverstripe-on-mamp](silverstripe-on-mamp) for instructions on installation. If you are using any other packages or
+[silverstripe-on-mamp](/topics/installation/silverstripe-on-mamp) for instructions on installation. If you are using any other packages or
 setups, or you are on linux, please pay careful attention to the requirements below.
-
-Installing SilverStripe on grid servers and content delivery networks have their own problems, see
-[ContentDeliveryNetworkIssues](ContentDeliveryNetworkIssues) for more info.
-
 
 ### PHP
 
@@ -57,9 +53,9 @@ If you visit this file in your web browser, it will give a full list of the conf
 ### Database
 
 *  **MySQL 5.0+** (out of the box)
-*  **PostgreSQL 8.3+** ([download](postgres))
-*  **SQLite 3+** ([download](modules/sqlite))
-*  **SQL Server 2008** ([download](modules/mssql))
+*  **PostgreSQL 8.3+** ([download](http://www.silverstripe.org/postgresql-module/))
+*  **SQLite 3+** ([download](http://silverstripe.org/sqlite-database/))
+*  **SQL Server 2008** ([download](http://www.silverstripe.org/microsoft-sql-server-database))
 
 Note: MySQL 4.1 has been known to work, but is no longer supported.
 
@@ -93,7 +89,7 @@ ability to set rewriting rules in .htaccess files via "Allow Override".
     * The Apache server needs to be restarted for the configuration changes to take effect.
     * We suggest using mod_deflate/gzip to compress HTML/CSS/JS etc and thus improve page loading times *this applies to
 any website constructed , not just to SilverStripe*
-*  lighttpd 1.4+ with access to the server configuration. (See [installation-on-lighttpd](installation-on-lighttpd)
+*  lighttpd 1.4+ with access to the server configuration. (See [installation-on-lighttpd](/topics/installation/installation-on-lighttpd)
 *  Silverstripe makes uses the geoiplookup to get the visitors' location (with an ip2country function).  In order for
 this to work, you must have the geoiplookup application installed on your server. Silverstripe will run fine without it.
 

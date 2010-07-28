@@ -8,7 +8,7 @@ the viewer and/or perform processing steps.
 
 # Best Practices
 
-*  Forcing a site to run in SSL mode: see [ssl](ssl)
+*  Forcing a site to run in SSL mode: see [ssl](/howto/ssl)
 *  Checking for an Ajax-Request: Use Director::is_ajax() instead of checking for $_REQUEST['ajax'].
 
 # Redirection
@@ -34,10 +34,10 @@ redirectBack().
 
 You can influence the way URLs are resolved one of 2 ways
 
-1.  Adding rules to Director in <yourproject>/_config.php (See Default Rewrite Rules below for examples)
+1.  Adding rules to Director in `<yourproject>/_config.php` (See Default Rewrite Rules below for examples)
 2.  Adding rules in your extended Controller class via the *$url_handlers* static variable 
 
-See [controller](controller) for examples and explanations on how the rules get processed for both 1 and 2 above. 
+See [controller](/topics/controller) for examples and explanations on how the rules get processed for both 1 and 2 above. 
 
 *  Static redirect for specific URL
 
@@ -47,7 +47,8 @@ See [controller](controller) for examples and explanations on how the rules get 
 	));
 
 
-======= Default Rewrite Rules =======
+# Default Rewrite Rules
+
 SilverStripe comes with certain rewrite rules (e.g. for *admin/assets*).
 
 *  [sapphire/_config.php](http://open.silverstripe.org/browser/modules/sapphire/trunk/_config.php)
@@ -57,4 +58,4 @@ SilverStripe comes with certain rewrite rules (e.g. for *admin/assets*).
 # Links
 
 *  See ModelAsController class for details on controller/model-coupling
-*  See [execution-pipeline](execution-pipeline) for custom routing
+*  See [execution-pipeline](/reference/execution-pipeline) for custom routing

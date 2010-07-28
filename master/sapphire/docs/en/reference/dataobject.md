@@ -4,8 +4,8 @@ A single database record & abstract class for the data-access-model.
 
 # Usage
 
-*  [datamodel](datamodel): The basic pricinples
-*  [objectmodel](objectmodel): Casting and special property-parsing
+*  [datamodel](/topics/datamodel): The basic pricinples
+*  [data-types](/topics/data-types): Casting and special property-parsing
 *  `[api:DataObject]`: A "container" for DataObjects
 
 ## Basics
@@ -37,7 +37,7 @@ These calls retrieve a `[api:FieldSet]` for the area where you intend to work wi
 
 ## For the Frontend
 
-Used for simple frontend forms without relation editing or [TabSet](TabSet) behaviour. Uses ''scaffoldFormFields()'' by
+Used for simple frontend forms without relation editing or `[api:TabSet] behaviour. Uses ''scaffoldFormFields()'' by
 default. To customize, either overload this method in your subclass, or decorate it by
 ''DataObjectDecorator->updateFormFields()''.
 
@@ -52,7 +52,7 @@ default. To customize, either overload this method in your subclass, or decorate
 // Requirements: SilverStripe 2.3.//
 
 This section covers how to enhance the default scaffolded form fields from above.  It is particularly useful when used
-in conjunction with the [ModelAdmin](ModelAdmin) in the CMS to make relevant data administration interfaces.
+in conjunction with the `[api:ModelAdmin]` in the CMS to make relevant data administration interfaces.
 
 
 ## Searchable Fields
@@ -142,7 +142,7 @@ To include relations (''$has_one'', ''$has_many'' and ''$many_many'') in your se
 // Requirements: SilverStripe 2.3.//
 
 Summary fields can be used to show a quick overview of the data for a specific DataObject record. Most common use is
-their display as table columns, e.g. in the search results of a [ModelAdmin](ModelAdmin) CMS interface.
+their display as table columns, e.g. in the search results of a `[api:ModelAdmin]` CMS interface.
 
 Example: Getting predefined summary fields
 
