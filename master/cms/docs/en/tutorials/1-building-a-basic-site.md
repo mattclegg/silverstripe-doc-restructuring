@@ -12,7 +12,7 @@ We are going to create a site in which all the content can be edited in the Silv
 navigation system, which will be generated on the fly to include all pages you add in the CMS. We will use two different
 templates - one for the home page, and one for the rest of the site.
 
-![]images/home-small.png)![](images/menu-two-level-small.png)
+![](images/home-small.png)![](images/menu-two-level-small.png)
 
 
 #  Installation
@@ -482,7 +482,7 @@ things.
 
 # Books on SilverStripe 
 
-![](images/silverstripe-cms-book-front-cover-design-june2009preview.png)
-
 *  [Official book on SilverStripe in English](http://www.silverstripe.org/silverstripe-book).
 *  [Official book on SilverStripe in German](http://www.silverstripe.org/das-silverstripe-buch).
+
+![](images/silverstripe-cms-book-front-cover-design-june2009preview.png)
