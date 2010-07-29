@@ -21,7 +21,7 @@ You need to [download the SilverStripe software](http://www.silverstripe.org/sta
 machine or to a webserver. 
 
 For more infomation about installing and configuring a webserver read the [Installation instructions and
-videos](installation). 
+videos](../installation). 
 
 If you want to follow this tutorial please choose "empty template" when installing SilverStripe. If you want a fully
 featured theme then select the 'BlackCandy' option.
