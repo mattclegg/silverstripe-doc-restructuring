@@ -21,7 +21,7 @@ We are going to add a site map to your site. The site map will contain a list of
 you have deselected the "Show in menus?" option on the Behaviour tab (To obey your "Show in menus?" option for top-level
 pages, uncomment line 26 in SiteTree.php) . The site map will also ignore all pages with the ErrorPage type.
 
-![tutorial:site-map-final.jpg](images/site-map-final.jpg)
+![tutorial:site-map-final.jpg](_images/site-map-final.jpg)
 
 
 
@@ -93,7 +93,7 @@ new file called **SiteMap.php**. SiteMap.php should contain the following:
 Before continuing, we need to flush the database so that SilverStripe knows that we've just added a new page type. Visit
 *http:*yoursite.com/dev/build //.  You should be presented with a screen that looks like the following:
 
-![tutorial:site-map-build.jpg](images/site-map-build.jpg)
+![tutorial:site-map-build.jpg](_images/site-map-build.jpg)
 
 
 # Step 3: Creating the site map in the CMS
@@ -103,7 +103,7 @@ Now we need to create a new page in the CMS.
 Launch the CMS (or refresh if the CMS was open when you rebuilt the database) and create a new SiteMap page. Save &
 Publish and we're done in the CMS. You don't need to enter anything into the Content box.
 
-![tutorial:site-map-cms.jpg](images/site-map-cms.jpg)
+![tutorial:site-map-cms.jpg](_images/site-map-cms.jpg)
 
 # Step 4: Create the template for the site map
 
@@ -145,7 +145,7 @@ add in "**$SiteMap**" below "$Content".
 
 That's it. You should now be able to navigate to the sitemap from your home page, and behold its respendid beauty.
 
-![tutorial:site-map-list.jpg](images/site-map-list.jpg)
+![tutorial:site-map-list.jpg](_images/site-map-list.jpg)
 
 Don't think it's so beautiful? The next section will give you some CSS to help you make it more attractive!
 
@@ -183,7 +183,7 @@ some code that can get you started:
 
 And Voila!
 
-![tutorial:site-map-styled.jpg](images/site-map-styled.jpg)
+![tutorial:site-map-styled.jpg](_images/site-map-styled.jpg)
 
 # Summary
 

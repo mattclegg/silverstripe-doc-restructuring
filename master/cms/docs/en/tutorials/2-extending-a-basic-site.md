@@ -13,7 +13,7 @@ Throughout this tutorial we are going to work on adding two new sections to the 
 first is a news section, with a recent news listing on the homepage and an RSS feed. The second is a staff section,
 which demonstrates more complex database structures by associating an image with each staff member.
 
-![](images/news-with-rss-small.png)![](images/einstein-small.png)
+![](_images/news-with-rss-small.png)![](_images/einstein-small.png)
 
 
 
@@ -48,7 +48,7 @@ the database, which fields can be edited in the CMS, and can use code to make ou
 more in-depth introduction of Model-View-Controller can be found
 [here](http://www.slash7.com/articles/2005/02/22/mvc-the-most-vexing-conundrum).
 
-![](images/pagetype-inheritance.png)
+![](_images/pagetype-inheritance.png)
 
 # Creating the news section page types
 
@@ -214,7 +214,7 @@ the CMS.
 Now that we have created our page types, let's add some content. Go into the CMS and create an *ArticleHolder* page
 named "News", and create some *ArticlePage*s inside it.
 
-![](images/news-cms.png)
+![](_images/news-cms.png)
 
 #  Creating the templates
 
@@ -264,13 +264,13 @@ spread across several tables in the database matched by id - e.g. *Content* is i
 *Author* are in the *Article* table. SilverStripe matches these records by their ids and collates them into the single
 data object.
 
-![](images/data-collation.png)
+![](_images/data-collation.png)
 
 Rather than using *$Date* directly, we use *$Date.Nice*. If we look in the //`[api:Date]`// documentation, we can see
 that the *Nice* function returns the date in *dd/mm/yyyy* format, rather than the *yyyy-mm-dd* format stored in the
 database.
 
-![](images/news.png)
+![](_images/news.png)
 
 Now we'll create a template for the article holder: we want our news section to show a list of news items, each with a
 summary.
@@ -295,7 +295,7 @@ page, which in this case is our news articles. The *$Link* variable will give th
 use to create a link, and the *FirstParagraph* function of the `[api:HTMLText]` field gives us a nice summary of the
 article.
 
-![](images/articleholder.png)
+![](_images/articleholder.png)
 
 Remember that the visual styles are not part of the CMS, they are defined in the tutorial CSS file.
 
@@ -372,7 +372,7 @@ And this one to the *HomePage* class:
 This will change the icons for the pages in the CMS.  *Note* that the corresponding filename to the path given for $icon
 will end with **-file.gif**, e.g. when you specify *news* above, the filename will be *news-file.gif*.
 
-![](images/icons2.png)
+![](_images/icons2.png)
 
 # Allowing comments on news articles
 
@@ -380,7 +380,7 @@ A handy feature built into Silverstripe is the ability for guests to your site t
 this on for an article simply by ticking the box in the behaviour tab of a page in the CMS. Enable this for all your
 *ArticlePage*s.
 
-![](images/comments.png)
+![](_images/comments.png)
 
 We then need to include *$PageComments* in our template, which will insert the comment form as well as all comments left
 on the page.
@@ -398,7 +398,7 @@ on the page.
 
 You should also prepare the *Page* template in the same manner, so comments can be enabled at a later point on any page.
 
-![](images/news-comments.png)
+![](_images/news-comments.png)
 
 It would be nice to have comments on for all articles by default. We can do this with the *$defaults* array. Add this to
 the *ArticlePage* class:
@@ -457,7 +457,7 @@ page is referenced in other pages, eg by page controls. A good rule of thumb is 
 page currently being viewed in the controller; only if a function needs to be used in another page should you put it in
 the data object.
 
-![](images/homepage-news.png)
+![](_images/homepage-news.png)
 
 
 
@@ -482,7 +482,7 @@ that name on the controller if it exists.
 Depending on your browser, you should see something like the picture below. If your browser doesn't support RSS, you
 will most likely see the XML output instead.
 
-![](images/rss-feed.png)
+![](_images/rss-feed.png)
 
 Now all we need is to let the user know that our RSS feed exists. The //`[api:RSSFeed]`// in your controller, it will be
 called when the page is requested. Add this function to *ArticleHolder_Controller*:
@@ -498,7 +498,7 @@ This automatically generates a link-tag in the header of our template. The *init
 class to ensure any initialization the parent would have done if we hadn't overridden the *init* function is still
 called. In Firefox you can see the RSS feed link in the address bar:
 
-![](images/rss.png)
+![](_images/rss.png)
 
 # Adding a staff section
 
@@ -567,12 +567,12 @@ We add an *ImageField* in the *getCMSFields* function to the tab "Root.Content.I
 the *addFieldToTab* function will create it for us. The *ImageField* allows us to select an image or upload a new one in
 the CMS.
 
-![](images/photo.png)
+![](_images/photo.png)
 
 Rebuild the database ([http://localhost/dev/build?flush=1](http://localhost/dev/build?flush=1)) and open the CMS. Create
 a new *StaffHolder* called "Staff" in the "About Us" section, and create some *StaffPage*s in it.
 
-![](images/create-staff.png)
+![](_images/create-staff.png)
 
 
 
@@ -607,7 +607,7 @@ This template is very similar to the *ArticleHolder* template. The *FirstSentenc
 will resize the image before sending it to the browser. The resized image is cached, so the server doesn't have to
 resize the image every time the page is viewed.
 
-![](images/staff-section.png)
+![](_images/staff-section.png)
 
 The *StaffPage* template is also very straight forward.
 
@@ -630,7 +630,7 @@ The *StaffPage* template is also very straight forward.
 Here we also use the *SetWidth* function to get a different sized image from the same source image. You should now have
 a complete staff section.
 
-![](images/einstein.png)
+![](_images/einstein.png)
 
 # Summary
 

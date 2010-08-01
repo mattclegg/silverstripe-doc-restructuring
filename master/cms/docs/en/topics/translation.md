@@ -17,20 +17,20 @@ extension (see below).
 
 # Screenshots
 
-![](images/translatable4_small.png)
+![](_images/translatable4_small.png)
 
 *Translated website*
 
 
-![](images/translatable1.png)
+![](_images/translatable1.png)
 
 *CMS: Language dropdown*
 
-![](images/translatable2.png)
+![](_images/translatable2.png)
 
 *CMS: Translatable field with original value*
 
-![](images/translatable3.png)
+![](_images/translatable3.png)
 
 *CMS: Create a new translation*
 

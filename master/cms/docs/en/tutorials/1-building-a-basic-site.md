@@ -17,7 +17,7 @@ We are going to create a site in which all the content can be edited in the Silv
 navigation system, which will be generated on the fly to include all pages you add in the CMS. We will use two different
 templates - one for the home page, and one for the rest of the site.
 
-![](images/home-small.png)![](images/menu-two-level-small.png)
+![](_images/home-small.png)![](_images/menu-two-level-small.png)
 
 
 #  Installation
@@ -59,7 +59,7 @@ The CMS is the area in which you can manage your site content. You can access th
 will be presented with a login screen. You can login with the details you provided at installation. After logging in you
 should be greeted with the CMS, pictured below (we've entered some test content).
 
-![](images/cms-numbered.png)
+![](_images/cms-numbered.png)
 
 1.  These buttons allow you to move between the different sections in the CMS. There are three core sections in the CMS
 - Site Content, Files & Images and Security. Modules installed will have their own sections here as well, if any are
@@ -88,7 +88,7 @@ specifies the templates used to render the page, the fields that are able to be 
 behavior. We will explain page types in more depth as we progress; for now, make all pages of the type "Page".
 
 
-![](images/home-first.png)
+![](_images/home-first.png)
 
 **SilverStripe's virtual URLs**
 
@@ -96,7 +96,7 @@ While you are on the draft or live SilverStripe site, you may notice the URLs po
 http://localhost/contact. SilverStripe uses the URL field on the Meta-Data tab of the editor to look up the appropriate
 page in the database.
 
-![](images/url.png)
+![](_images/url.png)
 
 When you create a new page, SilverStripe automatically creates an appropriate URL for it. For example, *About Us* will
 become *about-us*. You are able to change it yourself so that you can make long titles more usable or descriptive. For
@@ -128,7 +128,7 @@ your site's content in the CMS.
 *$SilverStripeNavigator* inserts the HTML for the navigator at the bottom of the page, which allows you to move
 quickly between the CMS and the draft and published version of your page.
 
-![The SilverStripe Navigator](images/navigator.png)
+![The SilverStripe Navigator](_images/navigator.png)
 
 **Flushing the cache**
 
@@ -176,7 +176,7 @@ Don't forget to flush the cache each time you change a template by adding *?flus
 
 Your page should now look something like this (with your own content of course):
 
-![](images/title.png)
+![](_images/title.png)
 
 #  Making a Navigation System
 
@@ -199,7 +199,7 @@ Here we've created an unordered list called *Menu1*, which *themes/tutorial/css/
 Then, using a control block over the page control *Menu(1)*, we add a link to the list for each menu item. All going
 to plan, your page should look like this:
 
-![](images/menu.png)
+![](_images/menu.png)
 
 The menu isn't really very useful until each button links to the relevant page. We can get the link for the menu item in
 question by using the *$Link* template variable. Replace the list item line with this one:
@@ -231,7 +231,7 @@ item line in *Page.ss* so it looks like this:
 
 You should now have a fully functional top menu.
 
-![](images/menu-highlighted.png)
+![](_images/menu-highlighted.png)
 
 
 # Adding a second level
@@ -244,7 +244,7 @@ pages "What we do" and "Our History" of the type "Page" inside. You can also cre
 tree, and use the reorganize button to drag and drop the pages into place. Either way, your site tree should now look
 something like this:
 
-![](images/2nd_level-cut.png)
+![](_images/2nd_level-cut.png)
 
 Great, we now have a hierarchical site structure, but we still have no way of getting to these second level pages.
 Adding a second level menu is very similar to adding the first level menu. Open up our *Page.ss* template, and find the
@@ -310,7 +310,7 @@ We now have a fully functioning two level navigation system. Both menus should b
 from page to page. They will also mirror changes done in the SilverStripe CMS, such as renaming pages or moving them
 around.
 
-![](images/menu-two-level.png)
+![](_images/menu-two-level.png)
 
 
 
@@ -366,7 +366,7 @@ As we have just created a new page type, SilverStripe will add this to the list 
 After building the database, we can change the page type of the homepage in the CMS, under the "Behaviour" tab. Change
 it to *HomePage*, and click "Save Draft" and "Publish".
 
-![](images/homepage-type.png)
+![](_images/homepage-type.png)
 
 Our homepage is now of the page type *HomePage*. However, even though it is of the *HomePage* page type, it is still
 rendered with the *Page* template. SilverStripe still renders the homepage using the *Page* template because when we
@@ -389,7 +389,7 @@ for the homepage. Let's replace the title with our image. Add this line above th
 	</div>
 
 
-![](images/home-template.png)
+![](_images/home-template.png)
 
 ## Using a subtemplate
 
@@ -478,7 +478,7 @@ it will use the *Page.ss* for both *Page* and *HomePage* page types. When it com
 then descend into the *themes/tutorial/templates/Layout* folder, and will use *Page.ss* for the *Page* page type, and
 *HomePage.ss* for the *HomePage* page type.
 
-![](images/subtemplates-diagram.png)
+![](_images/subtemplates-diagram.png)
 
 # Summary
 
@@ -495,7 +495,7 @@ things.
 
 # Books on SilverStripe 
 
-![](images/silverstripe-cms-book-front-cover-design-june2009preview.png)
+![](_images/silverstripe-cms-book-front-cover-design-june2009preview.png)
 
 *  [Official book on SilverStripe in English](http://www.silverstripe.org/silverstripe-book).
 *  [Official book on SilverStripe in German](http://www.silverstripe.org/das-silverstripe-buch).

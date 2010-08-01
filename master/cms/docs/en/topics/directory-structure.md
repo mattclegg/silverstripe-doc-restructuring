@@ -48,7 +48,7 @@ Example Forum:
  | `forum/code` | PHP code for model and controller (subdirectories are optional)     | 
  | ...        | ...                                                                 | 
 
-![](images/modules_folder.jpg)
+![](_images/modules_folder.jpg)
 
 
 ## PHP Include Paths
