@@ -109,7 +109,7 @@ webserver access logs (if a hack is suspected), any other services and web packa
 See [What to write (jacobian.org)](http://jacobian.org/writing/great-documentation/what-to-write/) for an excellent
 introduction to the different types of documentation.
 
-### Recommendations
+### Structure
 
 * Don't duplicate: Search for existing places to put your documentation. Do you really require a new page, or just a new paragraph
 of text somewhere?
@@ -123,6 +123,15 @@ as "related content" on other resource (e.g. [topics/search](/topics/search) mig
 * Avoid FAQs: FAQs are not a replacement of a coherent, well explained documentation. If you've done a good job
 documenting, there shouldn't be any "frequently asked questions" left ;)
 * Commit early and often: You don't need to completely finish documentation, as long as you mark areas needing refinement.
+* Every file should have exactly one `<h1>` headline, roughly matching the filename. It should be short enough to be
+	used in table of content lists.
+
+### Writing Style
+
+* Write in second plural form: Use "we" instead of "I". It gives the text an instructive and collaborative style.
+* Its okay to address the reader: For example "First you'll install a webserver" is good style.
+* Write in an active and direct voice
+* Mark up correctly: Use preformatted text, emphasis and bold to make technical writing more "scannable".
 
 ### Further reading
 

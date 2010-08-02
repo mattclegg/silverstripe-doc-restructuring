@@ -56,9 +56,12 @@ API links are automatically wrapped in `<code>` blocks by the formatter.
  * Link to instance property: `[api:DataObject->changedFields]`
  * Custom titles: `[my title](api:DataObject)`
 
-Note: This notation can't be used in code blocks.
-If you want to use API links to other modules or versions of the same module,
-you'll have to use the full `http://` URL.
+There's some gotchas:
+
+ * This notation can't be used in code blocks.
+ * If you want to use API links to other modules or versions of the same module, you'll have to use the full `http://` URL.
+ * You can't mark API links in backticks to trigger `<pre>` formatting, as it will stop the link parsing.
+	 The backticks are automatically added by the parser.
 
 ### Code Blocks with Highlighting
 
