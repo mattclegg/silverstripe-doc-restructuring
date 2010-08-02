@@ -1,22 +1,20 @@
-====== Introduction ======
+====== CMSmenu ======
+
+===== Introduction =====
 
 Introduced in 2.3.0, CMSMenu controls the menu items in the top portion of the page within the CMS.
 
-====== Default Behaviour ======
+===== Default Behaviour =====
 
 The menu will be automatically populated with menu items for subclasses of [[http://api.silverstripe.org/trunk/cms/core/LeftAndMain.html|LeftAndMain]]. That is, for each class in the CMS that creates an administration panel, a CMS menu item will be created. The default configuration will also include a 'help' link to the SilverStripe user documentation.
 
-====== Modifying the Menu ======
+===== Modifying the Menu =====
 
-===== Adding a Controller =====
+==== Adding a Controller ====
 
 Usually, a valid administration page is a subclass of [[http://api.silverstripe.org/trunk/cms/core/LeftAndMain.html|LeftAndMain]] or [[ModelAdmin]] (itself a subclass of [[http://api.silverstripe.org/trunk/cms/core/LeftAndMain.html|LeftAndMain]]), so it is added automatically.
 
-
-
-
-
-===== Adding a Link =====
+==== Adding a Link ====
 
 Additional links can be added to the menu with the call:
 
@@ -32,7 +30,7 @@ $url (string) is where you want the menu item to link to
 
 $priority is the order in which the menu item appears, with a lower number pushing the item to the left.
 
-===== Removing an Item =====
+==== Removing an Item ====
 
 You can remove an item using the call:
 

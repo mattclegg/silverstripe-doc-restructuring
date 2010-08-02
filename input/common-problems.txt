@@ -1,7 +1,9 @@
-====== Introduction ======
+====== Common Problems ======
+
+===== Introduction =====
 From time to time, things will go wrong.  Here's a few things to try when you're confused:
 
-== Put ?flush=1 on the end of the URL ==
+==== Put ?flush=1 on the end of the URL ====
 Putting ?flush=1 on the end of the URL will clear out all cached content; this is a pretty common solution to a lot of development problems.  Here are some specifics situations:
 
   * You've created a new SS or PHP file
@@ -9,7 +11,7 @@ Putting ?flush=1 on the end of the URL will clear out all cached content; this i
   * You've published a new copy of your site
   * You've upgraded your version of SilverStripe
 
-== Visit (mysite)/dev/build?flush=1 ==
+==== Visit (mysite)/dev/build?flush=1 ====
 Visiting db/build runs a script that will check the database schema and update it as necessary.  Putting ?flush=1 on the end makes sure that nothing that's linked to the old database structure will be carried over.  If things aren't saving, pages aren't loading, or other random things aren't working it's possible that the database hasn't been updated to handle the new code.  Here are some specifics situations:
 
   * You've created a new page type / other data object type
@@ -17,17 +19,17 @@ Visiting db/build runs a script that will check the database schema and update i
   * You've published a new copy of your site
   * You've upgraded your version of SilverStripe
 
-== Put images/flush to the end of the URL ==
+==== Put images/flush to the end of the URL ====
 If you've changed the resize functions of your image uploaders you can run this again - and all the images will be resampled to the new arguments for the GD functions. This also, in some cases, repairs broken image links that can happen from time to time.
 
 
-== Publish your draft content ==
+==== Publish your draft content ====
 If you've set up your site and it used to be working, but now it's suddenly totally broken, you may have forgotten to publish your draft content.  Go to the CMS and use the "publish" button.  You can visit //**admin/publishall**// to publish every page on the site, if that's easier.
 
-== Clear Browser Cache ==
+==== Clear Browser Cache ====
 If you have made sure the templates have been flushed ?flush=1 you should try Ctrl + F5 to clear your browsers cache.
 
-== Procedural PHP Output ==
+==== Procedural PHP Output ====
 Please make sure all code inside '*.php' files is wrapped in classes. Due to the way [[ManifestBuilder]] includes all files with this extension, any **procedural code will be executed on every call**. Most common error here is putting a test.php/phpinfo.php file in the document root. See [[datamodel]] and [[controllers]] for ways how to structure your code.
 
 Example: Wrong file /<mysite>/phpinfo.php
@@ -39,7 +41,7 @@ phpinfo(); // this will execute and output before any Silverstripe-code
 
 ===== Installation problems =====
 
-== File permissions ==
+==== File permissions ====
 
   * The php installer needs to be able write files during installation, which should be restricted again afterwards. It needs to create/have write-access to:
      * The main installation directory (for creating .htaccess file and assets directory)
@@ -48,12 +50,12 @@ phpinfo(); // this will execute and output before any Silverstripe-code
         * Image thumbnails will not show in the CMS if permission is not given 
 
 
-== mod_rewrite ==
+==== mod_rewrite ====
 
 mod_rewrite not configured correctly. The module needs to be enabled, and AllowOverride needs to be enabled for the current path
 
 
-== Lighttpd since version 1.4.18 breaks rewrite ==
+==== Lighttpd since version 1.4.18 breaks rewrite ====
 
   * lighttpd 1.4.18 does not support rewrites inside $HTTP['url'] conditional
  SilverStripe CMS essentialy depends on rewrites, so here is a quick fix for version 1.4.18 and later.
@@ -96,11 +98,11 @@ url.rewrite-once = (
 
 
 ===== Basic Questions once installed =====
-== How do I access custom methods in my controller class in my template==
+==== How do I access custom methods in my controller class in my template ====
 Just add $myMethod in your template (e.g. page.ss) and you will get data from your method. You can also do it by browsing to http://www.mysite.com/mypage/mymethod/
 
 ===== Problems with customization =====
-== Sapphire core only, no CMS, no jsparty ==
+==== Sapphire core only, no CMS, no jsparty ====
 These are some general notes relating to the creation of a site that didn't do things 'normally' (e.g. it doesn't use cms/ or jsparty/, just the sapphire/ core)
 
   * ErrorPage requires a Page class (which isn't created for you unless you use the installer etc). I didn't need one for the project, but ended up creating a blank one to appease ErrorPage
