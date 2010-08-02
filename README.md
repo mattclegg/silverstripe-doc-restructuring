@@ -38,14 +38,13 @@ To edit the files, you just need a text editor. They're written in [Markdown](ht
 
  * `master`: The new markdown files - please edit in here
  * `scripts`: Helper scripts for conversion and file management
- * `input`: Original DokuWiki files
- * `output`: First draft of automated conversion files (now empty)
 
 ### Forking the project
 
 You can **fork** this project within github, as described on [help.github.com](http://help.github.com/forking/).
 This fork will show up on your own github profile, and can be checked out to your local machine.
-You don't need a webserver on there, or run any project-specific scripts.
+You don't need a webserver on there, or run any project-specific scripts. Merging back *pull requests* can
+either be done [straight on github](http://github.com/chillu/silverstripe-doc-restructuring/forkqueue) (for simple cases), or through `git pull` commands (see [guide](http://github.com/guides/pull-requests)).
 
 ### Documentation Guidelines
 
