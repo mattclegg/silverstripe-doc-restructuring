@@ -13,19 +13,6 @@ This is a temporary repository for developer documentation about the SilverStrip
  * Documentation questions: Ingo Schommer (ingo at silverstripe dot com)
  * Markdown Conversion: Mark Stephens (mark at silverstripe dot com)
 
-## Usage
-
-### Import DokuWiki files
-
-Note: This is only possible by SilverStripe staff.
-
-	scp -P 2222 -R <username>@doc.silverstripe.org:/sites/ss2doc/www/assets/data/pages/ input/
-
-### Convert to Markdown files
-
-	cd scripts
-	php TranslateSSDocs.php
-	
 ## Contributing
 
 ### Requirements
@@ -33,6 +20,8 @@ Note: This is only possible by SilverStripe staff.
 You'll need to [install git](http://help.github.com/git-installation-redirect), which is quite straightforward on most operating systems.
 
 To edit the files, you just need a text editor. They're written in [Markdown](http://daringfireball.net/projects/markdown/), which many editors have syntax highlighting for (e.g. through the [Textmate plugin](http://github.com/textmate/markdown.tmbundle)).
+
+To preview changes, you will need to run a local webserver capable of running SilverStripe.  [XAMPP](http://www.apachefriends.org/en/xampp.html) is a good option.
 
 ### Folders
 
@@ -53,15 +42,34 @@ writing and formatting style (TODO: Adjust to Markdown). We use a customized ver
 
 ### Previewing your changes
 
-Github allows you to preview some of the Markdown formatting straight on the website 
-(in [github flavoured markdown](http://github.github.com/github-flavored-markdown/)). 
-It is less powerful than our version of Markdown, but will give you a good idea.
+The preview/ directory contains a SilverStripe site that you can visit to preview what the documentation site will look like.  You will need to create a `_ss_environment.php` file in the root of your project or in the directory above.
 
-You can also [preview Markdown Extra online](http://michelf.com/projects/php-markdown/dingus/).
+Here is a minimal one.  Alter the database settings to suit your set-up.
 
-**We're still working on the actual parser and test website, so currently the only way to accurately preview
-your changes is to send us a pull request**
+    <?php
+    define('SS_ENVIRONMENT_TYPE', 'dev');
+    define('SS_DATABASE_SERVER', 'localhost');
+    define('SS_DATABASE_USERNAME', 'root');
+    define('SS_DATABASE_PASSWORD', '');
+
+If you have check out silverstripe-doc-restructuring into your webroot, you should be able to visit a URL such as http://localhost/silverstripe-doc-restructuring/preview/ to preview your changes.
 
 ### Contributing your changes
 
 After **pushing your changes** to your own github fork, you can send us **pull requests**.
+
+## Obsolete actions
+
+The following scripts should no longer be used, as they were designed for an earlier stage in the project.
+
+### Import DokuWiki files
+
+Note: This is only possible by SilverStripe staff.
+
+	scp -P 2222 -R <username>@doc.silverstripe.org:/sites/ss2doc/www/assets/data/pages/ input/
+
+### Convert to Markdown files
+
+	cd scripts
+	php TranslateSSDocs.php
+	

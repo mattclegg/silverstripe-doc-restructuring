@@ -28,7 +28,7 @@ Director::addRules(10, array(
 	'' => '->current/en/cms'
 ));
 DocumentationService::set_automatic_registration(false);
-DocumentationService::register("cms", realpath("../src/github/master/cms/docs/"), '2.4');
+DocumentationService::register("cms", realpath("../../master/cms/docs/"), '2.4');
 
 // We want this to be reviewed by the whole community
 BasicAuth::protect_entire_site(false);
