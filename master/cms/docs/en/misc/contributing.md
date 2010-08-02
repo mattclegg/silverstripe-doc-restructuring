@@ -91,6 +91,24 @@ webserver access logs (if a hack is suspected), any other services and web packa
 *  Developer Guides: [doc.silverstripe.com](http://doc.silverstripe.com)
 *  Developer API Docuumentation: [api.silverstripe.com](http://api.silverstripe.com)
 
+### What to write
+
+* **API Docs**: Written alongside source code, this documents the low-level, technical usage of a class, method or property.
+  Not suited for longer textual descriptions, due to the limited support of PHPDoc formatting for headlines.
+* **Tutorials**: The first contact for new users, guiding them step-by-step through achievable projects, in a book-like style.
+  *Example: Building a basic site*
+* **Topics**: Provides an overview on how things fit togehter, the "conceptual glue" between APIs and features. 
+  This is where most documentation should live, and is the natural "second step" after finishing the tutorials.
+  *Example: Templates, Testing, Datamodel*
+* **Howto**: Recipes that solve a specific task or problem, rather than describing a feature.
+  *Example: Export DataObjects as CSV, Customizing TinyMCE in the CMS*
+* **Reference**: Complements API docs in providing deeper introduction into a specific API. Most documentation
+  should fit elsewhere. *Example: ModelAdmin*
+* **Misc**: "Meta" documentation like coding conventions that doesn't directly relate to a feature or API. 
+
+See [What to write (jacobian.org)](http://jacobian.org/writing/great-documentation/what-to-write/) for an excellent
+introduction to the different types of documentation.
+
 ### Recommendations
 
 * Don't duplicate: Search for existing places to put your documentation. Do you really require a new page, or just a new paragraph
