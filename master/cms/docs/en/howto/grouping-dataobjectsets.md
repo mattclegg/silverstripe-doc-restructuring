@@ -42,7 +42,7 @@ will be used both for grouping and for the title in the template.
 		 *
 		 * @return string
 		 */
-		public function getFirstLetter() {
+		public function getTitleFirstLetter() {
 			return $this->Title[0];
 		}
 	
@@ -68,13 +68,13 @@ this example this will be a method on the Page class.
 	}
 
 The final step is to render this into a template. The [api:DataObjectSet->GroupedBy()] method breaks up the set into
-a number of sets, grouped by the field that is passed as the parameter. In this case, the getFirstLetter method defined
-earlier is used to break them up.
+a number of sets, grouped by the field that is passed as the parameter. In this case, the getTitleFirstLetter method
+defined earlier is used to break them up.
 
 	:::ss
 	<h2>Modules</h2>
-	<% control Modules.GroupedBy(FirstLetter) %>
-		<h3>$Children.First.FirstLetter</h3>
+	<% control Modules.GroupedBy(TitleFirstLetter) %>
+		<h3>$TitleFirstLetter</h3>
 		<ul>
 			<% control Children %>
 				<li>$Title</li>
@@ -86,4 +86,59 @@ Grouping Sets By Month
 ----------------------
 
 Grouping a set by month is a very similar process. The only difference would be to sort the records by month name, and
-then create a method on the DataObject that returns the month name, and pass that to the GroupedBy call.
+then create a method on the DataObject that returns the month name, and pass that to the [api:DataObjectSet->GroupedBy()]
+call.
+
+Again, the first step is to create a method on the class in question that will be displayed in a list. For this example,
+a [api:DataObject] called NewsItem will be used. This will have a method which returns the month it was posted in:
+
+	:::php
+	class NewsItem extends DataObject {
+	
+		public static $db = array(
+			'Title' => 'Varchar(255)',
+			'Date'  => 'Date'
+		);
+	
+		// ...
+	
+		/**
+		 * Returns the month name this news item was posted in.
+		 *
+		 * @return string
+		 */
+		public function getMonthPosted() {
+			return date('F', strtotime($this->Date));
+		}
+	
+	}
+
+The next step is to create a method that will return all the News records that exist, sorted by month name from
+January to December. This can be accomplshed by sorting by the Date field:
+
+	:::php
+	class Page extends SiteTree {
+	
+		/**
+		 * Returns all news items, sorted by the month they were posted
+		 *
+		 * @return DataObjectSet
+		 */
+		public function getNewsItems() {
+			return DataObject::get('NewsItem', null, '"Date"');
+		}
+	
+	}
+
+The final step is the render this into the template using the [api:DataObjectSet->GroupedBy()] method.
+
+	:::ss
+	<h2>Modules</h2>
+	<% control NewsItems.GroupedBy(MonthPosted) %>
+		<h3>$MonthPosted</h3>
+		<ul>
+			<% control Children %>
+				<li>$Title ($Date.Nice)</li>
+			<% end_control %>
+		</ul>
+	<% end_control %>
