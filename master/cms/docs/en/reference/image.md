@@ -33,6 +33,50 @@ your tmp folder.
 	$image->getOrienation() // Returns a class constant: ORIENTATION_SQUARE or ORIENTATION_PORTRAIT or ORIENTATION_LANDSCAPE
 
 
+You can also create your own functions by extending the image class, for example
+
+	:::php
+	class MyImage extends Image {
+		public function generateRotateClockwise(GD $gd)	{
+			return $gd->rotate(90);
+		}
+		
+		public function generateRotateCounterClockwise(GD $gd)	{
+			return $gd->rotate(270);
+		}
+		
+		public function clearResampledImages()	{
+			$files = glob(Director::baseFolder().'/'.$this->Parent()->Filename."_resampled/*-$this->Name");
+		 	foreach($files as $file) {unlink($file);}
+		}
+		
+		public function Landscape()	{
+			return $this->getWidth() > $this->getHeight();
+		}
+		
+		public function Portrait() {
+			return $this->getWidth() < $this->getHeight();
+		}
+		
+		function generatePaddedImageByWidth(GD $gd,$width=600,$color="fff"){
+			return $gd->paddedResize($width, round($gd->getHeight()/($gd->getWidth()/$width),0),$color);
+		}
+		
+		public function Exif(){
+			//http://www.v-nessa.net/2010/08/02/using-php-to-extract-image-exif-data
+			$image = $this->AbsoluteURL;
+			$d=new DataObjectSet();	
+			$exif = exif_read_data($image, 0, true);
+			foreach ($exif as $key => $section) {
+				$a=new DataObjectSet();	
+				foreach ($section as $name => $val)
+					$a->push(new ArrayData(array("Title"=>$name,"Content"=>$val)));
+				$d->push(new ArrayData(array("Title"=>strtolower($key),"Content"=>$a)));
+			}
+			return $d;
+		}
+	}
+
 ## Resizing in Templates
 
 You can call certain resize functions directly from the template, to use the inbuilt GD functions as the template parser
@@ -45,7 +89,7 @@ For output of an image tag with the image automatically resized to 80px width, y
 	$Image.SetHeight(80) // returns a image 80px tall, ration kept the same
 	$Image.SetSize(80,80) // returns a 80x80px padded image
 	$Image.SetRatioSize(80,80) // **New in 2.4** returns an image scaled proportional, with its greatest diameter scaled to 80px
-	$Image.PaddedImage(80, 80) // Returns an 80x80 image. Unused space is padded white. No crop
+	$Image.PaddedImage(80, 80) // Returns an 80x80 image. Unused space is padded white. No crop. No stretching
 	$Image.Width // returns width of image
 	$Image.Height // returns height of image
 	$Image.Orientation // returns Orientation
@@ -66,6 +110,5 @@ and whenever you upload or modify an Image through SilverStripe.
 
 If you encounter problems with images not appearing, or have mysteriously disappeared, you can try manually flushing the
 image cache.
-
 	
 	http://www.mysite.com/images/flush
