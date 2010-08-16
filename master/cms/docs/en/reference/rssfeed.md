@@ -41,13 +41,7 @@ something like this:
 	}
 	
 	class Page_Controller extends ContentController {
-	
-		// Gets the Project Name
-		function project() {
-			global $project;
-			 return $project;
-		}	
-	
+
 		function init() {
 			RSSFeed::linkToFeed($this->Link() . "rss", "10 Most Recently Updated Pages");
 			parent::init();

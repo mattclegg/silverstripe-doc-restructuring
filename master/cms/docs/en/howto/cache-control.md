@@ -19,7 +19,11 @@ Overriding these defaults
 0 to disable caching; the "no-cache" clause in Cache-Control and Pragma will be included.
 *  HTTP::register_modification_date($dateString) can be used to set the modification date to something more recent than
 the default.
-
+* You can also override these settings while working in dev mode in your _config.php file by using;
+	:::php
+	if (Director::isDev()) {SSViewer::flush_template_cache();}
+	
+	
 How it works:
 
 *  DataObject::__construct() calls HTTP::register_modification_date() whenever a record comes from the database
