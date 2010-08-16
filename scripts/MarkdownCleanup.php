@@ -6,7 +6,10 @@
  */
 class MarkdownCleanup {
 	
-	function process($content) {
+	function process($filepath) {
+		$content = file_get_contents($filepath);
+		
+		$content = $this->convertInlineHTML($content);
 		$content = $this->convertUnbalancedHeadlines($content);
 		$content = $this->convertCodeBlocks($content);
 		$content = $this->newlinesAfterHeadlines($content);
@@ -14,7 +17,92 @@ class MarkdownCleanup {
 		$content = $this->convertApiLinks($content);
 		$content = $this->convertEmphasis($content);
 		$content = $this->fixedWidth($content);
+		$content = $this->relocateImages($content, $filepath);
 		
+		return $content;
+	}
+	
+	protected function convertInlineHTML($content) {
+		$out = array();
+		
+		$lines = $this->getLines($content);
+		foreach($lines as $i => $line) {
+			// TODO Don't convert HTML in headlines
+			if(!preg_match('/^\t/', $line)) {
+				$lines[$i] = preg_replace('/[\*\'`]*(<[^>]*?>)[\*\'`]*/', '`$1`', $lines[$i]);
+			}
+			
+			$out[] = $lines[$i];
+		}
+		
+		return implode("\n", $out);
+	}
+	
+	/**
+	 * Convert all image references from dokuwiki format into markdown,
+	 * and relocate the physical files (they were all stored in one folder regarless
+	 * of the markdown file location). Creates copies of images in case they're referenced
+	 * from multiple places, to avoid breaking already converted paths.
+	 * 
+	 * Note: Doesn't add image heights from DokuWiki (e.g. image.png?100 makes it 100px wide).
+	 * 
+	 * # Example
+	 * 
+	 * Before: {{tutorial:home-first.png|My Title}}
+	 * After: ![My Title](home-first.png)
+	 */
+	protected function relocateImages($content, $filepath) {
+		$origImgFolder = realpath('../master/cms/docs/en/reference/_images/media/');
+		$targetImgFolder = dirname($filepath) . '/images/';
+		
+		// create images folder
+		if(!file_exists($targetImgFolder)) mkdir($targetImgFolder);
+		
+		preg_match_all('/\{\{\s*(.*?)\\s*}\}/m', $content, $matches);
+		if($matches) foreach($matches[1] as $i => $match) {
+			// var_dump($match);
+			// split into path (with optional namespaces) and optional title
+			$specParts = explode('|', $match);
+			$dokuwikiPath = $specParts[0];
+			$title = (isset($specParts[1])) ? $specParts[1] : '';
+			$title = preg_replace('/^:/', '', $title); // Remove trailing colon (root namespace)
+			
+			// Don't rewrite absolute URLs (no need to copy images either then)
+			$parsed = parse_url($dokuwikiPath);
+			if(isset($parsed['scheme']) && $parsed['scheme'] == 'http') {
+				$targetImgHref = $dokuwikiPath;
+			} else {
+				$dokuwikiPath = preg_replace('/^:/', '', $dokuwikiPath); // Remove trailing colon (root namespace)
+				$dokuwikiPathParts = explode(':', $dokuwikiPath);
+				$filename = $dokuwikiPathParts[count($dokuwikiPathParts)-1];
+				$filename = preg_replace('/\?.*/', '', $filename); // remove querystrings from filename
+				$origImgPath = $origImgFolder . '/' . implode('/', (array)$dokuwikiPathParts);
+				$targetImgPath = $targetImgFolder . '/' . $filename;
+				$origImgPath = preg_replace('/\?.*/', '', $origImgPath); // remove querystrings from filename
+				
+				// Unset title if its the same as the filename
+				if($title == $filename) $title = '';
+
+				// Copy the image file
+				if(file_exists($origImgPath)) {
+					copy($origImgPath, $targetImgPath);
+					// shell_exec("git add $targetImgFolder");
+					// shell_exec("git mv $origImgPath $targetImgPath");
+				} else {
+					echo sprintf('Original image not found: %s' . "\n", $origImgPath);
+				}
+				
+				$targetImgHref = 'images/' . $filename;
+			}
+			
+			// Change to Markdown syntax (see http://daringfireball.net/projects/markdown/syntax#img)
+			$content = str_replace(
+				$matches[0][$i], 
+				sprintf('![%s](%s)', $title, $targetImgHref),
+				$content
+			);
+			
+		}
 		
 		return $content;
 	}
@@ -73,7 +161,10 @@ class MarkdownCleanup {
 		
 		$lines = $this->getLines($content);
 		foreach($lines as $i => $line) {
-			$lines[$i] = preg_replace('/\s\/\/([^\s][^\]\)]*?)\/\//', ' *$1*', $lines[$i]);
+			// Mandate space before tags to avoid converting protocol links
+			$lines[$i] = preg_replace('/\s\/\/([^\s][^\]]*?)\/\//', ' *$1*', $lines[$i]);
+			// Fix tags without space at start, but at file start
+			$lines[$i] = preg_replace('/^\/\/([^\s][^\]]*?)\/\//', '*$1*', $lines[$i]);
 			$out[] = $lines[$i];
 		}
 		
@@ -202,6 +293,6 @@ foreach($objects as $name => $object) {
 	$inputDir = $object->getPath();
 	if (is_dir($object->getPathname())) continue;
 
-	$newContent = $cleanup->process(file_get_contents("{$inputDir}/{$filename}"));
+	$newContent = $cleanup->process("{$inputDir}/{$filename}");
 	file_put_contents("{$inputDir}/{$filename}", $newContent);
 }

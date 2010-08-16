@@ -38,8 +38,9 @@ Returns the full *Member* Object for the current user, returns *null* if user is
 
 ## Subclassing
 
-<note>This is the least desirable way of extending the Member class. It's better to use DataObjectDecorator (see
-below).</note>
+[note]
+This is the least desirable way of extending the Member class. It's better to use DataObjectDecorator (see below).
+[/note]
 
 You can defined subclasses of member to add extra fields or functionality to the built-in membership system.
 

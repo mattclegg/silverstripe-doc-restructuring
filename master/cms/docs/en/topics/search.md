@@ -3,7 +3,7 @@
 ## Searching for Pages (and Files)
 
 Fulltext search for page content (and other attributes like "Title" or "MetaTags") can be easily added to SilverStripe.
-See [Tutorial: Site Search](tutorials/4-site-search) for details.
+See [Tutorial: Site Search](/tutorials/4-site-search) for details.
 
 ## Searching for DataObjects
 
@@ -18,7 +18,7 @@ dedicated search service like the [sphinx module](http://silverstripe.org/sphinx
 
 ## Related
 
-*  [ModelAdmin](ModelAdmin)
-*  [RestfulServer](RestfulServer)
-*  [Tutorial: Site Search](tutorials/4-site-search)
+*  `[api:ModelAdmin]`
+*  `[api:RestfulServer]`
+*  [Tutorial: Site Search](/tutorials/4-site-search)
 *  [genericviews Module](http://silverstripe.org/generic-views-module)

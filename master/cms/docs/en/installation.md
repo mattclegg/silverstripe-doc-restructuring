@@ -15,28 +15,28 @@ If you already have an installed version of SilverStripe, please see our [upgrad
 
 ## Windows
 
-We recommend that you use [Microsoft's free Web Platform installer](installation-on-windows-pi). 
+We recommend that you use [Microsoft's free Web Platform installer](topics/installation/installation-on-windows-pi). 
 
 The more technically inclined can install using 
-[Apache/WAMP](installation-on-windows-wamp) or [IIS](installation-on-windows-manual-iis).
+[Apache/WAMP](topics/installation/installation-on-windows-wamp) or [IIS](topics/installation/installation-on-windows-manual-iis).
 
 ## Mac OS X
 
-Mac OS X comes with a built-in webserver, but we recommend that you [install SilverStripe using MAMP](installation-on-mac-osx).
+Mac OS X comes with a built-in webserver, but we recommend that you [install SilverStripe using MAMP](topics/installation/installation-on-mac-osx).
 
 ## Linux/Unix
 
 If you run Linux/Unix, we generally assume that you know how to get a web-server going.
 
-*  [Apache](installation-on-webserver) - our preferred platform
-*  [Lighttpd (lighty)](installation-on-lighttpd) - fast, but a bit tricker to get going
-*  [Nginx](installation-on-nginx)
+*  [Apache](topics/installation/installation-on-webserver) - our preferred platform
+*  [Lighttpd (lighty)](topics/installation/installation-on-lighttpd) - fast, but a bit tricker to get going
+*  [Nginx](topics/installation/installation-on-nginx)
 
 ## Troubleshooting
 
-If you run into trouble, see [common-problems](common-problems) or post to [the SilverStripe
+If you run into trouble, see [common-problems](topics/common-problems) or post to [the SilverStripe
 forum](http://silverstripe.com/silverstripe-forum/).
 
 ## Module Installation
 
-See [installing-modules](installing-modules).
+See [modules](topics/modules).

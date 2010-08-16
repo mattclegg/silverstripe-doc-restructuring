@@ -1,11 +1,11 @@
+﻿# ComplexTableField
+
 ##  Introduction
 
 Shows a group of DataObjects as a (readonly) tabular list (similiar to `[api:TableListField]`.  
 
 You can specify limits and filters for the resultset by customizing query-settings (mostly the ID-field on the other
 side of a one-to-many-relationship).
-
-See [complextablefieldExamples](complextablefieldExamples)
 
 See `[api:TableListField]` for more documentation on the base-class
 
@@ -68,7 +68,7 @@ If you don't want several functions to appear (e.g. no add-link), there's severa
 *  Subclass ComplexTableField and override the rendering-mechanism
 *  Use ComplexTableField->setTemplate() and ComplexTableField->setTemplatePopup() to provide custom templates
 
-#### Customising fields and Requirements in the popup
+### Customising fields and Requirements in the popup
 
 There are several ways to customise the fields in the popup. Often you would want to display more information in the
 popup as there is more real-estate for you to play with. 
@@ -132,10 +132,10 @@ Most of the time, you need to override the following methods:
 
 ## Examples
 
-*  [AssetTableField](AssetTableField)
-*  [MemberTableField](MemberTableField)
+*  `[api:AssetTableField]`
+*  `[api:MemberTableField]`
 
-# API Documentation
+## API Documentation
 
 [Click here for the API
 documentation](http://api.silverstripe.org/trunk/forms/fields-relational/ComplexTableField.html).

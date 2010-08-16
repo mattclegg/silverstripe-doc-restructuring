@@ -1,13 +1,13 @@
 
 ##### Installation on Windows using Web Platform Installer
 
-{{http://doc.silverstripe.com/assets/windows.png }}
+![](http://doc.silverstripe.com/assets/windows.png)
 (Windows XP, 2003, 2008, Vista and 7)
 
 ##### Installing SilverStripe
 
 *  Download and run Microsoft Web Platform Installer (WebPI):
-[{{http://www.silverstripe.org/assets/downloads/webpi/wpiBadgeGreen.png}}](http://www.microsoft.com/web/gallery/install.aspx?appsxml=www.microsoft.com%2fweb%2fwebpi%2f2.0%2fWebApplicationList.xml&amp;appid=105)
+[![](http://www.silverstripe.org/assets/downloads/webpi/wpiBadgeGreen.png)](http://www.microsoft.com/web/gallery/install.aspx?appsxml=www.microsoft.com%2fweb%2fwebpi%2f2.0%2fWebApplicationList.xml&amp;appid=105)
 
 *  In WebPI, select 'SilverStripe' from the 'Content Management System' link
 *  Select install. It will install dependancies like MySQL and PHP if you don't have these installed already.
@@ -42,11 +42,11 @@ a beta version of the software)
 
 ##### Screenshots of this installation process
 
-{{:webpi-2-a-silverstripe-choice.png|:webpi-2-a-silverstripe-choice.png}}
-{{:webpi-2-b-dependencies.png|:webpi-2-b-dependencies.png}}
-{{:webpi-2-c-downloading-and-installaing.png|:webpi-2-c-downloading-and-installaing.png}}
-{{:webpi-2-d-installer-questions-step1.png|:webpi-2-d-installer-questions-step1.png}}
-{{:webpi-2-e-installer-questions-step2.png|:webpi-2-e-installer-questions-step2.png}}
-{{:webpi-2-f-success-message.png|:webpi-2-f-success-message.png}}
-{{:webpi-2-g-silverstripe-homepage.png|:webpi-2-g-silverstripe-homepage.png}}
-{{:webpi-2-h-cms-interface-working.png|:webpi-2-h-cms-interface-working.png}}
+![](_images/webpi-2-a-silverstripe-choice.png)
+![](_images/webpi-2-b-dependencies.png)
+![](_images/webpi-2-c-downloading-and-installaing.png)
+![](_images/webpi-2-d-installer-questions-step1.png)
+![](_images/webpi-2-e-installer-questions-step2.png)
+![](_images/webpi-2-f-success-message.png)
+![](_images/webpi-2-g-silverstripe-homepage.png)
+![](_images/webpi-2-h-cms-interface-working.png)

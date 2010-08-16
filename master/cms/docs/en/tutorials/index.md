@@ -1,14 +1,13 @@
 # Written Tutorials
 
-*  [Tutorial 1: Building a basic site](tutorial/1-building-a-basic-site): An introduction to building a site with
+*  [Tutorial 1: Building a basic site](1-building-a-basic-site): An introduction to building a site with
 SilverStripe
-*  [Tutorial 2: Extending a basic site](tutorial/2-extending-a-basic-site): A tutorial that builds on "Building a basic
+*  [Tutorial 2: Extending a basic site](2-extending-a-basic-site): A tutorial that builds on "Building a basic
 site"
-*  [Tutorial 3: Forms](tutorial/3-forms): An introduction to forms in SilverStripe.
-*  [Tutorial 4: Site Search](tutorial/4-site-search): Learn how to add search to your site.
-*  [Tutorial 5: Dataobject Relationship Management](tutorial/5-dataobject-relationship-management): Learn how to create
+*  [Tutorial 3: Forms](3-forms): An introduction to forms in SilverStripe.
+*  [Tutorial 4: Site Search](4-site-search): Learn how to add search to your site.
+*  [Tutorial 5: Dataobject Relationship Management](5-dataobject-relationship-management): Learn how to create
 a simple data relationships
-*  [Tutorial 6: creating a site map](tutorial/site-map): Learn how to add a site map to your site.
 
 
 Please suggest improvements or further tutorials by [registering to our issue
@@ -29,6 +28,6 @@ fields)](http://silverstripe.org/assets/screencasts/Tutorial-ChangingFields-DM08
 
 If you get stuck;
 
-*  [Common Problems](common-problems): Review some existing solutions to common problems.
+*  [Common Problems](/topics/common-problems): Review some existing solutions to common problems.
 *  [SilverStripe Forums](http://www.silverstripe.com/silverstripe-forum/): Head over to the forums and ask the community
 for help

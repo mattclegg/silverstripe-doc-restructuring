@@ -4,7 +4,7 @@ The Sapphire core contains various features designed to simplify the process of 
 
 ## Introduction
 
-If you are familiar with PHP coding but new to unit testing, you should read the [Introduction](testing-guide-intro) and
+If you are familiar with PHP coding but new to unit testing, you should read the [Introduction](/topics/testing) and
 check out Mark's presentation [Getting to Grips with SilverStripe
 Testing](http://www.slideshare.net/maetl/getting-to-grips-with-silverstripe-testing).
 
@@ -15,7 +15,7 @@ If you're more familiar with unit testing, but want a refresher of some of the c
 the [Testing Glossary](#glossary).
 
 To get started now, follow the installation instructions below, and check
-[Troubleshooting](testing-guide-troubleshooting) in case you run into any problems.
+[Troubleshooting](/topics/testing/testing-guide-troubleshooting) in case you run into any problems.
 
 ## Installation
 
@@ -50,7 +50,7 @@ their own:
 
 ### Via Command Line
 
-`cd` to the root level of your project and run [sake](sake) (Sapphire Make) to execute the tests:
+`cd` to the root level of your project and run [sake](/topics/commandline) (Sapphire Make) to execute the tests:
 	
 	/path/to/project$ sake dev/tests/all
 
@@ -93,14 +93,12 @@ Some people may note that we have used the same naming convention as Ruby on Rai
 
 Tutorials and recipes for creating tests using the Sapphire framework:
 
-*  **[Create a Sapphire Test](testing-howto/create-sapphire-test)**
+*  **[Create a Sapphire Test](/topics/testing//create-sapphire-test)**
 *  **Load Test Fixtures**
-*  **[Create a Functional Test](testing-howto/create-functional-test)**
-*  **[Test Outgoing Email Sending](testing-howto/test-email-sending)**
+*  **[Create a Functional Test](/topics/testing//create-functional-test)**
+*  **[Test Outgoing Email Sending](/topics/testing//test-email-sending)**
 
 ## Glossary {#glossary}
-
-//Part of the [SilverStripe Testing Guide](testing-guide).//
 
 **Assertion:** A predicate statement that must be true when a test runs.
 

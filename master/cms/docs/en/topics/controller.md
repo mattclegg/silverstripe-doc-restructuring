@@ -40,7 +40,7 @@ Request for '/fastfood/order/24/cheesefries' would result in the following to th
 
 ## URL Handling
 
-In the above example the URLs were configured using the [director](director) rules in the **_config.php** file. 
+In the above example the URLs were configured using the `[api:Director]` rules in the **_config.php** file. 
 Alternatively you can specify these in your Controller class via the **$url_handlers** static array (which gets
 processed by the RequestHandler).  
 
@@ -100,6 +100,6 @@ You can use the **debug_request=1** switch from the [urlvariabletools](urlvariab
 
 ## Links
 
-*  [director](director)
-*  [execution-pipeline](execution-pipeline)
+*  `[api:Director]` class
+*  [execution-pipeline](/reference/execution-pipeline)
 *  [URL Handling in Controllers](http://maetl.net/silverstripe-url-handling) by maetl

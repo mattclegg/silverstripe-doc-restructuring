@@ -125,7 +125,7 @@ MyAdmin_right.ss
 
 ### Customising the main menu
 
-//Minimum Requirement: Silverstripe 2.3//
+*Minimum Requirement: Silverstripe 2.3*
 
 The static variable $url_segment determines the sub url of the controller.
 The static variable $url_rule has the url format for the actions performed by the class.
@@ -141,7 +141,7 @@ For example:
 	static $menu_priority = 60;
 
 
-See also [CMSMenu](CMSMenu)
+See also `[api:CMSMenu]`
 
 ##### Translatable Menu Titles
 
@@ -176,10 +176,10 @@ You could insert this code using Requirements from a custom page class.
 
 ## Related
 
-*  [CMSMain](CMSMain)
-*  [AssetAdmin](AssetAdmin)
-*  [SecurityAdmin](SecurityAdmin)
-*  [ModelAdmin](ModelAdmin) 
+*  `[api:CMSMain]`
+*  `[api:AssetAdmin]`
+*  `[api:SecurityAdmin]`
+*  `[api:ModelAdmin]` 
 
 # TODO
 

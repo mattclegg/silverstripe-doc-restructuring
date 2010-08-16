@@ -1,1 +1,0 @@
-See [[objectmodel]] and [[datamodel]]  

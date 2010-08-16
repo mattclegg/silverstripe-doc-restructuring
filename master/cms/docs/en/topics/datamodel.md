@@ -13,23 +13,22 @@ logic is handled by sapphire, you don't need to worry about writing SQL most of 
 
 The advanced object-relational layer in Silverstripe is one of the main reasons for requiring PHP5. Most of its
 customizations are possible through [PHP5 Object
-Overloading](http://www.onlamp.com/pub/a/php/2005/06/16/overloading.html) handled in the [Object](Object)-class.
+Overloading](http://www.onlamp.com/pub/a/php/2005/06/16/overloading.html) handled in the `[api:Object]`-class.
 
-See [database-structure](database-structure) for in-depth information on the database-schema.
-See [objectmodel](objectmodel) for further details about casting values and the underlying property-transformations.
+See [database-structure](/reference/database-structure) for in-depth information on the database-schema.
 
 ## Generating the database-schema
 
 The Silverstripe database-schema is generated automatically by visiting the URL.
-`http://<mysite>/dev/build`
+`http://`<mysite>`/dev/build`
 Or, for older versions of SilverStripe:
-`http://<mysite>/db/build`
+`http://`<mysite>`/db/build`
 Note: You need to be logged in as an administrator to perform this command.
 
 ## Querying Data
 
 There are static methods available for querying data. They automatically compile the necessary SQL to query the database
-so they are very helpful. In case you need to fall back to plain-jane SQL, have a look at [sqlquery](sqlquery).
+so they are very helpful. In case you need to fall back to plain-jane SQL, have a look at `[api:SQLQuery]`.
 
 	:::php
 	$records = DataObject::get($obj, $filter, $sort, $join, $limit);
@@ -40,7 +39,7 @@ so they are very helpful. In case you need to fall back to plain-jane SQL, have 
 	:::php
 	$record = DataObject::get_by_id($obj, $id);
 
-CAUTION: Please make sure to properly escape your SQL-snippets (see [security](security) and
+CAUTION: Please make sure to properly escape your SQL-snippets (see [security](/topics/security) and
 [escape-types](escape-types)).
 
 ## Joining 
@@ -70,7 +69,7 @@ Identifiers](http://dev.mysql.com/doc/refman/5.0/en/identifiers.html)):
 ## Definition
 
 Data is defined in the static variable $db on each class, in the format:
-<property-name> => "data-type"
+`<property-name>` => "data-type"
 
 	:::php
 	class Player extends DataObject {
@@ -89,7 +88,7 @@ See [data-types](data-types) for all available types.
 
 "Getters" and "Setters" are functions that help us save fields to our data objects. By default, the methods getField()
 and setField() are used to set data object fields.  They save to the protected array, $obj->record. We can overload the
-default behaviour by making a function called "get<fieldname>" or "set<fieldname>". 
+default behaviour by making a function called "get`<fieldname>`" or "set`<fieldname>`". 
 
 	:::php
 	class Player extends DataObject {
@@ -149,7 +148,7 @@ Note: Alternatively you can set defaults directly in the database-schema (rather
 Properties defined in *static $db* are automatically casted to their [data-types](data-types) when used in templates. 
 You can also cast the return-values of your custom functions (e.g. your "virtual properties").
 Calling those functions directly will still return whatever type your php-code generates,
-but using the //obj()//-method or accessing through a template will cast the value accordig to the $casting-definition.
+but using the *obj()*-method or accessing through a template will cast the value accordig to the $casting-definition.
 
 	:::php
 	class Player extends DataObject {
@@ -174,11 +173,11 @@ but using the //obj()//-method or accessing through a template will cast the val
 # Relations
 
 Relations are built through static array definitions on a class, in the format:\\
-`<relationship-name> => <classname>`{php}
+`<relationship-name>` => `<classname>`{php}
 
 ## has_one
 
-A 1-to-1 relation creates a database-column called "<relationship-name>ID", in the example below this would be "TeamID"
+A 1-to-1 relation creates a database-column called "`<relationship-name>`ID", in the example below this would be "TeamID"
 on the "Player"-table.
 
 	:::php
@@ -202,7 +201,7 @@ parent element in the tree:
 
 ## has_many
 
-Defines 1-to-many joins. A database-column named ""<relationship-name>ID"" will to be created in the child-class.
+Defines 1-to-many joins. A database-column named ""`<relationship-name>`ID"" will to be created in the child-class.
 
 **CAUTION:** Please specify a $has_one-relationship on the related child-class as well, in order to have the necessary
 accessors available on both ends.
@@ -280,7 +279,7 @@ accessors available on both ends.
 	}
 
 
-See [recipes:many_many-example](recipes/many_many-example) for a more in-depth example
+See [recipes:many_many-example](http://doc.silverstripe.org/recipes/many_many-example) for a more in-depth example
 
 
 
@@ -317,7 +316,7 @@ Inside sapphire it doesn't matter if you're editing a *has_many*- or a *many_man
 ## Custom Relation Getters
 
 You can use the flexible datamodel to get a filtered result-list without writing any SQL. For example, this snippet gets
-you the "Players"-relation on a team, but only containing active players. (See [#has_many](#has_many) for more info on
+you the "Players"-relation on a team, but only containing active players. (See `[api:DataObject::$has_many]` for more info on
 the described relations).
 
 	:::php
@@ -331,15 +330,6 @@ the described relations).
 	    return $this->Players("Status='Active'");
 	  }
 	}
-
-
-
-
-
-
-
-
-
 
 # Data Handling
 
@@ -375,7 +365,7 @@ You have to make sure though that certain properties are not overwritten, e.g. *
 	);
 
 
-Alternatively you can use //castedUpdate()// to respect the [data-types](data-types). This is preferred to manually
+Alternatively you can use *castedUpdate()* to respect the [data-types](/topics/data-types). This is preferred to manually
 casting data before saving.
 
 	:::php
@@ -394,7 +384,7 @@ casting data before saving.
 ## onBeforeWrite
 
 You can customize saving-behaviour for each DataObject, e.g. for adding security. These functions are private, obviously
-it wouldn't make sense to call them externally on the object. They are triggered when calling //write()//.
+it wouldn't make sense to call them externally on the object. They are triggered when calling *write()*.
 
 Example: Disallow creation of new players if the currently logged-in player is not a team-manager.
 
@@ -431,9 +421,9 @@ $this->ID to toggle these two modes, as shown in the example above.
 
 ## onBeforeDelete
 
-Triggered before executing //delete()// on an existing object.
+Triggered before executing *delete()* on an existing object.
 
-Example: Checking for a specific [permission](permission) to delete this type of object.
+Example: Checking for a specific [permission](/reference/permission) to delete this type of object.
 It checks if a member is logged in who belongs to a group containing the permission "PLAYER_DELETE".
 
 	:::php
@@ -457,20 +447,20 @@ It checks if a member is logged in who belongs to a group containing the permiss
 
 ## Saving data with forms
 
-See [form](form) and [recipes:forms](recipes/forms)
+See [forms](/topics/forms).
 
 ## Saving data with custom SQL
 
-See [sqlquery](sqlquery) for custom *INSERT*, *UPDATE*, *DELETE* queries.
+See `[api:SQLQuery]` for custom *INSERT*, *UPDATE*, *DELETE* queries.
 
 
 
 
 # Decorating DataObjects
 
-You can add properties and methods to existing DataObjects like [Member](Member) (a core class) without hacking core
+You can add properties and methods to existing DataObjects like `[api:Member]` (a core class) without hacking core
 code or subclassing.
-Please see [dataobjectdecorator](dataobjectdecorator) for a general description, and `[api:Hierarchy]` for our most
+Please see `[api:DataObjectDecorator]` for a general description, and `[api:Hierarchy]` for our most
 popular examples.
 
 
@@ -492,12 +482,3 @@ A `[api:ComponentSet]` with relation-specific functionality.
 	$myTeam = $myPlayer->Team(); // returns Componentset
 	$myTeam->add(new Player()); // works
 
-
-
-
-# Related
-
-*  [objectmodel](objectmodel)
-*  [many_many-example](many_many-example)
-*  [database-troubleshooting](database-troubleshooting)
-*  [database-structure](database-structure)

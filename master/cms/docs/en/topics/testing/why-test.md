@@ -1,6 +1,6 @@
 # Why Unit Test?
 
-*Note: This is part of the [SilverStripe Testing Guide](testing-guide).*
+*Note: This is part of the [SilverStripe Testing Guide](/topics/testing/).*
 
 So at this point, you might be thinking, *"that's way too complicated, I don't have time to write unit tests on top of
 all the things I'm already doing"*. Fair enough. But, maybe you're already doing things that are close to unit testing
@@ -67,7 +67,7 @@ twisting them into situations that we know are likely to manifest with the frame
 
 Modules usually encapsulate a smaller, and well defined subset of behavior or special features added on top of the core
 platform. A well constructed module will contain a reference suite of unit tests that documents and verifies all the
-basic aspects of the module design. See also: [module-maintainers](module-maintainers).
+basic aspects of the module design. See also: [modules](/topics/modules).
 
 ### Project Modules
 
@@ -87,7 +87,6 @@ happy that it works the way we want it to.
 
 ## See Also
 
-*  [Testing Guide - How To](testing-guide-howto)
 *  [Getting to Grips with SilverStripe
 Testing](http://www.slideshare.net/maetl/getting-to-grips-with-silverstripe-testing)
 

@@ -68,7 +68,7 @@ Note: You still have to attach some form of `[api:Validator]` to the form to tri
 
 ## Nested Table Fields
 
-When you have TableField inside a [ComplexTableField](ComplexTableField), the parent ID may not be known in your
+When you have TableField inside a `[api:ComplexTableField]`, the parent ID may not be known in your
 getCMSFields() method.  In these cases, you can set a value to '$RecordID' in your TableField extra data, and this will
 be populated with the newly created record id upon save.
 

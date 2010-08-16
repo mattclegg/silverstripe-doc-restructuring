@@ -45,7 +45,7 @@ Sometimes SilverStripe needs to know the URL of your site, for example, when sen
 your site in a web browser this is easy to work out, but if you're executing scripts on the command-line, it has no way
 of knowing.
 
-To work this out, you should add lines of this form to your [_ss_environment.php](environment-management) file.
+To work this out, you should add lines of this form to your [_ss_environment.php](/topics/environment-management) file.
 
 	:::php
 	global $_FILE_TO_URL_MAPPING;

@@ -8,8 +8,8 @@ including resizing.
 ## Form Fields
 
 *  `[api:Image]`. Designed to provide a complex image uploader for the CMS.
-*  [SimpleImageField](SimpleImageField). A Simple Image Upload Form
-*  See [recipes:imageupload](recipes/imageupload) for a example
+*  `[api:SimpleImageField]`. A Simple Image Upload Form
+*  See [imageupload](/howto/image-upload) for a example
 
 ## Resizing Images in PHP
 
@@ -99,8 +99,8 @@ For output of an image tag with the image automatically resized to 80px width, y
 
 ## Form Upload
 
-For usage on a website form, see [recipes:imageupload](recipes/imageupload) and [simpleimagefield](simpleimagefield).
-If you want to upload images within the CMS, see [imagefield](imagefield).
+For usage on a website form, see [imageupload](howto/image-upload) and `[api:SimpleImageField]`.
+If you want to upload images within the CMS, see `[api:ImageField]`.
 
 ## Clearing Thumbnail Cache
 
@@ -112,12 +112,3 @@ If you encounter problems with images not appearing, or have mysteriously disapp
 image cache.
 	
 	http://www.mysite.com/images/flush
-
-# Examples
-
-*  [Insert an ImageField into the CMS](recipes/imageupload)
-
-# API Documentation
-
-*  [Click here for the Image API documentation](http://api.silverstripe.org/trunk/sapphire/Image.html).
-*  [Click here for the GD API documentation](http://api.silverstripe.org/trunk/sapphire/GD.html)
