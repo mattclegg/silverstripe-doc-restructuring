@@ -12,7 +12,7 @@ Please suggest improvements or further tutorials by [[http://open.silverstripe.c
 
 ====== Brief video tutorials =====
   * [[http://silverstripe.org/assets/screencasts/Tutorial-InstallingLinux-DM08.swf|Installing on linux]]
-  * [[http://silverstripe.org/assets/screencasts/Tutorial-InstallingMAMP-SW08.swf|Installing on Apple Macintosh (using MAMP)]]
+  * [[http://silverstripe.org/assets/screencasts/Tutorial-InstallingMAMP-SW08.swf|Installing on Mac OS X (using MAMP)]]
   * [[http://silverstripe.org/assets/screencasts/Tutorial-InstallingBlogModule-DM08.swf|Installing a module (e.g. a blog)]]
   * [[http://silverstripe.org/assets/screencasts/Tutorial-ChangingFields-DM08.swf|Customising the CMS (Adding new fields)]]
 

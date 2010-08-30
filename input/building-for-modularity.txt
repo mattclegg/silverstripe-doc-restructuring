@@ -1,4 +1,4 @@
-====== Building for Modularity ======
+====== Building for modularity ======
 
 This page discusses what we need to do to let us easily insert add-on modules into SilverStripe sites, without any fuss.  For example, the biggest piece of work when adding a forum to your site should be choosing the right colours ^_^
 

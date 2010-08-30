@@ -161,6 +161,8 @@ Finally, we return the fields to the CMS. If we flush the cache (//?flush=1//), 
 
 Now that we have created our page types, let's add some content. Go into the CMS and create an //ArticleHolder// page named "News", and create some //ArticlePage//s inside it.
 
+**Please note:** As of version 2.4, the DateField type no longer automatically adds a javascript datepicker.  Your date field will look just like a text field by default.  If you'd like to use the built-in javascript datepicker as shown below, see Frank's comment at the bottom of this page.
+
 {{tutorial:news-cms.png}}
 
 ====== Creating the templates =======

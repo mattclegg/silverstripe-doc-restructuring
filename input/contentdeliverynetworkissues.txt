@@ -1,4 +1,4 @@
-====== Content Deliverty Networks ======
+====== Content delivery network issues ======
 
 When adding a SilverStripe installation to a content delivery network, or a grid server (such as MediaTemple's [[http://mediatemple.net/webhosting/gs/|(gs) Grid Service]]), some additional problems present themselves. These are listed below.
 

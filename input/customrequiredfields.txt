@@ -1,7 +1,5 @@
 ====== CustomRequiredFields ======
-[[http://api.silverstripe.org/trunk/sapphire/CustomRequiredFields.html|Click here for the API documentation]].
-
-
+ 
 CustomRequiredFields allow you to create your own validation on forms, while still having the ability to have required fields (as used in [[http://api.silverstripe.org/current/sapphire/form/RequiredFields.html|RequiredFields]]).
 
 The constructor of CustomRequiredFields takes an array. Each array element is one of two things - either the name of a field that is required, or an array containing two items, 'js' and 'php'. These items are functions called to validate in javascript or php respectively.
@@ -62,3 +60,8 @@ JS2;
 //create validator
 $validator=new CustomRequiredFields(array('FirstName', 'Surname', 'Email', 'MobileNumber', array('js' => $js, 'php' => 'return true;'), array('js' => $js2, 'php'=>'return true;')));
 </code>
+
+===== API Documentation =====
+
+[[http://api.silverstripe.org/trunk/sapphire/CustomRequiredFields.html|Click here for the API documentation]].
+

@@ -158,6 +158,8 @@ Behaviour.register({
 
 </code>
 
+See also http://doc.silverstripe.org/javascript#javascript_in_the_cms
+
 ===== Related =====
 
   * [[CMSMain]]

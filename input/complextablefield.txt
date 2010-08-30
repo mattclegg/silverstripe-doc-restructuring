@@ -1,4 +1,4 @@
-====== ComplexTableField ======
+====== Complex Table Field ======
 
 ===== Introduction ===== 
 Shows a group of DataObjects as a (readonly) tabular list (similiar to [[http://api.silverstripe.org/trunk/forms/fields-relational/TableListField.html|TableListField]]). Its most useful when you want to display a relationship (e.g. one-to-many), subset, or collection of DataObjects via a simple interface with the ability to edit context specific information in a javascript-popup ("Lightbox").  

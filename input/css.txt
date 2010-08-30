@@ -196,7 +196,7 @@ A great write-up on the box model in IE can be found here:
 [[http://www.456bereastreet.com/archive/200612/internet_explorer_and_the_css_box_model/]]
 
 
-==== IE6/7 gotcha: hasLayout ====
+===== IE6/7 gotcha: hasLayout =====
 
 IE6 and 7 have some interesting thing called 'hasLayout', where it changes the way elements render with CSS. I would suggest reading up in the article below about it in terms of creating a ''display: block'' anchor element, and having the entire area clickable - which will not occur if there lacks a hasLayout CSS property like ''width'', or an IE proprietry value ''zoom''.
 
@@ -225,7 +225,7 @@ Practical problem solving: **IE/Win: Clickable area of block anchors and hasLayo
 }
 </code>
 
-=== Input widths problem (and fix) ===
+==== Input widths problem (and fix) ====
 
 IE6 and 7 have funny gaps around input action buttons even if there is padding 0 and margin 0 applied. There is, however, a way around it.
 
@@ -244,8 +244,6 @@ IE6 and 7 have funny gaps around input action buttons even if there is padding 0
    }
 </style>
 </code>
-
-
 
 
 ==== Hack management ====

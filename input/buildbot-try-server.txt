@@ -1,4 +1,4 @@
-====== Buildbot Try Server ======
+====== buildbot-try-server ======
 
 **NOTE:** The try server is experimental and this information may not be up to date.  Talk to Sam Minnée if you want more information.
 

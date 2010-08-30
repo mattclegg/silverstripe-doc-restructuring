@@ -9,11 +9,9 @@ If you would like to contribute, you can [[http://doc.silverstripe.com/doku.php?
   * See [[http://userhelp.silverstripe.com|userhelp]] for end-user documentation
   * Visit some of the [[community run third party websites]]
   
-
 ==== Overview ====
 
-  * [[http://silverstripe.com/overview/|Why SilverStripe?]]: Find out about our unique features as a new entrant in a crowded market
-  * [[http://silverstripe.com/overview/|Feature Overview]]: Find out how many capabilities hide behind the simple interface
+  * [[http://silverstripe.org/silverstripe-cms/|Feature Overview]]: Find out how many capabilities hide behind the simple interface
   * [[http://www.silverstripe.com/how-to-contribute/|Contributing]] and [[Contributors]]
   * [[Changelog]]
   * [[http://open.silverstripe.com/roadmap|Roadmap]]

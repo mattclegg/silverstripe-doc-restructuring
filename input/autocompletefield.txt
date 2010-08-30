@@ -3,6 +3,7 @@
 
 AutoCompleteField is part of the [[http://api.silverstripe.org/trunk/sapphire/model/DataObject.html|DataObject]] package that renders a live autocomplete textfield for returning results as the user types. It is useful for search forms that provide suggestions before a search is executed.
 
+
 ===== Usage =====
 
 The field constructs just like a text field, accepting the $name and $title arguments first. The third argument is for a URL, and the fourth is for a default value. The default value is nullified on focus by a Javascript inclusion.

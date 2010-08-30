@@ -1,7 +1,7 @@
 ====== AutocompleteTextField ======
 Autocompleting text field, using script.aculo.us
  
-==== Example use ====
+===== Example use =====
 
 <code php>
 new AutocompleteTextField(
@@ -11,5 +11,5 @@ new AutocompleteTextField(
 )
 </code>
 
-==== API documentation ====
+===== API documentation =====
 [[http://api.silverstripe.org/trunk/forms/fields-formattedinput/AutocompleteTextField.html|Click here for the API documentation]].

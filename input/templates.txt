@@ -116,7 +116,34 @@ In this example, Menu(1) returns a DataObjectSet listing each top level main men
 If blocks let you mark off optional content in your template.  The optional content will only be shown if the requested field / method returns a nonzero value.  In the second syntax, the optional content will only be shown if the requested field / method returns the value you specify.  You should **not** include quotes around the value.
 
 The <% else %> blocks perform as you would expect - content between <% else %> and <% end_if %> is shown if the first block fails.  <% else %> is an optional part of the syntax - you can just use <% if %> and <% end_if %> if that's appropriate.
+===== Modulus and MultipleOf =====
 
+New in 2.4 you can use 2 new controls $Modulus and $MultipleOf to help build column layouts.
+
+$Modulus(value, offset) returns an int
+$MultipleOf(factor, offset) returns a boolean. 
+
+The following example demonstrates how you can use $Modulus(4) to generate custom column names based on your control statement. Note that this works for any control statement (not just children)
+
+<code html>
+<% control Children %>
+<div class="column-{$Modulus(4)}">
+...
+</div>
+<% end_control %>
+</code>
+
+Will return you column-3, column-2, column-1, column-0, column-3 etc. You can use these as styling hooks to float, position as you need.
+
+You can also use $MultipleOf(value, offset) to help build columned layouts. In this case we want to add a <br> after every 3th item
+
+<code html>
+<% control Children %>
+<% if MultipleOf(3) %>
+<br>
+<% end_if %>
+<% end_control %>
+</code>
 
 ===== Comments =====
 
@@ -131,6 +158,7 @@ However you can also use special SilverStripe comments which will be stripped ou
 <code html>
 $EditForm <%-- This is Located in MemberEditForm.php --%>
 </code>
+
 ===== Formatting Template Values =====
 
 The following example takes the Title field of our object, casts it to a [[data-types|Varchar]] object, and then calls the $XML object on that Varchar object.

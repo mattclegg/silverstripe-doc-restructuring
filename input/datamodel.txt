@@ -10,12 +10,9 @@ The advanced object-relational layer in Silverstripe is one of the main reasons 
 
 See [[database-structure]] for in-depth information on the database-schema.
 See [[objectmodel]] for further details about casting values and the underlying property-transformations.
-
 ===== Generating the database-schema =====
 The Silverstripe database-schema is generated automatically by visiting the URL.
 <code>http://<mysite>/dev/build</code>
-Or, for older versions of SilverStripe:
-<code>http://<mysite>/db/build</code>
 Note: You need to be logged in as an administrator to perform this command.
 
 ===== Querying Data =====
