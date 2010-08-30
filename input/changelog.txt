@@ -1,0 +1,3 @@
+====== Changelog ======
+
+Moved to [[http://open.silverstripe.org/wiki/ChangeLog]]
