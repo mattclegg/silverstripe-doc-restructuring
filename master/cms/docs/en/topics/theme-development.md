@@ -163,6 +163,8 @@ Let's have a look at part of a Page.ss for the main layout elements defining a 2
 *  Class names should be lowercase, or lowerCamelCase starting with a lowercase letter, for example, latestNews
 *  IDs should be UpperCamelCase and remember ID's can only be used once per page.
 
+Example:
+
 	:::html
 	<div id="Container"><!-- markup goes here --></div>
 

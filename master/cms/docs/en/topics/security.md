@@ -43,6 +43,8 @@ your data.
 *  Controller->requestParams, Controller->urlParams
 *  GET/POST data passed to a Form-method
 
+Example:
+
 	:::php
 	class MyForm extends Form {
 	  function save($RAW_data, $form) {
@@ -55,6 +57,8 @@ your data.
 
 *  FormField->Value()
 *  URLParams passed to a Controller-method
+
+Example:
 
 	:::php
 	class MyController extends Controller {

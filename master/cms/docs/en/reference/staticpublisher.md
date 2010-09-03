@@ -76,7 +76,7 @@ This setup will store the cached content on the same server as the CMS.  This is
 
 ### Setup
 
-*  Put this in mysite/_config.php.  This will create static content in a "cache/" subdirectory, with an HTML suffix.
+Put this in mysite/_config.php.  This will create static content in a "cache/" subdirectory, with an HTML suffix.
 
 	:::php
 	Object::add_extension("SiteTree", "FilesystemPublisher('cache/', 'html')");
@@ -178,7 +178,7 @@ away from potential hackers.  It is also good for high-traffic situations.
 
 ### Setup
 
-*  Add the RsyncMultiHostPublisher extension to your SiteTree objects in mysite/_config.php.  This will create static
+Add the RsyncMultiHostPublisher extension to your SiteTree objects in mysite/_config.php.  This will create static
 content in a "cache/" subdirectory, with an HTML suffix.
 
 	:::php
