@@ -1,94 +1,61 @@
 # Coding Conventions
 
-The following page should be used to outline the best practices to use while your developing using SilverStripe. 
-They should be followed as close as possible for modules and your core patches.
+This document provides guidelines for code formatting and documentation
+to developers contributing to SilverStripe. It applies to all PHP files
+in the sapphire/ and cms/ modules, as well as any supported additional modules.
 
-## Naming
+Coding standards are an important aspect for every software project,
+and facilitate collaboration by making code more consistent and readable.
 
-Class and File Names Are in `UpperCamelCase`:
+If you are unsure about a specific standard, imitate existing SilverStripe code.
+
+## Method Naming
+
+Class and filenames are in `UpperCamelCase` format:
 
 	:::php
-	class MyNewSilverStripeClass { 
-	// ...
-	}
+	class MyClass {}
 
 
 Static methods should be in `lowercase_with_underscores()` format:
 
 	:::php
-	static function find_my_test_method() { 
-	// ..
-	}
+	static function my_static_method() {}
 
-Action handlers on controllers should be in `$this->completelylowercase()` format without spaces or underscore. 
+Action handlers on controllers should be in `completelylowercase()` format without spaces or underscore. 
 This is because they go into the controller URL in the same format (eg, `home/successfullyinstalled`).
 
 	:::php
-	function displayformresults() {
-	//...
-	}
+	function mycontrolleraction() {}
 
-Methods that will be callable from templates should be in `$this->UpperCamelCase()` format.  
-This is because they go into the templates in the same format. If its retrieving a value you can append a get to the function in PHP. For example both the following work
+Object methods that will be callable from templates should be in `$this->UpperCamelCase()` format.  
+Alternatively, `$this->getUpperCamelCase()` will work the same way in templates -
+you can access both coding styles as `$UpperCamelCase`.
 
-	:::php
-	$MyPieceOfData
-
-	// either have
-	function MyPieceOfData() { 
-	// ..
-	}
-
-	// or this will work as well
-	function getMyPieceOfData() {
-	// ..
-	}
-
-Other object methods should be in `$this->lowerCamelCase()` format
+Other instance methods should be in `$this->lowerCamelCase()` format:
 
 	:::php
-	function doSomethingToThis() {
-	// ..
-	}
+	function myInstanceMethod() {}
 
 Classes need to be in a file of the same name. If a class name has an underscore, then the file name has to be the text before the underscore.  
-For example `Foo` and `Foo_Helper` will both need to be placed into `Foo.php`.
+For example `MyClass` and `MyClass_Controller` will both need to be placed into `MyClass.php`.
 
-`mysite/code/Foo.php`
-
-	:::php
-	<?php
-
-	class Foo {
-	// ..
-	}
-
-	class Foo_Controller {
-	// ..
-	}
-
-	class Foo_OtherRelatedClass {
-	// ..
-	}
-
-To help with namespacing common class names (like Database) it is recommended to use the convention `SS_ClassName` but the filename will remain `ClassName.php`. Eg `SS_Database` is in `Database.php`.
-
-`mysite/code/MyCommonClassName.php`
+Example: `mysite/code/MyClass.php`
 
 	:::php
 	<?php
 
-	class SS_MyCommonClassName {
-	//..
-	}
+	class MyClass {}
 
-	class SS_MyCommonClassName_OtherClass {
-	//...
-	}
+	class MyClass_Controller {}
+
+	class MyClass_OtherRelatedClass {}
+
+To help with namespacing common class names (like Database) it is recommended to use a prefix convention `SS_ClassName` but the filename will remain `ClassName.php`. 
 
 ## Indentation
 
-Always use hard tabs rather then spaces for indentation. 1 hard tab per nesting level.
+Always use hard tabs rather then spaces for indentation, with one tab per nesting level.
 
 	:::php
 	class CorrectIndentationExample {
@@ -120,21 +87,23 @@ Keep the opening brace on the same line as the statement.
 Try to avoid using PHP's ability to mix HTML into the code.
 
 	:::php
-	// Controller
+	// PHP code
 	function getTitle() {
 		return "<h2>Bad Example</h2>"; 
 	}
 
-	// Template
+	// Template code
 	$Title
 
 Better: Keep HTML in template files:
 
 	:::php
+	// PHP code
 	function getTitle() {
 		return "Better Example";
 	}
 
+	// Template code
 	<h2>$Title</h2>
 
 
@@ -145,16 +114,16 @@ Check for value before stepping into a foreach-loop
 	  foreach($A_authors as $author) {}
 	}
 
-## Class File Organization
+## Class Member Ordering
 
-Put code into the classes in the following order.  Obviously, if one of these isn't used by a class then leave it out.
+Put code into the classes in the following order (where applicable).
 
- *  Other static variables (don't put these just before the method where they're used)
+ *  Static variables
  *  Object variables
  *  Static methods
  *  Data-model definition static variables.  (`$db`, `$has_one`, `$many_many`, etc)
  *  Commonly used methods like `getCMSFields()`
- *  Accessor methods (`getFieldname()` and `setFieldname()`)
+ *  Accessor methods (`getMyField()` and `setMyField()`)
  *  Controller action methods
  *  Template data-access methods (methods that will be called by a `$MethodName` or `<% control MethodName %>` construct in a template somewhere)
  *  Object methods
@@ -180,12 +149,9 @@ Put code into the classes in the following order.  Obviously, if one of these is
 				'Baz' => 'Page'
 			);
 
-			static $has_many = array(
-				// ...
-			);
+			static $has_many = array();
 
 			// $many_many, $belongs_many_many, $defaults, $field_labels ...
-
 
 			function getCMSFields() {
 				// ..
@@ -196,13 +162,13 @@ Put code into the classes in the following order.  Obviously, if one of these is
 			}
 		}
 
-## Variables
+## Variable Naming
 
-*  Static variables should be `self::$lowercase_with_underscores`
-*  Object variables should be `$this->lowerCamelCase`
-*  Globals should be `$_UPPERCASE_WITH_UNDERSCORES`.  Note the preceding underscore.
-*  Use the same [escape-formats](escape-formats)listed above.
-*  Defines should be `UPPERCASE_WITH_UNDERSCORES` (no preceding underscore required). Use defines wherever possible: Numbers shouldn't be hard-coded into the code.
+ *  Static variables should be `self::$lowercase_with_underscores`
+ *  Object variables should be `$this->lowerCamelCase`
+ *  Globals should be `$_UPPERCASE_WITH_UNDERSCORES`.  Note the preceding underscore.
+ *  Use the same [escape-formats](escape-formats) listed above.
+ *  Defines should be `UPPERCASE_WITH_UNDERSCORES` (no preceding underscore required). Use defines wherever possible: Numbers shouldn't be hard-coded into the code.
 
 		:::php
 		define('INTEREST_RATE', 0.1995);
@@ -256,7 +222,8 @@ Always convert values you get from the user before you do SQL queries.
 
 ### Writing Queries for Database Abstraction
 
-To make sure your code works across databases make sure you escape your queries like below, with the column or table name escaped with double quotes and values with single quotes.
+To make sure your code works across databases make sure you escape your queries like below, 
+with the column or table name escaped with double quotes and values with single quotes.
 
 	:::php
 	DataObject::get("MyClass", "\"Title\" = 'my title'");
