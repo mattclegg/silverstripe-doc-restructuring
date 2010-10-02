@@ -216,7 +216,7 @@ SiteTree_translationgroups database table
  | 99                 | 2          | 
  | 199                | 3          | 
 
- *
+
 ## CharacterSets
 
 Caution: Does not apply any character-set conversion, it is assumed that all content
@@ -233,7 +233,7 @@ your content before building the database with Translatable enabled:
 	Translatable::set_default_locale(<locale>);
 
 
- *
+
 ## Locales and languagetags
 
 For the Translatable class, a "locale" consists of a language code plus a region code separated by an underscore, 
