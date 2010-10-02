@@ -12,6 +12,7 @@ If you are unsure about a specific standard, imitate existing SilverStripe code.
 ## Indentation
 
 Always use hard tabs rather then spaces for indentation, with one tab per nesting level.
+Spaces are not allowed.
 
 	:::php
 	class CorrectIndentationExample {
@@ -22,13 +23,12 @@ Always use hard tabs rather then spaces for indentation, with one tab per nestin
 		
 	}
 
-## Method Naming
+## Class and Method Naming
 
 Class and filenames are in `UpperCamelCase` format:
 
 	:::php
 	class MyClass {}
-
 
 Static methods should be in `lowercase_with_underscores()` format:
 
@@ -68,11 +68,22 @@ To help with namespacing common class names (like Database) it is recommended to
 
 ## Variable Naming
 
- *  Static variables should be `self::$lowercase_with_underscores`
- *  Object variables should be `$this->lowerCamelCase`
- *  Globals should be `$_UPPERCASE_WITH_UNDERSCORES`.  Note the preceding underscore.
- *  Use the same [escape-formats](escape-formats) listed above.
- *  Constants should be `UPPERCASE_WITH_UNDERSCORES`
+Static variables should be `self::$lowercase_with_underscores`
+
+	:::php
+	self::$my_static_variable = 'foo';
+
+Object variables should be `$this->lowerCamelCase`
+
+	:::php
+	$this->myObjectVariable = 'foo';
+
+Globals should be `$_UPPERCASE_WITH_UNDERSCORES`.  Note the preceding underscore.
+
+Constants should be `UPPERCASE_WITH_UNDERSCORES`
+
+	:::php
+	define('INTEREST_RATE', 0.19);
 
 ## Coding
 
