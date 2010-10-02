@@ -134,13 +134,28 @@ Check for value before stepping into a foreach-loop
 
 ## Comments
 
-Use the docblock syntax before class and each method. For class's have a description and what package they are contained in. 
-Include (`@todo`, `@see` as needed). Methods include `@param`, `@return` and `@see` as appropriate.  Include a blank line after the description. 
+Use [phpdoc](http://phpdoc.org/) syntax before each definition (see [tutorial](http://manual.phpdoc.org/HTMLSmartyConverter/HandS/phpDocumentor/tutorial_phpDocumentor.quickstart.pkg.html)
+and [tag overview](http://manual.phpdoc.org/HTMLSmartyConverter/HandS/phpDocumentor/tutorial_tags.pkg.html)).
+
+ * All class definitions and PHP files should have `@package` and `@subpackage`.
+ * Methods should include at least `@param` and `@return`.
+ * Include a blank line after the description. 
+ * Use `{@link MyOtherClass}` and `{@link MyOtherClass->otherMethod}` for inline references.
+ * Denote preformatted code examples in `<code></code>` blocks.
+
+Example:
 
 	:::php
 	/** 
-	 * My Custom Class
-	 * This class is a demo class for testing
+	 * My short description for this class.
+	 * My longer description with
+	 * multiple lines and richer formatting.
+	 * 
+	 * Usage:
+	 * <code>
+	 * $c = new MyClass();
+	 * $c->myMethod();
+	 * </code>
 	 * 
 	 * @package custom
 	 */
@@ -148,7 +163,7 @@ Include (`@todo`, `@see` as needed). Methods include `@param`, `@return` and `@s
 	
 		/**
 		 * My Method.
-		 * This method returns something cool. @see MyParentMethod has other cool stuff in it.
+		 * This method returns something cool. {@link MyParentMethod} has other cool stuff in it.
 		 * 
 		 * @param string $colour The colour of cool things that you want
 		 * @return DataObjectSet A list of everything cool
@@ -170,7 +185,6 @@ Put code into the classes in the following order (where applicable).
  *  Controller action methods
  *  Template data-access methods (methods that will be called by a `$MethodName` or `<% control MethodName %>` construct in a template somewhere)
  *  Object methods
-	
 
 ## SQL
 
