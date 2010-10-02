@@ -78,8 +78,6 @@ Object variables should be `$this->lowerCamelCase`
 	:::php
 	$this->myObjectVariable = 'foo';
 
-Globals should be `$_UPPERCASE_WITH_UNDERSCORES`.  Note the preceding underscore.
-
 Constants should be `UPPERCASE_WITH_UNDERSCORES`
 
 	:::php
