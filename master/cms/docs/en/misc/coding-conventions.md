@@ -50,22 +50,6 @@ Other instance methods should be in `$this->lowerCamelCase()` format:
 	:::php
 	function myInstanceMethod() {}
 
-Classes need to be in a file of the same name. If a class name has an underscore, then the file name has to be the text before the underscore.  
-For example `MyClass` and `MyClass_Controller` will both need to be placed into `MyClass.php`.
-
-Example: `mysite/code/MyClass.php`
-
-	:::php
-	<?php
-
-	class MyClass {}
-
-	class MyClass_Controller {}
-
-	class MyClass_OtherRelatedClass {}
-
-To help with namespacing common class names (like Database) it is recommended to use a prefix convention `SS_ClassName` but the filename will remain `ClassName.php`. 
-
 ## Variable Naming
 
 Static variables should be `self::$lowercase_with_underscores`
@@ -82,6 +66,26 @@ Constants should be `UPPERCASE_WITH_UNDERSCORES`
 
 	:::php
 	define('INTEREST_RATE', 0.19);
+	
+## File Naming and Directory Structure
+
+Classes need to be in a file of the same name. If a class name has an underscore, then the file name has to be the text before the underscore.  
+For example `MyClass` and `MyClass_Controller` will both need to be placed into `MyClass.php`.
+
+Example: `mysite/code/MyClass.php`
+
+	:::php
+	<?php
+
+	class MyClass {}
+
+	class MyClass_Controller {}
+
+	class MyClass_OtherRelatedClass {}
+
+To help with namespacing common class names (like Database) it is recommended to use a prefix convention `SS_ClassName` but the filename will remain `ClassName.php`. 
+
+See [/topics/directory-structure](directory-structure) for more information.
 
 ## Coding
 
@@ -140,6 +144,7 @@ and [tag overview](http://manual.phpdoc.org/HTMLSmartyConverter/HandS/phpDocumen
  * Include a blank line after the description. 
  * Use `{@link MyOtherClass}` and `{@link MyOtherClass->otherMethod}` for inline references.
  * Denote preformatted code examples in `<code></code>` blocks.
+ * Always start block-level comments containing phpdoc with two asterisks (`/** ... */`).
 
 Example:
 
