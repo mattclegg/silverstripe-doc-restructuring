@@ -128,65 +128,13 @@ Put code into the classes in the following order (where applicable).
  *  Template data-access methods (methods that will be called by a `$MethodName` or `<% control MethodName %>` construct in a template somewhere)
  *  Object methods
 
-		:::php
-		<?php
-
-		class MySilverStripeClass {
-
-			/**
-			 * @var String My Variable
-			 */
-			static $foo = "Foo";
-
-			/**
-			 * Field Definitions
-			 */
-			static $db = array(
-				'Bar' => 'Varchar'
-			);
-
-			static $has_one = array(
-				'Baz' => 'Page'
-			);
-
-			static $has_many = array();
-
-			// $many_many, $belongs_many_many, $defaults, $field_labels ...
-
-			function getCMSFields() {
-				// ..
-			}
-
-			function getFoo() {
-				return self::$foo;
-			}
-		}
-
 ## Variable Naming
 
  *  Static variables should be `self::$lowercase_with_underscores`
  *  Object variables should be `$this->lowerCamelCase`
  *  Globals should be `$_UPPERCASE_WITH_UNDERSCORES`.  Note the preceding underscore.
  *  Use the same [escape-formats](escape-formats) listed above.
- *  Defines should be `UPPERCASE_WITH_UNDERSCORES` (no preceding underscore required). Use defines wherever possible: Numbers shouldn't be hard-coded into the code.
-
-		:::php
-		define('INTEREST_RATE', 0.1995);
-
-*  wherever possible, set up static variables like this:
-
-		:::php
-		protected static $simple_setting = 50;
-			static function set_simple_setting($v) {self::$simple_setting = $v;}
-			static function get_simple_setting() {return self::$simple_setting;}
-
-		protected static $more_complex_variable = "default value";
-			static function set_more_complex_variable($v) {self::$more_complex_variable = $v;}
-		
-		static function get_more_complex_variable() {
-			//complex code here;
-			//complex code here;
-		}
+ *  Constants should be `UPPERCASE_WITH_UNDERSCORES`
 
 ## Comments
 
@@ -200,16 +148,19 @@ Include (`@todo`, `@see` as needed). Methods include `@param`, `@return` and `@s
 	 * 
 	 * @package custom
 	 */
-	 class MyClass extends Class {}
-
-	/**
-	 * My Method.
-	 * This method returns something cool. @see MyParentMethod has other cool stuff in it.
-	 * 
-	 * @param string $colour The colour of cool things that you want
-	 * @return DataObjectSet A list of everything cool
-	 */
-	public function myMethod($foo) { }
+	class MyClass extends Class {
+	
+		/**
+		 * My Method.
+		 * This method returns something cool. @see MyParentMethod has other cool stuff in it.
+		 * 
+		 * @param string $colour The colour of cool things that you want
+		 * @return DataObjectSet A list of everything cool
+		 */
+		public function myMethod($foo) {}
+		
+	}
+	
 
 ## SQL
 
@@ -232,13 +183,3 @@ with the column or table name escaped with double quotes and values with single 
 ##  Security 
 
 See [secure-development](secure-development) for conventions related to handing security permissions.
-
-## Links
-
-*  **http://www.perforce.com/perforce/papers/prettycode.html**
-*  **http://www.joelonsoftware.com/articles/Wrong.html**
-*  http://en.wikipedia.org/wiki/Coding_standards
-*  Zend Standards, better: http://framework.zend.com/manual/en/coding-standard.html
-*  Mozilla, good mix of inline/newline-brackets: http://www.mozilla.org/hacking/mozilla-style-guide.html#Visual
-*  http://en.wikipedia.org/wiki/Programming_style
-*  Java: http://java.sun.com/docs/codeconv/html/CodeConvTOC.doc.html
