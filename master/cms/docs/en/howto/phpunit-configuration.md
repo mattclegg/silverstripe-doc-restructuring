@@ -1,7 +1,7 @@
 # How to configure PHPUnit for your project
 
-This guide helps you to run [http://phpunit.de](PHPUnit) tests in your SilverStripe project.
-See "[/topics/testing](Testing)" for an overview on how to create unit tests.
+This guide helps you to run [PHPUnit](http://phpunit.de) tests in your SilverStripe project.
+See "[Testing](/topics/testing)" for an overview on how to create unit tests.
 
 ## Executing through "sake dev/tests" or "phpunit"?
 
@@ -17,10 +17,10 @@ particularly around formatting test output.
 The `phpunit` executable uses a SilverStripe bootstrapper to autoload classes, 
 but handles its own test class retrieval, output formatting and other configuration. 
 It can format output in common structured formats used by "continuous integration" servers.
-If you're using [http://phpundercontrol.org/](phpUnderControl) or a similar tool,
+If you're using [phpUnderControl](http://phpundercontrol.org/) or a similar tool,
 you will most likely need the `--log-junit` and `--coverage-xml` flags that are not available through `sake`.
 
-All command-line arguments are documented on [http://www.phpunit.de/manual/current/en/textui.html](phpunit.de).
+All command-line arguments are documented on [phpunit.de](http://www.phpunit.de/manual/current/en/textui.html).
 
 ## Usage of "phpunit" executable
 
@@ -45,7 +45,7 @@ SilverStripe comes with a default `phpunit.xml.dist` that you can use as a start
 Copy the file into a new `phpunit.xml` and customize to your needs - PHPUnit will auto-detect
 its existence, and prioritize it over the default file.
 
-There's nothing stopping you from creating multiple XML files (see the `--configuration` flag in [http://www.phpunit.de/manual/current/en/textui.html](PHPUnit documentation)).
+There's nothing stopping you from creating multiple XML files (see the `--configuration` flag in [PHPUnit documentation](http://www.phpunit.de/manual/current/en/textui.html)).
 For example, you could have a `phpunit-unit-tests.xml` and `phpunit-functional-tests.xml` file (see below).
 
 ## Running unit and functional tests separately
@@ -73,11 +73,11 @@ Example `phpunit-unittests-only.xml`:
 	
 You can run with this XML configuration simply by invoking `phpunit --configuration phpunit-unittests-only.xml`.
 	
-The same effect can be achieved with the `--group` argument and some PHPDoc (see [http://www.phpunit.de/manual/current/en/appendixes.configuration.html#appendixes.configuration.groups](phpunit.de)).
+The same effect can be achieved with the `--group` argument and some PHPDoc (see [phpunit.de](http://www.phpunit.de/manual/current/en/appendixes.configuration.html#appendixes.configuration.groups)).
 
 ## Adding/removing files for code coverage reports
 
-Not all PHP code in your project should be regarded when producing [http://www.phpunit.de/manual/3.2/en/code-coverage-analysis.html](code coverage reports).
+Not all PHP code in your project should be regarded when producing [code coverage reports](http://www.phpunit.de/manual/current/en/code-coverage-analysis.html).
 This applies for all thirdparty code
 
 	<filter>
@@ -91,19 +91,19 @@ This applies for all thirdparty code
 		</blacklist>
 	</filter>
 	
-See [http://www.phpunit.de/manual/3.2/en/appendixes.configuration.html#appendixes.configuration.blacklist-whitelist](phpunit.de) for more information.
+See [phpunit.de](http://www.phpunit.de/manual/current/en/appendixes.configuration.html#appendixes.configuration.blacklist-whitelist) for more information.
 
 ## Speeding up your test execution with the SQLite3 module
 
 Test execution can easily take a couple of minutes for a full run,
 particularly if you have a lot of database write operations.
-This is a problem when you're trying to to "[http://en.wikipedia.org/wiki/Test-driven_development](Test Driven Development)".
+This is a problem when you're trying to to "[Test Driven Development](http://en.wikipedia.org/wiki/Test-driven_development)".
 
 To speed things up a bit, you can simply use a faster database just for executing tests.
 The sapphire database layer makes this relatively easy, most likely
 you won't need to adjust any project code or alter SQL statements.
 
-The [http://www.silverstripe.org/sqlite-database/](SQLite3 module) provides an interface
+The [SQLite3 module](http://www.silverstripe.org/sqlite-database/) provides an interface
 to a very fast database that requires minimal setup and is fully file-based.
 It should give you up to 4x speed improvements over running tests in MySQL or other
 more "heavy duty" relational databases.
