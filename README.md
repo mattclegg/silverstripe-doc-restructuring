@@ -37,9 +37,9 @@ either be done [straight on github](http://github.com/chillu/silverstripe-doc-re
 
 ### Documentation Guidelines
 
-Its important to read the [documentation guidelines](master/cms/docs/en/misc/contributing.md), in order to keep a consistent
+Its important to read the [documentation guidelines](http://github.com/chillu/silverstripe-doc-restructuring/blob/master/master/cms/docs/en/misc/contributing.md), in order to keep a consistent
 writing and formatting style. 
-We use a customized version of [Markdown](http://daringfireball.net/projects/markdown/syntax) and [Markdown Extra](http://michelf.com/projects/php-markdown/extra/) called "[ss-markdown](master/cms/docs/en/misc/ss-markdown.md)"
+We use a customized version of [Markdown](http://daringfireball.net/projects/markdown/syntax) and [Markdown Extra](http://michelf.com/projects/php-markdown/extra/) called "[ss-markdown](http://github.com/chillu/silverstripe-doc-restructuring/blob/master/master/cms/docs/en/misc/ss-markdown.md)"
 
 ### Previewing your changes
 
