@@ -16,5 +16,6 @@ return $unsent_subscribers;
 Above code taken from cms/code/Newsletter/Newsletter.php gsoc branch r38859.
 
 ===== API Documentation =====
+
 [[http://api.silverstripe.org/trunk/sapphire/ArrayData.html|Click here for the API documentation]].
 

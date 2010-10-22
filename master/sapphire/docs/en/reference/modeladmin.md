@@ -76,9 +76,9 @@ Datamodel ''Category'':
 
 3. You can now log in to the main CMS admin and manage your data objects, with no extra implementation required.
 
-![](images/modeladmin_edit.png)
+![](_images/modeladmin_edit.png)
 
-![](images/modeladmin_results.png)
+![](_images/modeladmin_results.png)
 ### Note about has_one
 
 Scaffolding **has_one** relationships in your ModelAdmin relies on a column in the related model to be named **Title**
@@ -93,7 +93,7 @@ fields are searched (e.g. "partial match", "fulltext", etc.) using ''$searchable
 
    * See `[api:DataObject]`
 
-![](images/modeladmin_search.png)
+![](_images/modeladmin_search.png)
 
 ### Summary Fields
 

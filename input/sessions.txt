@@ -51,7 +51,7 @@ You can also get all the values in the session at once. This is useful for debug
 
 <code php>
 function bar() {
-	$session = Session::getAll(); // returns an array of all the session values.
+	$session = Session::get_all(); // returns an array of all the session values.
 }
 </code>
 ==== Clearing Data ====
@@ -68,7 +68,7 @@ Or you can clear every single value in the session at once. Note SilverStripe st
 
 <code php>
 function baz() {
-	Session::clearAll();
+	Session::clear_all();
 }
 </code>
 

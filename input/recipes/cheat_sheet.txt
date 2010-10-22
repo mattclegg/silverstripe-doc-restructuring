@@ -5,17 +5,62 @@ For now, dont worry too much about the formatting and sorting of this page.  At 
 Having said that, the key is brevity.  Dont explain things, just give people keywords for quick reference.
 
 
-
-
-=====retrieving DataObjects=====
-== using DataObject ==
-
-  * **many:** DataObject::get($callerClass, $filter = "", $sort = "", $join = "", $limit = "", $containerClass = "DataObjectSet");
+======retrieving DataObjects======
+  * **many at once:** DataObject::get($callerClass, $filter = "", $sort = "", $join = "", $limit = "", $containerClass = "DataObjectSet");
   * **one:** DataObject::get_one($callerClass, $filter = "", $cache = true, $orderby = "");
   * **one using ID:** DataObject::get_by_id($callerClass, $id);
   * **children:** $this->getDescendantIDList();
 
-==  using SQLQuery ==
+=== versioned data objects ===
+to swith between Page and Page_Live and the like:
+<code php>
+	if(Versioned::current_stage() == "Live") {
+		$extension = "_Live";
+	}
+</code>
+
+=== many many relationships ===
+<code php>
+class ClassA extends DataObject {
+	static $many_many = array( 'ClassBs' => 'ClassB');
+	function getMyClassBs() {
+ 		return $this->getManyManyComponents('ClassBs');
+	}
+}
+class ClassB extends DataObject {
+	static $belongs_many= array('ClassAs' => 'ClassA');
+	function getClassAs() {
+		return $this->ClassAs(); 
+	}
+}
+</code>
+OR 
+
+<code php>
+class MyObject extends DataObject {
+	...		
+	static $many_many = array(
+		"Pages" => "SiteTree"
+	);
+	...
+	function getActualPages() {
+		$combos = $this->Pages();
+		if($combos) {
+			$idArray = array();
+			foreach($combos as $combo) {
+				$idArray[$combos->SiteTreeID] = $combos->SiteTreeID;
+			}
+			if(count($idArray)) {
+				return DataObject::get("SiteTree", "`SiteTree`.`ID` IN (".implode(",", $idArray).")"));
+			}
+		}
+	}
+	...
+}
+
+</code>
+
+=== using SQLQuery ===
 <code  php>
 $sqlQuery = new SQLQuery(
  $select = "SiteTree.ParentID, Count(SiteTree.ID) ",
@@ -30,16 +75,20 @@ $results = $sqlQuery->execute();
 </code>
 
 
+=== fields ===
+  * as value: $this->getField($fieldName);
+  * as object: $this->dbObject($fieldName); OR $this->obj($fieldName);
 
 
-== Fields ==
+
+====== fields ======
 <code php>
 $myUsefullField = DBField::create($className = "Currency", $value = 1111.11);
 $formattedField = $myUsefullField->Nice();
 </code>
 
 
-===== saving DataObjects =====
+======saving DataObjects ======
   * ''function onBeforeWrite:'' dont forget to run parent onBeforeWrite(), if this function returns true, it does not save the dataobject [to do CHECK THIS]
   * ''function onAfterWrite''  
   * ''function requireDefaultRecords:'': do not forget to call parent::requireDefaultRecords()
@@ -47,8 +96,7 @@ $formattedField = $myUsefullField->Nice();
 
 
 
-
-===== adding relations =====
+======adding relations ======
 <code php>
 class Team extends DataObject {
   static $many_many = array("Categories" => "Category");
@@ -66,7 +114,7 @@ class Team extends DataObject {
 </code>
 
 
-===== saving and deleting pages =====
+======saving and deleting pages ======
 save: 
 <code php>
 $page->writeToStage('Stage');
@@ -85,27 +133,13 @@ if ($liveRecord) $liveRecord->delete();
 $page->flushCache();
 </code>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=====ModelAdmin Example=====
-The DataObject:
+======ModelAdmin======
+===the DataObject===
 <code php>
 class Carrot extends DataObject {
 	//database
 	public static $db = array("Name" => "Varchar(255)");
-	public static $has_one = array();
+	public static $has_one = array("Pixie" => "Image", "Parent" => "Page");
 	public static $has_many = array();
 	public static $many_many = array(); 
 	public static $belongs_many_many = array(); 
@@ -121,7 +155,7 @@ class Carrot extends DataObject {
 	public static $casting = array(); //adds computed fields that can also have a type (e.g. 
 	public static $searchable_fields = array("Name" => "PartialMatchFilter");
 	public static $field_labels = array("Name" => "Carrot Name");
-	public static $summary_fields = array("Name" => "Name", "Page.Title"); //note no => for relational fields
+	public static $summary_fields = array("Name" => "Name", "Parent.Title", "TinyThumbPhoto" => "Pixie"); //note no => for relational fields
 	public static $singular_name = "Carrot";
 	public static $plural_name = "Carrots";
 	//CRUD settings
@@ -136,12 +170,15 @@ class Carrot extends DataObject {
 	public function populateDefaults() {
 		parent::populateDefaults();
 	}
+	public function TinyThumbPhoto() {
+		return $this->Pixie()->CroppedImage(100,100);
+	} 
 }
 
 
 </code>
 
-The manager:
+===the Manager:===
 
 <code php>
 class MyModelAdmin extends ModelAdmin {
@@ -151,7 +188,7 @@ class MyModelAdmin extends ModelAdmin {
 	public static $collection_controller_class = 'MyModelAdmin_CollectionController';
 	public static $record_controller_class = 'MyModelAdmin_RecordController';
 }
-class MyModelAdmin_CollectionControllerextends ModelAdmin_CollectionController{
+class MyModelAdmin_CollectionController extends ModelAdmin_CollectionController{
 	//manages everything to do with overall control (e.g. search form, import, etc...)
 	public function SearchForm() {
 		$form = parent::SearchForm();
@@ -170,13 +207,7 @@ class MyModelAdmin_RecordController extends ModelAdmin_RecordController {
 </code>
 
 
-
-
-
-
-
-
-=====DataObject and SiteTree settings=====
+======DataObject / SiteTree settings======
 <code php>
 //appearance
 static $icon = "mymodule/images/treeicons/ClassName-file.gif";
@@ -216,56 +247,10 @@ function getCMSFields() {
 	return $fields;
 }
 </code>
- 
 
 
 
-
-
-
-
-
-==== retrieving fields from a DataObject ====
-  * as value: $this->getField($fieldName);
-  * as object: $this->dbObject($fieldName); OR $this->obj($fieldName);
-
-== retrieving data from many-many relationships ==
-<code php>
-class MyObject extends DataObject {
-	...		
-	static $many_many = array(
-		"Pages" => "SiteTree"
-	);
-	...
-	function getActualPages() {
-		$combos = $this->Pages();
-		if($combos) {
-			$idArray = array();
-			foreach($combos as $combo) {
-				$idArray[$combos->SiteTreeID] = $combos->SiteTreeID;
-			}
-			if(count($idArray)) {
-				return DataObject::get("SiteTree", "`SiteTree`.`ID` IN (".implode(",", $idArray).")"));
-			}
-		}
-	}
-	...
-}
-
-</code>
-
-
-
-
-
-
-
-
-
-
-
-
-=====DataObjectDecorator=====
+======DataObjectDecorator======
   * **DB statics**:
       <code php>
 	public function extraStatics() {
@@ -304,9 +289,67 @@ Other useful functions:
 	function flushCache() {}
 </code>
 
-To check if an extension exists, use $object->hasExtension (e.g. $MyPage->hasExtension("MyObjectDecorator"); 
+To check if an extension exists, use $object->hasExtension (e.g. $MyPage->hasExtension("MyObjectDecorator");  
+======SiteConfig additions ======
 
-===== images, files and folders =====
+add to _config.php
+
+<code php>
+Object::add_extension("SiteConfig", "SiteConfigExtras");
+</code>
+
+create a new file: SiteConfigExtras.php (here are some example tricks):
+
+<code php>
+
+class SiteConfigExtras extends DataObjectDecorator {
+
+	function extraStatics(){
+		return array(
+			'many_many' => array(
+				"TopMenuItems" => "SiteTree",
+			),
+		);
+	}
+
+	function updateCMSFields(FieldSet &$fields) {
+		$sourceObjectName = "SiteTree";
+		$fields->addFieldToTab("Root.Menus", new TreeMultiselectField($name = "TopMenuItems", $title = "Top Menu Items", $sourceObjectName));
+		return $fields;
+	}
+}
+</code>
+
+add the following to Page.php
+
+<code php>
+
+class Page_Controller extends ContentController {
+
+	function TopMenuItems() {
+		$siteConfig = $this->getSiteConfig();
+		if($siteConfig){
+			return $siteConfig->TopMenuItems();
+		}
+	}
+}
+
+</code>
+
+and add the following to your Template file (e.g. TopMenuItems.ss):
+
+<code html>
+ <ul>
+ <% control TopMenuItems %>
+	 <li>$Title , $Link</li>
+ <% end_control %>
+ </ul>
+
+
+</code>
+
+
+======images, files and folders ======
 
 getting a dropdown of assets folders:
 <code php>
@@ -316,10 +359,11 @@ $folder->setFilterFunction( create_function( '$obj', 'return $obj->class == "Fol
 
 
 
-===== conversions =====
+======conversions ======
 usage: <code php>$newValue = Convert::$functionName($oldValue);</code>, examples are: raw2att, raw2xml, raw2json, raw2sql, json2obj,  json2array, linkIfMatch
 
-=====director=====
+====== controller ======
+=== director ===
   * **Redirect back**: Director::redirectBack();
   * **Redirect elsewhere**:
       * Director::redirect($url);
@@ -328,50 +372,194 @@ usage: <code php>$newValue = Convert::$functionName($oldValue);</code>, examples
 
 
 
+===URL methods / actions ===
+  * make sure to add to controller class.
+  * keep it all lowercase
+Here are some examples
+<code php>
+	function dosomething(SS_HTTPRequest $request){
+		$var = $request->getVars();
+		$var = $request->postVars();
+		$var = $request->requestVars();
+		$var = $request->getVar($name = "ID");
+		$var = $request->requestVar($name = "Inputter");
+		$var = $request->getURL();
+		$var = $request->allParams();
+		$var = $request->param($name = "Test");
+	}
+</code>
 
-=====security/member=====
-  * **Get logged in member**:
+======security/member======
+**Get logged in member:**
       * **as object**: Member::currentUser()
       * **as ID**: Member::currentUserID()
-  * **Permission check/fail**: if (!$object->canEdit()) return Security::permissionFailure($this);
-=== examples ===
-granting permission
-
-checking permission
+**Basic security concept:**
+  * There is a list of permissions and associated groups.
+  * One or more goups can have the same permission code.
+  * One group can have zero to many permission codes.
+  * In code, functions like "canCreate", "canView", "canEdit", "canDelete" check permissions 
+**granting permissions**
 <code php>
-public function canView() {
-	if ($member = Member::currentUser())
-		if($member->isAdmin() || Permission::checkMember($member, self::$permission_code)) {
+class MyPage extends Page {	
+	.............
+	public function canView() {
+		if(Permission::check("MY_SPECIAL_CODE_HERE")) {
 			return true;
 		}
+		Security::permissionFailure($this, 'You must login before you can view these entries');
 	}
-	return false;
+
+	public function runupdate() {
+		if(Permission::check('ADMIN')) {
+			$this->updateEntries()
+		}
+		else {
+			Security::permissionFailure($this, 'You must login before you can update these entries');
+		}
+	}	
+	
+	public function requireDefaultRecords() {
+		parent::requireDefaultRecords();		
+		$bt = defined('DB::USE_ANSI_SQL') ? "\"" : "`";
+		$gp = DataObject::get_one("Group", "Code = '".self::$news_editor_group_code."'");
+		if(!$gp) {
+			$gp = new Group();
+			$gp->Code ="MY_SPECIAL_GROUP";
+			$gp->Title = "My Group";
+			$gp->write();
+		}
+		if($gp) {
+			if(DB::query("
+				SELECT {$bt}ID{$bt}
+				FROM Permission
+				WHERE
+					{$bt}GroupID{$bt} = '".$gp->ID."'
+					AND {$bt}Code{$bt} = 'MY_SPECIAL_CODE_HERE'"
+			)->numRecords() == 0 ) {
+				Permission::grant($gp->ID, "MY_SPECIAL_CODE_HERE");
+			}
+		}
+	}
+ 	..............
 }
 
-public function runupdate() {
-	if(Permission::check('ADMIN')) {
-		$this->updateEntries()
+</code>
+
+=== editor group in sitetree=== 
+
+<code php>
+
+class NewsPage extends Page {
+
+	protected static $news_editor_group_name = "News Items Editor Group";
+
+	protected static $news_editor_group_code = "NEWS_ITEMS_EDITORS";
+
+	public static $news_editor_permission_code = "NEWS_ITEMS_EDITORS_PERMISSION";
+
+	public function canEdit($member = null) {
+		if(Permission::check(self::$news_editor_permission_code)) {
+			return true;
+		}
+		Security::permissionFailure($this, 'You must login before you can view these entries');
 	}
-	else {
-		Security::permissionFailure($this, 'You must login before you can update these entries');
+
+	public function canCreate($member = null) {
+		return $this->canEdit($member);
+	}
+
+	public function canDelete($member = null) {
+		return $this->canEdit($member);
+	}
+
+	public function requireDefaultRecords() {
+		parent::requireDefaultRecords();
+		$bt = defined('DB::USE_ANSI_SQL') ? "\"" : "`";
+		$gp = DataObject::get_one("Group", "Code LIKE '".self::$news_editor_group_code."'");
+		if(!$gp) {
+			$gp = new Group();
+			$gp->Code = self::$news_editor_group_code;
+			$gp->Title = self::$news_editor_group_name;
+			$gp->write();
+		}
+		if($gp) {
+			if(DB::query("
+				SELECT {$bt}ID{$bt}
+				FROM Permission
+				WHERE
+					{$bt}GroupID{$bt} = '".$gp->ID."'
+					AND {$bt}Code{$bt} LIKE  '".self::$news_editor_permission_code."'"
+			)->numRecords() == 0 ) {
+				Permission::grant($gp->ID, self::$news_editor_permission_code);
+			}
+			if(DB::query("
+				SELECT {$bt}ID{$bt}
+				FROM Permission
+				WHERE
+					{$bt}GroupID{$bt} = '".$gp->ID."'
+					AND {$bt}Code{$bt} LIKE  'CMS_ACCESS_CMSMain'"
+			)->numRecords() == 0 ) {
+				Permission::grant($gp->ID, "CMS_ACCESS_CMSMain");
+			}
+		}
+	}
+
+}
+
+class NewsPage_Controller extends Page_Controller implements PermissionProvider {
+	
+	function providePermissions() {
+		$perms["NEWS_ITEMS_EDITORS_PERMISSION"] = array(
+			'name' => "edit news items in CMS",
+			'category' => "Content Editors",
+			'help' => 'Editing news items in Pages section of CMS',
+			'sort' => -100
+		);
+		return $perms;
+	}
+
+
+}
+</code>
+HomePage.php
+<code php>
+class HomePage extends Page {
+	public function canAddChildren($member = null) {
+		if(Permission::check(NewsPage::$news_editor_permission_code)) {
+			return true;
+		}
+		Security::permissionFailure($this, 'You must login before you can view these entries');
 	}
 }
 </code>
+Page.php
+<code php>
 
+class Page extends SiteTree {
 
+	public function canEdit($member = null) {
+		if(parent::canEdit()) {
+			return Permission::check("ADMIN");
+		}
+		return false;
+	}
 
+	public function canAddChildren($member = null) {
+		return $this->canEdit($member);
+	}
 
+	public function canCreate($member = null) {
+		return $this->canEdit($member);
+	}
 
+	public function canDelete($member = null) {
+		return $this->canEdit($member);
+	}
+}
 
+</code>
 
-
-
-
-
-
-
-
-=====customising Sapphire=====
+======customising Sapphire======
 Common sapphire related options for your mysite/_config.php file:
 <code php>
 SSViewer::set_theme('mytheme');
@@ -391,6 +579,9 @@ SiteTree::$breadcrumbs_delimiter = " &#62; ";
 /* Enabling moderation for comments */
 PageComment::enableModeration();
 
+/* enables basic math anti spam question field on comments */
+MathSpamProtection::setEnabled()
+
 /* Manually setting default admin */
 Security::setDefaultAdmin('admin', 'password');
 
@@ -405,17 +596,10 @@ Director::addRules(50, array(
 ));
 </code>
 
-=====Sending emails=====
+=== also see ===
+[[http://www.ssbits.com/a-config-php-cheatsheet/]]
 
-<code php>
-$e = new Email($from, $to, $subject, $body, $bounceHandlerURL, $cc, $bcc);
-$e->send();
-//OR
-$e->sendPlain();
-</code>
-
-
-=====customising the CMS=====
+======customising CMS======
 Main buttons: 
   * **add** CMSMenu::add_link($code, $menuTitle, $url, $priority = -1)'
   * **replace** CMSMenu::replace_menu_item($code, $menuTitle, $url, $controllerClass = null, $priority = -1)
@@ -441,17 +625,18 @@ function updateCMSFields(FieldSet &$fields) {
 Copy template files from /cms/templates/ to /themes/mytheme_cms/templates and change as needed.
 
 
+======emails======
+
+<code php>
+$e = new Email($from, $to, $subject, $body, $bounceHandlerURL, $cc, $bcc);
+$e->send();
+//OR
+$e->sendPlain();
+</code>
 
 
 
-
-
-
-
-
-
-
-=====forms=====
+======forms======
   * basic form:
 <code php>
 function MyCustomForm() {
@@ -504,7 +689,7 @@ $orders = DataObject::get('Order');
 </code>
 
 
-==== manipulating forms ====
+=== manipulating forms ===
 == add ==
   * $form->fields->addFieldToTab
 == reset and replace ==
@@ -515,7 +700,7 @@ $orders = DataObject::get('Order');
   * **removing an action**, name should be action_originalName, which can be very confusing! <code php>$form->unsetActionByName($name); </code>
 
 
-===== Complex Table Fields =====
+===Complex Table Fields ===
 add thumbnail to DataObject:
 <code php>
 public function Thumbnail() {
@@ -526,28 +711,26 @@ public function Thumbnail() {
 
 
 
-===== widgets =====
+======widgets ======
 adding widgets to non-blog pages:
 
-===== saving pages =====
-   * save and publish: <code php>$page->writeToStage('Stage');$page->publish('Stage', 'Live');$page->flushCache();</code>
 
 
 
 
 
-=====themes, templates and requirements=====
+======themes, templates and requirements======
 
 
 
 
 
 
-==== Basics ====
+===Basics ===
 
   * $LinkingMode, $LinkOrCurrent, $FirstLast, $EvenOdd, $First, $Last, etc...
 
-==== Handy Things to use in your templates ====
+===Handy Things to use in your templates ===
   * $MetaTags(includeTitle) - adds standard Metatags, includesTitle should be true or false
   * $Now.Year - the current year (nice for Copyright notices)
   * $EvenOdd, shows whether an object in a dataobjectset is even or odd... nice for li lists where you want to have two in a row.
@@ -555,33 +738,36 @@ adding widgets to non-blog pages:
 
 
 
-==== requirements in PHP ====
+===requirements in PHP ===
 
   * **javascript**: Requirements::javascript('mysite/javascript/foo.js');
   * **vanilla css**: Requirements::css('mysite/css/foo.css');
   * **themed css**: Requirements::themedCSS('layout');
   * **custome JS**: Requirements::customScript($js, $importantUniqueCode);
 
-==== requirements in templates ====
+===requirements in templates ===
 <code asp>
 <% require css(cms/css/TreeSelector.css) %>
 <% require themedCSS(TreeSelector) %>
 <% require javascript(cms/javascript/LeftAndMain.js) %>
 </code>
 
-==== templates in PHP ====
+===templates in PHP ===
 
 
   * **basic renderWith**: return $object->renderWith(array('//Layout//', '//Page//'));
   * **with customised object**: return $this->customise(array('//TemplateVar//'=>//value//))->renderWith(array('//Layout//', '//Page//'));
 
-=====translations=====
+======geoip ======
+  * Geoip::visitor_country() returns code (e.g. NZ)
+
+======translations======
 
 
 
 
 
-=====debugging=====
+======debugging======
   * if(Director::isLive()) Debug::send_errors_to('test@example.com');
   * Debug::show($myVariable): performs a kind of print_r($myVariable), but shows it in a more useful format.
   * Debug::message("Wow, that’s great"): prints a short debugging message.
@@ -589,5 +775,5 @@ adding widgets to non-blog pages:
   * Debug::sendLiveErrorsTo("whynot@silverstripe.com"): On the live site, all errors will get sent to this address.
   * Email::send_all_emails_to("developer@silverstripbuilders.org");
 
-=====!@#$%^&*( weird errors=====
-  * insert statement for $dataobject->write() contains `0` = '0': could be that static $defaults declaration is like this: array("myfield"); i.e. a value only and not value/key pair.
+====== !@#$%^&*( weird errors ======
+  * IF insert SQL statement for $dataobject->write() contains `0` = '0' THEN this could be due to that static $defaults declaration is like this: static $db = array("myfield"); i.e. a value only and not value/key pair.

@@ -143,6 +143,75 @@ svn mergeinfo http://svn.silverstripe.com/open/modules/sapphire/trunk
 
 ===== Troubleshooting =====
 
+===== SVN for your own websites ===== 
+
+Here is a step-by-step guide on how to work with SVN on your own site.  It oversimplifies some aspects, but it is a good introduction. NOTE: you will need SSH and SVN installed and available on your server.
+
+  *  Install LAMP / WAMP and an SVN application (Tortoise SVN on Windows)
+  *  Buy an SVN repository: http://www.SVNrepository.com/  OR set one up on your own server or look at freeby alternatives.
+  *  Go to your SVN repository server and create a new repository - I would recommend to name it after the site you are about to setup, e.g. myfirstsite.com.
+  *  Create / go to web folder on local LAMP/WAMP
+  *  SVN "checkout" your empty repository (e.g. http://sunny.SVNrepository.com/SVN/myaccountname/myfirstsite.com).
+  *  SVN "propedit" SVN:externals, add the following SVN property to the root directory:
+SVN:externals (also add your own general modules here, etc... etc... this should be a long list):
+<code>
+  cms http://SVN.silverstripe.com/open/modules/cms/branches/2.4
+  sapphire http://SVN.silverstripe.com/open/modules/sapphire/branches/2.4
+
+</code>
+
+</code>
+
+  *  SVN "update" your project. All the various files should be imported now.
+  *  SVN "commit" your externals. 
+  *  In the root directory, create the following files: _ss_environment.php.sample, .htacess.sample and "commit" these to your repository.
+  *  Copy in local LAMP / WAMP environment: _ss_environment.php.sample to _ss_environment.php; and .htacess.sample to .htacess
+  *  Make sure that .htaccess and _ss_environment.php files are excluded from any commits.  This is another SVN property attached to the root directory: 
+<code>
+SVN:ignore:
+  .htaccess
+  _ss_environment.php
+  assets
+</code>
+  *  Create assets folder in root directory
+  *  Your site should now be ready on your local WAMP / LAMP.  You can now create a mysite and themes folder, add all your files, edit, bla bla until your site is ready. Then SVN "add" and SVN "commit" all your files to your repository (usually, you do many commits)
+  *  Once you have created the site locally and committed it to your repository you should SSH to your web server (recommended application for windows is PUTTY)
+  *  Once logged in to your web server, browse to the root web folder 
+  *  Make sure SVN is installed on the server (just type SVN help or something to check).
+  *  SSH prompt, type: 
+<code>
+SVN checkout http://sunny.SVNrepository.com/SVN/myaccountname/myfirstsite.com . 
+</code>
+(NOTE DOT at the end to check out files to current directory)
+  *  You should now have all your files on your webserver
+  *  Copy on the server (using SSH)
+<code>
+cp _ss_environment.php.sample  _ss_environment.php
+cp .htacess.sample  .htacess
+</code>
+  *  Edit these files: _ss_environment.php.sample , .htacess.sample, using the following SSH commands (if the nano application is not available then try pico):
+<code>
+nano _ss_environment.php.sample 
+nano .htacess.sample 
+</code>
+  *  Create a folder called assets and make sure permissions are set correctly
+  *  Website should now be up and running. (run dev/build to start). 
+
+=== A few point additional points: ===
+  * The whole concept of tags and branches have been left out, just to simplify.  
+  * We have also left out the idea of a test and live site.  The instructions here can be used to setup a test site.  Once you are happy with a test site you can move the code to a live site using the SVN "merge" command. In principle, this is how it works: open SSH and go to the root directory of the live site. Then type:
+<code>
+svn merge http://mysvnrepository/branches/live/ http://mysvnrepository/branches/test/
+</code>
+  * If you want to update a repository, but you want the repository on the webserver to be locked to a version then you need set the svn:externals as follows:
+<code>
+  cms -r1234567 http://svn.silverstripe.com/open/modules/cms/branches/2.4
+</code>
+where 1234567 is the revision of your repository that you want to use
+  * If you want to get a better understanding of what is going on in a repository then use the following SVN commands: SVN "status" and SVN "info". 
+  * You can not and should not make any changes to any of the core modules and other modules added with svn:externals
+
+
 ===== Related =====
   * [[download]]
   * [[contributing]]

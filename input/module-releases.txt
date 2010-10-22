@@ -1,7 +1,7 @@
 ====== Module Release Procedures ======
 If you are a [[module-maintainers|module maintainer]], you will be responsible for creating new releases of the module.
 ==== Version Control ====
-Each line of code you write should be version controlled. We provide free subversion hosting for SilverStripe-specific projects on [[http://open.silverstripe.com]], but you're free to host on other subversion infrastructure as well. You can contact the [[contributors|core team]] to get you started  (read more about [[http://producingoss.com/en/vc.html|version control]]).
+Each line of code you write should be version controlled, in version control systems like [[http://subversion.tigris.org|subversion]] or [[http://gitscm.com|Git]]. There's lots of services that are freely available for opensource projects, including wiki and bugtracker functionality (e.g. [[http://code.google.com|Google Code for Subversion]] or [[http://github.com|Github for Git]]).
 
 ==== Release Branches ====
 In order to ensure stability, the first thing we do when making a release is to create a release branch.  This branch will exist for the duration of the testing and release candidate phase.  The key is that **you should only commit bugfixes to this branch**.  This lets you focus on getting a stable version of module ready for release, and new features can still be added to trunk.

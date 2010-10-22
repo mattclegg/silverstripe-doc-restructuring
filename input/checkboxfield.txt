@@ -4,7 +4,7 @@ Single checkbox field.
 {{:checkboxfield.png|:checkboxfield.png}}
 
 
-==== Example use ====
+===== Example use =====
 First add the new field to the database:
 <code php>
 "db" => array(
@@ -19,5 +19,5 @@ new CheckboxField(
 );
 </code>
 
-==== API documentation ====
+===== API documentation =====
 [[http://api.silverstripe.org/trunk/forms/fields-basic/CheckboxField.html|Click here for the API documentation]].

@@ -1,4 +1,6 @@
-====== Introduction ======
+====== Configuration ======
+
+===== Introduction =====
 Silverstripe doesn't have a global configuration-array or an interface with all available configuration-options. As all Silverstripe logic is contained in classes, the appropriate place to configure their behaviour is directly in the class itself. 
 
 This lack of a configuration-GUI is on purpose, as we'd like to keep developer-level options where they belong (into code), without cluttering up the interface. See this core forum discussion [[http://www.silverstripe.com/core-team-discussion/flat/2723|"The role of the CMS"]] for further reasoning.
@@ -48,3 +50,7 @@ All user-related preferences are stored as a property of the [[Member]]-class (a
 
 ===== Permissions =====
 See [[security]] and [[permission]]
+
+===== See Also =====
+
+Config Cheat sheet - http://www.ssbits.com/a-config-php-cheatsheet/

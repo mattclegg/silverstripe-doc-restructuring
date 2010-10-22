@@ -328,7 +328,7 @@ This way, the CMS remains an application designed for content authors, and not d
 
 
 ** Example Widget Structure **
-![](images/widget_demo.gif)
+![](_images/widget_demo.gif)
 
 #### How to make the Package
 

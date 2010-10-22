@@ -1,8 +1,10 @@
+====== Content delivery network issues ======
+
 When adding a SilverStripe installation to a content delivery network, or a grid server (such as MediaTemple's [[http://mediatemple.net/webhosting/gs/|(gs) Grid Service]]), some additional problems present themselves. These are listed below.
 
 Please update this page if you have any more information.
 
-====== Template cache directory not shared between all servers ======
+===== Template cache directory not shared between all servers =====
 **Note:** This may or may not be specific to MediaTemple's (gs) Grid Service offering. Email Matt (matt [at] silverstripe.com) for more information.
 
 The grid service I used only shared a number of directories, and not the entire filesystem. One of the directories that wasn't shared was /tmp, which means that every server had to generate (or re-generate in the case of running ?flush=1) the template cache. This led to SilverStripe loading very slowly quite often, and sometimes (when you retrieve a page from a server which has already cached the files) loading at normal speed.

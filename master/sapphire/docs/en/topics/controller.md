@@ -63,16 +63,11 @@ The RequestHandler class will parse all rules you specify against the following 
 
 **A rule must always start with alphabetical ([A-Za-z]) characters or a $Variable declaration**
 
- | **Pattern** | **Description**                                                                                        
-                  | 
- | ----------- | ---------------                                                                                        
-                  | 
- | **$**       | **Param Variable ** - Starts the name of a paramater variable, it is optional to match this unless ! is
-used              | 
- | **!**       | **Require Variable** - Placing this after a parameter variable requires data to be present for the rule
-to match          | 
- | **%%//%%**  | **Shift Point** - Declares that only variables denoted with a $ are parsed into the $params AFTER this
-point in the regex | 
+ | Pattern |							| Description | 
+ | ----------- |						| --------------- | 
+ | **$**       |						| **Param Variable** - Starts the name of a paramater variable, it is optional to match this unless ! is used | 
+ | **!**       | 						| **Require Variable** - Placing this after a parameter variable requires data to be present for the rule to match | 
+ | **%%//%%**  | 						| **Shift Point** - Declares that only variables denoted with a $ are parsed into the $params AFTER this point in the regex | 
 
 # Examples
 

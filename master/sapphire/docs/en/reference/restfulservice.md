@@ -144,7 +144,7 @@ If you want to bypass error handling on your sub-classes you could define that i
 [RestfulService](RestfulService) can be used to easily embed an RSS feed (since it's also an xml response) from a site
 such as del.icio.us
 
-*  Put something like this code in mysite/code/Page.php inside class Page_Controller
+Put something like this code in mysite/code/Page.php inside class Page_Controller
 
 	:::php
 		// Accepts an RSS feed URL and outputs a list of links from it
@@ -163,7 +163,7 @@ such as del.icio.us
 		}
 
 
-*  Put something like this code in mysite/templates/Layout/HomePage.ss:
+Put something like this code in mysite/templates/Layout/HomePage.ss:
 
 	:::html
 	<h3>My Latest Del.icio.us Links</h3>

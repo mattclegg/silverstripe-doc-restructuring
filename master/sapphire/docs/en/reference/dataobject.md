@@ -1,14 +1,16 @@
-# Introduction
+# DataObject
+
+## Introduction
 
 A single database record & abstract class for the data-access-model. 
 
-# Usage
+## Usage
 
 *  [datamodel](/topics/datamodel): The basic pricinples
 *  [data-types](/topics/data-types): Casting and special property-parsing
 *  `[api:DataObject]`: A "container" for DataObjects
 
-## Basics
+### Basics
 
 The call to ''DataObject->getCMSFields()'' is the centerpiece of every data administration interface in Silverstripe,
 which returns a `[api:FieldSet]`''.
@@ -23,11 +25,11 @@ which returns a `[api:FieldSet]`''.
 	}
 
 
-# Scaffolding Formfields
+## Scaffolding Formfields
 
 These calls retrieve a `[api:FieldSet]` for the area where you intend to work with the scaffolded form.
 
-## For the CMS
+### For the CMS
 
 // Requirements: SilverStripe 2.3.//
 
@@ -35,7 +37,7 @@ These calls retrieve a `[api:FieldSet]` for the area where you intend to work wi
 	$fields = singleton('MyDataObject')->getCMSFields();
 
 
-## For the Frontend
+### For the Frontend
 
 Used for simple frontend forms without relation editing or `[api:TabSet] behaviour. Uses ''scaffoldFormFields()'' by
 default. To customize, either overload this method in your subclass, or decorate it by
@@ -47,7 +49,7 @@ default. To customize, either overload this method in your subclass, or decorate
 	$fields = singleton('MyDataObject')->getFrontEndFields();
 
 
-# Customizing Scaffolded Fields
+## Customizing Scaffolded Fields
 
 // Requirements: SilverStripe 2.3.//
 
@@ -55,7 +57,7 @@ This section covers how to enhance the default scaffolded form fields from above
 in conjunction with the `[api:ModelAdmin]` in the CMS to make relevant data administration interfaces.
 
 
-## Searchable Fields
+### Searchable Fields
 
 // Requirements: SilverStripe 2.3.//
 
@@ -137,7 +139,7 @@ To include relations (''$has_one'', ''$has_many'' and ''$many_many'') in your se
 	}
 
 
-## Summary Fields
+### Summary Fields
 
 // Requirements: SilverStripe 2.3.//
 
@@ -188,6 +190,6 @@ To include relations in your summaries, you can use a dot-notation.
 	}
 
 
-# API Documentation
+## API Documentation
 
 [Click here for the API documentation](http://api.silverstripe.org/trunk/sapphire/core/DataObject.html).

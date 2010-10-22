@@ -45,7 +45,6 @@ files.
 
 === Existing Pages ===
    * [[:common-problems]]
-   * [[:developer-guide]]
    * [[:directory-structure]]
    * [[:manifestbuilder]]
    * [[:recipes:example_config_file]]
@@ -120,7 +119,6 @@ files.
 
 === Existing Pages ===
    * [[:member]] - needs cleanup
-   * [[:permissions:codes]] - autogenerate?
    * [[:permission]]
    * [[:recovering_password]] - recipe?
    * [[:secure-development]]
@@ -147,7 +145,6 @@ files.
 === Existing Pages ===
 
    * [[:testing-guide-glossary]]
-   * [[:testing-guide-howto:test-email-sending]]
    * [[:testing-guide-intro]]
    * [[:testing-guide-troubleshooting]]
    * [[:testing-guide]]
@@ -176,7 +173,6 @@ files.
    * [[:publishing-to-web-server]]
    * [[:sake]]
    * [[:urlvariabletools]]
-
 ==== Advanced Development ====
 
 === Existing Pages ===
@@ -199,12 +195,18 @@ It's not clear whether these should be part of API docs or not:
   * [[:tablelistfield]]
   * [[:complextablefield]]
 
+=== TODO ===
+
+ * How to switch website languages based on Domain or URL part (see [[http://silverstripe.org/customising-the-cms/show/272530?start=0#post286414|forum post]])
+
 ===== CMS Documentation =====
 
 
 The SilverStripe CMS will also have its own documentation, stored in the repository at cms/docs.
 The dev/docs handler, mentioned under Sapphire Documentation, will need to be smart enough to
 collate the documentation from Sapphire, CMS, and all the modules in a useful way.
+
+==== Existing Pages ====
 
   * [[:built-in-page-controls]] - autogenerate more of this
   * [[:cmsmain]]
@@ -236,8 +238,10 @@ collate the documentation from Sapphire, CMS, and all the modules in a useful wa
   * [[:tutorials]]
   * [[:typography]]
   * [[:widgets]]
+==== TODO ====
 
-
+  * How to add JavaScript to the CMS
+  * ModelAdmin: How to customize the search form, import form, search results (through SearchContext, but also more complicated with subclassing ModelAdmin controller classes)
 
 ===== API documentation =====
 
@@ -247,56 +251,40 @@ would be nice, as it is still difficult to access information from phpDocumentor
 
 
   * [[:arraydata]]
-  * [[:authenticator]]
   * [[:cmsmenu]]
-  * [[:contentnegotiator]]
   * [[:dataobjectset]]
   * [[:director]]
   * [[:fieldgroup]]
   * [[:formresponse]]
-  * [[:formtransformation]]
   * [[:hide-ancestor]]
   * [[:hierarchy]]
   * [[:htmleditorconfig]]
-  * [[:manipulation-arrays]]
   * [[:mathspamprotection]]
   * [[:object]]
   * [[:rssfeed]]
   * [[:scheduledtask]]
   * [[:searchcontext]]
-  * [[:session]]
   * [[:site-reports]] - move to CMSReport API docs
   * [[:soapmodelaccess]]
-  * [[:timefield]]
   * [[:versioned]]
   * [[:virtualpage]]
-  * [[:xml]]
 
 
 FormField types
 
-  * [[:ajaxformaction]]
   * [[:autocompletetextfield]]
-  * [[:bankaccountfield]]
-  * [[:calendardatefield]]
   * [[:checkboxfield]]
   * [[:checkboxsetfield]]
   * [[:complextablefieldexamples]] - into complextablefield
-  * [[:compositedatefield]]
   * [[:compositefield]]
-  * [[:confirmedformaction]]
   * [[:confirmedpasswordfield]]
-  * [[:countrydropdownfield]]
-  * [[:creditcardfield]]
   * [[:currencyfield]]
   * [[:datefield]]
-  * [[:dmycalendardatefield]]
   * [[:dropdownfield]]
   * [[:emailfield]]
   * [[:filefield]]
   * [[:formaction]]
   * [[:groupeddropdownfield]]
-  * [[:gstnumberfield]]
   * [[:hasmanycomplextablefield]]
   * [[:hasonecomplextablefield]]
   * [[:headerfield]]
@@ -305,7 +293,6 @@ FormField types
   * [[:imagefield]]
   * [[:inlineformaction]]
   * [[:labelfield]]
-  * [[:labelledliteralfield]]
   * [[:languagedropdownfield]]
   * [[:listboxfield]]
   * [[:literalfield]]
@@ -315,9 +302,6 @@ FormField types
   * [[:optionsetfield]]
   * [[:passwordfield]]
   * [[:readonlyfield]]
-  * [[:recipes:dropdownoptions]]
-  * [[:relateddatafield]]
-  * [[:relationtable]]
   * [[:simpleimagefield]]
   * [[:tablefield]]
   * [[:tabset]]
@@ -333,26 +317,8 @@ Validators
 
   * [[:customrequiredfields]]
   * [[:recipes:requiredfieldsclass]]
-  * [[:requiredfields]]
   * [[:validator]]
 
-
-DBField types
-
-  * [[:boolean]]
-  * [[:currency]]
-  * [[:date]]
-  * [[:dbfield]]
-  * [[:decimal]]
-  * [[:enum]]
-  * [[:htmltext]]
-  * [[:htmlvarchar]]
-  * [[:int]]
-  * [[:percentage]]
-  * [[:ssdatetime]]
-  * [[:text]]
-  * [[:time]]
-  * [[:varchar]]
 
 
 ===== Module Documentation =====
@@ -362,9 +328,6 @@ Each module should have its down documentation, stored in a README.md file, or i
 DataObjectManager
 
   * [[:datepickerfield]]
-  * [[:simplehtmleditorfield]]
-  * [[:simpletreedropdownfield]]
-  * [[:simplewysiwygfield]]
 
 Page Comment (make a module)
 
@@ -373,7 +336,6 @@ Page Comment (make a module)
 Newsletter
 
   * [[:member_groupset]]
-  * [[:newslettersytemhelp]]
   * [[:recipes:simplesignupform]]
 
 User Forms

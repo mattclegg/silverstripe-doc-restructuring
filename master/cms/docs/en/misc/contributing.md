@@ -12,9 +12,7 @@ on how you can help out.
 
 *  [silverstripe.org/forums](http://silverstripe.org/forums): Forums on silverstripe.org
 *  [silverstripe-dev](http://groups.google.com/group/silverstripe-dev): Core development mailinglist
-*  [silverstripe-documentation](http://groups.google.com/group/silverstripe-documentation): Documentation team
-mailinglist
-
+*  [silverstripe-documentation](http://groups.google.com/group/silverstripe-documentation): Documentation team mailinglist
 
 ## Submitting Patches
 
@@ -93,33 +91,50 @@ webserver access logs (if a hack is suspected), any other services and web packa
 *  Developer Guides: [doc.silverstripe.com](http://doc.silverstripe.com)
 *  Developer API Docuumentation: [api.silverstripe.com](http://api.silverstripe.com)
 
-### Recommendations
+### What to write
 
-*  Search for **existing places** to put your documentation. Do you really require a new page, or just a new paragraph
+* **API Docs**: Written alongside source code, this documents the low-level, technical usage of a class, method or property.
+  Not suited for longer textual descriptions, due to the limited support of PHPDoc formatting for headlines.
+* **Tutorials**: The first contact for new users, guiding them step-by-step through achievable projects, in a book-like style.
+  *Example: Building a basic site*
+* **Topics**: Provides an overview on how things fit togehter, the "conceptual glue" between APIs and features. 
+  This is where most documentation should live, and is the natural "second step" after finishing the tutorials.
+  *Example: Templates, Testing, Datamodel*
+* **Howto**: Recipes that solve a specific task or problem, rather than describing a feature.
+  *Example: Export DataObjects as CSV, Customizing TinyMCE in the CMS*
+* **Reference**: Complements API docs in providing deeper introduction into a specific API. Most documentation
+  should fit elsewhere. *Example: ModelAdmin*
+* **Misc**: "Meta" documentation like coding conventions that doesn't directly relate to a feature or API. 
+
+See [What to write (jacobian.org)](http://jacobian.org/writing/great-documentation/what-to-write/) for an excellent
+introduction to the different types of documentation.
+
+### Structure
+
+* Don't duplicate: Search for existing places to put your documentation. Do you really require a new page, or just a new paragraph
 of text somewhere?
-
-*  Leave lowlevel technical documentation to class-level [PHPDoc](http://en.wikipedia.org/wiki/PHPDoc). Remember: Both
-forms of documenting sourcecode (PHPDoc/wiki) are valueable ressources, **one should complement the other**.
-
-*  Refer to wiki documentation inside your **PHPDoc**.
-*  Linking your page: A wiki lives by **interlinking content**, so please make sure your contribution doesn't become an
-inaccessible island. Check the startpage for common index-repositories to extend.
-
-*  Linking other pages: Make sure to **refer to related topics** (e.g. [templates](/topics/templates) could refer to
-[javascript](/topics/javascript)).
-
-*  Consider **namespacing** your page to keep things coherent (e.g. "tutorial:customizing-contact-forms" instead of
-"customizing-contact-forms"). Please contact Silverstripe-staff before adding any new namespaces.
-
-*  **Image-linking**: We'd like to keep all ressources for documentation in one place. DokuWiki doesn't provide a public
-upload, so please ask Silverstripe-staff to add your image to doc.silverstripe.com. This is preferred to linking files
-on your own server.#
-
-*  Try to **avoid FAQs** as a replacement of a coherent, well explained documentation. If you've done a good job
+* Use PHPDoc in source code: Leave lowlevel technical documentation to code comments within PHP, in [PHPDoc](http://en.wikipedia.org/wiki/PHPDoc) format. 
+* Use Markdown in Developer Guides: We have a slightly customized version of Markdown called [SSMarkdown][ss-markdown]
+* API and Developer Guides complement each other: Both forms of documenting sourcecode (API and Developer Guides) are valueable ressources.
+* Provide context: Give API documentation the "bigger picture" by referring to Developer Guides inside your PHPDoc.
+* Make your documentation findable: Documentation lives by interlinking content, so please make sure your contribution doesn't become an
+inaccessible island. Your page should at least be linked on the index page in the same folder. It can also appear
+as "related content" on other resource (e.g. [topics/search](/topics/search) might link to [howto/search-dataobjects](/howto/search-dataobjects)).
+* Avoid FAQs: FAQs are not a replacement of a coherent, well explained documentation. If you've done a good job
 documenting, there shouldn't be any "frequently asked questions" left ;)
+* Commit early and often: You don't need to completely finish documentation, as long as you mark areas needing refinement.
+* Every file should have exactly one `<h1>` headline, roughly matching the filename. It should be short enough to be
+	used in table of content lists.
 
-*  You don't need to completely finish documentation, as long as you **mark areas needing refinement**.
-*  If referring to any technical features, please **refer to the Silverstripe-release** where they have been introduced.
-*  Further info: [How tech writing sucks: Five
-Sins](http://www.slash7.com/articles/2006/11/15/tech-writing-the-five-sins) and [What is good
-documentation?](http://www.techscribe.co.uk/techw/whatis.htm)
+### Writing Style
+
+* Write in second plural form: Use "we" instead of "I". It gives the text an instructive and collaborative style.
+* Its okay to address the reader: For example "First you'll install a webserver" is good style.
+* Write in an active and direct voice
+* Mark up correctly: Use preformatted text, emphasis and bold to make technical writing more "scannable".
+
+### Further reading
+
+* [Writing great documentation (jacobian.org)](http://jacobian.org/writing/great-documentation/)
+* [How tech writing sucks: Five Sins](http://www.slash7.com/articles/2006/11/15/tech-writing-the-five-sins)
+* [What is good documentation?](http://www.techscribe.co.uk/techw/whatis.htm)

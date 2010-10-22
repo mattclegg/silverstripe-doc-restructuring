@@ -64,10 +64,23 @@ http://doc.silverstripe.org/doku.php?id=installing-modules gives you a good indu
   - Put the following snippet into your mysite/_config.php file<code>
 global $databaseConfig;
 $databaseConfig = array(
-	"type" => "SQLite3Database",
+	"type" => "SQLiteDatabase",
 	"database" => "SS_mysite",
 );
-</code>
+</code>so that it looks something like this: (minimal configuration)<code>
+<?php
+
+global $project;
+$project = 'mysite';
+
+global $databaseConfig;
+$databaseConfig = array(
+	"type" => 'SQLiteDatabase',
+	"database" => 'SS_mysite',
+);
+
+SSViewer::set_theme('blackcandy');</code>
+
   - Run http://localhost/dev/build
 
 By default Silverstripe places the DB file into a secure subfolder of the assets. However you might want to change the location of the file to a directory outside of the web root for security. Just add "path" to the above array and give it an absolute path.
@@ -86,8 +99,14 @@ By default Silverstripe places the DB file into a secure subfolder of the assets
 
 ===== Debugging =====
 
-If you get an error message like "VACUUM | not authorized" or "VACUUM | authorization required", turn off vacuuming by adding: <code>SQLite3Database::$vacuum = false;</code> anywhere in your mysite/_config.php.
+If you get an error message like
+
+  * Couldn't run query: VACUUM | not authorized
+  * Couldn't run query: VACUUM | authorization required
+  * Couldn't run query: VACUUM | authorization denied
+
+turn off vacuuming by adding: <code>SQLite3Database::$vacuum = false;</code> anywhere in your mysite/_config.php.
 
 If you want to get the queries displayed on the screen that get executed for a particular request, add "?showqueries" to the end of the URL you are debugging, e.g. http://localhost/mysite/about-us?showqueries
 
-If you are looking for a SQLite client for debugging your SS app, [[http://code.google.com/p/sqlite-manager/|sqlite-manager]] plugin for firefox may be worth a try.
+If you are looking for a SQLite client for debugging your SS app, [[http://code.google.com/p/sqlite-manager/|sqlite-manager]] plugin for firefox may be worth a try. Or try the [[dbplumber]] module, a simple database manger for SilverStripe.

@@ -1,4 +1,4 @@
-====== Upgrading 2.4 ======
+====== Upgrading 2.4.0 ======
 
 In preparation for the pending release of 2.4.0 the following page contains all the information you need to know about the changes that have been undertaken.
 

@@ -27,7 +27,7 @@ $data = array('MyProperty' => 'MyValue');
 echo $c->putXML("MyClassName", null, null, $data);
 </code>
 
-Usage - Creating a record:
+Usage - Deleting a record:
 <code php>
 $c = new SoapClient('http://mysite.com/soap/v1/wsdl');
 echo $c->deleteXML("MyClassName");

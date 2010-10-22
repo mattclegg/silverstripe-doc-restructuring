@@ -48,10 +48,12 @@ These webhosts all run PHP5 and have had various levels of confirmation that Sil
 
   * [[http://www.servage.net/|Servage.net]], 360GB space, 3600 GB transfer, PHP 5.2.1, MySQL5, Ruby, free domain, unlimited domains, unlimited email accounts, Python, Cron, etc, GBP $6.45 month. Use this link for an extra 25gb.
   * [[http://www.joyent.com/|Joyent]], very professional hosting provider, no problems installing, it just works, they have shared hosting as well, recommended -SilverRay, using v2.2.0 at the moment.
+     *//Templates in modeladmin don't fully render (fredc)//
   * [[http://www.000webhost.com|000webhost.com ($0.00 webhost)]], 1500MB space, 100GB traffic, Free Web Hosting, memory_limit set at 32M, unlimited DB size.
     *//Just installed, easy install, just had to chmod a few files/folders first (Paul Dekker)//
 
   * [[http://www.site5.com/]], very comprehensive hosting, with excellent customersuppport, I've gone of the hostPro + Turbo package, installed version 2.3.3 straight off with no problems what so ever
+  * [[http://www.siteground.com/silverstripe-hosting.htm|SiteGround.com: SilverStripe Hosting]] Unlimited space and traffic, Free domain name, Professional SilverStripe installation, 7 different PHP versions, MySQL, FTP, SSL, 24/7 Expert Support, for $3.95/mo
 
 == Australia ==
   * [[http://www.quadrahosting.com.au/hosting/unix.html|Quadra Hosting]], Gold Coast based organisation that manages FreeBSD based servers in Sydney and the United States. Quadra will provide shell access on request. Support for PHP5 5.2.4 and MySQL5 on all new accounts. All php.ini variables can be overwritten with .htaccess. You'll need to [[https://support.quadrahosting.com/index.php?_m=knowledgebase&_a=viewarticle&kbarticleid=125|disable mod_security]] for SilverStripe function correctly. //(Confirmed compatibility with SS 2.2.1 by Tatey)//

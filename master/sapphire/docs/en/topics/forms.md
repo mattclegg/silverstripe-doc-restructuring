@@ -16,6 +16,8 @@ have problems with form action handler not working, check that these values are 
 *  ''$actions'': A `[api:FieldSet]`s that make up the control portion of the form - the butons at the bottom.
 *  ''$validator'': An optional `[api:Validator]` for more information.
 
+Example: 
+
 	:::php
 	function MyCustomForm() {
 		$fields = new FieldSet(

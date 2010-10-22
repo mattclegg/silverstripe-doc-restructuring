@@ -31,7 +31,7 @@ interface
 
 ###  Books
 
-[![](images/silverstripe-cms-book-front-cover-design-june2009preview.png)](http://www.silverstripe.org/silverstripe-book)
+[![](_images/silverstripe-cms-book-front-cover-design-june2009preview.png)](http://www.silverstripe.org/silverstripe-book)
 
 *  [Official book on SilverStripe in English](http://www.silverstripe.org/silverstripe-book)
 ([Errata](http://doc.silverstripe.org/silverstripe-book-errata)).

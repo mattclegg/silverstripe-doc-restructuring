@@ -145,4 +145,4 @@ If you want to bypass error handling on your sub-classes you could define that i
 </code>
 
 ====== API Documentation ======
-[[http://api.silverstripe.org/trunk/sapphire/core/RestfulService.html|Click here for the API documentation]].
+[[http://api.silverstripe.org/trunk/sapphire/integration/RestfulService.html|Click here for the API documentation]].

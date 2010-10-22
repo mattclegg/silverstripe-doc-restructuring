@@ -1,3 +1,5 @@
+====== Complex Table Field ======
+
 ===== Introduction ===== 
 Shows a group of DataObjects as a (readonly) tabular list (similiar to [[http://api.silverstripe.org/trunk/forms/fields-relational/TableListField.html|TableListField]]). Its most useful when you want to display a relationship (e.g. one-to-many), subset, or collection of DataObjects via a simple interface with the ability to edit context specific information in a javascript-popup ("Lightbox").  
 
@@ -56,7 +58,7 @@ If you don't want several functions to appear (e.g. no add-link), there's severa
   * Subclass ComplexTableField and override the rendering-mechanism
   * Use ComplexTableField->setTemplate() and ComplexTableField->setTemplatePopup() to provide custom templates
 
-=== Customising fields and Requirements in the popup ===
+==== Customising fields and Requirements in the popup ====
 There are several ways to customise the fields in the popup. Often you would want to display more information in the popup as there is more real-estate for you to play with. 
 
 ComplexTableField gives you several options to do this. You can either
@@ -112,7 +114,7 @@ Most of the time, you need to override the following methods:
   * [[AssetTableField]]
   * [[MemberTableField]]
 
-====== API Documentation ======
+===== API Documentation =====
 [[http://api.silverstripe.org/trunk/forms/fields-relational/ComplexTableField.html|Click here for the API documentation]].
 
 ===== Todo =====

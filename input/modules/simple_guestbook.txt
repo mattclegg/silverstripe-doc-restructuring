@@ -51,9 +51,9 @@ Known issues:
   * Through the useage of ReCaptcha, there could be an error with XHTML pages with XML-header.
 
 ToDos:
-  * add frontent editing for entries and comments
-  * add optional mail to a defined member-pool on new entry
-
+  * (1.1) add frontent editing for entries and comments
+  * (1.1) configurable entry form (e.g. no last name or email address needed)
+  * (1.2) add optional mail to a defined member-pool on new entry
 
 =====Working with the module=====
 To easily change the css for the module, just copy guestbook/css/guestbook.css into your mysite/css/ directory and feel free to change. The module recognizes if this css file is present and then skips its own one. So make sure you have everything you need in that css ;-)

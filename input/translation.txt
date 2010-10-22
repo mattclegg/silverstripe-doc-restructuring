@@ -39,9 +39,10 @@ downloaded fr_FR.php for sapphire => <yoursilverstripe>/sapphire/lang/fr_FR.php
 
 ===== How do I change my interface language? =====
 Once you've logged into the CMS, you should see a "profile"-link on the lower right corner (direct link: http://www.site.com/admin/myprofile). You can set the "interface language" from a dropdown which automatically includes all found translations (based on the php-files in the /lang-folders).
-
 ===== I've found a piece of untranslatable text =====
-It is entirely possible that we missed certain strings in preparing Silverstripe for translation-support. If you're technically minded, please read [[i18n]] on how to make it translatable. Otherwise just post your findings to the [[http://silverstripe.com/silverstripe-forum/|forum]].
+It is entirely possible that we missed certain strings in preparing Silverstripe for translation-support. If you're technically minded, please read [[i18n]] on how to make it translatable. Otherwise just post your findings to the [[http://silverstripe.com/silverstripe-forum/|forum]]. 
+
+Note: JavaScript strings can't be translated through translate.silverstripe.org, you'll need to edit the file locally (e.g. //cms/javascript/de_DE.js//), and [[http://open.silverstripe.org|submit a patch]]. See [[i18n#javascript_usage|i18n: JavaScript Usage]] for details.
 
 ===== How do I add my own module to the translation server =====
 Once you've built a translation-enabled module, you can run the "[[i18n#collecting_text|textcollector]]" on your local installation for this specific module (see [[i18n]]). This should find all calls to _t() in php/ss-files, and generate a new lang-file with the default locale (path: <mymodule>/lang/en_US.php). Upload this file to the translation-server, wait for approval by Silverstripe, and wait for the translators to do their magic!

@@ -1,7 +1,9 @@
+# Database Structure
+
 SilverStripe is currently hard-coded to use a fix mapping between data-objects and the underlying database structure -
 opting for "convention over configuration".  This page details what that database structure is. 
 
-### Base tables
+## Base tables
 
 Each direct sub-class of DataObject will have its own table.
 
@@ -14,19 +16,19 @@ The following fields are always created.
 
 Every object of this class **or any of its subclasses** will have an entry in this table
 
-##### Extra Fields
+### Extra Fields
 
 *  Every field listed in the data object's **$db** array will be included in this table.
 *  For every relationship listed in the data object's **$has_one** array, there will be an integer field included in the
 table.  This will contain the ID of the data-object being linked to.  The database field name will be of the form
 "(relationship-name)ID", for example, ParentID.
 
-##### ID Generation
+### ID Generation
 
 When a new record is created, we don't use the database's built-in auto-numbering system.  Instead, we generate a new ID
 by adding 1 to the current maximum ID.
 
-###  Subclass tables
+##  Subclass tables
 
 At SilverStripe's heart is an object-relational model.  And a component of object-oriented data is **inheritance**. 
 Unfortunately, there is no native way of representing inheritance in a relational database.  What we do is store the
@@ -69,16 +71,16 @@ example above, NewsSection didn't have its own data and so an extra table would 
 To retrieve a news article, SilverStripe joins the SiteTree, Page and NewsArticle tables by their ID fields.  We use a
 left-join for robustness; if there is no matching record in Page, we can return a record with a blank Article field.
 
-### Staging and versioning
+## Staging and versioning
 
 
 
-### Schema auto-generation
+## Schema auto-generation
 
 Visiting the URL (your-site)/db/build will run a script that automatically builds the database manifest.
 
 
-### Related code
+## Related code
 
 The information documented in this page is reflected in a few places in the code:
 
@@ -97,11 +99,11 @@ updating the database to have the required schema.
 * How versioning works
 * Building the database shema: db/build
 
-### Common Problems
+## Common Problems
 
 See [database-troubleshooting](/howto/database-troubleshooting) for common issues that happen with our database structure.
 
-### Future work
+## Future work
 
 *  We realise that a fixed mapping between the database and object-model isn't appropriate in all cases.  In particular,
 it could be beneficial to set up a SilverStripe data-object as an interface layer to the databases of other

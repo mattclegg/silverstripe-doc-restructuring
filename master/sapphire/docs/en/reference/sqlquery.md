@@ -34,8 +34,9 @@ We'll explain some ways to use *SELECT* with the full power of SQL, but still ma
 	$sqlQuery->where = "
 	  YEAR(Birthday) = 1982
 	";
-	// $sqlQuery->having = "";
 	// $sqlQuery->orderby = "";
+	// $sqlQuery->groupby = "";
+	// $sqlQuery->having = "";
 	// $sqlQuery->limit = "";
 	// $sqlQuery->distinct = true;
 	
@@ -55,7 +56,7 @@ We'll explain some ways to use *SELECT* with the full power of SQL, but still ma
 
 ## INSERT/UPDATE
 
-(currently not supported)
+(currently not supported -see below for alternative solutions)
 
 # Working with results
 
@@ -84,7 +85,7 @@ Raw SQL is handy for performance-optimized calls.
 	    return $sqlQuery->execute()->value();
 	}
 
-Way faster than dealing with `[api:DataObject]`s:
+Way faster than dealing with `[api:DataObject]`s, but watch out for premature optimisation:
 
 	:::php
 	$players = $myTeam->Players();

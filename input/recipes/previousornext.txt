@@ -29,11 +29,11 @@ class Page_Controller extends ContentController {
 In your template - this would work as follows:
 
 <code html>
- <% control previousPager %>
-  <a href="$URLSegment">go to the previous page: $Title</a>
- <% end_control %>
- <% control nextPager %>
-  <a href="$URLSegment">go to the next page: $Title</a>
- <% end_control %>
+ <% if previousPager %>
+  <a href="$previousPager.URLSegment">go to the previous page: $previousPager.Title</a>
+ <% end_if %>
+ <% if nextPager %>
+  <a href="$nextPager.URLSegment">go to the next page: $nextPager.Title</a>
+ <% end_if %>
 
 </code>

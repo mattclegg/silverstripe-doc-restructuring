@@ -8,7 +8,6 @@ The subsites module allows multiple websites to run from a single installation o
 
 ===== Requirements =====
   * SilverStripe 2.3
-  * [[genericdataadmin|genericdataadmin]] Module
 
 ===== Download =====
 
@@ -84,6 +83,14 @@ Subsite::set_allowed_domains(array(
 </code>
 
 Note that every site also has a ''www.''-prefixed version of the domain available.  For example, if your subsite is accessible from ''wellington.example.org'' then it will also be accessible from '''www.wellington.example.org''.
+
+==== Access created domains ====
+Once you have created some subsites/domains in your admin, you can check the overall functionality of subsites by
+
+<code>
+http://your.primary-domain.com/subsite-metadata-url?SubsiteID=1
+</code>
+In some Browsers the SubsiteID is visible if you hover over the "Edit" link in the search results of Subsite admin.
 
 ===== Screenshots =====
 {{:modules:subsites-module-adminscreenshot-new.png|:modules:subsites-module-adminscreenshot-new.png}}

@@ -29,7 +29,7 @@ i18n::set_locale('de_DE'); //Setting the locale to German (Germany)
 i18n::set_locale('ca_AD'); //Setting to Catalan (Andorra)
 </code>
 
-Once we set a locale, all the calls to the translator function will return strings according to the set locale value, if these translations are available. See [[http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_territory_information.html|unicode.org]] for a complete listing of available locales.
+Once we set a locale, all the calls to the translator function will return strings according to the set locale value, if these translations are available. See [[http://unicode.org/cldr/data/diff/supplemental/languages_and_territories.html|unicode.org]] for a complete listing of available locales.
 
 ===== Getting the locale =====
 
@@ -38,6 +38,47 @@ As you set the locale you can also get the current value, just by calling get_lo
 <code php>
 i18n::get_locale();
 </code>
+
+===== Declaring the content language in HTML =====
+
+To let browsers know which language they're displaying a document in, you can declare a language in your template. 
+
+//Page.ss// (HTML):
+<code html>
+<html lang="$ContentLocale">
+</code>
+
+//Page.ss// (XHTML):
+<code html>
+<html lang="$ContentLocale" xml:lang="$ContentLocale" xmlns="http://www.w3.org/1999/xhtml">
+</code>
+
+Setting the <html> attribute is the most commonly used technique. There are other ways to specify content languages (meta tags, HTTP headers), explained in this [[http://www.w3.org/International/tutorials/language-decl/|w3.org article]]. 
+
+===== Date and time formats =====
+
+Formats can be set globally in the i18n class. These settings are currently only picked up by the CMS, you'll need 
+to write your own logic for any frontend output.
+
+<code php>
+i18n::set_date_format('dd.MM.YYYY');
+i18n::set_time_format('HH:mm');
+</code>
+
+Most localization routines in SilverStripe use the [[http://framework.zend.com/manual/en/zend.date.html|Zend_Date API]]. This means all formats are defined in  [[http://framework.zend.com/manual/en/zend.date.constants.html#zend.date.constants.selfdefinedformats|ISO date format]], not PHP's built-in [[http://nz.php.net/manual/en/function.date.php|date()]].
+
+===== i18n in Form Fields =====
+
+Date- and time related form fields support i18n (//DateField//, //TimeField//, //DatetimeField//).
+
+<code php>
+i18n::set_locale('ca_AD');
+$field = new DateField(); // will automatically set date format defaults for 'ca_AD'
+$field->setLocale('de_DE'); // will not update the date formats
+$field->setConfig('dateformat', 'dd.MM.YYYY'); // sets typical 'de_DE' date format
+</code>
+	
+Form fields in the CMS are automatically set according to the profile settings for the logged-in user (//Member->DateFormat// and //Member->TimeFormat//).
 
 ====== Adapting modules for i18n ======
 
@@ -232,10 +273,8 @@ alert(ss.i18n.sprintf(
 </code>
 
 ====== Limitations ======
-The project scope currently doesn't include:
-  * Localization (converting currencies, dates, numbers in validation/saving/display/formhandling- too much work for now)
-  * Switching of character encodings (we rely fully on unicode)
-  * Non-western writing-style (right-to-left), too hard to adapt interface (?)
+
+  *  No detectin/conversion of character encodings (we rely fully on UTF-8)
   * Translation of graphics/assets
   * Usage of gettext (too clumsy, too many requirements)
   * Displaying multipe languages/encodings on the same page

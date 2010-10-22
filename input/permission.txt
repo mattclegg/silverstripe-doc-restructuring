@@ -32,7 +32,7 @@ class Page_Controller implements PermissionProvider {
 }
 </code>
 
-This can then be used to add a dropdown for permission codes to the security panel.  Permission::get_all_codes() will be a helper method that will call providePermissions() on every applicable class, and collate the resuls into a single dropdown.
+This can then be used to add a dropdown for permission codes to the security panel.  Permission::get_codes() will be a helper method that will call providePermissions() on every applicable class, and collate the resuls into a single dropdown.
 
 ==== Default use ====
 By default, permissions are used in the following way:

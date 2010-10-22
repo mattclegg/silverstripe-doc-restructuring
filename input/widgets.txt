@@ -16,12 +16,11 @@ By following the "Packaging" rules below, widgets are easily installed.
   * Run dev/build
   * Login to the CMS and go to the 'Blog' page. Choose the "widgets" tab and drag n drop the new widget to activate it.
   * Your blog will now have the widget shown.
-
 ==== Adding widgets to other pages ====
 
-As of 2.2.1 this is this is a way to add widgets to other pages (by default only the Blog has widgets enabled). In the future releases we will hopefully make widgets part of SiteTree therefore available on every page. In the mean time you have to do a couple things to get a Widget to work on a page.
+As of 2.2.1 this is a way to add widgets to other pages (by default only the Blog has widgets enabled). In the future releases we will hopefully make widgets part of SiteTree therefore available on every page. In the mean time you have to do a couple things to get a Widget to work on a page.
 
-First step is to add an WidgetArea to the Database to store the widget details. Then you have to edit the CMS to add a Widget Form to manage the widgets. An example of this is below
+First step is to add a WidgetArea to the Database to store the widget details. Then you have to edit the CMS to add a Widget Form to manage the widgets. An example of this is below
 
 ** mysite/code/Page.php **
 <code php>
@@ -41,7 +40,7 @@ class Page extends SiteTree {
 }
 </code>
 
-Then in your Template you need to call $SideBar whereever you want to render the widget
+Then in your Template you need to call $SideBar wherever you want to render the widget
 
 Eg for blackcandy I put this above the closing </div>
 ** themes/myThemeName/templates/Includes/Sidebar.ss **
