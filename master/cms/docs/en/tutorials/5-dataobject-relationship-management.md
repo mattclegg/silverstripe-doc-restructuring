@@ -1,7 +1,7 @@
-# Tutorial 5 - Dataobject Relationahip Management
+# Tutorial 5 - Dataobject Relationship Management
 ## Overview
 
-In the [second tutorial](/tutorials/2-extending-a-basic-site) we have learned how to add extrafields to a page type thanks
+In the [second tutorial](2-extending-a-basic-site) we have learned how to add extrafields to a page type thanks
 to the *$db* array and how to add an image using the *$has_one* array and so create a relationship between a table and
 the *Image* table by storing the id of the respective *Image* in the first table. This tutorial explores all this
 relations between [DataObjects](/topics/datamodel#relations) and the way to manage them easily.
