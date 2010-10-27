@@ -1,14 +1,14 @@
-# Overview
+# Tutorial 3 - Forms
+## Overview
 
 This tutorial is intended to be a continuation of the first two tutorials, and will build on the site produced in those
 two tutorials.
 
 This tutorial explores forms in SilverStripe. It will look at coded forms. Forms which need to be written in PHP.
 
-Another method which allows you to construct forms via the CMS is by using the [userforms module](http://silverstripe.org/user-forms-module). A
-UserDefinedForm is much quicker to implement, but lacks the flexibility of a coded form. 
+Another method which allows you to construct forms via the CMS is by using the [userforms module](http://silverstripe.org/user-forms-module). A UserDefinedForm is much quicker to implement, but lacks the flexibility of a coded form. 
 
-# What are we working towards?
+## What are we working towards?
 
 We will create a poll on the home page that asks the user their favourite web browser, and displays a bar graph of the
 results.
@@ -387,10 +387,10 @@ a complete poll.
 ![](_images/pollresults.png)
 
 
-# Summary
+## Summary
 
 In this tutorial we have explored forms, and seen the different approaches to creating and using forms. Whether you
 decide to use the [userforms module](http://silverstripe.org/user-forms-module) or create a form in PHP depends on the situation and flexibility
 required.
 
-[Next Tutorial >>](/tutorials/4-site-search)data
+[Next Tutorial >>](4-site-search)
