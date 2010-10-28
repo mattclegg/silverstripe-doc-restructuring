@@ -1,26 +1,27 @@
-# Introduction
+# DataObjectSet
+## Introduction
 
-This class represents a set of `[api:DataObject]s`, such as the results of a query. It is the base for all
+This class represents a set of `[api:DataObject]`s, such as the results of a query. It is the base for all
 [datamodel](/topics/datamodel)-related querying. It implements the [Iterator
 interface](http://php.net/manual/en/language.oop5.iterations.php) introduced in PHP5.
 
 Relations (`has_many`/`many_many`) are described in `[api:ComponentSet]`, a subclass of DataObjectSet.
 
-# Usage
+## Usage
 
-## Getting the size
+### Getting the size
 
 	:::php
 	$mySet->Count();
 
-## Getting an single element
+### Getting an single element
 
 	:::php
 	$myFirstDataObject = $mySet->First();
 	$myLastDataObject = $mySet->Last();
 
 
-## Getting multiple elements
+### Getting multiple elements
 
 	:::php
 	$mySpecialDataObjects = $mySet->find('Status', 'special');
@@ -28,12 +29,12 @@ Relations (`has_many`/`many_many`) are described in `[api:ComponentSet]`, a subc
 	$tenToTwenty = $mySet->getRange(10, 10);
 
 
-## Getting one property
+### Getting one property
 
 	:::php
 	$myIDArray = $mySet->column('ID');
 
-## Grouping
+### Grouping
 
 You can group a set by a specific column. Consider using `[api:SQLQuery]` with a *GROUP BY* statement for enhanced
 performance.
@@ -41,7 +42,7 @@ performance.
 	:::php
 	$groupedSet = $mySet->groupBy('Lastname');
 
-## Sorting
+### Sorting
 
 Sort a set by a specific column. 
 
@@ -61,7 +62,7 @@ This works on the object itself, so do NOT do something like this:
 	// $myFirstSet now contains all combined values
 
 
-## Mapping for Dropdowns
+### Mapping for Dropdowns
 
 When using `[api:DropdownField]` and its numerous subclasses to select a value from a set, you can easily map
 the records to a compatible array:
@@ -71,17 +72,17 @@ the records to a compatible array:
 	$dropdownField = new DropdownField('myField', 'my label', $map);
 
 
-## Converting to array
+### Converting to array
 
 	:::php
 	$myArray = $mySet->toArray();
 
-## Output as HTML-list
+### Output as HTML-list
 
 Use [buildNestedUL](http://doc.silverstripe.com/assets/classes/default/DataObjectSet.html#buildNestedUL) to return a
 nested unordered list out of a "chain" of DataObject-relations.
 
-## Checking for existence
+### Checking for existence
 
 It is good practice to check for empty sets before doing any iteration.
 
@@ -89,7 +90,7 @@ It is good practice to check for empty sets before doing any iteration.
 	$mySet = DataObject::get('Players');
 	if($mySet->exists()) foreach($mySet as $player)
 
-## Paging
+### Paging
 
 DataObjects have native support for dealing with **pagination**.
 See *setPageLimits*, *setPageLength*, etc.
@@ -97,6 +98,5 @@ See *setPageLimits*, *setPageLength*, etc.
 FIXME Complete pagination documentation
 
 
-# API Documentation
-
-[Click here for the API documentation](http://api.silverstripe.org/trunk/sapphire/DataObjectSet.html).
+## API Documentation
+`[api:DataObjectSet]`

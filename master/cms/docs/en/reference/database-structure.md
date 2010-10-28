@@ -65,19 +65,19 @@ fields.  This is called the "base table"
 sub-classes of the base class (including the base class itself)
 *  Each sub-class of the base object will also be given its own table, *as long as it has custom fields*.  In the
 example above, NewsSection didn't have its own data and so an extra table would be redundant.
-*  In all the tables, ID is the primary key.  A matching ID number is used for all parts of a particular record: record
-#2 in Page refers to the same object as record #2 in SiteTree.
+*  In all the tables, ID is the primary key.  A matching ID number is used for all parts of a particular record: 
+record #2 in Page refers to the same object as record #2 in SiteTree.
 
 To retrieve a news article, SilverStripe joins the SiteTree, Page and NewsArticle tables by their ID fields.  We use a
 left-join for robustness; if there is no matching record in Page, we can return a record with a blank Article field.
 
 ## Staging and versioning
 
-
+[todo]
 
 ## Schema auto-generation
 
-Visiting the URL (your-site)/db/build will run a script that automatically builds the database manifest.
+Visiting the URL (your-site)/dev/build will run a script that automatically builds the database manifest.
 
 
 ## Related code
@@ -95,9 +95,6 @@ The information documented in this page is reflected in a few places in the code
 *  `[api:MySQLDatabase]`: getNextID() is used when creating new objects; it also handles the mechanics of
 updating the database to have the required schema.
 
-
-* How versioning works
-* Building the database shema: db/build
 
 ## Common Problems
 

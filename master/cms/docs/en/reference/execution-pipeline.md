@@ -1,10 +1,7 @@
-# Introduction
+# Execution Pipeline
+## Introduction
 
 This page documents all the steps from an URL request to the delivered page. 
-
-
-
-
 
 ## .htaccess and RewriteRule
 
@@ -53,16 +50,14 @@ mod_rewrite works.
 
 All requests go through main.php, which sets up the environment and then hands control over to Director. 
 
-**See:** [The API documentation of main.php](http://api.silverstripe.org/trunk/sapphire/core/_sapphire---main.php.html)
-for information about how main.php processes requests.
+**See:** The API documentation of `[api:Main]` for information about how main.php processes requests.
 ## Director and URL patterns
 
 main.php relies on Director to work out which controller should handle this request.  Director will instantiate that
 controller object and then call
 [Controller::run()](http://api.silverstripe.org/trunk/sapphire/control/Controller.html#run).
 
-**See:** [The API documentation of Director](http://api.silverstripe.org/trunk/sapphire/control/Director.html) for
-information about how Director parses URLs and hands control over to a controller object.
+**See:** The API documentation of `[api:Director]` for information about how Director parses URLs and hands control over to a controller object.
 
 In general, the URL is build up as follows: page/action/ID/otherID - e.g. http://www.mysite.com/mypage/addToCart/12. 
 This will add an object with ID 12 to the cart.
@@ -84,7 +79,7 @@ When you create a function, you can access the ID like this:
 
 Controllers are the building blocks of your application.
 
-**See:** [The API documentation for Controller](http://api.silverstripe.org/trunk/sapphire/control/Controller.html)
+**See:** The API documentation for `[api:Controller]`
 
 You can access the following controller-method with /team/signup
 
@@ -101,5 +96,3 @@ You can access the following controller-method with /team/signup
 ## SSViewer template rendering
 
 See [templates](/topics/templates) for information on the SSViewer template system.
-
-**See:** [The API documentation for SSViewer](http://api.silverstripe.org/trunk/sapphire/view/SSViewer.html)

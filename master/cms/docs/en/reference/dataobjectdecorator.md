@@ -2,7 +2,7 @@
 
 ## Introduction
 
- Extensions (also referred to as decorators) allow for adding additional functionality to a `[api:DataObject]`.
+Extensions (also referred to as decorators) allow for adding additional functionality to a `[api:DataObject]`.
 
 In some cases, it can be easier to completely replace the used class throughout the core with your custom
 implementation. Have a look at `[api:Object->useCustomClass()]`.
@@ -68,8 +68,7 @@ The function should return a map where the keys are the names of the static vari
 	}
 
 
-#### NOTE
-
+*NOTE*
 If you want to add has_one or db items to a particular class, then that class **must** have that static variable
 explicitly defined, even if it's just a blank array.  For example, the decorator method above wouldn't work if you added
 to a class that didn't have static $has_one explicitly declared on the object.  This is because of PHP's crappy support
@@ -173,5 +172,4 @@ decorated by.
 
 
 ## API Documentation
-
-[Click here for the API documentation](http://api.silverstripe.org/trunk/sapphire/DataObjectDecorator.html). 
+`[api:DataObjectDecorator]`

@@ -2,7 +2,7 @@
 
 ##  Introduction
 
-Shows a group of DataObjects as a (readonly) tabular list (similiar to `[api:TableListField]`.  
+Shows a group of DataObjects as a (readonly) tabular list (similiar to `[api:TableListField]`.)
 
 You can specify limits and filters for the resultset by customizing query-settings (mostly the ID-field on the other
 side of a one-to-many-relationship).
@@ -130,7 +130,7 @@ Most of the time, you need to override the following methods:
 *  ComplexTableField->DetailForm() - form output
 *  ComplexTableField_Popup->saveComplexTableField() - saving
 
-## Examples
+### Examples
 
 *  `[api:AssetTableField]`
 *  `[api:MemberTableField]`

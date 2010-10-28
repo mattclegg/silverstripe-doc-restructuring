@@ -1,15 +1,17 @@
-# Introduction
+# LeftAndMain
+## Introduction
 
 LeftAndMain is the base class of all the admin area controllers.  
 
-# Best Practices
+## Best Practices
 
-## Refreshing
+### Refreshing
 
 Please use LeftAndMain::ForceReload to reload the whole form-area after an Ajax-Request. If you just need to refresh
 parts of the form, please use javascript-replacement in the response of the original Ajax-Request. Consider using
 `[api:Form]` for  compiling Ajax-Responses and automatic detection of Ajax/Non-Ajax-Calls.
-## Custom Access Checking
+
+### Custom Access Checking
 
 You can customize access control in `[api:LeftAndMain]`.
 
@@ -28,11 +30,11 @@ You can customize access control in `[api:LeftAndMain]`.
 	}
 
 
-# Subclassing
+## Subclassing
 
 There are a few steps in creating a subclass of LeftAndMain.
 
-#### MyAdmin.php
+### MyAdmin.php
 
 The PHP file defining your new subclass is the first step in the process.  This provides a good starting point:
 
@@ -74,7 +76,7 @@ The PHP file defining your new subclass is the first step in the process.  This 
 	}
 
 
-#### Templates
+### Templates
 
 Next, create templates, (classname)_left.ss and (classname)_right.ss.  Again, here are a couple of starting points:
 
@@ -143,7 +145,7 @@ For example:
 
 See also `[api:CMSMenu]`
 
-##### Translatable Menu Titles
+### Translatable Menu Titles
 
 Override the function getMenuTitle() to create a translated menu title name. Eg:
 
@@ -181,7 +183,7 @@ You could insert this code using Requirements from a custom page class.
 *  `[api:SecurityAdmin]`
 *  `[api:ModelAdmin]` 
 
-# TODO
+## TODO
 
 *  Explain how to build the javascript file
 *  Explain how the ajax button handlers work
