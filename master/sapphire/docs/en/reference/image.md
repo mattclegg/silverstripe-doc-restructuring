@@ -1,17 +1,18 @@
-# Introduction
+# Image
+## Introduction
 
-Represents an image object, inheriting all base functionality from the [file](file) class with extra functionality
+Represents an image object, inheriting all base functionality from the [file](api:file) class with extra functionality
 including resizing.
 
-# Usage
+## Usage
 
-## Form Fields
+### Form Fields
 
 *  `[api:Image]`. Designed to provide a complex image uploader for the CMS.
 *  `[api:SimpleImageField]`. A Simple Image Upload Form
 *  See [imageupload](/howto/image-upload) for a example
 
-## Resizing Images in PHP
+### Resizing Images in PHP
 
 The following are methods defined on the GD class which you can call on Image Objects. Note to get the following to work
 you need to have GD2 support in your PHP installation and because these generate files you must have write access to
@@ -77,7 +78,7 @@ You can also create your own functions by extending the image class, for example
 		}
 	}
 
-## Resizing in Templates
+### Resizing in Templates
 
 You can call certain resize functions directly from the template, to use the inbuilt GD functions as the template parser
 supports these, for example SetWidth() or SetHeight().  
@@ -97,12 +98,12 @@ For output of an image tag with the image automatically resized to 80px width, y
 	$Image.URL // returns filename
 
 
-## Form Upload
+### Form Upload
 
 For usage on a website form, see [imageupload](howto/image-upload) and `[api:SimpleImageField]`.
 If you want to upload images within the CMS, see `[api:ImageField]`.
 
-## Clearing Thumbnail Cache
+### Clearing Thumbnail Cache
 
 Images are (like all other Files) synchronized with the SilverStripe database.
 This syncing happens whenever you load the "Files & Images" interface,
@@ -112,3 +113,6 @@ If you encounter problems with images not appearing, or have mysteriously disapp
 image cache.
 	
 	http://www.mysite.com/images/flush
+	
+## API Documentation
+`[api:Image]`

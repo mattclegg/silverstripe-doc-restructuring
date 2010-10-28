@@ -1,11 +1,12 @@
-# Overview
+# Tutorial 5 - Dataobject Relationship Management
+## Overview
 
-In the [second tutorial](/tutorials/2-extending-a-basic-site) we have learned how to add extrafields to a page type thanks
+In the [second tutorial](2-extending-a-basic-site) we have learned how to add extrafields to a page type thanks
 to the *$db* array and how to add an image using the *$has_one* array and so create a relationship between a table and
 the *Image* table by storing the id of the respective *Image* in the first table. This tutorial explores all this
 relations between [DataObjects](/topics/datamodel#relations) and the way to manage them easily.
 
-# What are we working towards?
+## What are we working towards?
 
 To simulate these relations between objects, we are going to simulate the management via the CMS of the **[Google Summer
 Of Code 2007](http://www.silverstripe.com/google-summer-of-code-2007-we-are-in/)** that SilverStripe was part of.
@@ -35,7 +36,7 @@ This is a table which sums up the relations between them :
 You can also play with the table display on the
 //[demo](http://demo.silverstripe.com/gsoc-projects)// website of Silverstripe.
 
-# GSOC Projects
+## GSOC Projects
 
 Before starting the relations management, we need to create a *ProjectsHolder* class where we will save the GSOC Project
 pages.
@@ -53,7 +54,7 @@ pages.
 	
 	}
 
-# Project - Student relation
+## Project - Student relation
 
 **A project can only be done by one student.**
 
@@ -213,7 +214,7 @@ Now, you will notice that by checking a student in a *Project* page, you will be
 
 
 
-# Student - Mentor relation
+## Student - Mentor relation
 
 **A student has one mentor.**
 
@@ -332,7 +333,7 @@ As the *HasOneComplexTableField* table, you also have the possibility not to sel
 
 
 
-# Project - Module relation
+## Project - Module relation
 
 **A project uses several modules.**
 
@@ -439,7 +440,7 @@ module which will make your *Project* page without any module affected to it.
 
 
 
-# Displaying the data on your website
+## Displaying the data on your website
 
 Now that we have created all the *Page* and *DataObject* classes necessary and the [RelationTables](/relationtable) to
 manage the [relations](../topics/datamodel#relations) between them, we would like to see these relations on the website.
@@ -771,13 +772,13 @@ That's how we can use this function in the *Mentor* template.
 
 
 
-# Summary
+## Summary
 
 This tutorial has demonstrated how easy it is to manage all the type of relations between *DataObject* objects in the
 CMS and how to display them on the website.
 
 
 
-# Download the code
+## Download the code
 
 You can download all the ![complete code](_images/tutorial5-completecode.zip) of this tutorial.

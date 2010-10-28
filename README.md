@@ -28,11 +28,28 @@ To preview changes, you will need to run a local webserver capable of running Si
  * `master`: The new markdown files - please edit in here
  * `scripts`: Helper scripts for conversion and file management
 
-### Forking the project
+### Contributing
+
+#### Forking the project into your github account
 
 You can **fork** this project within github, as described on [help.github.com](http://help.github.com/forking/).
 This fork will show up on your own github profile, and can be checked out to your local machine.
-You don't need a webserver on there, or run any project-specific scripts. Merging back *pull requests* can
+You don't need a webserver on there, or run any project-specific scripts. 
+
+#### Updating your project fork
+
+You should update your own repository every now and then from "upstream" (the original repository),
+to ensure you make any changes on the most recent version of files.
+See "[Pulling in upstream changes](http://help.github.com/forking/#pulling_in_upstream_changes)" on help.github.com.
+
+#### Committing changes back through "pull requests"
+
+See "[Pull requests](http://help.github.com/pull-requests/)" on help.github.com.
+
+#### Merging in "pull requests"
+
+This only needs to be done by maintainers of the original repository.
+Merging back *pull requests* can
 either be done [straight on github](http://github.com/chillu/silverstripe-doc-restructuring/forkqueue) (for simple cases), or through `git pull` commands (see [guide](http://github.com/guides/pull-requests)).
 
 ### Documentation Guidelines

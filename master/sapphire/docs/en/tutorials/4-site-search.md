@@ -1,4 +1,5 @@
-# Overview
+#Tutorial 4 - Site Search
+## Overview
 
 This is a short tutorial demonstrating how to add search functionality to a SilverStripe site. It is recommended that
 you have completed the earlier tutorials, especially the tutorial on forms, before attempting this tutorial. While this
@@ -8,7 +9,7 @@ follow this tutorial on any site of your own. If you are adding the search form 
 ![search file tree icon](_images/search-file.gif) search file tree icon and place it in *themes/tutorial/images/treeicons* (as
 search-file.gif).
 
-# What are we working towards?
+## What are we working towards?
 
 We are going to add a search box on the top of the page. When a user types something in the box, they are taken to a
 results page.
@@ -18,12 +19,12 @@ results page.
 
 
 
-# Creating the search form
+## Creating the search form
 
 The Search Form functionality has been altered over time. Please use the section which applies to your SilverStripe
 version.
 
-## 2.4 and newer
+### 2.4 and newer
 
 SilverStripe 2.4 does not come bundled with the search engine enabled. To enable the search engine you need to include
 the following code in your mysite/_config.php file
@@ -38,13 +39,13 @@ in your web browser. This will add the fulltext search columns.
 The actual search form code is already provided in FulltextSearchable so when you add the enable line above to your
 _config you can add your form as $SearchForm.
 
-## 2.3
+### 2.3
 
 SilverStripe 2.3 came bundled with the code as well as a MySQL Search engine. If you are using the blackcandy theme you
 should have everything you need already to have a search. If you are using the tutorial theme then you can simply skip
 down to 'Adding the search form' as the PHP code is already provided in Page.php. If it is not then you can follow the
 instructions below as well.
-## 2.2
+### 2.2
 
 If you are using SilverStripe 2.2 or earlier then you need to define your own code. The first step in implementing
 search on your site is to create a form for the user to type their query. Create a function named *SearchForm* on the
@@ -70,7 +71,7 @@ search on your site is to create a form for the user to type their query. Create
 
 
 
-# Adding the search form
+## Adding the search form
 
 We then just need to add the search form to the template. Add *$SearchForm* to the 'Header' div in
 *themes/tutorial/templates/Page.ss*.
@@ -86,7 +87,7 @@ We then just need to add the search form to the template. Add *$SearchForm* to t
 
 ![](_images/searchform.png)
 
-# Showing the results
+## Showing the results
 
 Next we need to create the *results* function.
 
@@ -130,7 +131,7 @@ function, and then attempt to render it with *Page_results.ss*, falling back to 
 *Page_results.ss*.
 
 
-# Creating the template
+## Creating the template
 
 Lastly we need to create the template for the search page. This template uses all the same techniques used in previous
 tutorials. It also uses a number of pagination variables, which are provided by the `[api:DataObjectSet]`
@@ -192,9 +193,9 @@ class.
 ![](_images/searchresults.png)
 
 
-# Summary
+## Summary
 
 This tutorial has demonstrated how easy it is to have full text searching on your site. To add search to a SilverStripe
 site, only a search form and a results page need to be created.
 
-[Next Tutorial >>](/tutorials/site-map)
+[Next Tutorial >>](5-dataobject-relationship-management)

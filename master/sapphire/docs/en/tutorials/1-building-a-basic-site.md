@@ -1,4 +1,5 @@
-# Overview
+# Tutorial 1 - Building a Basic Site
+## Overview
 
 Welcome to the first in this series of tutorials on the SilverStripe Content Management System (CMS). 
 
@@ -6,7 +7,7 @@ These tutorials are designed to take you from an absolute beginner to being able
 SilverStripe. We assume to begin with, that you have some XHTML, CSS and PHP knowledge. This first tutorial provides an absolute
 introduction to building a simple website using SilverStripe. It will also teach you how to use the content management system at a basic level.
 
-#  What are we working towards?
+##  What are we working towards?
 
 We are going to create a site in which all the content can be edited in the SilverStripe CMS. It will have a two-level
 navigation system, which will be generated on the fly to include all pages you add in the CMS. We will use two different
@@ -15,7 +16,7 @@ templates - one for the home page, and one for the rest of the site.
 ![](_images/home-small.png)![](_images/menu-two-level-small.png)
 
 
-#  Installation
+##  Installation
 
 You need to [download the SilverStripe software](http://www.silverstripe.org/stable-download) and install it to your local
 machine or to a webserver. 
@@ -26,7 +27,7 @@ videos](../installation).
 If you want to follow this tutorial please choose "empty template" when installing SilverStripe. If you want a fully
 featured theme then select the 'BlackCandy' option.
 
-#  Exploring the installation
+##  Exploring the installation
 
 After installation, open up the folder where you installed SilverStripe. If you installed on windows with WAMP, it will
 likely be at *c:\wamp\wwww*. 
@@ -43,7 +44,7 @@ Let's have a look at the folder structure.
       
 When designing your site you should only need to modify the *mysite*, *themes* and *assets* folders. The rest of the folders contain files and data that are not specific to any site.
 
-#  Using the CMS
+##  Using the CMS
 
 The CMS is the area in which you can manage your site content. You can access the cms at http://localhost/admin. You
 will be presented with a login screen. You can login with the details you provided at installation. After logging in you
@@ -57,7 +58,7 @@ should be greeted with the CMS, pictured below (we've entered some test content)
 4.  There are two copies of each page: draft & published. These buttons allow you to save your changes to the draft copy, publish your draft copy, or revert your draft copy to the published copy. By having separate draft & published copies, we can preview draft changes in the site before publishing them to the live site.
 5.  The navigator will open the current page in the CMS, the draft site, or the published site.
 
-## Try it
+### Try it
 
 There are three pages already created for you - "Home", "About Us" and "Contact Us", as well as a 404 page. Experiment
 with the editor - try different formatting, tables and images. When you are done, click "Save" to save the page or "Save
@@ -88,7 +89,7 @@ for SilverStripe pages improves accessibility for humans and search engines.
 You should ensure the URL for the home page is *home*. By default, SilverStripe loads the page with the URL *home*.
 
 
-# Templates
+## Templates
 
 All pages on a SilverStripe site are rendered using a template. A template is an HTML file augmented with special
 control codes. Because of this, you can have as much control of your site’s HTML code as you like.
@@ -118,7 +119,7 @@ Whenever we edit a template file, we need to append *?flush=1* onto the end of t
 http://localhost/home/?flush=1. SilverStripe stores template files in a cache for quicker load times. Whenever there are
 changes to the template, we must flush the cache in order for the changes to take effect.
 
-# Inserting the page title
+## Inserting the page title
 
 Let's introduce two new template variables - *$Title* and *$MetaTags*.
 
@@ -160,7 +161,7 @@ Your page should now look something like this (with your own content of course):
 
 ![](_images/title.png)
 
-#  Making a Navigation System
+##  Making a Navigation System
 
 So far we have made several pages, but we have no way to navigate between them. We can create a menu for our site using
 a **control block**. Control blocks allow us to iterate over a data set, and render each item using a sub-template. The
@@ -193,7 +194,7 @@ Replace the list item line with this one:
 
 > $Title refers to *Page Name* in the CMS, whereas $MenuTitle refers to (the often shorter) *Navigation label*
 
-# Highlighting the current page
+## Highlighting the current page
 
 A useful feature is highlighting the current page the user is looking at. We can do this with the template variable
 *$LinkingMode*. *$LinkingMode* returns one of three values:
@@ -217,7 +218,7 @@ You should now have a fully functional top menu
 
 ![](_images/menu-highlighted.png)
 
-# Adding a second level
+## Adding a second level
 
 Although we have a fully functional navigation system, it is currently quite restrictive. Currently there is no way to
 nest pages, we have a completely flat site. Adding a second level in SilverStripe is easy. First, let's add some pages. The "About Us" section could use some expansion. 
@@ -293,7 +294,7 @@ around.
 
 
 
-# Using a different template for the home page
+## Using a different template for the home page
 
 So far, a single template *Page.ss* is being used for the entire site. This is useful for the purpose of this
 tutorial, but in a finished website we can expect there to be several page layouts.
@@ -301,7 +302,7 @@ tutorial, but in a finished website we can expect there to be several page layou
 To illustrate how we do this, we will create a new template for the homepage. This template will have a large graphical
 banner to welcome visitors.
 
-## Creating a new page type
+### Creating a new page type
 
 Earlier we stated that every page in a SilverStripe site has a **page type**, and that SilverStripe will look for a
 template corresponding to the page type. Therefore, the first step to get the homepage using a different template is to
@@ -339,7 +340,7 @@ does this non-destructively - it will never delete your data.
 
 As we have just created a new page type, SilverStripe will add this to the list of page types in the database.
 
-## Changing the page type of the Home page
+### Changing the page type of the Home page
 
 After building the database, we can change the page type of the homepage in the CMS. 
 
@@ -353,7 +354,7 @@ created the *HomePage* page type, we inherited from *Page*. So when SilverStripe
 will use the *Page* template. SilverStripe always attempts to use the most specific template first, and then falls back
 to the template of the page type's parents.
 
-## Creating a new template
+### Creating a new template
 
 To create a new template, create a copy of *Page.ss* (found in *themes/tutorial/templates*) and call it *HomePage.ss*. If we flush the cache (*?flush=1*), SilverStripe should now be using *HomePage.ss* for the homepage, and *Page.ss* for the rest of the site. Now let's customize the *HomePage* template. 
 
@@ -367,7 +368,7 @@ First, remove the breadcrumbs and the secondary menu; we don't need them for the
 
 ![](_images/home-template.png)
 
-## Using a subtemplate
+### Using a subtemplate
 
 Having two templates is good, but we have a lot of identical code in the two templates. Rather than having two
 completely separate templates, we can use subtemplates to specify only the part of the template that has changed.
@@ -460,7 +461,7 @@ then descend into the *themes/tutorial/templates/Layout* folder, and will use *P
 
 ![](_images/subtemplates-diagram.png)
 
-# Summary
+## Summary
 
 Starting from a basic template, we have introduced template variables, controls and if blocks, and we have used these
 to build a basic but fully functional site. You have also been briefly introduced to page types, and seen how they
@@ -473,7 +474,7 @@ things.
 
 [Next Tutorial >>](2-extending-a-basic-site)
 
-# Books on SilverStripe 
+## Books on SilverStripe 
 
 *  [Official book on SilverStripe in English](http://www.silverstripe.org/silverstripe-book).
 *  [Official book on SilverStripe in German](http://www.silverstripe.org/das-silverstripe-buch).

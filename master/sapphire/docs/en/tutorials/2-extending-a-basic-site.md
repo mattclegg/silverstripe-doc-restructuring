@@ -1,4 +1,5 @@
-# Overview
+# Tutorial 2 - Extending a Basic Site
+## Overview
 
 In the [first tutorial](/tutorials/1-building-a-basic-site) we learned how to create a basic site using SilverStripe. This
 tutorial builds on what you have learned in [the first tutorial](/tutorials/1-building-a-basic-site), so it is recommended
@@ -7,7 +8,7 @@ that you complete it first.
 In this tutorial you will explore extending SilverStripe by creating your own page types. In doing this you will get a
 good overview of how SilverStripe works.
 
-# What are we working towards?
+## What are we working towards?
 
 Throughout this tutorial we are going to work on adding two new sections to the site we built in the first tutorial. The
 first is a news section, with a recent news listing on the homepage and an RSS feed. The second is a staff section,
@@ -16,8 +17,7 @@ which demonstrates more complex database structures by associating an image with
 ![](_images/news-with-rss-small.png)![](_images/einstein-small.png)
 
 
-
-# The SilverStripe data model
+## The SilverStripe data model
 
 A large part of designing complex SilverStripe sites is the creation of your own page types. Before we progress any
 further, it is important to understand what a page type is, and how the SilverStripe data model works.
@@ -50,7 +50,7 @@ more in-depth introduction of Model-View-Controller can be found
 
 ![](_images/pagetype-inheritance.png)
 
-# Creating the news section page types
+## Creating the news section page types
 
 Let's make our news section. We'll need two new page types for this. The first one is obvious: we need an *ArticlePage*
 page type. The second is a little less obvious: we need an *ArticleHolder* page type that contains our articles.
@@ -131,7 +131,7 @@ It is SilverStripe convention to suffix general page types with "Page", and page
 page type "News", it would conflict with the page name also called "News".
 [/note]
 
-# Adding date and author fields
+## Adding date and author fields
 
 Now that we have an *ArticlePage* page type, let's make it a little more useful. Remember the *$db* array? We can use
 this array to add extra fields to the database. It would be nice to know when each article was posted, and who posted
@@ -216,7 +216,7 @@ named "News", and create some *ArticlePage*s inside it.
 
 ![](_images/news-cms.png)
 
-#  Creating the templates
+##  Creating the templates
 
 We can already look at the content of news pages on our site, because the article holder page and the article pages
 inherit their templates from Page. But we're not getting the author and date fields displayed in either case.
@@ -300,7 +300,7 @@ article.
 Remember that the visual styles are not part of the CMS, they are defined in the tutorial CSS file.
 
 
-# Using include files in templates
+## Using include files in templates
 
 The second level menu is something we want in most, but not all, pages so we can't put it in the base template. By
 putting it in a separate file in the *tutorial/templates/Includes* folder, we can use `<% include templatename %>` to
@@ -354,7 +354,7 @@ Do the same with the breadcrumbs:
 You can make your templates more modular and easier to maintain by separating commonly-used pieces into include files.
 
 
-# Changing the icons of pages in the CMS
+## Changing the icons of pages in the CMS
 
 Let's now make a purely cosmetic change that nevertheless helps to make the information presented in the CMS clearer.
 Add the following field to the *ArticleHolder* and *ArticlePage* classes:
@@ -374,7 +374,7 @@ will end with **-file.gif**, e.g. when you specify *news* above, the filename wi
 
 ![](_images/icons2.png)
 
-# Allowing comments on news articles
+## Allowing comments on news articles
 
 A handy feature built into Silverstripe is the ability for guests to your site to leave comments on pages. We can turn
 this on for an article simply by ticking the box in the behaviour tab of a page in the CMS. Enable this for all your
@@ -412,7 +412,7 @@ the *ArticlePage* class:
 You can set defaults for any of the fields in your data object. *ProvideComments* is defined in *SiteTree*, so it is
 part of our *ArticlePage* data object.
 
-# Showing the latest news on the homepage
+## Showing the latest news on the homepage
 
 It would be nice to greet page visitors with a summary of the latest news when they visit the homepage. This requires a
 little more code though - the news articles are not direct children of the homepage, so we can't use the *Children*
@@ -461,7 +461,7 @@ the data object.
 
 
 
-# Creating a RSS feed
+## Creating a RSS feed
 
 An RSS feed is something that no news section should be without. SilverStripe makes it easy to create RSS feeds by
 providing an //`[api:RSSFeed]`// class to do all the hard work for you. Create the following function in the
@@ -500,7 +500,7 @@ called. In Firefox you can see the RSS feed link in the address bar:
 
 ![](_images/rss.png)
 
-# Adding a staff section
+## Adding a staff section
 
 Now that we have a complete news section, let's move on to the staff section. We need to create *StaffHolder* and
 *StaffPage* page types, for an overview on all staff members and a detail-view for a single member. First let's start
@@ -578,7 +578,7 @@ a new *StaffHolder* called "Staff" in the "About Us" section, and create some *S
 
 
 
-# Creating the staff section templates
+## Creating the staff section templates
 
 The staff section templates aren't too difficult to create, thanks to the utility methods provided by the *Image* class.
 
@@ -632,9 +632,9 @@ a complete staff section.
 
 ![](_images/einstein.png)
 
-# Summary
+## Summary
 
 In this tutorial we have explored the concept of page types. In the process of creating and extending page types you
 have been introduced to many of the concepts required to build a site with SilverStripe.
 
-[Next Tutorial >>](tutorial/3-forms)
+[Next Tutorial >>](3-forms)

@@ -1,17 +1,16 @@
-# Introduction
+# Director
+## Introduction
 
 Director is the first step in the "execution pipeline". It parses the URL, matching it to one of a number of patterns,
 and determines the controller, action and any argument to be used. It then runs the controller, which will finally run
 the viewer and/or perform processing steps.
 
-[Full method documentation available here](http://api.silverstripe.org/2.4/sapphire/control/Director.html)
-
-# Best Practices
+## Best Practices
 
 *  Forcing a site to run in SSL mode: see [ssl](/howto/ssl)
 *  Checking for an Ajax-Request: Use Director::is_ajax() instead of checking for $_REQUEST['ajax'].
 
-# Redirection
+## Redirection
 
 The Director class has a number of methods to facilitate 301 and 302 HTTP redirection.
 
@@ -30,7 +29,7 @@ following two conditions are true:
 redirectBack().
 
 
-# Custom Rewrite Rules
+## Custom Rewrite Rules
 
 You can influence the way URLs are resolved one of 2 ways
 
@@ -47,7 +46,7 @@ See [controller](/topics/controller) for examples and explanations on how the ru
 	));
 
 
-# Default Rewrite Rules
+## Default Rewrite Rules
 
 SilverStripe comes with certain rewrite rules (e.g. for *admin/assets*).
 
@@ -55,7 +54,10 @@ SilverStripe comes with certain rewrite rules (e.g. for *admin/assets*).
 *  [cms/_config.php](http://open.silverstripe.org/browser/modules/cms/trunk/_config.php)
 
 
-# Links
+## Links
 
 *  See ModelAsController class for details on controller/model-coupling
 *  See [execution-pipeline](/reference/execution-pipeline) for custom routing
+
+## API Documentation
+`[api:Director]`

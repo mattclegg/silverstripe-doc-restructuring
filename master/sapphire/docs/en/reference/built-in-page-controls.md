@@ -1,4 +1,4 @@
-# Page Controls
+# Built in Page Controls
 
  
 Ever wonder when you use $Title and `<% Control Children %>` what else you can do / call in the templates?. This page is
