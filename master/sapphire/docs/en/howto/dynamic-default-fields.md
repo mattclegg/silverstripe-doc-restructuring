@@ -1,5 +1,4 @@
-Dynamic Default Values
-======================
+# Dynamic Default Values
 
 The [api:DataObject::$defaults] array allows you to specify simple static values to be the default value for when a
 record is created, but in many situations default values needs to be dynamically calculated. In order to do this, the
