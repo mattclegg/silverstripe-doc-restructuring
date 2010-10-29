@@ -1,9 +1,9 @@
-# Introduction
+# Sitetree
+## Introduction
 
 Basic data-object representing all pages within the site tree. The omnipresent *Page* class (located in
 *mysite/code/Page.php*) is based on this class.
 
-# Usage
 
 ## Linking
 
@@ -244,7 +244,7 @@ How would we do this?  In our example, we're going to update BlogHolder to show 
 We will create a class called BlogMonthTreeNode, which will extend ViewableData instead of DataRecord, since it's not
 saved into the database.  This will represent our dynamic groups.
 
-#### LeftAndMain::getSiteTreeFor()
+### LeftAndMain::getSiteTreeFor()
 
 Currently LeftAndMain::getSiteTreeFor() Calls LeftAndMain::getRecord($id) to get a new record.  We need to instead
 create a new function getTreeRecord($id) which will be able to create BlogMonthTreeNode objects as well as look up
@@ -260,7 +260,7 @@ first part as the classname, and all the remaining parts as arguments to the con
 
 Your BlogMonthTreeNode constructor will then need to take $blogHolderID, $year, $month as arguments.
 
-#### Divorcing front-end site's Children() and the CMS's AllChildrenIncludingDeleted()
+### Divorcing front-end site's Children() and the CMS's AllChildrenIncludingDeleted()
 
 We need a way of cleanly specifying that there are two different child sources - children for the CMS tree, and children
 for the front-end site.
@@ -271,7 +271,7 @@ for the front-end site.
 AllChildrenIncludingDeleted() could then call the "cms..." versions of the functions, but if we were to to this, we
 should probably rename AllChildrenIncludingDeleted() to CMSTreeChildren() or something like that.
 
-#### BlogHolder::cmsStageChildren() & BlogHolder::cmsLiveChildren()
+### BlogHolder::cmsStageChildren() & BlogHolder::cmsLiveChildren()
 
 We will need to define these methods, to 
 
@@ -279,9 +279,7 @@ We will need to define these methods, to
 *  For each entry returned, generate a new BlogMonthTreeNode object.
 *  Return that as a dataobjectset.
 
-#### BlogMonthTreeNode
-
- 
+### BlogMonthTreeNode
 
 *  Parameter 'ID': should return 'BlogMonthTreeNode-(BlogHolderID)-(Year)-(Month)'.  You can do  this by implementing
 getID().
@@ -289,12 +287,14 @@ getID().
 
 After that, there will be some other things to tweak, like the tree icons.
 
-#### Where to from here?
+### Where to from here?
 
 This is a lot of work for the specific example of blog-entries grouped by month.  Instead of BlogMonthTreeNode, you
 could genericise this to a DynamicTreeGroup class, which would let you specify the parent node, the type of grouping,
 and the specific group.
 
-# API Documentation
+## TODO
+Clean up this documentation
 
-[Click here for the API documentation](http://api.silverstripe.org/trunk/sapphire/core/SiteTree.html)
+## API Documentation
+`[api:Sitetree]`

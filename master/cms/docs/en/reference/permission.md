@@ -1,7 +1,8 @@
-# Introduction
+# User Permissions
+
+## Introduction
 
 This class implements SilverStripe's permission system.
-
 
 ## Usage
 
@@ -11,7 +12,7 @@ and then select the permissions tab, and add that permission to the list.
 The simple usage, Permission::check("PERM_CODE") will detect if the currently logged in member has the given permission.
  See the API docs for more options.
 
-#### Group ACLs
+** Group ACLs **
 
 *  Call **Permission::check("MY_PERMISSION_CODE")** to see if the current user has MY_PERMISSION_CODE.
 *  MY_PERMISSION_CODE can be loaded into the Security admin on the appropriate group, using the "Permissions" tab. 
@@ -19,9 +20,7 @@ The simple usage, Permission::check("PERM_CODE") will detect if the currently lo
 You can use whatever codes you like, but for the sanity of developers and users, it would be worth listing the codes in
 [permissions:codes](permissions/codes)
 
-## Adding Permissions
-
-### PermissionProvider
+## PermissionProvider
 
 PermissionProvider is an interface which lets you define a method *providePermissions()*. This method should return a
 map of permission code names with a human readable explanation of its purpose (see
@@ -45,7 +44,7 @@ This can then be used to add a dropdown for permission codes to the security pan
 a helper method that will call providePermissions() on every applicable class, and collate the resuls into a single
 dropdown.
 
-### Default use
+## Default use
 
 By default, permissions are used in the following way:
 
@@ -57,13 +56,13 @@ By default, permissions are used in the following way:
 **NOTE:** Should the canView() method on SiteTree  be updated to call Permission::check("SITETREE_VIEW", $this->ID)? 
 Making this work well is a subtle business and should be discussed with a few developers.
 
-### Setting up permissions
+## Setting up permissions
 
 *  By default, permissions are linked to groups.  You define a many-many relationship called Can(permname), eg,
 "CanView".  Please note that group permissions are more efficient, as SQL joins are used to filter data.
 *  Alternatively, you can create a custom permission by defining a function called can(permname)
 
-### Using permissions
+## Using permissions
 
 *  On an individual data record, $page->can("View", $member = null) and be called.  If a member isn't passed, the
 currently logged in member is assumed.
@@ -71,6 +70,5 @@ currently logged in member is assumed.
 information on request objects.
 
 
-# API Documentation
-
-[Click here for the API documentation](http://api.silverstripe.org/trunk/database/Permission.html).
+## API Documentation
+`[api:Permission]`
