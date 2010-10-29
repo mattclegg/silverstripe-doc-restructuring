@@ -1,6 +1,6 @@
 # Installation on Windows and IIS 7.0 and later
 
-This page explains installing SilverStripe manually, without the use of (the easy to use) [Web Platform Installer](/topics/installatin/installation-on-windows-pi).
+This page explains installing SilverStripe manually, without the use of (the easy to use) [Web Platform Installer](windows-pi).
 
 ## Configure an existing IIS server
 
@@ -9,7 +9,7 @@ First we need to configure the server:
 *  We assume that you already have a IIS server running.
 *  If you haven't already, [install  PHP using these
 instructions](http://learn.iis.net/page.aspx/246/using-fastcgi-to-host-php-applications-on-iis-70/) 
-    * When you are editing the php.ini, enable the mysql, gd2, and mbstring extensions
+* When you are editing the php.ini, enable the mysql, gd2, and mbstring extensions
 *  [Install the Microsoft URL Rewrite Module](http://www.iis.net/expand/URLRewrite)
 *  [Install the Fast-CGI admin panel](http://www.iis.net/downloads/default.aspx?tabid=34&g=6&i=1682 ) (not required on
 IIS 7.5+)
@@ -19,14 +19,14 @@ If you are using the SilverStripe development trunk and wish to use MS SQL serve
 following additional server configuration:
 
 *  Install SQL Server client tools
-*  Install the [SQL Server Driver for PHP
-1.1](http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=ccdf728b-1ea0-48a8-a84a-5052214caad9),
+*  Install the [SQL Server Driver for PHP1.1](http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=ccdf728b-1ea0-48a8-a84a-5052214caad9),
 "sqlsrv".
-    * `<del>`You will have to use the threadsafe version of the library (php_sqlsrv_ts.dll). On some configurations, PHP
+
+* `<del>`You will have to use the threadsafe version of the library (php_sqlsrv_ts.dll). On some configurations, PHP
 will just silently not load a non-threadsafe extension`</del>`.
-    * IMPORTANT: You should install a non-thread safe version of [PHP](http://windows.php.net/) AND a non-thread safe
-version of the [SQL Server Driver for PHP
-1.1](http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=ccdf728b-1ea0-48a8-a84a-5052214caad9)
+
+* IMPORTANT: You should install a non-thread safe version of [PHP](http://windows.php.net/) AND a non-thread safe
+version of the [SQL Server Driver for PHP1.1](http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=ccdf728b-1ea0-48a8-a84a-5052214caad9)
 "sqlsrv". VC9 of both is also preferred.
 
 ## Install SilverStripe
@@ -103,17 +103,18 @@ Doing all of the above should provide a significant performance boost to your si
 ## Installing on IIS 5.1 and 6.0
 
 *  Follow the instructions above, but note differences:
-   * You cannot install the URL Rewriter shown above, because Microsoft has no such plugin for those IIS older versions.
+* You cannot install the URL Rewriter shown above, because Microsoft has no such plugin for those IIS older versions.
 This will mean your URLs are like yoursite.com/index.php/about-us rather than yoursite.com/about-us. If you do want
 friendly URLs you must you must buy or use other URL rewriting software 
-     * IIRF: http://iirf.codeplex.com/
-     * ISAPI_Rewrite: http://www.helicontech.com/download-isapi_rewrite3.htm
-       * (The freeware, lite version should be fine for simple installations.)
-     * If you have 64-bit windows, you can try this one: 
-        * http://www.micronovae.com/ModRewrite/ModRewrite.html
+
+* IIRF: http://iirf.codeplex.com/
+* ISAPI_Rewrite: http://www.helicontech.com/download-isapi_rewrite3.htm
+* (The freeware, lite version should be fine for simple installations.)
+* If you have 64-bit windows, you can try this one: 
+* http://www.micronovae.com/ModRewrite/ModRewrite.html
 *  Instructions for installing PHP IIS 5.1 and 6 may be different that for 7. See
 http://learn.iis.net/page.aspx/248/configuring-fastcgi-extension-for-iis60/
-*  On XP, you need to disable 'Check that file exists' (See [installation-on-windows-pi](/topics/installation/installation-on-windows-pi))
+*  On XP, you need to disable 'Check that file exists' (See [installation-on-windows-pi](windows-pi))
 
 Matthew Poole has expanded on these instructions with this tutorial:
 http://cubiksoundz.blogspot.com/2008/12/tech-note-installing-silverstripe-cms.html

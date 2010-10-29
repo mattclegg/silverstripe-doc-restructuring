@@ -1,10 +1,9 @@
-
-##### Installation on Windows using Web Platform Installer
+# Installation on Windows using Web Platform Installer
 
 ![](http://doc.silverstripe.com/assets/windows.png)
 (Windows XP, 2003, 2008, Vista and 7)
 
-##### Installing SilverStripe
+## Installing SilverStripe
 
 *  Download and run Microsoft Web Platform Installer (WebPI):
 [![](http://www.silverstripe.org/assets/downloads/webpi/wpiBadgeGreen.png)](http://www.microsoft.com/web/gallery/install.aspx?appsxml=www.microsoft.com%2fweb%2fwebpi%2f2.0%2fWebApplicationList.xml&amp;appid=105)
@@ -15,7 +14,7 @@
 *  Everything should be installed, with you seeing the initial webpage
 *  And you can log-in to the CMS
 
-##### Important: Installation issue on XP
+## Important: Installation issue on XP
 
 After you've installed SilverStripe on XP using WebPI. You'll need to make a configuration change to get it working.
 
@@ -33,14 +32,14 @@ necessary for URLs of the form http://localhost/silverstripe/index.php/about-us/
 *  Make sure the check box "Check that file exists" is cleared.
 *  Hit OK's all the way back up and restart IIS
 
-##### Support
+## Support
 
 *  http://www.silverstripe.org/installing-on-windows-now-easier-thanks-to-microsoft-web-platform-installer/  (This shows
 a beta version of the software)
 *  Microsoft Forum: http://forums.iis.net/1155.aspx
 *  SilverStripe Installation Issues Forum: http://silverstripe.org/installing-silverstripe/
 
-##### Screenshots of this installation process
+## Screenshots of this installation process
 
 ![](_images/webpi-2-a-silverstripe-choice.png)
 ![](_images/webpi-2-b-dependencies.png)
