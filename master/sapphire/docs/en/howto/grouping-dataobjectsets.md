@@ -1,5 +1,4 @@
-Grouping Data Object Sets
-=========================
+# Grouping Data Object Sets
 
 The [api:DataObjectSet] class has a number of methods useful for grouping objects by fields. Together with sorting this
 can be used to break up long lists of data into more manageable sub-sections.
@@ -8,8 +7,7 @@ The [api:DataObjectSet->groupBy()] method takes a field name as the single argum
 of arrays, where each array contains only objects with the same value of that field. The [api:DataObjectSet->GroupedBy()]
 method builds on this and returns the same data in a template-friendly format.
 
-Grouping Sets By First Letter
------------------------------
+## Grouping Sets By First Letter
 
 This example deals with breaking up a [api:DataObjectSet] into sub-headings by the first letter.
 
@@ -82,8 +80,7 @@ defined earlier is used to break them up.
 		</ul>
 	<% end_control %>
 
-Grouping Sets By Month
-----------------------
+## Grouping Sets By Month
 
 Grouping a set by month is a very similar process. The only difference would be to sort the records by month name, and
 then create a method on the DataObject that returns the month name, and pass that to the [api:DataObjectSet->GroupedBy()]
