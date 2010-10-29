@@ -12,6 +12,7 @@ language.
 A theme is a set of HTML/CSS/Javascript and images that can be used to provide a skin for a site. A theme does not
 include any PHP: instead it should be separate from the code which allows the portability of a design. After all, this
 is an MVC framework!
+
 ## Getting started - Folder Structure
 
 To start your theme you first need to create the basic folder structure for the theme. Check out the image below for the
@@ -158,17 +159,6 @@ Let's have a look at part of a Page.ss for the main layout elements defining a 2
 	</div>
 
 
-### HTML naming conventions
-
-*  Class names should be lowercase, or lowerCamelCase starting with a lowercase letter, for example, latestNews
-*  IDs should be UpperCamelCase and remember ID's can only be used once per page.
-
-Example:
-
-	:::html
-	<div id="Container"><!-- markup goes here --></div>
-
-
 As you can see we normally wrap the site in a container. For this we use the ID 'Container'. Then we divide the main
 template into sections.
 
@@ -284,6 +274,6 @@ Following some set standards and conventions makes life easy for you and I.
 Some conventions for SilverStripe websites, which we suggest following. Take a look at each:
 
 *  [Coding-Conventions](/misc/coding-conventions)
-*  [:Typography](/reference/typography)
+*  [Typography](/reference/typography)
 
 We also suggest following various [industry standards](http://www.w3.org/) and conventions.

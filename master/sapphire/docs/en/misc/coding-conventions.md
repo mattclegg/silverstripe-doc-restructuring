@@ -9,7 +9,9 @@ and facilitate collaboration by making code more consistent and readable.
 
 If you are unsure about a specific standard, imitate existing SilverStripe code.
 
-## Indentation
+## PHP Coding Conventions
+
+### Indentation
 
 Always use hard tabs rather then spaces for indentation, with one tab per nesting level.
 Spaces are not allowed.
@@ -23,7 +25,7 @@ Spaces are not allowed.
 		
 	}
 
-## Class and Method Naming
+### Class and Method Naming
 
 Class and filenames are in `UpperCamelCase` format:
 
@@ -50,7 +52,7 @@ Other instance methods should be in `$this->lowerCamelCase()` format:
 	:::php
 	function myInstanceMethod() {}
 
-## Variable Naming
+### Variable Naming
 
 Static variables should be `self::$lowercase_with_underscores`
 
@@ -67,7 +69,7 @@ Constants should be `UPPERCASE_WITH_UNDERSCORES`
 	:::php
 	define('INTEREST_RATE', 0.19);
 	
-## File Naming and Directory Structure
+### File Naming and Directory Structure
 
 Classes need to be in a file of the same name. If a class name has an underscore, then the file name has to be the text before the underscore.  
 For example `MyClass` and `MyClass_Controller` will both need to be placed into `MyClass.php`.
@@ -87,7 +89,7 @@ To help with namespacing common class names (like Database) it is recommended to
 
 See [/topics/directory-structure](directory-structure) for more information.
 
-## Coding
+### Coding
 
 Start all your php script files with `<?php`.  Don't use `<?`.
 Don't end your PHP file with `?>`. Leave it blank. This prevents any whitespace which can generate errors in your code
@@ -134,7 +136,7 @@ Check for value before stepping into a foreach-loop
 	  foreach($A_authors as $author) {}
 	}
 
-## Comments
+### Comments
 
 Use [phpdoc](http://phpdoc.org/) syntax before each definition (see [tutorial](http://manual.phpdoc.org/HTMLSmartyConverter/HandS/phpDocumentor/tutorial_phpDocumentor.quickstart.pkg.html)
 and [tag overview](http://manual.phpdoc.org/HTMLSmartyConverter/HandS/phpDocumentor/tutorial_tags.pkg.html)).
@@ -175,7 +177,7 @@ Example:
 		
 	}
 	
-## Class Member Ordering
+### Class Member Ordering
 
 Put code into the classes in the following order (where applicable).
 
@@ -189,9 +191,7 @@ Put code into the classes in the following order (where applicable).
  *  Template data-access methods (methods that will be called by a `$MethodName` or `<% control MethodName %>` construct in a template somewhere)
  *  Object methods
 
-## SQL
-
-### Escaping Values
+### SQL Escaping Values
 
 Always convert values you get from the user before you do SQL queries.
 
@@ -207,6 +207,22 @@ with the column or table name escaped with double quotes and values with single 
 	DataObject::get("MyClass", "\"Title\" = 'my title'");
 
 
-##  Security 
+### Secure Development 
 
 See [secure-development](secure-development) for conventions related to handing security permissions.
+
+## HTML and CSS Guidelines
+
+* Class names should be `lowercase`, or use `lower-dash` to break up words.
+	
+Example:
+
+	:::html
+	<div class="latest-news">...
+
+*  IDs should be UpperCamelCase and remember ID's can only be used once per page.
+
+Example:
+
+	:::html
+	<div id="Container">...
