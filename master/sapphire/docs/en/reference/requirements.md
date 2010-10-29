@@ -1,10 +1,10 @@
-# Introduction
+# Requirements
+
+## Introduction
 
 The requirements class takes care of including CSS and JavaScript into your applications. This is preferred to
 hardcoding any references in the `<head>`-tag of your template, as it enables a more flexible handling.
 
-
-# Usage
 
 ## Including inside PHP Code
 It is common practice to include most Requirements either in the *init()*-method of your [controller](topics/controller), or
@@ -142,7 +142,7 @@ In your controller's init() function, add:
 The Silverstripe core includes a lot of Requirements by itself. Most of these are collated in `[api:LeftAndMain]`//
 first.
 
-# Motivation
+## Motivation
 
 Every page requested is made up of a number of parts, and many of those parts require their own CSS or JavaScript.  
 Rather than force the developer to put all of those requests into the template, or the header function, you can
@@ -168,9 +168,9 @@ being included in situations where it caused problems.  But the complexity could
 bit of an admission of defeat - we shouldn't need to have to do this if our generic CSS was well-designed.
 
 
-# Ideas/Problems
+## Ideas/Problems
 
-##### Ajax
+### Ajax
 
 The whole "include it when you need it" thing shows some weaknesses in areas such as the CMS, where Ajax is used to load
 in large pieces of the application, which potentially require more CSS and JavaScript to be included.  At this stage,
@@ -181,7 +181,7 @@ client can load up those scripts and stylesheets upon completion of the Ajax req
 cleanly, but for best results we'd want to extend prototype.js with our own changes to their Ajax system, so that every
 script had consistent support for this.
 
-##### Lots of files
+### Lots of files
 
 Because everything's quite modular, it's easy to end up with a large number of small CSS and JavaScript files.  This has
 problems with download time, and potentially maintainability.
@@ -195,6 +195,5 @@ slightly different JS/CSS requirements, the whole lot will be refetched.
 *  Do lazy fetching of scripts within an ajax-call. This seems to be possible, but very tricky due to the asynchronous
 nature of an ajax-request. Needs some more research
 
-# API Documentation
-
-[Full method documentation available here](http://api.silverstripe.org/trunk/sapphire/Requirements.html)
+## API Documentation
+`[api:Requirements]`

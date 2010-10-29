@@ -191,11 +191,10 @@ Results.PaginationSummary(4) defines how many pages the search will show in the 
 
 ## Available SearchFilters
 
-See [SearchFilter API Documentation](http://api.silverstripe.org/current/sapphire/search/SearchFilter.html)  
+See SearchFilter API Documentation `[api:SearchFilter]` 
 
 ## API Documentation
-
-[API documentation](http://api.silverstripe.org/current/sapphire/search/SearchContext.html).
+`[api:SearchContext]`
 
 ## Related
 

@@ -1,5 +1,5 @@
 # Site Reports
-
+## Introduction
 A report is a little bit of functionally in the CMS designed to provide a report of your data or content. You can access
 the site reports by clicking "Site Reports" in the left hand side bar and selecting the report you wish to view.
 
@@ -7,7 +7,7 @@ the site reports by clicking "Site Reports" in the left hand side bar and select
 
 By default the CMS ships with a couple basic reports - 
 
-### Default Reports
+## Default Reports
 
 *  "Empty Pages" which will generate a list of pages without content 
 *  "Pages edited in the last 2 weeks" which will list all the pages edited in the last 2 weeks in order of most recently
@@ -78,7 +78,7 @@ CustomSideReport.php
 
 Reload the CMS and test it out for your self! You should be able to select the report and view all the pages.
 
-## Further on.. Notes
+## Notes
 
 *  Your CustomSideReport_ReportName must extend SideReport!
 *  You can have more then 1 report in the 1 file. Actually its recommended!. You should create 1 CustomSideReport.php
@@ -89,6 +89,7 @@ file and add class's as you need them inside that for each report.
 *  How to format and make nicer reports. 
 *  More examples.
 
-
+## API Documentation
+`[api:ReportAdmin]`
 
 

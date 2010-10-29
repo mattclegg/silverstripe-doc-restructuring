@@ -1,8 +1,10 @@
+# Member
+
 **This is partially deprecated - see the `[api:DataObject]` page for more information**
 
-# Introduction
+## Introduction
 
-The Member class is used to represent user accounts on a Silverstripe site (including newsletter recipients).
+The Member class is used to represent user accounts on a SilverStripe site (including newsletter recipients).
  
 
 ## Testing For Logged In Users
@@ -61,7 +63,7 @@ To ensure that all new members are created using this class, put a call to Objec
 
 Note that if you want to look this class-name up, you can call Object::getCustomClass("Member")
 
-### Overloading getCMSFields()
+## Overloading getCMSFields()
 
 If you overload the built-in function getCMSFields(), then you can change the form that is used to view & edit member
 details in the newsletter system.  This function returns a FieldSet object.  You should generally start by calling
@@ -86,10 +88,7 @@ For persons without login-capabilities (e.g. for an address-database), you shoul
 with the Member-database. This enables us to have a different subclass of Member for an email-address with login-data,
 and another subclass for the same email-address in the address-database.
 
-
-
-
-### New Idea: Member Role Decorator
+## New Idea: Member Role Decorator
 
 Using inheritance to add extra behaviour or data fields to a member is limiting, because you can only inherit from 1
 class.  A better way is to use role decorators to add this behaviour.
@@ -129,13 +128,13 @@ things, you should add appropriate Permission::checkMember() calls to the role's
 
 Sam is going to implement this change; Romain will be using it to create a ForumRole for the new forum module.
 
-# TODO
+## TODO
 
 *  MemberTableField has to determine which fields is should display based on the subclass of the requested record
 *  MemberTableField needs to have a switch for creating new Members with different fields
 *  We should add a getOverviewFields() to each Member-class which specifiy which fields to use in the overview (and
 accordingly have different tables for each subclass of members)
 
-# API Documentation
+## API Documentation
 
-[Click here for the API documentation](http://api.silverstripe.org/trunk/sapphire/security/Member.html).
+`[api:Member]`

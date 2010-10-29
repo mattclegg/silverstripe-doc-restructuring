@@ -1,4 +1,5 @@
-# Introduction
+# SQL Query
+## Introduction
 
 An object representing a SQL query. It is easier to deal with object-wrappers than string-parsing a raw SQL-query. This
 object is used by `[api:DataObject]`, though...
@@ -16,10 +17,10 @@ reasons. You'll break the behaviour of:
 We'll explain some ways to use *SELECT* with the full power of SQL, but still maintain a connection to the Silverstripe
 [datamodel](/topics/datamodel).
 
-# Usage
+## Usage
 
 
-## SELECT
+### SELECT
 
 	:::php
 	$sqlQuery = new SQLQuery();
@@ -47,23 +48,23 @@ We'll explain some ways to use *SELECT* with the full power of SQL, but still ma
 	$result = $sqlQuery->execute();
 
 
-## DELETE
+### DELETE
 
 	:::php
 	// ...
 	$sqlQuery->delete = true;
 
 
-## INSERT/UPDATE
+### INSERT/UPDATE
 
 (currently not supported -see below for alternative solutions)
 
-# Working with results
+## Working with results
 
 The result is an array lightly wrapped in a database-specific subclass of `[api:Query]`. This class implements the
 *Iterator*-interface defined in PHP5, and provides convenience-methods for accessing the data.
 
-## Iterating
+### Iterating
 
 	:::php
 	foreach($result as $row) {
@@ -71,7 +72,7 @@ The result is an array lightly wrapped in a database-specific subclass of `[api:
 	}
 
 
-## Quick value checking
+### Quick value checking
 
 Raw SQL is handy for performance-optimized calls. 
 
@@ -92,7 +93,7 @@ Way faster than dealing with `[api:DataObject]`s, but watch out for premature op
 	echo $players->Count();
 
 
-## Mapping
+### Mapping
 
 Useful for creating dropdowns.
 
@@ -105,7 +106,7 @@ Useful for creating dropdowns.
 	$field = new DropdownField('Birthdates', 'Birthdates', $map);
 
 
-## "Raw" SQL with DB::query()
+### "Raw" SQL with DB::query()
 
 This is not recommended for most cases, but you can also use the Silverstripe database-layer to fire off a raw query:
 
@@ -113,7 +114,7 @@ This is not recommended for most cases, but you can also use the Silverstripe da
 	DB::query("UPDATE Player SET Status='Active'");
 
 
-## "Semi-raw" SQL with buildSQL()
+### "Semi-raw" SQL with buildSQL()
 
 You can gain some ground on the datamodel-side when involving the selected class for querying. You don't necessarily
 need to call *buildSQL* from a specific object-instance, a *singleton* will do just fine.
@@ -131,7 +132,7 @@ This form of building a query has the following advantages:
 *  Selection of *ID*, *ClassName*, *RecordClassName*, which are necessary to use *buildDataObjectSet* later on
 *  Filtering records for correct *ClassName*
 
-## Transforming a result to DataObjectSet
+### Transforming a result to DataObjectSet
 
 This is a commonly used technique inside Silverstripe: Use raw SQL, but transfer the resulting rows back into
 DataObjects.
@@ -187,13 +188,12 @@ the issues noted above.
 
 Some subclasses of `[api:FormField]` for ways to create sophisticated report-tables based on SQL.
 
-# Related
+## Related
 
-*  [datamodel](datamodel)
+*  [datamodel](datamodel) **Broken Link**
 *  `[api:DataObject]`
-*  [database-troubleshooting](database-troubleshooting)
+*  [database-troubleshooting](database-troubleshooting) **Broken Link**
 *  [database-structure](database-structure)
 
-# API Documentation
-
-[Click here for API documentation](http://api.silverstripe.org/trunk/sapphire/SQLQuery.html).
+## API Documentation
+`[api:SQLQuery]`

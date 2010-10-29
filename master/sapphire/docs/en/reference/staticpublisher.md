@@ -1,3 +1,4 @@
+# Static Publisher
 ## Introduction
 
 Many sites get too much traffic to justify dynamically sending every request.  Caching is needed.  The static
@@ -253,3 +254,6 @@ the cache.
 ## Related
 
 *  `[api:StaticExporter]`
+
+## API Documentation
+*  `[api:StaticPublisher]`
