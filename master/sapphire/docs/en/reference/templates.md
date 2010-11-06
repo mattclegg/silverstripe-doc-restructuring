@@ -1,4 +1,5 @@
-# Introduction
+# Templates
+## Introduction
 
 SilverStripe templates consist of HTML code augmented with special control codes, described below.  Because of this, you
 can have as much control of your site's HTML code as you like.
@@ -28,11 +29,11 @@ Here is a very simple template:
 	</html>
 
 
-# Template Syntax
+## Template Syntax
 
 The following control codes are available. For a more details list see [built-in-page-controls](/reference/built-in-page-controls):
 
-## Variables
+### Variables
 
 	:::html
 	$Property
@@ -52,7 +53,7 @@ defined, the system will return an error.
 
 Note you also cannot past a variable into a variable, so using $Property($Value) within your template will not work
 
-##  Includes
+###  Includes
 
 You can perform includes using the Requirements Class via the template controls.  See the section on [Includes in
 Templates](requirements#including_inside_template_files) for more details and examples.
@@ -61,7 +62,7 @@ Templates](requirements#including_inside_template_files) for more details and ex
 	<% require themedCSS(LeftNavMenu) %>
 
 
-##  Controls
+###  Controls
 
 	:::html
 	<% control Property %>
@@ -106,7 +107,7 @@ tag is repeated once for each main menu item, and the $Link and $Title values fo
 
 
 
-## If blocks
+### If blocks
 
 	:::html
 	<% if Property %>
@@ -139,7 +140,7 @@ block fails.  `<% else %>` is an optional part of the syntax - you can just use 
 appropriate.
 
 
-## Comments
+### Comments
 
 Using standard HTML comments is supported. These comments will be included in the published site. 
 
@@ -153,7 +154,7 @@ for adding notes for other developers but for things you don't want published in
 	:::html
 	$EditForm <%-- This is Located in MemberEditForm.php --%>
 
-## Formatting Template Values
+### Formatting Template Values
 
 The following example takes the Title field of our object, casts it to a `[api:Varchar]` object, and then calls
 the $XML object on that Varchar object.
@@ -172,7 +173,7 @@ Note that this code can be more concisely represented as follows:
 
 See [data-types](/topics/data-types) for more information.
 
-## Escaping
+### Escaping
 
 Sometimes you will have template tags which need to roll into one another. This can often result in SilverStripe looking
 for a "FooBar" value rather than a "Foo" and then "Bar" value or when you have a string directly before or after the
@@ -192,7 +193,7 @@ Or when having a $ sign in front of the variable
 	${$Foo} // returns "$3"
 
 
-## Partial Caching
+### Partial Caching
 
 From SilverStripe 2.4 you can specify a block to cache between requests
 
@@ -205,12 +206,12 @@ From SilverStripe 2.4 you can specify a block to cache between requests
 See [partial-caching](/reference/partial-caching) for more information.
 
 
-# Built In Template Variables and Controls
+## Built In Template Variables and Controls
 
 Out of the box, the template engine gives you lots of neat little variables and controls which you will find useful. For
 a list of all the controls see [built-in-page-controls](/reference/built-in-page-controls).
 
-# Creating your own Template Variables and Controls
+## Creating your own Template Variables and Controls
 
 There are 2 ways you can extend the template variables you have available. You can create a new Database field in your
 $db or if you do not need the variable to be editable in the cms you can create a function which returns a value in your
@@ -261,7 +262,7 @@ Or by using the dot notation you would have
 	// output "Kia Ora , John Smith"
 
 
-##### Side effects
+### Side effects
 
 All functions that provide data to templates must have no side effects, as the value is cached after first access.
 
@@ -284,7 +285,7 @@ and this template
 
 will give "1, 1, 1", not "1, 2, 3"
 
-# Calling templates from PHP code
+## Calling templates from PHP code
 
 This is all very well and good, but how do the templates actually get called?  
 
@@ -333,7 +334,7 @@ default if it exists and there is no action in the url parameters.
 	}
 
 
-##### How does ViewableData work?
+### How does ViewableData work?
 
 ViewableData provides two methods that perform the casting necessary for templates to work as we have described.
 
@@ -344,7 +345,7 @@ necessary
 These methods work as described in the syntax section above.  SSViewer calls these methods when processing templates. 
 However, if you want, you can call obj() and val() yourself.
 
-# Fragment Link rewriting
+## Fragment Link rewriting
 
 Fragment links are links with a "#" in them.  A frequent use-case is to use fragment links to point to different
 sections of the current page.  For example, we might have this in our template.
@@ -373,14 +374,16 @@ would be created:
 	</ul>
 
 
-There arecases where this can be unhelpful.  HTML fragments created from Ajax responses are the most common.  In these
+There are cases where this can be unhelpful.  HTML fragments created from Ajax responses are the most common.  In these
 situations, you can disable fragment link rewriting like so:
 
 	:::php
 	SSViewer::setOption('rewriteHashlinks', false);
 
 
-# Related Pages
+## Related Pages
 
-[HTML Guidelines](http://doc.silverstripe.com/doku.php?id=html)
+(TODO Update Links)
+
+[HTML Guidelines](http://doc.silverstripe.com/doku.php?id=html) 
 [Themes](http://doc.silverstripe.com/doku.php?id=themes)

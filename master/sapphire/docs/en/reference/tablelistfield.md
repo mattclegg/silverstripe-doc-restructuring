@@ -1,10 +1,12 @@
-# Introduction
+# TableListField
+
+## Introduction
 
 Form field that embeds a list of `[api:DataObject]`s into a form, such as a member list or a file list.
 Provides customizeable columns, record-deletion by ajax, paging, sorting, CSV-export, printing, input by
 `[api:DataObject]` or raw SQL.
 
-# Example
+## Example
 
 Here's an example of a full featured TableListField implementation. It features editing members in the database directly
 as a button on each record, as well as filtering, and sorting. It also makes use of the 'export' permission, allowing
@@ -67,9 +69,9 @@ export of data as a CSV.
 
 For more information on each of the features used in the example, you can read below.
 
-# Features
+## Usage
 
-## Source Input
+### Source Input
 
 	:::php
 	// default: DataObject selection (e.g. all 'Product's)
@@ -108,7 +110,7 @@ TableListField also tries to resolve Component-relations(has_one, has_many) and 
 	}
 
 
-## Pagination
+### Pagination
 
 Paging works by AJAX, but also works without javascript on link-basis.
 
@@ -116,7 +118,7 @@ Paging works by AJAX, but also works without javascript on link-basis.
 	$myTableListField->setPageSize(100); // defaults to 20
 
 
-## Sorting
+### Sorting
 
 The easiest method is to add the sorting criteria as a constructor parameter. Sorting should be applied manually, where
 appropriate. Only direct columns from the produced SQL-query are supported. 
@@ -140,7 +142,7 @@ Example (sorting by "FirstName" column):
 If you want to sort by custom getters in your DataObject, please reformulate them to a custom SQL column. This
 restriction is needed to avoid performance-hits by caching and sorting potentially large datasets on PHP-level.
 
-## Casting
+### Casting
 
 Column-values can be casted, based on the casting-types available through DBObject  (sapphire/core/model/fieldtypes).
 
@@ -151,7 +153,7 @@ Column-values can be casted, based on the casting-types available through DBObje
 	));
 
 
-## Permissions
+### Permissions
 
 Permissions vary in different TableListField-implementations, and are evaluated in the template.
 By default, all listed permissions are enabled.
@@ -164,7 +166,7 @@ By default, all listed permissions are enabled.
 	));
 
 
-## Formatting
+### Formatting
 
 Specify custom formatting for fields, e.g. to render a link instead of pure text.
 Caution: Make sure to escape special php-characters like in a normal php-statement.
@@ -175,7 +177,7 @@ Caution: Make sure to escape special php-characters like in a normal php-stateme
 	));
 
 
-## Highlighting
+### Highlighting
 
 "Highlighting" is similiar to "Formatting", but applies to the whole row rather than a column.
 Definitions for highlighting table-rows with a specific CSS-class. You can use all column-names
@@ -194,7 +196,7 @@ in the result of a query. Use in combination with {@setCustomQuery} to select cu
 	));
 
 
-## Export
+### Export
 
 Export works only to CSV currently, with following specs:
 
@@ -221,7 +223,7 @@ You can influence the exported values by adjusting the generated SQL.
 	));
 
 
-## Row-Summaries
+### Row-Summaries
 
 You can summarize specific columns in your result-set. The term "summary" is used in a broad sense, you can also
 implement averages etc.
@@ -241,7 +243,7 @@ Available methods:
 *  sum
 *  avg
 
-## Grouping
+### Grouping
 
 Used to group by a specific column in the DataObject and create partial summaries.
 Please use only together with addSummary().
@@ -251,9 +253,9 @@ Please use only together with addSummary().
 	$myTableListField->groupByField = 'MyColumnName';
 
 
-# Best Practices
+## Best Practices
 
-## Custom Sorting
+### Custom Sorting
 
 Please subclass TableListField to implement custom sorting, following the naming-convention
 "`colFunction_<yourFunctionName>`".
@@ -267,12 +269,12 @@ Please subclass TableListField to implement custom sorting, following the naming
 	}
 
 
-## Adding Utility-functions
+### Adding Utility-functions
 
 In case you want to perform utility-functions like "export" or "print" through action-buttons,
 make sure to subclass Utility() which collates all possible actions.
 
-## Customizing Look&Feel
+### Customizing Look&Feel
 
 You can exchange the used template, e.g. to change applied CSS-classes or the HTML-markup:
 
@@ -281,6 +283,6 @@ You can exchange the used template, e.g. to change applied CSS-classes or the HT
 
 
 
-# API Documentation
+## API Documentation
 
-[Click here for the API documentation](http://api.silverstripe.org/trunk/forms/fields-relational/TableListField.html).
+[api:TableListField]

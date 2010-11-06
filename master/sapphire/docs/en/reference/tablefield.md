@@ -1,4 +1,5 @@
-# Introduction
+#TableField
+## Introduction
 
 TableField behaves in the same manner as `[api:TableListField]`, however allows the editing of existing and adding of
 new rows.
@@ -6,13 +7,9 @@ The data is saved back by the surrounding form-saving (mostly EditForm->save).
 
 See `[api:TableListField]` for more documentation on the base-class
 
-# Source Input
+## Usage
 
-See `[api:TableListField]`.
-
-# Features
-
-## Add hidden default data
+### Add hidden default data
 
 Please use **TableField->setExtraData()** to specify additional (non-editable) data. You might use the following code
 that shows the Player of Team with a particular Team ID and automatically saves new Players into this Team.
@@ -44,7 +41,8 @@ as an editable field on a getCMSFields() call.
 
 The '$RecordID' value is used when building forms that create new records.  It will be populated with whatever record id
 is created.
-## Row Transformation
+
+### Row Transformation
 
 You can apply a `[api:FormTransformation]` to any given field,
 based on a eval()ed php-rule. You can access all columns on the generated DataObjects here.
@@ -58,27 +56,26 @@ based on a eval()ed php-rule. You can access all columns on the generated DataOb
 	));
 
 
-# Best Practices
-
-## Required Fields
+### Required Fields
 
 Due to the nested nature of this fields dataset, you can't set any required columns as usual with the
 `[api:RequiredFields]`** on the TableField-instance for this.
 Note: You still have to attach some form of `[api:Validator]` to the form to trigger any validation on this field.
 
-## Nested Table Fields
+
+### Nested Table Fields
 
 When you have TableField inside a `[api:ComplexTableField]`, the parent ID may not be known in your
 getCMSFields() method.  In these cases, you can set a value to '$RecordID' in your TableField extra data, and this will
 be populated with the newly created record id upon save.
 
-# Known Issues
+## Known Issues
 
 *  A TableField doesn't reload any submitted form-data if the saving is interrupted by a failed validation. After
 refreshing the form with the validation-errors, the TableField will be blank again.
 *  You can't add **visible default data** to columns in a TableField, please use *setExtraData*
 
 
-# API Documentation
+## API Documentation
 
-[Click here for the API documentation](http://api.silverstripe.org/trunk/forms/fields-relational/TableField.html).
+[api:TableField]

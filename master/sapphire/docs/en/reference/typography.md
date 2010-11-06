@@ -1,4 +1,9 @@
-SilverStripe lets you customise the style of content in the CMS.  This is done by setting up a CSS file called
+# Typography
+## Introduction
+SilverStripe lets you customise the style of content in the CMS.  
+
+## Usage
+This is done by setting up a CSS file called
 (projectname)/css/typography.css
 
 You also need to create a file called (projectname)/css/editor.css with the following content:
@@ -81,7 +86,7 @@ OtherContent:
 	}
 
 
-** Removing the typography class **
+### Removing the typography class
 
 Sometimes, it's not enough to add a class, you also want to remove the typography class.  You can use the
 HTMLEditorField method setCSSClass.
@@ -99,5 +104,5 @@ This example sets another CSS class typographybis:
 	}
 
 
-This functionnality will be available in the version 2.0.2 of the CMS.
+This functionality will be available in the version 2.0.2 of the CMS.
 

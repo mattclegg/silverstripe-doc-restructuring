@@ -75,7 +75,7 @@ Redirections](security#redirect_back_to_another_page_after_login) for more infor
  | ------------ | | ------ | | -----------                                                          | 
  | BackURL      | | URL    | | Set to a relative URL string to use once Security Action is complete | 
 
-# Building and Publishing URLS
+## Building and Publishing URLS
 
  | Site URL                                         | | Action                                                            | 
  | --------                                         | | ------                                                            | 
@@ -83,7 +83,7 @@ Redirections](security#redirect_back_to_another_page_after_login) for more infor
  | %%http://yoursite.com%%**/admin/publishall/**    | | Publish all pages on the site                                     | 
  | %%http://yoursite.com%%**/anypage/images/flush** | | Creates new images for the page by deleting the resized ones and going back to the original to create new resized one | 
 
-##  /dev/build
+###  /dev/build
 
  | URL Variable  | | Values | | Description                                                                                 | 
  | ------------  | | ------ | | -----------                                                                                 | 
