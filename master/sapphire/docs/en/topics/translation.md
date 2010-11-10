@@ -1,4 +1,4 @@
-# Introduction
+# Translation
 
 This page introduces developers to using the CMS for creating content in multiple languages.
 
@@ -11,11 +11,11 @@ with minimal interference.
 Warning: If you're upgrading from a SilverStripe version prior to 2.3.2, please migrate your datamodel before using the
 extension (see below).
 
-# Requirements
+## Requirements
 
 *SilverStripe 2.3.2*
 
-# Screenshots
+## Screenshots
 
 ![](_images/translatable4_small.png)
 
@@ -35,11 +35,11 @@ extension (see below).
 *CMS: Create a new translation*
 
 
-# Usage
+## Usage
 
-## Configuration
+### Configuration
 
-### ThroughObject::add_extension()
+#### ThroughObject::add_extension()
 
 Enabling Translatable through *Object::add_extension()* in your *mysite/_config.php*:
 
@@ -48,7 +48,7 @@ Enabling Translatable through *Object::add_extension()* in your *mysite/_config.
 	Object::add_extension('SiteConfig', 'Translatable'); // 2.4 or newer only
 
 
-### Through$extensions
+#### Through$extensions
 
 	:::php
 	class Page extends SiteTree {
@@ -62,7 +62,7 @@ Make sure to rebuild the database through /dev/build after enabling translatable
 Use the correct set_default_locale() before building the database
 for the first time, as this locale will be written on all new records.
 
-### Setting the defaultlocale
+#### Setting the defaultlocale
 
 Important: If the "default language" of your site is not english (en_US), 
 please ensure to set the appropriate default language for
@@ -78,7 +78,7 @@ For the Translatable class, a "locale" consists of a language code plus a region
 for example "de_AT" for German language ("de") in the region Austria ("AT").
 See http://www.w3.org/International/articles/language-tags/ for a detailed description.
 
-# Usage
+### Usage
 
 Getting a translation for an existing instance: 
 
@@ -111,7 +111,7 @@ Creating a translation:
 
 
 
-## Usage for SiteTree
+### Usage for SiteTree
 
 Translatable can be used for subclasses of SiteTree as well. 
 If a child page translation is requested without the parent
@@ -139,7 +139,7 @@ through set_reading_locale(). Get the translated parent first.
 
 
 
-## Translating custom properties
+### Translating custom properties
 
 Keep in mind that the Translatable extension currently doesn't support the exclusion of properties from being translated
 - all custom properties will automatically be fetched from their translated record on the database. This means you don't
@@ -182,7 +182,7 @@ attach this behaviour to custom fields by using Translatable_Transformation as s
 
 
 
-## Translating theHomepage
+### Translating theHomepage
 
 Every homepage has a distinct URL, the default language is /home, a German translation by default would be /home-de_DE.
 They can be accessed like any other translated page. If you want to access different homepages from the "root" without a
@@ -191,7 +191,7 @@ URL, add a "locale" GET parameter. The German homepage would also be accessible 
 For this to work, please ensure that the translated homepage is a direct translation of the default homepage, and not a
 new page created through "Create page...".
 
-## Translationgroups
+### Translationgroups
 
 Each translation can have an associated "master" object in another language which it is based on,
 as defined by the "MasterTranslationID" property. This relation is optional, meaning you can
@@ -217,13 +217,13 @@ SiteTree_translationgroups database table
  | 199                | 3          | 
 
 
-## CharacterSets
+### CharacterSets
 
 Caution: Does not apply any character-set conversion, it is assumed that all content
 is stored and represented in UTF-8 (Unicode). Please make sure your database and
 HTML-templates adjust to this.
 
-## "Default"languages
+### "Default"languages
 
 Important: If the "default language" of your site is not english (en_US), 
 please ensure to set the appropriate default language for
@@ -234,7 +234,7 @@ your content before building the database with Translatable enabled:
 
 
 
-## Locales and languagetags
+### Locales and languagetags
 
 For the Translatable class, a "locale" consists of a language code plus a region code separated by an underscore, 
 for example "de_AT" for German language ("de") in the region Austria ("AT").
@@ -248,22 +248,22 @@ It is advised to start with a new database after uninstalling Translatable,
 or manually filter out translated objects through their "Locale" property
 in the database.
 
-# Recipes
+## Recipes
 
 
-## Switching languages
+### Switching languages
 
 A widget now exists to switch between languages, and is [available
 here](http://www.silverstripe.org/Language-Chooser-Widget/). You can easily make your own switchers with the following
 basic tools. To stay friendly to  caches and search engines, each translation of a page must have a unique URL
 
-### By URL
+#### By URL
 
 	:::php
 	http://<mysite>/mypage/?locale=de_DE
 
 
-### By User Preference
+#### By User Preference
 
 Place this in your Page_Controller->init() method:
 
@@ -275,7 +275,7 @@ Place this in your Page_Controller->init() method:
 
 
 
-### Templates
+#### Templates
 
 As every page has its own unique URL, language selection mostly happens explicitly: A user requests a page, which always
 has only one language. But how does a user coming to your English default language know that there's a Japanese version
@@ -304,7 +304,7 @@ below can be inserted in any of your templates, for example *themes/blackcandy/t
 Keep in mind that this will only show you available translations for the current page. The $Locale.Nice casting will
 just work if your locale value is registered in i18n::get_common_locales().
 
-#### Page-control
+##### Page-control
 
 If you want to put static links in your template, which link to a site by their url, normally you can use the <% control
 Page(page-url) %>. For sites which use Translatable, this is not possible for more than one language, because the url's
@@ -338,13 +338,13 @@ Example:
 	<% end_control %>
 
 
-### Language Chooser Widget
+#### Language Chooser Widget
 
 You can use a widget on your website to provide a list of links for switching languages:
 [download](http://silverstripe.org/Language-Chooser-Widget-2/)
 
 
-### Enabling the _t() function in templates 
+#### Enabling the _t() function in templates 
 
 If you're looking to use [the _t() function](http://doc.silverstripe.com/doku.php?id=i18n#the_t_function) in template
 files, you'll need to [set the i18n locale](multilingualcontent#setting_the_i18n_locale) first. 
@@ -353,7 +353,7 @@ files, you'll need to [set the i18n locale](multilingualcontent#setting_the_i18n
 but they're reasonably interchangeable for a front-end website. The distinction is mainly valid for the CMS, because you
 want the CMS to be in English (i18n), but edit pages in different languages (Translatable).)
 
-## Migrating from 2.1 datamodel
+### Migrating from 2.1 datamodel
 
 The datamodel of Translatable changed significantly between its original release in SilverStripe 2.1 and SilverStripe
 2.3.2. See our [discussion on the
@@ -371,7 +371,7 @@ Please see the [class documentation](http://api.silverstripe.org/trunk/sapphire/
 limitations of this migration task - not all your data will be preserved.
 
 
-## Setting the i18n locale
+### Setting the i18n locale
 
 You can set the i18n locale value which is used to format dates, currencies and other regionally different values to the
 same as your current page locale. 
@@ -388,7 +388,7 @@ same as your current page locale.
 	}
 
 
-## Add new locales
+### Add new locales
 
 The i18n logic has lookup tables for common locales in i18n::$common_locales, which is a subset of i18n::$all_locales.
 If your locale is not present here, you can simply add it through mysite/_config.php:
@@ -399,7 +399,7 @@ If your locale is not present here, you can simply add it through mysite/_config
 This should e.g. enable you to use ''$Locale.Nice'' in template code.
 
 
-# Related
+## Related
 
 *  [translate.silverstripe.org](http://translate.silverstripe.org): Starting point for community-driven translation of the Silverstripe UI
 *  [i18n](i18n): Developer-level documentation of Silverstripe's i18n capabilities
