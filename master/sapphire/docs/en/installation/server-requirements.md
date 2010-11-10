@@ -10,7 +10,7 @@ If you're using Mac OS X, we recommend the [MAMP package](http://www.mamp.info/e
 [Installing on Mac OSX](mac-osx) for instructions on installation. If you are using any other packages or
 setups, or you are on linux, please pay careful attention to the requirements below.
 
-### PHP
+## PHP
 
 PHP5 is required. The following are further details and recommendations for how to properly set up PHP for use with
 SilverStripe.
@@ -50,7 +50,7 @@ If you need information on your PHP configuration, create a php file with the fo
 
 If you visit this file in your web browser, it will give a full list of the configuration of PHP.
 
-### Database
+## Database
 
 *  **MySQL 5.0+** (out of the box)
 *  **PostgreSQL 8.3+** ([download](http://www.silverstripe.org/postgresql-module/))
@@ -59,7 +59,7 @@ If you visit this file in your web browser, it will give a full list of the conf
 
 Note: MySQL 4.1 has been known to work, but is no longer supported.
 
-### HTTP Server
+## HTTP Server
 
 SilverStripe will work on the following web servers:
 
@@ -94,7 +94,7 @@ any website constructed , not just to SilverStripe*
 *  Silverstripe makes uses the geoiplookup to get the visitors' location (with an ip2country function).  In order for
 this to work, you must have the geoiplookup application installed on your server. Silverstripe will run fine without it.
 
-### Operating System
+## Operating System
 
 SilverStripe can run on OS X, Windows, Linux and BSD.
 
@@ -106,6 +106,6 @@ SilverStripe can run on OS X, Windows, Linux and BSD.
 folder) to be writable by the user the webserver is running as (e.g. wwwrun). Having shell access or a control panel (or
 an FTP server that allows file permission changing) is helpful.
 
-### Browser
+## Browser
 
 Make sure that Cookies have been enabled for the web site for the installation and management of the SilverStripe CMS.
