@@ -1,10 +1,10 @@
-# Introduction
+# Data Types
 
 These are the data-types that you can use when defining your data objects.  They are all subclasses of `[api:DBField]`
 for introducing their usage.
  
 
-#  Types
+## Types
 
 *  `[api:Varchar]`: A variable-length string of up to 255 characters, designed to store raw text
 *  `[api:Text]`: A variable-length string of up to 2 megabytes, designed to store raw text
@@ -22,7 +22,7 @@ for introducing their usage.
 *  `[api:SS_Datetime]`: A date / time field
 *  `[api:Time]`: A time field
 
-#### HTMLText vs. Text, and HTMLVarchar vs. Varchar
+## HTMLText vs. Text, and HTMLVarchar vs. Varchar
 
 The database field types HTMLVarchar and Varchar are exactly the same in the database.  However, the templating engine
 knows to escape the Varchar field and not the HTMLVarchar field.  So, it's important you use the right field if you
@@ -31,6 +31,6 @@ don't want to be putting $FieldType.XML everywhere.
 If you're going to put HTML content into the field, please use the field type with the HTML prefix.  Otherwise, you're
 going to risk double-escaping your data, forgetting to escape your data, and generally creating a confusing situation.
 
-# Usage
+## Usage
 
 *  See [datamodel](/topics/datamodel) for information about **database schemas** implementing these types
