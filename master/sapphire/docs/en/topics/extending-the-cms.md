@@ -1,6 +1,8 @@
+# Extending the CMS
+
 CMSMain is part of the CMS.  It is the controller for the content editor.
 
-# Creating another hierarchical editor by subclassing CMSMain
+## Creating another hierarchical editor by subclassing CMSMain
 
 Sometimes you'll want to provide an administration interface that is pretty much exactly what CMSMain provides, but it's
 not appropriate to include your data in with the site content.  For example, Hayden developed a hierarchical category
