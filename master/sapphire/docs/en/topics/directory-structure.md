@@ -57,7 +57,7 @@ Due to the way `[api:ManifestBuilder]` recursively detects php-files and include
 *__autoload()*-feature, you don't need to worry about include paths. Feel free to structure your php-code into
 subdirectories inside the *code*-directory.
 
-# Best Practices
+## Best Practices
 
-## Making /assets readonly
+### Making /assets readonly
 See [secure-development#filesystem](secure-development#filesystem)
