@@ -209,7 +209,7 @@ Maybe even a nice link saying Website Powered by SilverStripe to show your suppo
 	</div>
 
 
-# Resources
+## Resources
 
 A bunch of resources feel free to use to make your template awesome
 
@@ -221,9 +221,9 @@ A bunch of resources feel free to use to make your template awesome
 *  http://cssremix.com - Another CSS site gallery for inspiration. 
 *  http://www.maxdesign.com.au/presentation/process/ - a good process for creating a design
 
-# Reference
+## Reference
 
-#### Overriding
+### Overriding
 
 The templating system will search for the appropriate files in the following order:
 1.  mysite (or other name given to site folder)
@@ -234,7 +234,7 @@ So if, for example, you had a typography.css file for a module in the module fol
 directory (eg themes/blackcandy_blog/css/), and in your site folder (eg mysite/css/), the system would use the file
 mysite/css/typography.css
 
-##### What gets overridden?
+#### What gets overridden?
 
 *  CSS
 *  Templates
@@ -267,7 +267,7 @@ mytheme_forum, you could use the following code:
 	:::html
 	<img src="$ThemeDir(forum)/images/log.gif" />
 
-# Conventions, standards and guidelines
+## Conventions, standards and guidelines
 
 Following some set standards and conventions makes life easy for you and I.
 
