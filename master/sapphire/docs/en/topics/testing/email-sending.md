@@ -1,6 +1,8 @@
+# Email Sending
+
 SilverStripe's test system has built-in support for testing emails sent using the Email class.
 
-### How it works
+## How it works
 
 For this to work, you need to send emails using the ''Email'' class, which is generally the way that we recommend you
 send emails in your SilverStripe application.  Here is a simple example of how you might do this:
@@ -27,7 +29,7 @@ The arguments are ''$to'', ''$from'', ''$subject'', ''$body'', and can be take o
 *  ''null''/''false'': match anything
 *  A PERL regular expression (starting with '/'): match that regular expression
 
-### How to use it
+## How to use it
 
 Given all of that, there is not a lot that you have to do in order to test emailing functionality in your application.
 
@@ -37,7 +39,7 @@ Given all of that, there is not a lot that you have to do in order to test email
 
 That's it!
 
-### What isn't tested
+## What isn't tested
 
 It's important to realise that this email testing doesn't actually test everything that there is to do with email.  The
 focus of this email testing system is testing that your application is triggering emails correctly.  It doesn't test
@@ -47,7 +49,7 @@ your email infrastructure outside of the webserver.  For example:
 *  It won't test whether your emails are going to be lost in someone's spam filter
 *  It won't test bounce-handling or any other auxiliary services of email
 
-### How it's built
+## How it's built
 
 For those of you who want to dig a little deeper, here's a quick run-through of how the system has been built.  As well
 as explaining how we built the email test, this is a good design pattern for making other "tricky external systems"
