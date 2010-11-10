@@ -11,7 +11,7 @@ different than our local server.
 SilverStripe comes with a solution to this: the "_ss_environment.php" file.  You can put a single _ss_environment.php
 file in your "projects" folder on your development box, and it will be used by each of your development sites.
 
-#### Setting up your development machine with _ss_environment.php
+## Setting up your development machine with _ss_environment.php
 
 In this example, we assume that you are managing multiple projects as subfolders of "~/Sites/", and that you can visit
 these at "http://localhost/".  For example, you might have a project at "~/Sites/myproject/", and visit it at
@@ -51,7 +51,7 @@ of ''$databaseConfig'' and ''Director::set_dev_servers'', and instead make sure 
 	require_once("conf/ConfigureFromEnv.php");
 
 
-#### How it works
+## How it works
 
 The mechanism by which the "_ss_environment.php" files work is quite simple.  Here's how it works:
 
