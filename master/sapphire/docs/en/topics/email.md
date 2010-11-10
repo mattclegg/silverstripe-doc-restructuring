@@ -1,17 +1,17 @@
-# Introduction
+# Email
 
 SilverStripe has emailing functionality using the built-in mail() function in PHP.
 Features include sending plaintext- and HTML emails, sending bulk emails, subscription, handling bounced back emails.
 
-# Configuration
+## Configuration
 
 Your PHP configuration needs to include the SMTP module for sending emails.
 If you are not running an SMTP server together with your webserver, you might need to setup PHP with the credentials for
 an external SMTP server (see [PHP documentation for mail()](http://php.net/mail)).
 
-# Usage
+## Usage
 
-## Sending combined HTML and Plaintext
+### Sending combined HTML and Plaintext
 
 By default, emails are sent in both HTML and Plaintext format.
 A plaintext representation is automatically generated from the system
@@ -25,13 +25,13 @@ by stripping HTML markup, or transformining it where possible
 
 The default HTML template is located in ''sapphire/templates/email/GenericEmail.ss''.
 
-## Sending Plaintext only
+### Sending Plaintext only
 
 	:::php
 	$email = new Email($from, $to, $subject, $body);
 	$email->sendPlain();
 
-## Templates
+### Templates
 
 **Requirements: SilverStripe 2.3+**
 
@@ -59,7 +59,7 @@ The default HTML template is located in ''sapphire/templates/email/GenericEmail.
 
 
 
-## Subclassing
+### Subclassing
 
 Class definition:
 
@@ -84,12 +84,12 @@ Usage:
 	?>
 
 
-## Administrator Emails
+### Administrator Emails
 
 The static function ''Email::setAdminEmail()'' can be called from a _config.php file to set the address that these
 emails should originate from. This address is used if the ''from'' field is empty.
 
-## Redirecting Emails
+### Redirecting Emails
 
 *  Email::send_all_emails_to($address) will redirect all emails sent to the given address.  Handy for testing!
 *  Email::cc_all_emails_to() and Email::bcc_all_emails_to() will keep the email going to its original recipients, but
@@ -101,7 +101,7 @@ systems.
 	else Email::send_all_emails_to("developer@example.com"); 
 
 
-## Setting Custom Headers
+### Setting Custom Headers
 
 For email headers which do not have getters or setters (like setTo(), setFrom()) you can use **addCustomHeader($header,
 $value)**
@@ -114,14 +114,14 @@ $value)**
 
 See http://en.wikipedia.org/wiki/E-mail#Message_header for a list of header names.
 
-## Bounced Emails
+### Bounced Emails
 
 [email_bouncehandler](email_bouncehandler)
 
-## Newsletters
+### Newsletters
 
 The [newsletter module](http://silverstripe.org/newsletter-module) provides a UI and logic to send batch emails.
 
-# API Documentation
+## API Documentation
 
 [ Click here for API documentation](http://api.silverstripe.org/trunk/sapphire/Email.html)
