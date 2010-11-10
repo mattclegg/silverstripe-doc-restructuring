@@ -54,7 +54,7 @@ $name must be passed - their values depend on where the form is instantiated.
 
 
 The real difference, however, is that you can then define your controller methods within the form class itself.
-# Form Field Types
+## Form Field Types
 
 There are many classes extending `[api:FormField]`. Some examples:
 
@@ -69,7 +69,7 @@ There are many classes extending `[api:FormField]`. Some examples:
 
 Full overview at [form-field-types](/reference/form-field-types)
 
-## Using Form Fields
+### Using Form Fields
 
 To get these fields automatically rendered into a form element, all you need to do is create a new instance of the
 class, and add it to the fieldset of the form. 
@@ -128,7 +128,7 @@ Implementing the more complex fields requires extra arguments.
 	);
 
 
-#  Readonly
+##  Readonly
 
 Readonly on a Form
 
@@ -150,7 +150,7 @@ Readonly on a FormField
 	$myReadonlyField = $myField->performReadonlyTransformation();
 
 
-# Using a custom template
+## Using a custom template
 
 *Required Silverstripe 2.3 for some displayed functionality*
 
@@ -237,12 +237,12 @@ To find more methods, have a look at the Form class, as there is a lot of differ
 templates, for example, you could use `<% control Fields %>` instead of specifying each field manually, as we've done
 above.
 
-## Securing forms against Cross-Site Request Forgery (CSRF)
+### Securing forms against Cross-Site Request Forgery (CSRF)
 
 SilverStripe tries to protect users against *Cross-Site Request Forgery (CSRF)* by adding a hidden *SecurityID*
 parameter to each form. See [secure-development](/topics/security) for details.
 
-## Remove existing fields
+### Remove existing fields
 
 If you want to remove certain fields from your subclass:
 
@@ -260,7 +260,7 @@ If you want to remove certain fields from your subclass:
 	}
 
 
-## Working with tabs
+### Working with tabs
 
 Adds a new text field called FavouriteColour next to the Content field in the CMS
 
@@ -269,12 +269,12 @@ Adds a new text field called FavouriteColour next to the Content field in the CM
 
 
 
-# Related
+## Related
 
 *  [form-field-types](/reference/form-field-types)
 *  `[api:FormField]` class
 *  [multiform module](http://silverstripe.org/multiform-module)
 
-#  API Documentation
+##  API Documentation
 
 [Click here for the API documentation](http://api.silverstripe.org/trunk/sapphire/forms/Form.html)
