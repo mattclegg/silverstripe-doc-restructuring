@@ -1,4 +1,4 @@
-## Introduction
+# Error Handling
 
 SilverStripe has its own error trapping and handling support.
 
@@ -97,7 +97,7 @@ You can send both fatal errors and warnings in your code to a specified email-ad
 	SS_Log::add_writer(new SS_LogEmailWriter('admin@domain.com'), SS_Log::ERR);
 
 
-#### Deprecated method (SS 2.3 ?)
+### Deprecated method (SS 2.3 ?)
 
 	:::php
 	Debug::send_errors_to("developer@example.org");
