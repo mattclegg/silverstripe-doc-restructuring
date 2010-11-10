@@ -1,4 +1,4 @@
-#### Installing SilverStripe on an existing lighttpd webserver
+# Installing SilverStripe on an existing lighttpd webserver
 
 1. Lighttpd works fine so long as you provide a custom config. Add the following to lighttpd.conf **BEFORE** installing
 Silverstripe. Replace "yoursite.com" and "/home/yoursite/public_html/" below.
@@ -41,7 +41,7 @@ Rewrite rules do not check for file existence as they do on Apache. There is a t
 2. Extract the SilverStripe software to your lighttpd installation, and run http://yoursite.com/install.php and the
 installation should proceed normally.
 
-#### Multiple installations of SilverStripe on the same host (www.yourhost.com)
+## Multiple installations of SilverStripe on the same host (www.yourhost.com)
 
 Running multiple installations of Silverstripe on the same host is a bit more tricky, but not impossible.  I would
 recommend using subdomains instead if you can, for exampe: site1.yourdomain.com and site2.yourdomain.com, it makes
@@ -70,7 +70,7 @@ the image editor inside admin, I found that out the hard way when using a direct
 directly unzipping the Silverstripe tarball leaving the name as is. I haven't found a solution for that yet, but for now
 this method still works properly if you just don't use dots in the directory names.
 
-#### Installing lighttpd on Debian
+## Installing lighttpd on Debian
 
 *  aptitude install lighttpd *(and php5-cgi, mysql-server, etc, as necessary.)*
     * if apache is already running, lighttpd can still be safely installed. It will complain it cannot start because
@@ -82,6 +82,6 @@ and run /etc/init.d/lighttpd restart
 *  You should now be able to view PHP files in your now-working lighttpd server.
 *  Follow the top instructions on adding the rewrite rules, and then install SilverStripe.
 
-##### More about lighttpd
+## More about lighttpd
 
 Learn more about the lighttpd webserver at http://www.lighttpd.net/
