@@ -85,7 +85,7 @@ It can also be handy if you have a long running script.
 	sake MyReallyLongTask
 
 
-#### Running processes
+### Running processes
 
 You can use sake to make daemon processes for your application.
 
