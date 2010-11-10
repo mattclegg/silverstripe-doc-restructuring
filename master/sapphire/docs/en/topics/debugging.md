@@ -93,12 +93,12 @@ environment settings based on type
 
 You can customize "friendly error messages" in test/live-mode by creating *assets/error-500.html*.
 
-# URL Variable Tools
+## URL Variable Tools
 
 You can get lots of information on the current rendering context without writing any code or launching a debugger: Just
 attach some [Debug Parameters](/reference/urlvariabletools) to your current URL to see the compiled template, or all performed
 SQL-queries.
-# Debugging methods
+## Debugging methods
 
 The Debug class contains a number of static methods
 
@@ -107,14 +107,14 @@ The Debug class contains a number of static methods
 *  *SS_Backtrace::backtrace()* (2.3: *Debug::backtrace()*): prints a calls-stack
 *  *Debug::sendLiveErrorsTo("sam@silverstripe.com")*: On the live site, all errors will get sent to this address.
 
-## Error handling
+### Error handling
 
 On development sites, we deal harshly with any warnings or errors: a full call-stack is shown and execution stops.  This
 is basically so that we deal with them promptly, since most warnings are indication that **something** is broken.
 
 On live sites, all errors are emailed to the address specified in Debug::sendLiveErrorsTo($email)
 
-## Debugging techniques
+### Debugging techniques
 
 Since we don't have a decent interactive debugger going, we use the following debugging techniques:
 
@@ -131,13 +131,13 @@ with core modules, such as the templates.
 
 *  You can also use *$Debug* with *ViewableData* in templates.
 
-### Unit Testing
+#### Unit Testing
 
 A good way to avoid writing the same test stubs and var_dump() commands over and over again is to codify them as [unit
 tests](testing-guide). This way you integrate the debugging process right into your quality control, and eventually in
 the development effort itself as "test-driven development".
 
-### Profiling
+#### Profiling
 
 Silverstripe includes a profiling suite called [Profiler](http://www.adepteo.net/profiler/manual.html) from Carl Taylor
 at Adepteo.  You can use this withing your installation during development to find bottlenecks and more. You can enable
