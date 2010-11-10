@@ -1,4 +1,4 @@
-###  How To Create a Sapphire Test
+#  How To Create a Sapphire Test
 
 A unit test class will test the behaviour of one of your DataObjects.  This simple fragment of SiteTreeTest provides us
 the basics of creating unit tests.
@@ -61,7 +61,7 @@ database.  This means that you can use it to test the functions responsible for 
 information.
 
 
-### Assertion commands
+## Assertion commands
 
 **$this->assertEquals()** is an example of an assertion function.  These functions form the basis of our tests - a test
 fails if and only if one or more of the assertions fail.  
@@ -76,7 +76,7 @@ actually sent.  Instead, it is logged in an internal register.  You can use asse
 was sent.  Each of the arguments can be a string, for an exact match, or, a preg_match() compatible regular expression,
 if it starts with "/".
 
-### The Database YAML file
+## The Database YAML file
 
 The main feature of SapphireTest over the raw PHPUnit classes is that SapphireTest will prepare a temporary database for
 you.  The content of that database is provided in a special YAML file.  YAML is a simple markup languages that uses tabs
