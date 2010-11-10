@@ -595,7 +595,7 @@ Example: JSpec Shopping cart test (from [visionmedia.github.com](http://visionme
 The guidelines are not intended to be hard and fast rules; they cover the most common cases but not everything. Don't be
 afraid to experiment with using other approaches.
 
-# Links
+## Links
 
 *  [Unobtrusive Javascript](http://www.onlinetools.org/articles/unobtrusivejavascript/chapter1.html)
 *  [Quirksmode: In-depth Javascript Resources](http://www.quirksmode.org/resources.html)
