@@ -4,7 +4,7 @@ Widgets are small pieces of functionality such as Showing the latest Comments or
 the sidebar of your website. To check out a what a Widget can do see the video http://silverstripe.org/widgets and try
 out the demo site http://silverstripe.com/assets/screencasts/SilverStripe-Blog-DragDrop-Widgets.swf
 
-# How to Use A Widget
+## How to Use A Widget
 
 
 ### Downloading and Contributing Widgets
@@ -63,7 +63,7 @@ Eg for blackcandy I put this above the closing `</div>`
 
 
 
-# Writing your own widgets
+## Writing your own widgets
 
 To create a Widget you need at least three files - a php file containing the class, a template file of the same name and
 a config file called *_config.php* (if you dont need any config options for the widget to work then you can make it
@@ -152,7 +152,7 @@ An example widget is below:
 	<% end_control %>
 
 
-# Extending and Customizing
+## Extending and Customizing
 
 ### Rendering a $Widget Individually
 
@@ -297,9 +297,9 @@ Page class). One way to fix this is to comment out line 30 in BlogHolder.php and
 
 Then you can use the Widget area you defined on Page.php
 
-# Releasing Your Widget
+## Releasing Your Widget
 
-## Packaging
+### Packaging
 
 For a widget to be put in our official widget database they must follow this convention - If the name of your widget was
 "TwitterWidget" then:
