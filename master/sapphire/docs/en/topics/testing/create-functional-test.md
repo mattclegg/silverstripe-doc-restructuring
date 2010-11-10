@@ -1,4 +1,4 @@
-### Writing functional tests
+# Writing functional tests
 
 Functional tests test your controllers.  The core of these are the same as unit tests:
 
