@@ -134,11 +134,9 @@ When a string is literal (contains no variable substitutions), the apostrophe or
 #### String Literals Containing Apostrophes
 	
 When a literal string itself contains apostrophes, it is permitted to demarcate the string with quotation marks or "double quotes". 
-This is especially useful for SQL statements:
 
 	:::php
-	$sql = "SELECT `id`, `name` from `people` "
-		. "WHERE `name`='Fred' OR `name`='Susan'";
+	$greeting = "She said 'hello'";
 		
 This syntax is preferred over escaping apostrophes as it is much easier to read.
 
@@ -160,15 +158,15 @@ For consistency, placing the dollar sign outside of the brackets is not permitte
 Strings must be concatenated using the "." operator. A space must always be added before and after the "." operator to improve readability:
 
 	:::php
-	$company = 'SilverStripe' . ' ' . 'Limited';
+	$copyright = 'SilverStripe Ltd (' . $year . ')';
 
 When concatenating strings with the "." operator, it is encouraged to break the statement into multiple lines to improve readability. 
 In these cases, each successive line should be padded with white space such that the "."; operator is aligned under the "=" operator:
 
 	:::php
-	$sql = "SELECT `id`, `name` FROM `people` "
-	     . "WHERE `name` = 'Susan' "
-	     . "ORDER BY `name` ASC ";
+	$sql = 'SELECT "ID", "Name" FROM "Person" '
+	     . 'WHERE "Name" = \'Susan\' '
+	     . 'ORDER BY "Name" ASC ';
 	
 ### Arrays
 
