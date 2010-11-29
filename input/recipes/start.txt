@@ -7,6 +7,11 @@ This is the launchpad for how-to recipes using the SS2/Sapphire engine. Users of
 We are currently trying to develop a [[cheat sheet]], please login / create an account and add your suggestions for this cheat sheet on the linked page. 
 
 
+===== Installing Silverstripe on a VirtualBox VM =====
+
+
+a how-to document, which guides you through all required steps to install Silverstripe on a VirtualBox Virtual Machine. This allows you to install and try Silverstripe on any OS VirtualBox supports.[[http://www.silverstripe.org/assets/Uploads/silverstripe-on-a-vbox.pdf|Silverstripe VM Setup]]
+
 ===== AJAX =====
   * [[ajax basics]] how to create AJAX-based applications in Silverstripe
 

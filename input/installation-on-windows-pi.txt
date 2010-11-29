@@ -1,4 +1,3 @@
-
 == Installation on Windows using Web Platform Installer ==
 
 {{http://doc.silverstripe.com/assets/windows.png }}
@@ -9,8 +8,8 @@
 [[http://www.microsoft.com/web/gallery/install.aspx?appsxml=www.microsoft.com%2fweb%2fwebpi%2f2.0%2fWebApplicationList.xml&amp;appid=105|{{http://www.silverstripe.org/assets/downloads/webpi/wpiBadgeGreen.png}}]]
 
   * In WebPI, select 'SilverStripe' from the 'Content Management System' link
-  * Select install. It will install dependancies like MySQL and PHP if you don't have these installed already.
-  * Type in the questions it asks you, such as the username/password you set in the above MySQL installation:
+  * Select install. It will install dependencies like the Microsoft SQL Server database, as well as PHP (if you don't have these installed already). You can alternatively choose MySQL as a database in the setup wizard.
+  * Type in the questions it asks you, such as the username/password you set in the above database installation:
   * Everything should be installed, with you seeing the initial webpage
   * And you can log-in to the CMS
 

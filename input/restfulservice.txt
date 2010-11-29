@@ -126,7 +126,7 @@ If you want to bypass error handling on your sub-classes you could define that i
 		$delicious = new RestfulService($url);
 		
 		$conn = $delicious->connect();
-		$result = $delicious->getValues($conn, "item");
+		$result = $delicious->getValues($conn);
 		$output = '';
 		foreach ($result as $key => $value) {
 			// Fix quote encoding

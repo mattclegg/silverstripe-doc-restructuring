@@ -10,6 +10,7 @@ For more information on mollom see its website at http://mollom.com/
 ===== Requires ===== 
    * SilverStripe 2.3+
    * [[modules:spamprotection|Spam Protection Module]]
+   * cURL module for PHP
 
 ===== Download =====
 

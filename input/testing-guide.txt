@@ -16,18 +16,9 @@ To get started now, follow the installation instructions below, and check [[test
 The framework has a required dependency on [[http://www.phpunit.de/|PHPUnit]] and an optional dependency on [[http://simpletest.org/|SimpleTest]], the two premiere PHP testing frameworks.
 ==== Install PHPUnit ====
 
-To run Sapphire tests, you'll need to be able to access PHPUnit on your include path. First, you'll need to make sure that you have the PEAR command line client installed. To test this out, type ''pear help'' at your prompt. You should see a bunch of generic PEAR info. If it's not installed, you'll need to set it up first (see: [[http://www.sitepoint.com/article/getting-started-with-pear/|Getting Started with PEAR]]) or else manually install PHPUnit (see: [[http://www.phpunit.de/pocket_guide/3.3/en/installation.html|Installation instructions]]).
+To run Sapphire tests, you'll need to be able to access PHPUnit on your include path. First, you'll need to make sure that you have the PEAR command line client installed. To test this out, type ''pear help'' at your prompt. You should see a bunch of generic PEAR info. If it's not installed, you'll need to set it up first (see: [[http://www.sitepoint.com/article/getting-started-with-pear/|Getting Started with PEAR]]).
 
-The PHPUnit installation via PEAR is very straightforward.
-You might have to perform the following commands as root or super user (sudo).
-<del>We need a specific version of PHPUnit (3.3.x), as 3.4 or higher breaks our test runner (see [[http://open.silverstripe.com/ticket/4573|#4573]])
-</del>
-At your prompt, type the following commands:
-<code>
-pear channel-discover pear.phpunit.de 
-pear channel-discover pear.symfony-project.com
-pear install phpunit/PHPUnit
-</code>
+Once you have PEAR, please follow the  [[http://www.phpunit.de/manual/current/en/installation.html|PHPUnit installation instructions]]).
 
 
 

@@ -45,6 +45,26 @@ class Article extends DataObject {
   * PUT /api/v1/(ClassName)/(ID) - updates a database record
   * POST /api/v1/(ClassName)/(ID)/(MethodName) - executes a method on the given object (e.g, publish)
 
+==== Exposing Methods ====
+
+In order to expose a method to call using the POST url above, you must set the static $allowed_actions See [[security|Security in Controllers]] for more detailed examples.
+
+<code php>
+class Article extends DataObject {
+	static $db = array('Title'=>'Text','Published'=>'Boolean');
+	static $api_access = true;
+
+	static $allowed_actions = array(
+		'MyFunction'
+	);
+
+	static function MyFunction() {
+		echo 'foo';
+		die();
+	}
+}
+</code>
+
 ==== Searching ====
 You can trigger searches based on the fields specified on {@link DataObject::searchable_fields} and passed through {@link DataObject::getDefaultSearchContext()}. Just add a key-value pair with the search-term to the url, e.g. /api/v1/(ClassName)/?Title=mytitle.
 

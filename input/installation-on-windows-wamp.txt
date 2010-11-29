@@ -7,7 +7,7 @@ An easy and reliable approach to getting SilverStripe running on Windows is to u
   * Note: Installing on Microsoft's IIS webserver is likely to be easier - See [[installation-on-windows-pi]]
 
 == Installing using WampServer ==
-  * [[http://www.silverstripe.com/assets/screencasts/silverstripe-installation-wamp/index.html|Watch as video.]]
+  * [[http://www.silverstripe.org/assets/screencasts/silverstripe-installation-wamp/index.html|Watch as video.]]
 
   - Download WampServer from http://www.wampserver.com/en/download.php
   - Run the installer.  By default, it will install to C:\wamp.  You can choose your own install path if you wish; the directories mentioned below will also be different.
