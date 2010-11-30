@@ -65,6 +65,8 @@ i18n::set_date_format('dd.MM.YYYY');
 i18n::set_time_format('HH:mm');
 </code>
 
+Note that these settings are overruled by the //Member->DateFormat// and //Member->TimeFormat// settings, which are stored in the database for each member individually.
+
 Most localization routines in SilverStripe use the [[http://framework.zend.com/manual/en/zend.date.html|Zend_Date API]]. This means all formats are defined in  [[http://framework.zend.com/manual/en/zend.date.constants.html#zend.date.constants.selfdefinedformats|ISO date format]], not PHP's built-in [[http://nz.php.net/manual/en/function.date.php|date()]].
 
 ===== i18n in Form Fields =====

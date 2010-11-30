@@ -31,26 +31,26 @@ the form in a method on *HomePage_Controller*.
 	class HomePage_Controller extends Page_Controller {
 	   ...
 	
-	   function BrowserPollForm() {
-	      // Create fields
-	      $fields = new FieldSet(
-	         new TextField('Name'),
-	         new OptionsetField('Browser', 'Your Favourite Browser', array(
-	            'Firefox' => 'Firefox',
-	            'Internet Explorer' => 'Internet Explorer',
-	            'Safari' => 'Safari',
-	            'Opera' => 'Opera',
-	            'Lynx' => 'Lynx'
-	         ))
-	      );
+		function BrowserPollForm() {
+			// Create fields
+			$fields = new FieldSet(
+				new TextField('Name'),
+				new OptionsetField('Browser', 'Your Favourite Browser', array(
+					'Firefox' => 'Firefox',
+					'Internet Explorer' => 'Internet Explorer',
+					'Safari' => 'Safari',
+					'Opera' => 'Opera',
+					'Lynx' => 'Lynx'
+				))
+			);
+
+			// Create actions
+			$actions = new FieldSet(
+				new FormAction('doBrowserPoll', 'Submit')
+			);
 	
-	      // Create actions
-	      $actions = new FieldSet(
-	         new FormAction('doBrowserPoll', 'Submit')
-	      );
-	
-	      return new Form($this, 'BrowserPollForm', $fields, $actions);
-	   }
+			return new Form($this, 'BrowserPollForm', $fields, $actions);
+		}
 	
 	   ...
 	}
@@ -61,17 +61,17 @@ the form in a method on *HomePage_Controller*.
 Let's step through this code.
 
 	:::php
-	      // Create fields
-	      $fields = new FieldSet(
-	         new TextField('Name'),
-	         new OptionsetField('Browser', 'Your Favourite Browser', array(
-	            'Firefox' => 'Firefox',
-	            'Internet Explorer' => 'Internet Explorer',
-	            'Safari' => 'Safari',
-	            'Opera' => 'Opera',
-	            'Lynx' => 'Lynx'
-	         ))
-	      );
+	// Create fields
+		$fields = new FieldSet(
+			new TextField('Name'),
+			new OptionsetField('Browser', 'Your Favourite Browser', array(
+				'Firefox' => 'Firefox',
+				'Internet Explorer' => 'Internet Explorer',
+				'Safari' => 'Safari',
+				'Opera' => 'Opera',
+				'Lynx' => 'Lynx'
+			))
+		);
 
 
 First we create our form fields.
@@ -87,7 +87,7 @@ array mapping the values to the options listed in the dropdown.
 
 	:::php
 	$actions = new FieldSet(
-	   new FormAction('doBrowserPoll', 'Submit');
+		new FormAction('doBrowserPoll', 'Submit');
 	);
 
 
@@ -109,7 +109,7 @@ Finally we create the `[api:Form]` object and return it.
 
 The first argument is the controller that contains the form, in most cases '$this'. The second is the name of the method
 that returns the form, which is 'BrowserPollForm' in our case. The third and fourth arguments are the
-`[api:FieldSet]`s containing the fields and form actions respectively.
+FieldSets containing the fields and form actions respectively.
 
 After creating the form function, we need to add the form to our home page template.
 
@@ -153,13 +153,11 @@ extending SiteTree (or `[api:Page]`) to create a page type, we extend DataObject
 	<?php
 	
 	class BrowserPollSubmission extends DataObject {
-	   static $db = array(
-	      'Name' => 'Text',
-	      'Browser' => 'Text'
-	   );
+		static $db = array(
+			'Name' => 'Text',
+			'Browser' => 'Text'
+		);
 	}
-	
-	?>
 
 
 If we then rebuild the database ([http://localhost/db/build?flush=1](http://localhost/db/build?flush=1)), we will see
@@ -171,24 +169,24 @@ that the *BrowserPollSubmission* table is created. Now we just need to define 'd
 	...
 	
 	class HomePage_Controller extends Page_Controller {
-	   ...
+		...
 	
-	   function doBrowserPoll($data, $form) {
-	      $submission = new BrowserPollSubmission();
-	      $form->saveInto($submission);
-	      $submission->write();
+		function doBrowserPoll($data, $form) {
+			$submission = new BrowserPollSubmission();
+			$form->saveInto($submission);
+			$submission->write();
 		
-	      Director::redirectBack();
-	   }
+ 			Director::redirectBack();
+		}
 	
-	   ...
+		...
 	}
 	
 	...
 
 
 A function that processes a form submission takes two arguments - the first is the data in the form, the second is the
-[:Form](/Form) object.
+`[api:Form]` object.
 
 In our function we create a new *BrowserPollSubmission* object. Since the name of our form fields and the name of the
 database fields are the same we can save the form directly into the data object.
@@ -235,7 +233,7 @@ Now that we have a working form, we need some way of showing the results.
 The first thing to do is make it so a user can only vote once per session. If the user hasn't voted, show the form,
 otherwise show the results.
 
-We can do this using a session variable. The `api:Session` class handles all session variables in SilverStripe.
+We can do this using a session variable. The `[api:Session]` class handles all session variables in SilverStripe.
 First modify the 'doBrowserPoll' to set the session variable 'BrowserPollVoted' when a user votes.
 
 *mysite/code/HomePage.php*
@@ -244,19 +242,19 @@ First modify the 'doBrowserPoll' to set the session variable 'BrowserPollVoted' 
 	...
 	
 	HomePage_Controller extends Page_Controller {
-	   ...
-	
-	   function doBrowserPoll($data, $form) {
-	      $submission = new BrowserPollSubmission();
-	      $form->saveInto($submission);
-	      $submission->write();
+		...
+
+		function doBrowserPoll($data, $form) {
+			$submission = new BrowserPollSubmission();
+			$form->saveInto($submission);
+			$submission->write();
 		
-	      Session::set('BrowserPollVoted', true);
-	
-	      Director::redirectBack();
-	   }
-	
-	   ...
+			Session::set('BrowserPollVoted', true);
+
+			Director::redirectBack();
+		}
+
+		...
 	}
 
 
@@ -265,11 +263,11 @@ it is.
 
 	:::php
 	function BrowserPollForm() {
-	   if(Session::get('BrowserPollVoted')) {
-	      return false;
-	   }
+		if(Session::get('BrowserPollVoted')) {
+			return false;
+		}
 	
-	   ...
+		...
 
 
 If you visit the home page now you will see you can only vote once per session; after that the form won't be shown. You
@@ -296,20 +294,20 @@ then create our graph using a page control in the template. Create the function 
 
 	:::php
 	function BrowserPollResults() {
-	   $submissions = DataObject::get('BrowserPollSubmission');
-	   $total = $submissions->Count();
-	
-	   $doSet = new DataObjectSet();
-	   foreach($submissions->groupBy('Browser') as $browser => $data) {
-	      $percentage = (int) ($data->Count() / $total * 100);
-	      $record = array(
-	         'Browser' => $browser,
-	         'Percentage' => $percentage
-	      );
-	      $doSet->push(new ArrayData($record));
-	   }
-		
-	   return $doSet;
+		$submissions = DataObject::get('BrowserPollSubmission');
+		$total = $submissions->Count();
+
+		$doSet = new DataObjectSet();
+		foreach($submissions->groupBy('Browser') as $browser => $data) {
+			$percentage = (int) ($data->Count() / $total * 100);
+			$record = array(
+				'Browser' => $browser,
+				'Percentage' => $percentage
+			);
+			$doSet->push(new ArrayData($record));
+		}
+
+		return $doSet;
 	}
 
 
@@ -331,29 +329,26 @@ We get the total number of submissions, which is needed to calculate the percent
 	:::php
 	$doSet = new DataObjectSet();
 	foreach($submissions->groupBy('Browser') as $browser => $data) {
-	   $percentage = (int) ($data->Count() / $total * 100);
-	   $record = array(
-	      'Browser' => $browser,
-	      'Percentage' => $percentage
-	   );
-	   $doSet->push(new ArrayData($record));
+		$percentage = (int) ($data->Count() / $total * 100);
+		$record = array(
+			'Browser' => $browser,
+			'Percentage' => $percentage
+		);
+		$doSet->push(new ArrayData($record));
 	}
 
 
-Now we create an empty DataObjectSet to hold our data. The 'groupBy' method of
-DataObjectSet splits our DataObjectSet by the field passed to it, in this case the
-'Browser' field. It puts these new DataObjectSets into an array indexed by the value of the field,
-which we can then iterate over. We can then calculate the percentage for each browser using the size of the
-DataObjectSet.
-
-The `[api:ArrayData]` class wraps an array into a ViewableData object, so we simply put our data in an array and
-create a new ArrayData object, which we can add to our DataObjectSet of results.
+Now we create an empty DataObjectSet to hold our data and then iterate over the 'Browser' submissions field. The 'groupBy' 
+method of DataObjectSet splits our DataObjectSet by the 'Browser' field passed to it. The percentage of submissions for each 
+browser is calculated using the size of the DataObjectSet. It puts these new DataObjectSets into an array indexed 
+by the value of the field. The `[api:ArrayData]` class wraps an array into a ViewableData object, so we finally create a new 
+ArrayData object, which we can add to our *$doSet* DataObjectSet of results.
 
 	:::php
 	return $doSet;
 
 
-After we have iterated through all the browsers, the DataObjectSet contains all the results, which is
+After we have iterated through all the browsers, the DataObjectSet contains all the results, which is then
 returned.
 
 The final step is to create the template to display our data. Change the 'BrowserPoll' div in
@@ -361,19 +356,19 @@ The final step is to create the template to display our data. Change the 'Browse
 
 	:::html
 	<div id="BrowserPoll">
-	  <h2>Browser Poll</h2>
-	  <% if BrowserPollForm %>
-	    $BrowserPollForm
-	  <% else %>
-	    <ul>
-	      <% control BrowserPollResults %>
-	        <li>
-	          <div class="browser">$Browser: $Percentage%</div>
-	          <div class="bar" style="width:$Percentage%">&nbsp;</div>
-	        </li>
-	      <% end_control %>
-	    </ul>
-	  <% end_if %>
+		<h2>Browser Poll</h2>
+		<% if BrowserPollForm %>
+			$BrowserPollForm
+		<% else %>
+		<ul>
+			<% control BrowserPollResults %>
+			<li>
+				<div class="browser">$Browser: $Percentage%</div>
+				<div class="bar" style="width:$Percentage%">&nbsp;</div>
+			</li>
+			<% end_control %>
+		</ul>
+		<% end_if %>
 	</div>
 
 

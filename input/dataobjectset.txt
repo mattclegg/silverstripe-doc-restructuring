@@ -75,4 +75,4 @@ FIXME Complete pagination documentation
 
 
 ====== API Documentation ======
-[[http://api.silverstripe.org/trunk/sapphire/DataObjectSet.html|Click here for the API documentation]].
+[[http://api.silverstripe.org/trunk/sapphire/model/DataObjectSet.html|Click here for the API documentation]].

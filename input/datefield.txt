@@ -19,7 +19,7 @@ $dateField->setConfig('showcalendar', true);
 $dateField->setConfig('dmyfields', true); 
 
 // Date format compatible with Zend_Date.
-$dateField->setConfig('dateformat', 'YYYY-MM-DD');
+$dateField->setConfig('dateformat', 'YYYY-mm-dd');
 
 // Minimum allowed date value (in ISO format, or strtotime() compatible). 
 // Example: '2010-03-31', or '-7 days'

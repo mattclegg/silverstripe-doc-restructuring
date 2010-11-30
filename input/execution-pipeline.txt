@@ -1,10 +1,5 @@
 ====== Introduction ======
 This page documents all the steps from an URL request to the delivered page. 
-
-
-
-
-
 ===== .htaccess and RewriteRule =====
 Silverstripe uses **[[http://httpd.apache.org/docs/2.0/mod/mod_rewrite.html|mod_rewrite]]** to deal with page requests. So instead of having your normal everyday ''index.php'' file which tells all, you need to look elsewhere. 
 
@@ -12,19 +7,28 @@ The basic .htaccess file after installing SilverStripe look like this:
 <file>
 ### SILVERSTRIPE START ###
 <Files *.ss>
-Order deny,allow
-Deny from all
-Allow from 127.0.0.1
+	Order deny,allow
+	Deny from all
+	Allow from 127.0.0.1
 </Files>
 
+<Files web.config>
+	Order deny,allow
+	Deny from all
+</Files>
+
+ErrorDocument 404 /assets/error-404.html
+ErrorDocument 500 /assets/error-500.html
+
+<IfModule mod_alias.c>
+	RedirectMatch 403 /silverstripe-cache(/|$)
+</IfModule>
+
 <IfModule mod_rewrite.c>
-RewriteEngine On
-
-RewriteCond %{REQUEST_URI} !(\.gif$)|(\.jpg$)|(\.png$)|(\.css$)|(\.js$)
-
-RewriteCond %{REQUEST_URI} ^(.*)$
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule .* sapphire/main.php?url=%1&%{QUERY_STRING} [L]
+	RewriteEngine On
+	RewriteCond %{REQUEST_URI} ^(.*)$
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule .* sapphire/main.php?url=%1&%{QUERY_STRING} [L]
 </IfModule>
 ### SILVERSTRIPE END ###
 </file>

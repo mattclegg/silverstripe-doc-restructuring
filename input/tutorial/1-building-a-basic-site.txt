@@ -40,7 +40,7 @@ The CMS is the area in which you can manage your site content. You can access th
 
 {{tutorial:cms-numbered.png}}
 
-  - These buttons allow you to move between the different sections in the CMS. There are three core sections in the CMS - Site Content, Files & Images and Security. Modules installed will have their own sections here as well, if any are installed. In this tutorial we will be focusing on the Site Content section.
+  - These buttons allow you to move between the different sections in the CMS. There are three core sections in the CMS - Pages, Files & Images and Security. Modules installed will have their own sections here as well, if any are installed. In this tutorial we will be focusing on the Pages section.
   - All the pages in the site are laid out in the site tree. You can add, delete and reorganize the pages using the buttons at the top. Clicking on a page will open it in the editor on the right.
   - This section allows you to edit the content for the currently selected page, as well as changing other properties of the page such as the page name and URL. The content editor has full WYSIWYG abilities, allow you to change formatting and insert links, images and tables.
   - There are at any time two copies of the page: draft & published. These buttons allow you to save your changes to the draft, publish your draft copy, or revert your draft copy to the published copy. By having separate draft & published copies, we can preview draft changes in the site before publishing them to the live site.
