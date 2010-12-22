@@ -420,13 +420,6 @@ Put code into the classes in the following order (where applicable).
  *  Template data-access methods (methods that will be called by a `$MethodName` or `<% control MethodName %>` construct in a template somewhere)
  *  Object methods
 
-### SQL Escaping Values
-
-Always convert values you get from the user before you do SQL queries.
-
-	:::php
-	$value = Convert::raw2sql($value);
-
 ### SQL Format
 
 To make sure your code works across databases make sure you escape your queries like below, 
