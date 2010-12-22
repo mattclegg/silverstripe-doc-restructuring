@@ -50,8 +50,10 @@ Static methods should be in `lowercase_with_underscores()` format:
 	:::php
 	static function my_static_method() {}
 
-Action handlers on controllers should be in `completelylowercase()` format without spaces or underscore. 
+Action handlers on controllers should be in `completelylowercase()` format.
 This is because they go into the controller URL in the same format (eg, `home/successfullyinstalled`).
+Method names are allowed to contain underscores here, in order to allow URL parts with dashes
+(`mypage\my-action` gets translated to `my_action()` automatically).
 
 	:::php
 	function mycontrolleraction() {}
