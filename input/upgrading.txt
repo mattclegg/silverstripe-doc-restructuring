@@ -9,11 +9,13 @@ Usually an update or upgrade your SilverStripe installation just means overwriti
   * [[http://silverstripe.org/blog/tag/release|Blog posts about releases on silverstripe.org]]
 ====== Versions ======
   * [[upgrading:trunk|trunk]]
+  * [[upgrading:2.4.4|2.4.4]]
   * [[upgrading:2.4.3|2.4.3]]
   * [[upgrading:2.4.2|2.4.2]]
   * [[upgrading:2.4.1|2.4.1]]
   * [[upgrading:2.4.0|2.4.0]]
-  * [[upgrading:2.3.9|2.3.9]]
+  * [[upgrading:2.3.9|2.3.10]]
+  * [[upgrading:2.3.10|2.3.9]]
   * 2.3.8
   * 2.3.7
   * 2.3.6

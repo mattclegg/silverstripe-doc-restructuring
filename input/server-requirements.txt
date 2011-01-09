@@ -28,6 +28,7 @@ PHP5 is required. The following are further details and recommendations for how 
   * Using a PHP accelerator or opcode cache //(e.g. [[http://trac.lighttpd.net/xcache/|xcache]])// is **strongly** recommended to for performance reasons - SilverStripe creates large cache files as PHP code that are quite slow to open without an opcode cache.
   * Gentoo Linux distribution USE-Flags ([[http://silverstripe.org/installing-silverstripe/show/281700|related forum topic]]): <code>berkdb bzip2 cgi cli crypt ctype curl exif flatfile ftp gd gdbm hash iconv imap ipv6 mysql mysqli ncurses nls pcre readline reflection session simplexml snmp spell spl ssl threads tokenizer truetype unicode xml xmlreader xmlwriter xpm zip zlib</code>
   * PHP safe mode off.
+  * If you have issues with sessions and cookies ensure magic_quotes_gpc is disabled in your php.ini.
 
 If you need information on your PHP configuration, create a php file with the following content:
 <code php>

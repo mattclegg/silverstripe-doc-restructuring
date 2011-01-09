@@ -3,7 +3,7 @@
 This wiki documents high-level features of the [[http://www.silverstripe.org|SilverStripe open source platform]], aimed at developers. 
 If you would like to contribute, you can [[http://doc.silverstripe.com/doku.php?id=start&do=register|register]] and then [[http://doc.silverstripe.com/doku.php?do=login&id=start|login]].
 ==== Getting support ===
-  * Use our [[http://www.silverstripe.com/silverstripe-forum/|support forum]] and [[http://silverstripe.org/irc-channel|irc channel]]
+  * Use our [[http://silverstripe.org/forums/|support forum]] and [[http://silverstripe.org/irc-channel|irc channel]]
   * See [[http://userhelp.silverstripe.com|userhelp]] for end-user documentation
   * Visit some of the [[community run third party websites]]
   
@@ -12,7 +12,7 @@ If you would like to contribute, you can [[http://doc.silverstripe.com/doku.php?
 
   * [[http://silverstripe.org/silverstripe-cms/|Feature Overview]]: Find out how many capabilities hide behind the simple interface
   * [[http://www.silverstripe.com/how-to-contribute/|Contributing]] and [[Contributors]]
-  * [[Changelog]]
+  * [[http://open.silverstripe.org/wiki/ChangeLog|Changelog]]
   * [[http://open.silverstripe.com/roadmap|Roadmap]]
   * **[[http://api.silverstripe.org/current|API documentation]]**
 

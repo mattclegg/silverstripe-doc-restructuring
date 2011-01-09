@@ -26,6 +26,15 @@ class ClassA extends DataObject {
 	function getMyClassBs() {
  		return $this->getManyManyComponents('ClassBs');
 	}
+	function ManyIDs
+		$components = $this->owner->getManyManyComponents('ClassBs');
+		if($components && $components->count()) {
+			return $components->column("ID");
+		}
+		else {
+			return array();
+		}
+	}
 }
 class ClassB extends DataObject {
 	static $belongs_many= array('ClassAs' => 'ClassA');
@@ -89,6 +98,13 @@ $formattedField = $myUsefullField->Nice();
 
 
 ======saving DataObjects ======
+The following functions can be added to a DataObject:
+  * ''function validate:''  
+<code php>
+	function validate() {
+		return new ValidationResult(false, "Dont you dare to change my dataObject");
+	}
+</code>
   * ''function onBeforeWrite:'' dont forget to run parent onBeforeWrite(), if this function returns true, it does not save the dataobject [to do CHECK THIS]
   * ''function onAfterWrite''  
 <code php>
@@ -183,10 +199,10 @@ class Carrot extends DataObject {
 	public static $plural_name = "Carrots";
 	//CRUD settings
 	static $can_create = Boolean;
-	public function canCreate() {return false;}
-	public function canView() {return false;}
-	public function canEdit() {return false;}
-	public function canDelete() {return false;}
+	public function canCreate($member = null) {return false;}
+	public function canView($member = null) {return false;}
+	public function canEdit($member = null) {return false;}
+	public function canDelete($member = null) {return false;}
 	//defaults
 	public static $default_sort = "Sort ASC, Name ASC";
 	public static $defaults = array();//use fieldName => Default Value
@@ -210,6 +226,7 @@ class MyModelAdmin extends ModelAdmin {
 	public static $menu_title = 'Your Carrots';	
 	public static $collection_controller_class = 'MyModelAdmin_CollectionController';
 	public static $record_controller_class = 'MyModelAdmin_RecordController';
+	public $showImportForm = false;
 }
 class MyModelAdmin_CollectionController extends ModelAdmin_CollectionController{
 	//manages everything to do with overall control (e.g. search form, import, etc...)
@@ -231,6 +248,7 @@ class MyModelAdmin_RecordController extends ModelAdmin_RecordController {
 
 
 class MyPage extends Page {
+
 ======DataObject / SiteTree settings======
 <code php>
 class MyPage extends Page {
@@ -711,6 +729,12 @@ $fields->addFieldToTab("Root.Main",$treeField);
 <code php>new DropdownField('Method','Payment Method',singleton($this->ClassName)->dbObject('MyEnumField')->enumValues());
 </code>
 
+
+  * make readonly: 
+<code php>
+$fields->replaceField("EmailSent", $fields->dataFieldByName("EmailSent")->performReadonlyTransformation());
+</code>
+
   * html editor field simplifications - add to _config.php
 <code php>
 HtmlEditorConfig::get('cms')->setOption('theme_advanced_blockformats','p,h1');
@@ -862,6 +886,12 @@ adding widgets to non-blog pages:
   * Debug::backtrace(): prints a calls-stack
   * Debug::sendLiveErrorsTo("whynot@silverstripe.com"): On the live site, all errors will get sent to this address.
   * Email::send_all_emails_to("developer@silverstripbuilders.org");
+==useful get variables==
+  * debug_profile
+  * ajax
+  * showqueries 
+  * showtemplate
+  * flush=1 / flush=all
 
 ====== !@#$%^&*( weird errors ======
   * IF insert SQL statement for $dataobject->write() contains `0` = '0' THEN this could be due to that static $defaults declaration is like this: static $db = array("myfield"); i.e. a value only and not value/key pair.

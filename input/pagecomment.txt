@@ -34,7 +34,7 @@ Additional resources:
 See [[modules:mollom]] for instructions on how to add Mollom to your page comments form.
 
 ===== Comment Administration =====
-There is a new 'Comments' administration area in the CMS. Comments are seperated into three tables - Approved, Awaiting Moderation, and Spam. The table allow mass deletion and reclassification of comments. By default all comments not detected as spam go into the Approved folder. You can add the line "PageComment::enableModeration();" into the _config.php to enable moderation, which means all new comments go into the Awaiting Moderation folder. Comments awaiting moderation will not be shown on the front end page unless the user is an administrator.
+There is a new 'Comments' administration area in the CMS. Comments are separated into three tables - Approved, Awaiting Moderation, and Spam. The table allows mass deletion and reclassification of comments. By default, all comments not detected as spam go into the Approved folder. You can add the line "PageComment::enableModeration();" into the _config.php file to enable moderation, which means all new comments go into the Awaiting Moderation folder. Comments awaiting moderation will not be shown on the front end page unless the user is an administrator.
 
 ====== API Documentation ======
 [[http://api.silverstripe.org/trunk/sapphire/PageComment.html|Click here for the API documentation]]. 

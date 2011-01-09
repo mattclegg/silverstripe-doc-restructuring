@@ -125,7 +125,7 @@ $sqlQuery->select = array(
   // IMPORTANT: Needs to be set after other selects to avoid overlays
   'Player.ClassName AS ClassName',
   'Player.ClassName AS RecordClassName',
-  'Player.ID AS ID',
+  'Player.ID AS ID'
 );
 $sqlQuery->from = array(
   "Player",
@@ -160,6 +160,7 @@ CAUTION: Depending on the selected columns in your query, you might get into one
   * Naming conflicts with custom getters: A getter like Player->getName() will overlay the column-data selected in the above example
 
 Be careful when saving back DataObjects created through //buildDataObjectSet//, you might get strange side-effects due to the issues noted above.
+
 ===== Using FormFields with custom SQL =====
 Some subclasses of [[http://api.silverstripe.org/current/forms/core/FormField.html|FormField]] are constructed to deal with the SQLQuery-object for maximum flexibility. Have a look at [[http://api.silverstripe.org/trunk/forms/fields-relational/TableListField.html|TableListField]] and [[ComplexTableField]] for ways to create sophisticated report-tables based on SQL.
 

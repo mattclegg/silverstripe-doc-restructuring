@@ -73,6 +73,54 @@ class MyController extends Controller {
 }
 </code>
 
+Form getters count as URL actions as well, and should be included in allowed_actions.
+Form actions on the other handed (first argument to FormAction() shoudl NOT be included,
+these are handled separately through Form->httpSubmission. You can control access on form actions either by conditionally removing FormAction in the form construction, or by defining $allowed_actions in your Form class.
+
+<code php>
+class MyController extends Controller {
+
+	static $allowed_actions = array(
+		// don't include 'doSubmitOnController()' or 'doSubmitOnForm()' here
+		'MyForm' => true,
+	);
+	
+	function MyForm() {
+		return new MyForm(
+			$this,
+			'Form',
+			new FieldSet(
+				new TextField('MyText')
+			),
+			new FieldSet(
+				new FormAction('doSubmitOnController'),
+				new FormAction('doSubmitOnForm')
+			)
+		);
+	}
+	
+	function doSubmitOnController($data, $form) {
+		return "Submitted on controller";
+	}
+}
+
+class MyForm extends Form {
+	
+	// Additional protection to avoid 'methodWithoutButton()' being callable through URLs
+	static $allowed_actions = array(
+		'doSubmitOnForm' => true
+	);
+	
+	function doSubmitOnForm($data, $form) {
+		return "Submitted on form";
+	}
+	
+	function methodWithoutButton() {
+		// ...
+	}
+}
+</code>
+
 ===== Recovering passwords =====
 SilverStripe provides a 'reset password' (to email) function. If if you have lost all admin accounts, see instructions at [[recovering_password]].
 
