@@ -39,7 +39,7 @@ a beta version of the software)
 *  Microsoft Forum: http://forums.iis.net/1155.aspx
 *  SilverStripe Installation Issues Forum: http://silverstripe.org/installing-silverstripe/
 
-## Screenshots of this installation process
+## Screenshots
 
 ![](_images/webpi-2-a-silverstripe-choice.png)
 ![](_images/webpi-2-b-dependencies.png)

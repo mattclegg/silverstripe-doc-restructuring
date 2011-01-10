@@ -43,9 +43,7 @@ We put the Page class into a file called Page.php inside mysite/code. We also pu
 classes that are based on Page – for example, the class Page_AnythingElse will also go into Page.php. Likewise, the
 StaffPage_Image class will go into StaffPage.php.
 
-## Usage
-
-### Adding database-fields
+## Adding database-fields
 
 Adding database fields is a simple process. You define them in an array of the static variable ''$db'', this array is
 added on the object class. For example, Page or StaffPage. Every time you run db/build to recompile the manifest, it
@@ -72,13 +70,13 @@ especially useful if you know how long your source data needs to be.
 See [datamodel](/topics/datamodel) for a more detailed explanation on adding database fields, and how the SilverStripe data
 model works.
 
-### Adding formfields and tabs
+## Adding formfields and tabs
 
 See [form](/topics/forms) and [tutorial:2-extending-a-basic-site](tutorial/2-extending-a-basic-site)
 
-### Removing inherited form fields and tabs
+## Removing inherited form fields and tabs
 
-#### removeFieldFromTab()
+### removeFieldFromTab()
 
 Overloading ''getCMSFields()'' you can call ''removeFieldFromTab()'' on a ''FieldSet'' object. For example, if you don't
 want the MenuTitle field to show on your page, which is inherited from SiteTree.
@@ -99,7 +97,7 @@ want the MenuTitle field to show on your page, which is inherited from SiteTree.
 
 
 
-#### removeByName()
+### removeByName()
 
 ''removeByName()'' for normal form fields is useful for breaking inheritance where you know a field in your form isn't
 required on a certain page-type.
@@ -131,7 +129,7 @@ Metadata tab.
 For more information on forms, see [form](/topics/forms), [tutorial:2-extending-a-basic-site](/tutorials/2-extending-a-basic-site)
 and [tutorial:3-forms](/tutorials/3-forms).
 
-### Creating a new page:
+## Creating a new page:
 
 	:::php
 	$page = new Page();
@@ -143,7 +141,7 @@ and [tutorial:3-forms](/tutorials/3-forms).
 	$page->publish('Stage', 'Live');
 
 
-### updating a page:
+## updating a page:
 
 	:::php
 	$page = DataObject::get_one("Page", "ParentID = 18");
@@ -154,7 +152,7 @@ and [tutorial:3-forms](/tutorials/3-forms).
 
 
 
-### Deleting pages
+## Deleting pages
 
 	:::php
 	$id = $page->ID;
@@ -162,10 +160,3 @@ and [tutorial:3-forms](/tutorials/3-forms).
 	if ($stageRecord) $stageRecord->delete();
 	$liveRecord = Versioned::get_one_by_stage('SiteTree', 'Live', "SiteTree_Live.ID = $id");
 	if ($liveRecord) $liveRecord->delete();
-
-
-### Built-in Fields
-
-FIXME List fields from LeftAndMain->getCMSFields()
-
-### Adding new fields and tabs

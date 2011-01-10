@@ -256,7 +256,7 @@ Some rules of thumb:
 *  Use *Controller::join_links()* to concatenate URLs.  It deals with querystrings and other such edge cases.
 
 
-# Cross-Site Request Forgery (CSRF)
+## Cross-Site Request Forgery (CSRF)
 
 SilverStripe has built-in countermeasures against this type of identity theft for all form submissions. A form object
 will automatically contain a *SecurityID* parameter which is generated as a secure hash on the server, connected to the
@@ -274,7 +274,7 @@ See
 
 
 
-### Casting user input
+## Casting user input
 
 When working with ''$_GET'', ''$_POST'' or ''Director::urlParams'' variables, and you know your variable has to be of a
 certain type, like an integer, then it's essential to cast it as one. *Why?* To be sure that any processing of your

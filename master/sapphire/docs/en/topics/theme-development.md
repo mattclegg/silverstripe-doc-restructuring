@@ -236,11 +236,7 @@ So if, for example, you had a typography.css file for a module in the module fol
 directory (eg themes/blackcandy_blog/css/), and in your site folder (eg mysite/css/), the system would use the file
 mysite/css/typography.css
 
-#### What gets overridden?
-
-*  CSS
-*  Templates
-PHP files **do not** get overridden!
+Note: This only applies for CSS and template files. PHP files **do not** get overridden!
 
 ### Requirements
 
