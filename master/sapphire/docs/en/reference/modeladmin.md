@@ -1,5 +1,7 @@
 # ModelAdmin
 
+## Introduction
+
 *Replaces GenericDataAdmin in Silverstripe 2.3*
 
 The ModelAdmin provides a simple way to utilize the SilverStripe CMS UI with your own custom data models.  The

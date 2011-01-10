@@ -1,4 +1,4 @@
-# What are SilverStripe Modules?
+# Modules
 
 Sapphire is designed to be a modular application system - even the CMS is simply a module that plugs into it.  
 

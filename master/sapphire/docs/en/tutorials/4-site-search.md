@@ -1,4 +1,5 @@
-#Tutorial 4 - Site Search
+# Tutorial 4 - Site Search
+
 ## Overview
 
 This is a short tutorial demonstrating how to add search functionality to a SilverStripe site. It is recommended that

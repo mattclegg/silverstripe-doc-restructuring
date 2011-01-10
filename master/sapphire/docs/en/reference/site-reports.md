@@ -1,4 +1,5 @@
 # Site Reports
+
 ## Introduction
 A report is a little bit of functionally in the CMS designed to provide a report of your data or content. You can access
 the site reports by clicking "Site Reports" in the left hand side bar and selecting the report you wish to view.

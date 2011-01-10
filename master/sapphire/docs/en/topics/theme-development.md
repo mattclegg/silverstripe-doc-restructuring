@@ -1,5 +1,7 @@
 # Developing Themes
 
+## Introduction
+
 [Tutorial 1](tutorial/1-building-a-basic-site#templates) shows you how to create page templates. This guide will help
 you create your own SilverStripe website theme.
 

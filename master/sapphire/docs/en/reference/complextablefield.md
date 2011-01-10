@@ -1,6 +1,6 @@
-#ComplexTableField
+# ComplexTableField
 
-##  Introduction
+## Introduction
 
 Shows a group of DataObjects as a (readonly) tabular list (similiar to `[api:TableListField]`.)
 

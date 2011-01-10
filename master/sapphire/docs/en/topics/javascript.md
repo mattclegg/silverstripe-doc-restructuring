@@ -1,4 +1,4 @@
-# Using JavaScript with SilverStripe
+# JavaScript
 
 **Important: Parts of this guide apply to the SilverStripe 2.4 release, particularly around the jQuery.entwine
 library.**

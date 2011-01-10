@@ -1,5 +1,7 @@
 # Partial Caching
 
+## Introduction
+
 Partial caching, new in SilverStripe 2.4, is a feature that allows the caching of just a portion of a page.
 
 As opposed to static publishing, which avoids the SilverStripe controller layer on cached pages, partial caching allows

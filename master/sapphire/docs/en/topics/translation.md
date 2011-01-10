@@ -1,5 +1,7 @@
 # Translation
 
+## Introduction
+
 This page introduces developers to using the CMS for creating content in multiple languages.
 
 Please see [i18n](/topics/i18n) for a internationalization, globalization and localization support of built-in datatypes as well

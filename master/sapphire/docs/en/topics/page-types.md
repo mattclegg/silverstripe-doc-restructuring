@@ -1,5 +1,7 @@
 # Page Types
 
+## Introduction
+
 Page Types are the basic building blocks of any SilverStripe website. A page type can define:
 
 *  The template or templates that are used to display content

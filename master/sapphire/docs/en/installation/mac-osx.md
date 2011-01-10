@@ -1,4 +1,4 @@
-# Installation On Mac OSX
+# Mac OSX
 
 This topic covers setting up your Mac as a Web Server and installing SilverStripe. 
 

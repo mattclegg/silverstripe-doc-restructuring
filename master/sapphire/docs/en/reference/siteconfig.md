@@ -1,4 +1,4 @@
-# Site Config
+# SiteConfig
 
 ## Introduction
 

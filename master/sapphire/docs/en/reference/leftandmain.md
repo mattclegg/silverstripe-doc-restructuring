@@ -1,4 +1,5 @@
 # LeftAndMain
+
 ## Introduction
 
 LeftAndMain is the base class of all the admin area controllers.  

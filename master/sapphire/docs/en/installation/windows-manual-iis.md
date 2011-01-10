@@ -1,4 +1,4 @@
-# Installation on Windows and IIS 7.0 and later
+# Windows with IIS 7.0+
 
 This page explains installing SilverStripe manually, without the use of (the easy to use) [Web Platform Installer](windows-pi).
 

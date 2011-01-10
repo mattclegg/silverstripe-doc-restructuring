@@ -1,5 +1,7 @@
 # Security
 
+## Introduction
+
 This page details notes on how to ensure that we develop secure SilverStripe applications. See [security](/topics/security) for
 the Silverstripe-class as a starting-point for most security-related functionality.
 

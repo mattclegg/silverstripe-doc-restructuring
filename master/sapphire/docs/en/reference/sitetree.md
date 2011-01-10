@@ -1,4 +1,6 @@
+
 # Sitetree
+
 ## Introduction
 
 Basic data-object representing all pages within the site tree. The omnipresent *Page* class (located in

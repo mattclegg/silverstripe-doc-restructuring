@@ -1,5 +1,7 @@
 # Forms
 
+## Introduction
+
 Form is the base class of all forms in a sapphire application. Forms in your application can be created either by
 instantiating the Form class itself, or by subclassing it. 
 

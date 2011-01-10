@@ -1,4 +1,4 @@
-# Howto: Import CSV data
+# Import CSV data
 
 ## Introduction
 

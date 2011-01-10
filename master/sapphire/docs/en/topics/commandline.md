@@ -1,4 +1,4 @@
-# Commandline usage in SilverStripe
+# Commandline Usage via "sake"
 
 ## Introduction
 

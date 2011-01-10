@@ -1,11 +1,11 @@
 # BBcode support
 
-Yes! SilverStripe supports BBCode
+A bbcode tags help box shows when the "BBCode help" link is clicked. Javascript is required for this to work. 
+It has been encorporated as a modified version of PEAR's [HTML_BBCodeParser](http://pear.php.net/package/HTML_BBCodeParser)
+BBCode is used by default in the [blog](http://silverstripe.org/blog-module) and 
+[forum](http://silverstripe.org/forum-module) modules.
 
-*  A bbcode tags help box shows when the "BBCode help" link is clicked. Javascript is required for this to work.
-*  It has been encorporated as a modified version of PEAR's
-[HTML_BBCodeParser](http://pear.php.net/package/HTML_BBCodeParser)
-*  BBCode is used by default in blog and forum.
+## Usage
 
 To add bbcode parsing to a template, instead of $Content use:
 
@@ -19,7 +19,7 @@ BBCode can be enabled in comments by adding the following to _config.php
 	PageComment::enableBBCode();
 
 
-## Currently Supported Tags
+## Supported Tags
 
 - [b]Bold[/b]
 - [i]Italics[/i]

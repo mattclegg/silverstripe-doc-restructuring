@@ -1,5 +1,7 @@
 # Themes
 
+## Introduction
+
 Themes can be used to kick start your SilverStripe projects, and generally make you look good.
 
 ## Downloading

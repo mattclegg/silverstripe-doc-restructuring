@@ -1,4 +1,4 @@
-# Installation on a Web Server
+# Generic Webserver Installation
 
 These instructions show you how to install SilverStripe on any web server.
 

@@ -1,5 +1,7 @@
 # Widgets
 
+## Introduction
+
 Widgets are small pieces of functionality such as Showing the latest Comments or Flickr Photos. They normally display on
 the sidebar of your website. To check out a what a Widget can do see the video http://silverstripe.org/widgets and try
 out the demo site http://silverstripe.com/assets/screencasts/SilverStripe-Blog-DragDrop-Widgets.swf

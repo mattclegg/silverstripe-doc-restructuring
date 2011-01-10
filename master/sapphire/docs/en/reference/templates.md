@@ -1,4 +1,5 @@
 # Templates
+
 ## Introduction
 
 SilverStripe templates consist of HTML code augmented with special control codes, described below.  Because of this, you

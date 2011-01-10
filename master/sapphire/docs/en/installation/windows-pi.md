@@ -1,4 +1,4 @@
-# Installation on Windows using Web Platform Installer
+# Windows with Web Platform Installer (WebPI)
 
 ![](http://doc.silverstripe.com/assets/windows.png)
 (Windows XP, 2003, 2008, Vista and 7)

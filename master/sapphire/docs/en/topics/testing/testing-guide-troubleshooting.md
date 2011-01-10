@@ -1,4 +1,4 @@
-# SilverStripe Testing Guide - Troubleshooting
+# Troubleshooting
 
 //Part of the [SilverStripe Testing Guide](testing-guide).//
 

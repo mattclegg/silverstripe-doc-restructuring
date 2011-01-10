@@ -1,4 +1,4 @@
-# How page security works in Silverstripe
+# Access Control and Page Security
 
 There is a fairly comprehensive security mechanism in place for Silverstripe. If you want to add premium content to your
 site you have to figure this stuff out, and it's not entirely obvious. 

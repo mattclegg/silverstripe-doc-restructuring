@@ -1,4 +1,5 @@
 # SQL Query
+
 ## Introduction
 
 An object representing a SQL query. It is easier to deal with object-wrappers than string-parsing a raw SQL-query. This

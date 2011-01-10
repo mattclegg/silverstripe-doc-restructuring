@@ -1,4 +1,6 @@
-# Creating modules
+# Module Development
+
+## Introduction
 
 Creating a module is a good way to re-use abstract code and templates across multiple projects. SilverStripe already has
 certain modules included, for example "sapphire" and "cms". These three modules are the core functionality and
