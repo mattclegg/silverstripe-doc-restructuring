@@ -45,15 +45,15 @@ The following control codes are available. For a more details list see [built-in
 
 These **variables** will call a method/field on the object and insert the returned value as a string into the template.
 
-*  $Property will call $obj->Property() (or the field $obj->Property)
-*  $Property(param) will call $obj->Property("param")
-*  $Property.SubProperty will call $obj->Property()->SubProperty() (or field equivalents)
+*  `$Property` will call `$obj->Property()` (or the field `$obj->Property`)
+*  `$Property(param)` will call `$obj->Property("param")`
+*  `$Property.SubProperty` will call `$obj->Property()->SubProperty()` (or field equivalents)
 
-If a Variable returns a string, that string will be inserted into the template. If the variable returns an object, then
-the system will attempt to render the object through its forTemplate() method. If the forTemplate() method has not been
+If a variable returns a string, that string will be inserted into the template. If the variable returns an object, then
+the system will attempt to render the object through its forTemplate() method. If the `forTemplate()` method has not been
 defined, the system will return an error.
 
-Note you also cannot past a variable into a variable, so using $Property($Value) within your template will not work
+Note you also cannot past a variable into a variable, so using `$Property($Value)` within your template will not work
 
 ###  Includes
 
@@ -81,11 +81,11 @@ Templates](requirements#including_inside_template_files) for more details and ex
 
 
 Control blocks reference the same methods / fields as variables. Think of it as a foreach loop in PHP or other template
-languages. `<% control Property %>` gets the same data as $Property.  However, instead of interpreting the result as a
+languages. `<% control Property %>` gets the same data as `$Property`.  However, instead of interpreting the result as a
 string, control blocks interpret the result as an object or a array of objects.  The content between `<% control %>` and
 `<% end_control %>` acts as a sub-template that is used to render the object returned.
 
-In this example, $A and $B refer to $obj->Property()->A() and $obj->Property()->B().
+In this example, `$A` and `$B` refer to `$obj->Property()->A()` and `$obj->Property()->B()`.
 
 	:::ss
 	<% control Property %>
@@ -97,10 +97,10 @@ In this example, $A and $B refer to $obj->Property()->A() and $obj->Property()->
 If the method/field returned is an iterator such as a `[api:DataObject]`, then the control block will be repeated for
 each element of that iterator.  This is the cornerstone of all menu and list generation in SilverStripe.  
 
-In this example, Menu(1) returns a DataObjectSet listing each top level main menu item (for more info on Menu(1):
+In this example, `Menu(1)` returns a `[api:DataObjectSet]` listing each top level main menu item (for more info on `Menu(1)`:
 [Making a Navigation
 System](http://doc.silverstripe.com/doku.php?id=tutorial:1-building-a-basic-site#making_a_navigation_system)).  The `<a>`
-tag is repeated once for each main menu item, and the $Link and $Title values for each menu item is substituted in.
+tag is repeated once for each main menu item, and the `$Link` and `$Title` values for each menu item is substituted in.
 
 	:::ss
 	<% control Menu(1) %>
@@ -159,7 +159,7 @@ for adding notes for other developers but for things you don't want published in
 ### Formatting Template Values
 
 The following example takes the Title field of our object, casts it to a `[api:Varchar]` object, and then calls
-the $XML object on that Varchar object.
+the `$XML` object on that Varchar object.
 
 	:::ss
 	<% control Title %>
@@ -179,7 +179,7 @@ See [data-types](/topics/data-types) for more information.
 
 Sometimes you will have template tags which need to roll into one another. This can often result in SilverStripe looking
 for a "FooBar" value rather than a "Foo" and then "Bar" value or when you have a string directly before or after the
-variable you will need to escape the specific variable. In the following example $Foo is 3.
+variable you will need to escape the specific variable. In the following example `$Foo` is `3`.
 
 	:::ss
 	
@@ -188,7 +188,7 @@ variable you will need to escape the specific variable. In the following example
 	
 
 
-Or when having a $ sign in front of the variable
+Or when having a `$` sign in front of the variable
 
 	:::ss
 	$$Foo // returns ""
@@ -215,9 +215,9 @@ a list of all the controls see [built-in-page-controls](/reference/built-in-page
 
 ## Creating your own Template Variables and Controls
 
-There are 2 ways you can extend the template variables you have available. You can create a new Database field in your
-$db or if you do not need the variable to be editable in the cms you can create a function which returns a value in your
-Page.php class.
+There are two ways you can extend the template variables you have available. You can create a new database field in your
+`$db` or if you do not need the variable to be editable in the cms you can create a function which returns a value in your
+`Page.php` class.
 
 	:::php
 	
@@ -228,7 +228,7 @@ Page.php class.
 	}
 
 
-Will give you the ability to call $MyCustomValue from anywhere in your template. 
+Will give you the ability to call `$MyCustomValue` from anywhere in your template. 
 
 	:::ss
 	I've got one thing to say to you: <i>$MyCustomValue</i>
@@ -291,11 +291,11 @@ will give "1, 1, 1", not "1, 2, 3"
 
 This is all very well and good, but how do the templates actually get called?  
 
-Templates do nothing on their own.  Rather, they are used to render *a particular object*.  All of the `<% if %>`, <%
-control %>, and variable codes are methods or parameters that are called *on that object*.  All that is necessary is
-that the object is an instance of ViewableData (or one of its subclasses).
+Templates do nothing on their own.  Rather, they are used to render *a particular object*.  All of the `<% if %>`, `<%control %>`, 
+and variable codes are methods or parameters that are called *on that object*.  All that is necessary is
+that the object is an instance of `[api:ViewableData]` (or one of its subclasses).
 
-The key is ViewableData::renderWith().  This method is passed a For example, within the controller's default action,
+The key is `[api:ViewableData::renderWith()]`.  This method is passed a For example, within the controller's default action,
 there is an instruction of the following sort:
 
 	:::php
@@ -304,18 +304,18 @@ there is an instruction of the following sort:
 
 Here's what this line does:
 
-*  First renderWith() constructs a new object: $template = new SSViewer("TemplateName");
-*  SSViewer will take the content of TemplateName.ss, and turn it into PHP code.
-*  Then renderWith() passes the controller to $template->process($controller);
-*  SSViewer::process() will execute the PHP code generated from TemplateName.ss and return the results.
+*  First `renderWith()` constructs a new object: `$template = new SSViewer("TemplateName");`
+*  `[api:SSViewer]` will take the content of `TemplateName.ss`, and turn it into PHP code.
+*  Then `renderWith()` passes the controller to `$template->process($controller);`
+*  `SSViewer::process()` will execute the PHP code generated from `TemplateName.ss` and return the results.
 
-renderWith() returns a string - the populated template.  In essence, it uses a template to cast an object to a string.
+`renderWith()` returns a string - the populated template.  In essence, it uses a template to cast an object to a string.
 
-renderWith() can also be passed an array of template names.  If this is done, then renderWith() will use the first
+`renderWith()` can also be passed an array of template names.  If this is done, then `renderWith()` will use the first
 available template name.
 
 Below is an example of how to implement renderWith.  In the example below the page is rendered using the myAjaxTemplate
-if the page is called by an ajax function (using Director::is_ajax()).  Note that the index function is called by
+if the page is called by an ajax function (using `[api:Director::is_ajax()]`).  Note that the index function is called by
 default if it exists and there is no action in the url parameters.
 
 	:::php
@@ -340,12 +340,12 @@ default if it exists and there is no action in the url parameters.
 
 ViewableData provides two methods that perform the casting necessary for templates to work as we have described.
 
-*  obj("Parameter") - Return the given field / method as an object, casting if necessary 
-*  XML_val("Parameter) - Return the given field / method as a scalar, converting to an XML-safe format and casting if
+*  `obj("Parameter")` - Return the given field / method as an object, casting if necessary 
+*  `XML_val("Parameter)` - Return the given field / method as a scalar, converting to an XML-safe format and casting if
 necessary
 
 These methods work as described in the syntax section above.  SSViewer calls these methods when processing templates. 
-However, if you want, you can call obj() and val() yourself.
+However, if you want, you can call `obj()` and `val()` yourself.
 
 ## Fragment Link rewriting
 
@@ -385,7 +385,4 @@ situations, you can disable fragment link rewriting like so:
 
 ## Related Pages
 
-(TODO Update Links)
-
-[HTML Guidelines](http://doc.silverstripe.com/doku.php?id=html) 
-[Themes](http://doc.silverstripe.com/doku.php?id=themes)
+ * [Themes](../topics/themes)
