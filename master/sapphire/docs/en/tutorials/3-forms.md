@@ -7,7 +7,8 @@ two tutorials.
 
 This tutorial explores forms in SilverStripe. It will look at coded forms. Forms which need to be written in PHP.
 
-Another method which allows you to construct forms via the CMS is by using the [userforms module](http://silverstripe.org/user-forms-module). A UserDefinedForm is much quicker to implement, but lacks the flexibility of a coded form. 
+Another method which allows you to construct forms via the CMS is by using the [userforms module](http://silverstripe.org/user-forms-module). 
+A UserDefinedForm is much quicker to implement, but lacks the flexibility of a coded form. 
 
 ## What are we working towards?
 
@@ -38,6 +39,7 @@ the form in a method on *HomePage_Controller*.
 				new TextField('Name'),
 				new OptionsetField('Browser', 'Your Favourite Browser', array(
 					'Firefox' => 'Firefox',
+					'Chrome' => 'Chrome',
 					'Internet Explorer' => 'Internet Explorer',
 					'Safari' => 'Safari',
 					'Opera' => 'Opera',
@@ -67,6 +69,7 @@ Let's step through this code.
 			new TextField('Name'),
 			new OptionsetField('Browser', 'Your Favourite Browser', array(
 				'Firefox' => 'Firefox',
+				'Chrome' => 'Chrome',
 				'Internet Explorer' => 'Internet Explorer',
 				'Safari' => 'Safari',
 				'Opera' => 'Opera',
@@ -114,23 +117,57 @@ FieldSets containing the fields and form actions respectively.
 
 After creating the form function, we need to add the form to our home page template.
 
-Add the following code to the home page template, just before the `</div>` that ends the ContentContainer DIV element:
+Add the following code to the home page template, just before the Content `<div>`:
 
 *themes/tutorial/templates/Layout/HomePage.ss*
 
 	:::ss
 	...
-	<div id="ContentContainer">
-	...
-	
-	  <div id="BrowserPoll">
-	    <h2>Browser Poll</h2>
-	    $BrowserPollForm
-	  </div>
+	<div id="BrowserPoll">
+		<h2>Browser Poll</h2>
+		$BrowserPollForm
 	</div>
+	<div id="Content">
+	...
+
+Add the following code to the form style sheet:
+
+*themes/tutorial/css/form.css*
+
+	:::css
+	/* BROWSER POLL */
+	#BrowserPoll {
+		float: right;
+		margin: 20px 20px 0 0;
+		width: 200px;
+	}
+		#BrowserPoll form fieldset {
+			border:0;
+		}
+		#BrowserPoll .message {
+			display: block;
+			color:red;
+			background:#ddd;
+			border:1px solid #ccc;
+			padding:5px;
+			margin:5px;
+		}
+		#BrowserPoll h2 {
+			font-size: 1.5em;
+			color: #0083C8;
+		}
+		#BrowserPoll .field {
+			padding:3px 0;
+		}
+		#BrowserPoll .Actions {
+			padding:5px 0;
+		}
+		#BrowserPoll .bar {
+			background-color: #015581;
+		}
 
 
-The CSS files will ensure that it is formatted and positioned correctly. All going according to plan, if you visit
+This CSS code will ensure that the form is formatted and positioned correctly. All going according to plan, if you visit
 [http://localhost/home?flush=1](http://localhost/home?flush=1) it should look something like below.
 
 ![](_images/pollform.png)

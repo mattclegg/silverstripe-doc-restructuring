@@ -246,7 +246,7 @@ To make the date field a bit more user friendly, you can add a dropdown calendar
 		$fields = parent::getCMSFields();
 
 		$fields->addFieldToTab('Root.Content.Main', $dateField = new DateField('Date','Article Date (for example: 20/12/2010)'), 'Content');
-		$dateField->setConfig('showCalendar', true);
+		$dateField->setConfig('showcalendar', true);
 		$dateField->setConfig('dateformat', 'dd/MM/YYYY');
 		
 		$fields->addFieldToTab('Root.Content.Main', new TextField('Author','Author Name'), 'Content');
@@ -627,12 +627,12 @@ We then add an *ImageField* in the *getCMSFields* function to the tab "Root.Cont
 the *addFieldToTab* function will create it for us. The *ImageField* allows us to select an image or upload a new one in
 the CMS.
 
-![](images/photo.png)
+![](_images/photo.png)
 
 Rebuild the database ([http://localhost/dev/build?flush=1](http://localhost/dev/build?flush=1)) and open the CMS. Create
 a new *StaffHolder* called "Staff" in the "About Us" section, and create some *StaffPage*s in it.
 
-![](images/create-staff.png)
+![](_images/create-staff.png)
 
 
 
@@ -667,7 +667,7 @@ This template is very similar to the *ArticleHolder* template. The *FirstSentenc
 will resize the image before sending it to the browser. The resized image is cached, so the server doesn't have to
 resize the image every time the page is viewed.
 
-![](images/staff-section.png)
+![](_images/staff-section.png)
 
 The *StaffPage* template is also very straight forward.
 
@@ -690,7 +690,7 @@ The *StaffPage* template is also very straight forward.
 Here we also use the *SetWidth* function to get a different sized image from the same source image. You should now have
 a complete staff section.
 
-![](images/einstein.png)
+![](_images/einstein.png)
 
 ## Summary
 
