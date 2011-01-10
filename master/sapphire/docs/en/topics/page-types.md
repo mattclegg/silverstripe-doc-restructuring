@@ -1,5 +1,7 @@
 # Page Types
 
+## Introduction
+
 Page Types are the basic building blocks of any SilverStripe website. A page type can define:
 
 *  The template or templates that are used to display content
@@ -41,13 +43,11 @@ We put the Page class into a file called Page.php inside mysite/code. We also pu
 classes that are based on Page – for example, the class Page_AnythingElse will also go into Page.php. Likewise, the
 StaffPage_Image class will go into StaffPage.php.
 
-## Usage
+## Adding database-fields
 
-### Adding database-fields
-
-Adding database fields is a simple process. You define them in an array of the static variable ''$db'', this array is
+Adding database fields is a simple process. You define them in an array of the static variable `$db`, this array is
 added on the object class. For example, Page or StaffPage. Every time you run db/build to recompile the manifest, it
-checks if any new entries are added to the ''$db'' array and adds any fields to the database that are missing.
+checks if any new entries are added to the `$db` array and adds any fields to the database that are missing.
 
 For example, you may want an additional field on a StaffPage class which extends Page, called Author. Author is a
 standard text field, and can be [casted](objectmodel) as a variable character object in php (VARCHAR in SQL). In the
@@ -70,15 +70,15 @@ especially useful if you know how long your source data needs to be.
 See [datamodel](/topics/datamodel) for a more detailed explanation on adding database fields, and how the SilverStripe data
 model works.
 
-### Adding formfields and tabs
+## Adding formfields and tabs
 
 See [form](/topics/forms) and [tutorial:2-extending-a-basic-site](tutorial/2-extending-a-basic-site)
 
-### Removing inherited form fields and tabs
+## Removing inherited form fields and tabs
 
-#### removeFieldFromTab()
+### removeFieldFromTab()
 
-Overloading ''getCMSFields()'' you can call ''removeFieldFromTab()'' on a ''FieldSet'' object. For example, if you don't
+Overloading `getCMSFields()` you can call `removeFieldFromTab()` on a `FieldSet` object. For example, if you don't
 want the MenuTitle field to show on your page, which is inherited from SiteTree.
 
 	:::php
@@ -97,9 +97,8 @@ want the MenuTitle field to show on your page, which is inherited from SiteTree.
 
 
 
-#### removeByName()
-
-''removeByName()'' for normal form fields is useful for breaking inheritance where you know a field in your form isn't
+### removeByName()
+ `removeByName()` for normal form fields is useful for breaking inheritance where you know a field in your form isn't
 required on a certain page-type.
 
 	:::php
@@ -129,7 +128,7 @@ Metadata tab.
 For more information on forms, see [form](/topics/forms), [tutorial:2-extending-a-basic-site](/tutorials/2-extending-a-basic-site)
 and [tutorial:3-forms](/tutorials/3-forms).
 
-### Creating a new page:
+## Creating a new page:
 
 	:::php
 	$page = new Page();
@@ -141,7 +140,7 @@ and [tutorial:3-forms](/tutorials/3-forms).
 	$page->publish('Stage', 'Live');
 
 
-### updating a page:
+## updating a page:
 
 	:::php
 	$page = DataObject::get_one("Page", "ParentID = 18");
@@ -152,7 +151,7 @@ and [tutorial:3-forms](/tutorials/3-forms).
 
 
 
-### Deleting pages
+## Deleting pages
 
 	:::php
 	$id = $page->ID;
@@ -160,10 +159,3 @@ and [tutorial:3-forms](/tutorials/3-forms).
 	if ($stageRecord) $stageRecord->delete();
 	$liveRecord = Versioned::get_one_by_stage('SiteTree', 'Live', "SiteTree_Live.ID = $id");
 	if ($liveRecord) $liveRecord->delete();
-
-
-### Built-in Fields
-
-FIXME List fields from LeftAndMain->getCMSFields()
-
-### Adding new fields and tabs

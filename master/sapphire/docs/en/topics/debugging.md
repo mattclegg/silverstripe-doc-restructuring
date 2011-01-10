@@ -1,15 +1,15 @@
-# Environment Types
+# Debugging
+
+## Environment Types
 
 Silverstripe knows three different environment-types (or "debug-levels"). Each of the levels gives you different tools
-and functionality. "//dev//", "//test//" and "//live//". You can either configure the environment of the site in the
+and functionality. "dev", "test" and "live". You can either configure the environment of the site in the
 mysite/_config.php file or in your [environment configuration file](/topics/environment-management).
 
 The definition of setting an environment in your mysite/_config.php looks like
 
 	:::php
 	Director::set_environment_type("dev");
-
-## Available Site Modes
 
 ### Dev Mode
 
@@ -61,7 +61,7 @@ To set your site to live mode set this in your mysite/_config.php file
 
 
 
-## Checking Environment Types
+### Checking Environment Types
 
 Use the following methods:
 
@@ -98,6 +98,7 @@ You can customize "friendly error messages" in test/live-mode by creating *asset
 You can get lots of information on the current rendering context without writing any code or launching a debugger: Just
 attach some [Debug Parameters](/reference/urlvariabletools) to your current URL to see the compiled template, or all performed
 SQL-queries.
+
 ## Debugging methods
 
 The Debug class contains a number of static methods

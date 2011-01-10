@@ -1,5 +1,7 @@
 # Partial Caching
 
+## Introduction
+
 Partial caching, new in SilverStripe 2.4, is a feature that allows the caching of just a portion of a page.
 
 As opposed to static publishing, which avoids the SilverStripe controller layer on cached pages, partial caching allows
@@ -13,7 +15,7 @@ pages the speed increases can be significant.
 
 The way you mark a section of the template as being cached is to wrap that section in a cached tag, like so:
 
-	:::html
+	:::ss
 	<% cached %>
 	$DataTable
 	...
@@ -33,19 +35,19 @@ Here are some more complex examples:
 
 From a block that updates every time the Page subclass it's the template for updates
 
-	:::html
+	:::ss
 	<% cached 'database', LastEdited %>
 
 
 From a block that shows a login block if not logged in, or a homepage link if logged in, depending on the current member
 
-	:::html
+	:::ss
 	<% cached 'loginblock', CurrentMember.ID %>
 
 
 From a block that shows a summary of the page edits if administrator, nothing if not
 
-	:::html
+	:::ss
 	<% cached 'loginblock', LastEdited, CurrentMember.isAdmin %>
 
 
@@ -58,21 +60,21 @@ on sets of DataObjects - the most useful for us being the Max aggregate.
 For example, if we have a menu, we want that menu to update whenever _any_ page is edited, but would like to cache it
 otherwise. By using aggregates, that's easy
 
-	:::html
+	:::ss
 	<% cached 'navigation', Aggregate(Page).Max(LastEdited) %>
 
 
 If we have a block that shows a list of categories, we can make sure the cache updates every time a category is added or
 edited
 
-	:::html
+	:::ss
 	<% cached 'categorylist', Aggregate(Category).Max(LastEdited) %>
 
 
 We can also calculate aggregates on relationships. A block that shows the current member's favourites needs to update
 whenever the relationship Member::$has_many = array('Favourites' => Favourite') changes.
 
-	:::html
+	:::ss
 	<% cached 'favourites', CurrentMember.ID, CurrentMember.RelationshipAggregate(Favourites).Max(LastEdited) %>
 
 
@@ -94,7 +96,7 @@ logic into the controller
 
 and then using that function in the cache key
 
-	:::html
+	:::ss
 	<% cached FavouriteCacheKey %>
 
 
@@ -112,7 +114,7 @@ data updates.
 
 For instance, if we show some blog statistics, but are happy having them be slightly stale, we could do
 
-	:::html
+	:::ss
 	<% cached 'blogstatistics', Blog.ID %>
 
 
@@ -127,7 +129,7 @@ configurable only on a site-wide basis), you could add a special function to you
  
 and then use it in the cache key
 
-	:::html
+	:::ss
 	<% cached 'blogstatistics', Blog.ID, BlogStatisticsCounter %>
 
 
@@ -140,7 +142,7 @@ value must be true for that block to be cached. Conversely if 'unless' is used, 
 Following on from the previous example, you might wish to only cache slightly-stale data if the server is experiencing
 heavy load:
 
-	:::html
+	:::ss
 	<% cached 'blogstatistics', Blog.ID if HighLoad %>
 
 
@@ -149,7 +151,7 @@ By adding a HighLoad function to your page controller, you could enable or disab
 To cache the contents of a page for all anonymous users, but dynamically calculate the contents for logged in members,
 you could use something like:
 
-	:::html
+	:::ss
 	<% cached unless CurrentUser %>
 
 
@@ -157,7 +159,7 @@ As a shortcut, the template tag 'uncached' can be used - it is the exact equivil
 condition that always returns false. The key and conditionals in an uncached tag are ignored, so you can easily
 temporarily disable a particular cache block by changing just the tag, leaving the key and conditional intact.
 
-	:::html
+	:::ss
 	<% uncached %>
 
 
@@ -173,7 +175,7 @@ portion dynamic, without having to include any member info in the page's cache k
 
 An example:
 
-	:::html
+	:::ss
 	<% cached LastEdited %>
 	  Our wonderful site
 	
@@ -191,7 +193,7 @@ message depending on the logged in member.
 Cache conditionals and the uncached tag also work in the same nested manner. Since Member.Name is fast to calculate, you
 could also write the last example as:
 
-	:::html
+	:::ss
 	<% cached LastEdited %>
 	  Our wonderful site
 	
@@ -210,7 +212,7 @@ letting you know if you've done this. You can often get around this using aggreg
 
 Failing example:
 
-	:::html
+	:::ss
 	<% cached LastEdited %>
 	
 	  <% control Children %>
@@ -225,7 +227,7 @@ Failing example:
 
 Can be re-written as:
 
-	:::html
+	:::ss
 	<% cached LastEdited %>
 	
 	  <% cached RelationshipAggregate(Children).Max(LastEdited) %>

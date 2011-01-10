@@ -1,4 +1,5 @@
 # Image
+
 ## Introduction
 
 Represents an image object, inheriting all base functionality from the [file](api:file) class with extra functionality

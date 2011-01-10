@@ -23,7 +23,7 @@ by stripping HTML markup, or transformining it where possible
 	$email->send();
 
 
-The default HTML template is located in ''sapphire/templates/email/GenericEmail.ss''.
+The default HTML template is located in `sapphire/templates/email/GenericEmail.ss`.
 
 ### Sending Plaintext only
 
@@ -86,8 +86,8 @@ Usage:
 
 ### Administrator Emails
 
-The static function ''Email::setAdminEmail()'' can be called from a _config.php file to set the address that these
-emails should originate from. This address is used if the ''from'' field is empty.
+The static function `Email::setAdminEmail()` can be called from a _config.php file to set the address that these
+emails should originate from. This address is used if the `from` field is empty.
 
 ### Redirecting Emails
 

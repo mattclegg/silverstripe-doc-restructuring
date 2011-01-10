@@ -8,7 +8,7 @@ Creating a form is a matter of defining a method to represent that form.  This m
   * ''$controller'': This must be the controller that contains the form.
   * ''$name'': This must be the name of the method on that controller that is called to return the form.  The first two fields allow the form object to be re-created after submission.  **It's vital that they are properly set - if you ever have problems with form action handler not working, check that these values are correct.*
   * ''$fields'': A [[http://api.silverstripe.org/trunk/forms/core/FieldSet.html|FieldSet]] containing all the [[http://api.silverstripe.org/trunk/forms/core/Form.html|Form]]s that make up the editable portion of the form.
-  * ''$actions'': A [[http://api.silverstripe.org/trunk/forms/core/FieldSet.html|FieldSet]] containing all the [[http://api.silverstripe.org/trunk/forms/core/Form.html|Form]]s that make up the control portion of the form - the butons at the bottom.
+  * ''$actions'': A [[http://api.silverstripe.org/trunk/forms/core/FieldSet.html|FieldSet]] containing all the [[http://api.silverstripe.org/trunk/forms/core/Form.html|Form]]s that make up the control portion of the form - the buttons at the bottom.
   * ''$validator'': An optional [[http://api.silverstripe.org/trunk/forms/validators/Validator.html|Validator]] object to define form validation.  Form validation is done on a per-form basis, rather than per-field basis.  See [[http://api.silverstripe.org/trunk/forms/validators/Validator.html|Validator]] for more information.
 
 <code php>

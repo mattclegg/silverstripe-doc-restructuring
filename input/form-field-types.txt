@@ -1,6 +1,5 @@
 ====== Introduction ======
 This is a highlevel overview of available FormFields. An automatically generated list is available through our [[http://api.silverstripe.org/2.4/forms/core/FormField.html|API Documentation]]. 
-
 ===== Formatted Input =====
   * [[AjaxUniqueTextField]]: Text field that automatically checks that the value entered is unique for the given set of fields in a given set of tables
   * [[AutocompleteTextField]]
@@ -13,6 +12,9 @@ This is a highlevel overview of available FormFields. An automatically generated
   * [[PasswordField]]
   * [[UniqueRestrictedTextField]]: Text field that automatically checks that the value entered is unique for the given set of fields in a given set of tables
   * [[UniqueTextField]]: Text field that automatically checks that the value entered is unique for the given set of fields in a given set of tables
+  * [[SelectionGroup]]: SelectionGroup represents a number of fields that are selectable by a radio button that appears at the beginning of each item
+  * [[DropDownField]]: This creates a select tag that can be populated with an array or some DataObject.
+
 
 ===== Date/Time =====
   * [[DateField]]: Represents a date in a textfield (New Zealand)

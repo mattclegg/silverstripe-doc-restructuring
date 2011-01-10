@@ -1,5 +1,7 @@
 # Security
 
+## Introduction
+
 This page details notes on how to ensure that we develop secure SilverStripe applications. See [security](/topics/security) for
 the Silverstripe-class as a starting-point for most security-related functionality.
 
@@ -254,7 +256,7 @@ Some rules of thumb:
 *  Use *Controller::join_links()* to concatenate URLs.  It deals with querystrings and other such edge cases.
 
 
-# Cross-Site Request Forgery (CSRF)
+## Cross-Site Request Forgery (CSRF)
 
 SilverStripe has built-in countermeasures against this type of identity theft for all form submissions. A form object
 will automatically contain a *SecurityID* parameter which is generated as a secure hash on the server, connected to the
@@ -272,16 +274,16 @@ See
 
 
 
-### Casting user input
+## Casting user input
 
-When working with ''$_GET'', ''$_POST'' or ''Director::urlParams'' variables, and you know your variable has to be of a
+When working with `$_GET`, `$_POST` or `Director::urlParams` variables, and you know your variable has to be of a
 certain type, like an integer, then it's essential to cast it as one. *Why?* To be sure that any processing of your
 given variable is done safely, with the assumption that it's an integer.
 
-To cast the variable as an integer, place ''(int)'' or ''(integer)'' before the variable.
+To cast the variable as an integer, place `(int)` or `(integer)` before the variable.
 
 For example: a page with the URL paramaters *mysite.com/home/add/1* requires that ''Director::urlParams['ID']'' be an
-integer. We cast it by adding ''(int)'' - ''(int)Director::urlParams['ID']''. If a value other than an integer is
+integer. We cast it by adding `(int)` - ''(int)Director::urlParams['ID']''. If a value other than an integer is
 passed, such as *mysite.com/home/add/dfsdfdsfd*, then it returns 0.
 
 Below is an example with different ways you would use this casting technique:
@@ -306,12 +308,12 @@ Below is an example with different ways you would use this casting technique:
 The same technique can be employed anywhere in your PHP code you know something must be of a certain type. A list of PHP
 cast types can be found here:
 
-*  ''(int)'', ''(integer)'' - cast to integer
-*  ''(bool)'', ''(boolean)'' - cast to boolean
-*  ''(float)'', ''(double)'', ''(real)'' - cast to float
-*  ''(string)'' - cast to string
-*  ''(array)'' - cast to array
-*  ''(object)'' - cast to object
+*  `(int)`, `(integer)` - cast to integer
+*  `(bool)`, `(boolean)` - cast to boolean
+*  `(float)`, `(double)`, `(real)` - cast to float
+*  `(string)` - cast to string
+*  `(array)` - cast to array
+*  `(object)` - cast to object
 
 Note that there is also a 'SilverStripe' way of casting fields on a class, this is a different type of casting to the
 standard PHP way. See [ casting](casting ).

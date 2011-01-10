@@ -1,4 +1,4 @@
-====== Install SilverStripe on Windows Server ======
+====== Install SilverStripe on Windows ======
 
 This guide will step you through installing SilverStripe on Windows using IIS 7.x as the web server and SQL Server 2008 R2 as the database. 
 
@@ -12,9 +12,11 @@ These versions of Windows will **NOT** work with this guide:
   * Windows Server 2003
   * Windows XP
 
+:!: Windows Server 2003 users should follow this guide to installing SilverStripe: http://doc.silverstripe.org/installation-on-windows-server-2003-iis-6
+
 The goal is to get a good working web server platform so that one or more SilverStripe projects can be easily deployed onto the server using SVN.
 
-We'll also install SQL Server 2008 R2, and support for connecting to it in PHP 5.3.
+We'll also install SQL Server 2008 R2, and support for connecting to it in PHP.
 
 ===== Requirements =====
   * Windows Server 2008 or Windows Vista with Service Pack 2 installed
@@ -27,7 +29,8 @@ We'll also install SQL Server 2008 R2, and support for connecting to it in PHP 5
   * SilverStripe 2.4
   * [[http://www.iis.net/download/URLRewrite|Microsoft URL Rewrite Module 2.0]]
   * [[http://www.iis.net/download/AdministrationPack|IIS 7 Administration Pack]] (ONLY required for Windows Vista or Server 2008)
-  * [[http://sqlsrvphp.codeplex.com/|SQL Server Driver for PHP 2.0]]
+  * [[http://www.microsoft.com/downloads/en/details.aspx?FamilyID=80E44913-24B4-4113-8807-CAAE6CF2CA05&displaylang=en|Microsoft Drivers for PHP for SQL Server 2.0]]
+
 ===== Install IIS =====
 
 IIS 7.x comes with Windows. However, it needs to be installed. Follow these steps:
@@ -76,6 +79,7 @@ Ensure these features are installed with your copy of SQL Server.
   * Management Tools
 
 Installing SQL Server should be relatively straightforward. Keep a note of the password you create for the "sa" user. We'll need this for later when we connect to the database server via PHP to test connectivity.
+
 ===== Install PHP =====
 
 From http://windows.php.net/download, pick **VC9 x86 Non Thread Safe** of the latest PHP version and click "Installer" to download the PHP installer.
@@ -106,7 +110,6 @@ You can also do the same via the command line. Run these commands if you prefer 
 C:\windows\system32\inetsrv\appcmd set config /section:system.webServer/fastCGI /+[fullPath='"c:\Program Files (x86)\PHP\php-cgi.exe"']
 C:\windows\system32\inetsrv\appcmd set config /section:system.webServer/handlers /+[name='PHP_via_FastCGI',path='*.php',verb='*',modules='FastCgiModule',scriptProcessor='"c:\Program Files (x86)\PHP\php-cgi.exe"',resourceType='Unspecified']
 </code>
-
 ===== Configure FastCGI in IIS =====
 
 There's some best practice configuration we need to apply to FastCGI so that our websites will run optimally.
@@ -132,11 +135,24 @@ C:\windows\system32\inetsrv\appcmd set config -section:system.webServer/fastCgi 
 
 The [[http://learn.iis.net/page.aspx/771/configure-and-optimize-the-microsoft-web-platform-for-php-applications/|official guide configuring IIS for PHP applications is available]] for reference.
 
+===== Add index.php as default document =====
+
+This is good practise, so if you browse to http://localhost/silverstripe then it will automatically run index.php. IIS needs to be told which default documents should be checked for when accessing a directory in the URL.
+
+To add index.php as a default document:
+
+  * Open Internet Information Services (IIS) Manager
+  * Click your server name on the left when the program opens
+  * Double click the **Default Document** icon
+  * Verify that index.php doesn't already exist in the file list
+  * Click **Add** on the right sidebar to add a new entry
+  * Enter **index.php** when the dialog box pops up and hit **OK**
+
 ===== Install the SQL Server Driver for PHP =====
 
 The following steps will install the SQL Server Driver for PHP from Microsoft:
 
-  * Download [[http://sqlsrvphp.codeplex.com/|SQL Server Driver for PHP 2.0]]
+  * Download [[http://www.microsoft.com/downloads/en/details.aspx?FamilyID=80E44913-24B4-4113-8807-CAAE6CF2CA05&displaylang=en|Microsoft Drivers for PHP for SQL Server (2.0)]]
   * Run the downloaded file, extracting to C:\sqlsrv
   * In Windows Explorer, browse to C:\sqlsrv - you should see a bunch of DLL files
   * Copy **php_sqlsrv_53_nts_vc9.dll** to C:\Program Files (x86)\PHP\ext
@@ -252,11 +268,6 @@ First of all, install a copy of TortoiseSVN and then follow these steps:
   * Click OK
   * Move the newly created mssql directory into the ss24 directory inside **C:\inetpub\wwwroot** (you'll be asked for admin permissions to do this)
 
-===== Configure the mssql module =====
-
-Use an editor such as Notepad++ to edit C:\inetpub\wwwroot\ss24\mysite\_config.php
-
-Fill out $database = "" with a name for the website database. e.g. $database = "ss24" (the database doesn't have to exist).
 
 ===== Start SilverStripe installer =====
 
@@ -298,7 +309,6 @@ To examine how it's being cached, visit http://localhost/wincache.php and enter 
 ===== Configuring PHP and IIS for production environments =====
 
 :!: TODO. Describe turning off PHP errors, and setting up static 404 and 500 error pages instead of giving detailed errors. Finally setting up a specific database user that isn't sa with restricted permissions.
-
 ===== Troubleshooting =====
 
 **Q: How do I debug the IIS 500 Server error "The FastCGI process exited unexpectedly"?**
@@ -310,7 +320,7 @@ Most of the time, it's caused by a loaded PHP extension that is broken.
   * Have you set up the MSSQL database details correctly in _ss_environment.php?
   * Have you made IIS expose errors? (see "How do I make IIS expose errors..." below)
   * Are you running non-standard PHP extensions? If so, try unloading them one by one
-  * Make sure you're using the latest [[http://sqlsrvphp.codeplex.com/|SQL Server Driver for PHP]]
+  * Make sure you're using the latest [[http://www.microsoft.com/downloads/en/details.aspx?FamilyID=80E44913-24B4-4113-8807-CAAE6CF2CA05&displaylang=en/|Microsoft Drivers for PHP for SQL Server]]
 
 **Q: I get the error "HTTP Error 500.0 - Internal Server Error - C:\Program Files (x86)\PHP\php-cgi.exe - The FastCGI process exceeded configured request timeout"**
 
@@ -320,7 +330,7 @@ Most of the time, it's caused by a loaded PHP extension that is broken.
 
 **A:** This is because the firewall settings on the server hosting SQL Server 2008 are too strict - you need to tweak the firewall to accept incoming connections.
 
-Do the following:
+Do the following to open a firewall port:
 
   * In Control Panel, open Windows Firewall
   * Click Allow a program through Windows Firewall
@@ -330,6 +340,13 @@ Do the following:
   * Verify that **TCP** is selected, and then click OK
 
 To open the port to expose the SQL Server Browser service, click Add Port, type SQL Server Browser in the Name text box, type **1434** in the Port Number text box, select **UDP**, and then click OK
+
+And then verify TCP/IP access is enabled:
+
+  * Open SQL Server Configuration Manager
+  * In the node "Protocols for MSSQLSERVER" (or for your instance name) verify TCP/IP is **Enabled**
+  * Restart SQL Server if protocol changes were made
+
 
 **Q: When I try running the unit tests, I get this error: "Uncaught Zend_Cache_Exception: cache_dir is not writable"**
 
@@ -380,13 +397,13 @@ If this still doesn't help, enable Failed Request Tracing in IIS. You could also
 
 **A:** A non-thread safe of PHP is recommended for use with IIS. Thread safety checks are not required, and you'll get a performance boost by not using a thread safe version. If possible, use a version compiled in VC9 instead of VC6. VC9 versions require you to have the [[http://www.microsoft.com/downloads/details.aspx?FamilyID=9B2DA534-3E03-4391-8A4D-074B9F2BC1BF|Microsoft 2008 C++ Runtime (x86)]] or the [[http://www.microsoft.com/downloads/details.aspx?familyid=bd2a6171-e2d6-4230-b809-9a8d7548c1b6&displaylang=en|Microsoft 2008 C++ Runtime (x64)]] installed
 
-You should also ensure you are using the latest version of the [[http://sqlsrvphp.codeplex.com/|SQL Server Driver for PHP]] driver.
+You should also ensure you are using the latest version of the [[http://www.microsoft.com/downloads/en/details.aspx?FamilyID=80E44913-24B4-4113-8807-CAAE6CF2CA05&displaylang=en|Microsoft Drivers for PHP for SQL Server]] driver.
 If possible, you should also use PHP 5.3 which provides performance improvements over 5.2.
 
 Try increasing the IIS **MaxInstances** in IIS Manager > FastCGI from 4 to a higher value. For quad core CPUs, a higher value such as **32** should prove to provide a performance enhancement.
 
 You can also [[http://learn.iis.net/page.aspx/678/use-the-windows-cache-extension-for-php/|install wincache for IIS]], to improve performance on live sites.
 
-You can also try installing and enabling static and dynamic content compression for IIS on live sites. Do this in IIS Manager > Compression.
+You can also try installing and enabling static content compression for IIS on live sites. Do this in IIS Manager > Compression.
 
 Doing all of the above should provide a significant performance boost to your site.

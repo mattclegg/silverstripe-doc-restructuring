@@ -192,11 +192,7 @@ This currently goes against the convention of keeping templates inside ''themes/
 
 <code php>
 // set email template folder to themes/mytemplate/templates/email
-NewsletterAdmin::$template_path = "themes/mytemplate/templates/email";
+NewsletterAdmin::$template_paths = "themes/mytemplate/templates/email";
 </code>
 
 For more information on email templates, and how to send an email, see [[email]].
-
-====== Problems ======
-
-We’ve undergone a usability review of the email section and have decided to make a few changes to make the section more usable and easy to use. Please bear with us through this process. Feedback can be added to our forums, or to support@silverstripe.com

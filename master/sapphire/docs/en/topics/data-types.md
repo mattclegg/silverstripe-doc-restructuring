@@ -10,14 +10,12 @@ for introducing their usage.
 *  `[api:Text]`: A variable-length string of up to 2 megabytes, designed to store raw text
 *  `[api:HTMLVarchar]`: A variable-length string of up to 255 characters, designed to store HTML
 *  `[api:HTMLText]`: A variable-length string of up to 2 megabytes, designed to store HTML
-*  `[api:Enum]`: An enumeration of a set of strings.
-
-*  `[api:Boolean]` field.
+*  `[api:Enum]`: An enumeration of a set of strings
+*  `[api:Boolean]`: A boolean field.
 *  `[api:Int]`: An integer field.
 *  `[api:Decimal]`: A decimal number.
 *  `[api:Currency]`: A number with 2 decimal points of precision, designed to store currency values.
 *  `[api:Percentage]`: A decimal number between 0 and 1 that represents a percentage.
-
 *  `[api:Date]`: A date field
 *  `[api:SS_Datetime]`: A date / time field
 *  `[api:Time]`: A time field

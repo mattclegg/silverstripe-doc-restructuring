@@ -1,5 +1,7 @@
 # Widgets
 
+## Introduction
+
 Widgets are small pieces of functionality such as Showing the latest Comments or Flickr Photos. They normally display on
 the sidebar of your website. To check out a what a Widget can do see the video http://silverstripe.org/widgets and try
 out the demo site http://silverstripe.com/assets/screencasts/SilverStripe-Blog-DragDrop-Widgets.swf
@@ -57,7 +59,7 @@ Eg for blackcandy I put this above the closing `</div>`
 
 ** themes/myThemeName/templates/Includes/Sidebar.ss **
 
-	:::html
+	:::ss
 	$Sidebar
 
 
@@ -173,14 +175,14 @@ This example creates an RSSWidget with the SilverStripe blog feed.
 
 To render the widget, simply include $SilverStripeFeed in your template:
 
-	:::html
+	:::ss
 	  $SilverStripeFeed
 
 
 As directed in the definition of SilverStripeFeed(), the Widget will be rendered through the WidgetHolder template. This
 is pre-defined at /sapphire/templates/WidgetHolder.ss and simply consists of: 
 
-	:::html
+	:::ss
 	<div class="WidgetHolder">
 		<h3>$Title</h3>
 		$Content
@@ -258,7 +260,7 @@ To output this form, modify your widget template.
 
 *mysite/templates/MyWidget.ss*
 
-	:::html
+	:::ss
 	$Content
 	$MyFormName
 

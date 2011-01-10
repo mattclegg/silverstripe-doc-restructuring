@@ -15,13 +15,13 @@ Or if you want to apply the TinyMCE changes over all the text area fields you ca
 public function getCMSFields() {
 		$fields = parent::getCMSFields();
 		
-		HtmlEditorConfig::get('cms')->setOption('verify_html', 'false');
+		HtmlEditorConfig::get('cms')->setOption('verify_html', false);
 
  		return $fields;
 	}
 
 // or in your mysite/_config.php
-HtmlEditorConfig::get('cms')->setOption('verify_html', 'false');
+HtmlEditorConfig::get('cms')->setOption('verify_html', false);
 </code>
 
 
@@ -50,6 +50,8 @@ HtmlEditorConfig::get('cms')->setOptions(array(
 </code>
 
 The [ ] define what attributes you can add to <foo> for example <foo class="baz" title="Bar"> would be represented as foo[class|title]
+
+See http://wiki.moxiecode.com/index.php/TinyMCE:Configuration/valid_elements for more information on how to configure TinyMCE's valid elements.
 
 ==== Allowing javascript in the content editor ====
 

@@ -1,4 +1,4 @@
-# Site Config
+# SiteConfig
 
 ## Introduction
 
@@ -9,7 +9,7 @@ functionality which is used throughout the site. Out of the box it provides 2 fi
 
 You can access SiteConfig options from any SS template by using the function $SiteConfig.FieldName
 
-	:::html
+	:::ss
 	$SiteConfig.Title 
 	$SiteConfig.Tagline
 	

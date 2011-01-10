@@ -1,5 +1,7 @@
 # Developing Themes
 
+## Introduction
+
 [Tutorial 1](tutorial/1-building-a-basic-site#templates) shows you how to create page templates. This guide will help
 you create your own SilverStripe website theme.
 
@@ -54,7 +56,7 @@ our theme in action. The code for mine is below.
 
 ** yourtheme/templates/Page.ss **
 
-	:::html
+	:::ss
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 	<head>
@@ -93,7 +95,7 @@ our theme in action. The code for mine is below.
 
 ** yourtheme/templates/Layout/Page.ss **
 
-	:::html
+	:::ss
 	<h1>$Title</h1>
 	$Content
 	$Form
@@ -131,15 +133,15 @@ these three Requirements::themedCSS lines, and you will be free to add your own 
 Most Web page designers 10 years ago used a table-based layout to achieve a consistent look. Now, (Thankfully) there's a
 different way to achieve the same look.
 
-Using CSS and tags (including ''DIV''s) reduces markup code, speeds up page downloads, separates content from
+Using CSS and tags (including `DIV`s) reduces markup code, speeds up page downloads, separates content from
 it's visual presentation, and brings your code closer to web standards compliance--all while making your website more
 appealing to search engine spiders.
 
-For layout we tend to use ''DIV'' tags as the ''DIV'' tag defines a division/section in a document.
+For layout we tend to use `DIV` tags as the `DIV` tag defines a division/section in a document.
 
 Let's have a look at part of a Page.ss for the main layout elements defining a 2 column layout.
 
-	:::html
+	:::ss
 	<div id="Container">
 	 <div id="Header">
 	   <!-- Header -->
@@ -162,20 +164,20 @@ Let's have a look at part of a Page.ss for the main layout elements defining a 2
 As you can see we normally wrap the site in a container. For this we use the ID 'Container'. Then we divide the main
 template into sections.
 
-	:::html
+	:::ss
 	<div id="Header"><!-- markup goes here --></div>
 
 
 We have the Header section which includes things like any banner images/ mastheads/ logos or any stuff that belongs at
 the top of the page, This might vary on the design of the page
 
-	:::html
+	:::ss
 	<div id="Navigation"><!-- markup goes here --></div>
 
 
 Next is a division for the main navigation. This may contain something like:
 
-	:::html
+	:::ss
 	<div id="Navigation">
 	  <% if Menu(1) %>
 	  <ul>
@@ -192,7 +194,7 @@ This is the standard for creating the main Navigation. As you can see it outputs
 Before stepping into a control (a foreach loop) it's good practise to check if it exists first. This is not only
 important in manipulating SilverStripe templates, but in any programming language!
 
-	:::html
+	:::ss
 	<% if MyFunction %>
 	  <% control MyFunction %>
 	    $Title
@@ -203,7 +205,7 @@ important in manipulating SilverStripe templates, but in any programming languag
 Last and probably least is the Footer division. Here is where you put all the Footer related stuff for your website.
 Maybe even a nice link saying Website Powered by SilverStripe to show your support.
 
-	:::html
+	:::ss
 	<div id="Footer">
 	<!-- markup goes here -->
 	</div>
@@ -234,11 +236,7 @@ So if, for example, you had a typography.css file for a module in the module fol
 directory (eg themes/blackcandy_blog/css/), and in your site folder (eg mysite/css/), the system would use the file
 mysite/css/typography.css
 
-#### What gets overridden?
-
-*  CSS
-*  Templates
-PHP files **do not** get overridden!
+Note: This only applies for CSS and template files. PHP files **do not** get overridden!
 
 ### Requirements
 
@@ -258,13 +256,13 @@ within the forum/ module you would create a themes/yourtheme_forum/ folder.
 
 If you want to refer to an image or other file asset in a .ss template, use $ThemeDir. For example:
 
-	:::html
+	:::ss
 	<img src="$ThemeDir/images/log.gif" />
 
 If your image is in a subtheme, you can refer to that with an argument to ThemeDir. For example, if your image was in
 mytheme_forum, you could use the following code:
 
-	:::html
+	:::ss
 	<img src="$ThemeDir(forum)/images/log.gif" />
 
 ## Conventions, standards and guidelines

@@ -1,4 +1,4 @@
-# Installation on Windows using WAMP (Apache webserver)
+# Windows with WAMPServer
 
 An easy and reliable approach to getting SilverStripe running on Windows is to use Apache, which can be convieniently
 done through [WampServer](http://www.wampserver.com/en/). This can be useful if you are deploying on Linux Apache and

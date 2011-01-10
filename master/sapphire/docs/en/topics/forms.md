@@ -1,5 +1,7 @@
 # Forms
 
+## Introduction
+
 Form is the base class of all forms in a sapphire application. Forms in your application can be created either by
 instantiating the Form class itself, or by subclassing it. 
 
@@ -8,13 +10,13 @@ instantiating the Form class itself, or by subclassing it.
 Creating a form is a matter of defining a method to represent that form.  This method should return a form object.  The
 constructor takes the following arguments:
 
-*  ''$controller'': This must be the controller that contains the form.
-*  ''$name'': This must be the name of the method on that controller that is called to return the form.  The first two
+*  `$controller`: This must be the controller that contains the form.
+*  `$name`: This must be the name of the method on that controller that is called to return the form.  The first two
 fields allow the form object to be re-created after submission.  **It's vital that they are properly set - if you ever
 have problems with form action handler not working, check that these values are correct.*
-*  ''$fields'': A `[api:FieldSet]`s that make up the editable portion of the form.
-*  ''$actions'': A `[api:FieldSet]`s that make up the control portion of the form - the butons at the bottom.
-*  ''$validator'': An optional `[api:Validator]` for more information.
+*  `$fields`: A `[api:FieldSet]`s that make up the editable portion of the form.
+*  `$actions`: A `[api:FieldSet]`s that make up the control portion of the form - the butons at the bottom.
+*  `$validator`: An optional `[api:Validator]` for more information.
 
 Example: 
 
@@ -159,8 +161,7 @@ You can use a custom form template to render with, instead of *Form.ss*
 It's recommended you only do this if you've got a lot of presentation text, graphics that surround the form fields. This
 is better than defining those as *LiteralField* objects, as it doesn't clutter the data layer with presentation junk.
 
-First of all, you need to create your form on it's own class, that way you can define a custom template using a
-''forTemplate()'' method on your Form class.
+First of all, you need to create your form on it's own class, that way you can define a custom template using a `forTemplate()` method on your Form class.
 
 	:::php
 	class MyForm extends Form {
@@ -191,14 +192,13 @@ First of all, you need to create your form on it's own class, that way you can d
 	
 	}
 
-
-''forTemplate()'' tells the Form class to render with a template of return value of ''$this->class'', which in this case
+ `forTemplate()` tells the Form class to render with a template of return value of `$this->class`, which in this case
 is *MyForm*, the name of the class. If the template doesn't exist, then it falls back to using Form.ss
 
 *MyForm.ss* should then be placed into your *templates/Includes* directory for your project. Here is an example of
 basic customisation:
 
-	:::html
+	:::ss
 	<form $FormAttributes>
 	   <% if Message %>
 	      <p id="{$FormName}_error" class="message $MessageType">$Message</p>
@@ -227,9 +227,8 @@ basic customisation:
 	   <% end_if %>
 	</form>
 
-
-''$dataFieldByName(FirstName)'' will return the form control contents of ''Field()'' for the particular field object, in
-this case ''TextField->Field()'' or ''EmailField->Field()'' which returns an `<input>` element with specific markup
+ `$dataFieldByName(FirstName)` will return the form control contents of `Field()` for the particular field object, in
+this case `TextField->Field()` or `EmailField->Field()` which returns an `<input>` element with specific markup
 for the type of field. Pass in the name of the field as the first parameter, as done above, to render it into the
 template.
 

@@ -1,4 +1,6 @@
-# Introduction
+# Common Configuration through _config.php
+
+## Introduction
 
 Silverstripe doesn't have a global configuration-array or an interface with all available configuration-options. As all
 Silverstripe logic is contained in classes, the appropriate place to configure their behaviour is directly in the class

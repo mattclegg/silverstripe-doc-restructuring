@@ -1,4 +1,4 @@
-# Data Model
+# Datamodel
 
 Silverstripe uses an [object-relational model](http://en.wikipedia.org/wiki/Object-relational_model) that assumes the
 following connections:

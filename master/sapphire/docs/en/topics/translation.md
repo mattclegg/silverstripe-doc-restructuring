@@ -1,5 +1,7 @@
 # Translation
 
+## Introduction
+
 This page introduces developers to using the CMS for creating content in multiple languages.
 
 Please see [i18n](/topics/i18n) for a internationalization, globalization and localization support of built-in datatypes as well
@@ -257,15 +259,13 @@ A widget now exists to switch between languages, and is [available
 here](http://www.silverstripe.org/Language-Chooser-Widget/). You can easily make your own switchers with the following
 basic tools. To stay friendly to  caches and search engines, each translation of a page must have a unique URL
 
-#### By URL
+By URL:
 
 	:::php
 	http://<mysite>/mypage/?locale=de_DE
 
 
-#### By User Preference
-
-Place this in your Page_Controller->init() method:
+By user preference (place this in your Page_Controller->init() method):
 
 	:::php
 	$member = Member::currentUser();
@@ -273,9 +273,7 @@ Place this in your Page_Controller->init() method:
 		Translatable::set_reading_locale($member->Locale);
 	}
 
-
-
-#### Templates
+### Templates
 
 As every page has its own unique URL, language selection mostly happens explicitly: A user requests a page, which always
 has only one language. But how does a user coming to your English default language know that there's a Japanese version
@@ -304,7 +302,7 @@ below can be inserted in any of your templates, for example *themes/blackcandy/t
 Keep in mind that this will only show you available translations for the current page. The $Locale.Nice casting will
 just work if your locale value is registered in i18n::get_common_locales().
 
-##### Page-control
+### Page-control
 
 If you want to put static links in your template, which link to a site by their url, normally you can use the <% control
 Page(page-url) %>. For sites which use Translatable, this is not possible for more than one language, because the url's
@@ -338,13 +336,13 @@ Example:
 	<% end_control %>
 
 
-#### Language Chooser Widget
+### Language Chooser Widget
 
 You can use a widget on your website to provide a list of links for switching languages:
 [download](http://silverstripe.org/Language-Chooser-Widget-2/)
 
 
-#### Enabling the _t() function in templates 
+### Enabling the _t() function in templates 
 
 If you're looking to use [the _t() function](http://doc.silverstripe.com/doku.php?id=i18n#the_t_function) in template
 files, you'll need to [set the i18n locale](multilingualcontent#setting_the_i18n_locale) first. 
@@ -388,7 +386,7 @@ same as your current page locale.
 	}
 
 
-### Add new locales
+### Adding a new locale
 
 The i18n logic has lookup tables for common locales in i18n::$common_locales, which is a subset of i18n::$all_locales.
 If your locale is not present here, you can simply add it through mysite/_config.php:
@@ -396,7 +394,7 @@ If your locale is not present here, you can simply add it through mysite/_config
 	:::php
 	i18n::$common_locales['de_AT'] = 'Deutsch (Oestereich)';
 
-This should e.g. enable you to use ''$Locale.Nice'' in template code.
+This should e.g. enable you to use `$Locale.Nice` in template code.
 
 
 ## Related

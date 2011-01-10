@@ -333,7 +333,7 @@ class Page_Controller extends ContentController {
 ===== Add new locales =====
 The i18n logic has lookup tables for common locales in i18n::$common_locales, which is a subset of i18n::$all_locales. If your locale is not present here, you can simply add it through mysite/_config.php:
 <code php>
-i18n::$common_locales['de_AT'] = 'Deutsch (Oestereich)';
+i18n::$common_locales['de_AT'] = array('Deutsch (Oestereich)', 'Deutsch (Oestereich)');
 </code>
 This should e.g. enable you to use ''$Locale.Nice'' in template code.
 

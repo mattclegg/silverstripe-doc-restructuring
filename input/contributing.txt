@@ -28,6 +28,7 @@ The [[contributors|core team]] is responsible for reviewing the patches and deci
   * If your patch is extensive, discuss it first on the [[[[http://www.silverstripe.com/silverstripe-forum/|silverstripe forum]] (optimally before doing any serious coding)
   * Adhere to our [[http://doc.silverstripe.com/doku.php?id=coding-conventions|coding conventions]]
   * Provide complete [[testing-guide|unit test coverage]] - depending on the complexity of your work, this is a required step.
+  * Do not set milestones. If you think your patch should be looked at with priority, mark it as "critical".
   * Describe specifics on how to test the effects of the patch
   * It's better to submit multiple patches with separate bits of functionality than a big patch containing lots of changes
   * If your patch involves new files, create a compressed archive for them (including any required directory-structures)

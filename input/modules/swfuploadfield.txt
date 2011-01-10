@@ -1,3 +1,7 @@
+==== NOTICE: ====
+
+The SWFUpload module has been sunsetted in favor of the [url=http://www.leftandmain.com/silverstripe-modules/2010/08/26/uploadify/]Uploadify[/url] module.
+
 ==== Introduction ====
 
 This plugin will allow the use of a //SWFUploadField// object as a substitute for a [[FileField]] in the CMS or on any custom form on your website. [[http://www.swfupload.org|SWFUpload]] is an open source project that enables the use of Flash-based uploading through Javascript. The use of Flash for uploading brings many rich features to uploading including:

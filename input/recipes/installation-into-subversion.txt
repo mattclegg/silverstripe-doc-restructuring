@@ -6,7 +6,7 @@ Our set-up has a number of characteristics:
 
   * We use [[http://subversion.tigris.org/|subversion]] to manage our project code.
   * We use svn:externals to link SilverStripe core packages and modules to our projects.
-  * We use [[environment-management]] to share one set of database configuration details across all our projects.
+  * We use [[:environment-management]] to share one set of database configuration details across all our projects.
   * Rather than using the installer to 
 
 This has the following advantages:
@@ -21,7 +21,7 @@ Here's how you can set up such a configuration yourself:
 
 === Moving your project into subversion ===
 
-  * Install SilverStripe as described in [[installation]]
+  * Install SilverStripe as described in [[:installation]]
   * Delete the installation files:
     * check-php.php
     * config-form.css
@@ -80,4 +80,4 @@ sapphire/ http://svn.silverstripe.com/open/modules/sapphire/trunk
 
 === Moving your database configuration into an _ss_environment.php file ===
 
-See [[environment-management]].
+See [[:environment-management]].

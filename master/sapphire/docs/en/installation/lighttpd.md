@@ -1,4 +1,4 @@
-# Installing SilverStripe on an existing lighttpd webserver
+# Lightttpd
 
 1. Lighttpd works fine so long as you provide a custom config. Add the following to lighttpd.conf **BEFORE** installing
 Silverstripe. Replace "yoursite.com" and "/home/yoursite/public_html/" below.

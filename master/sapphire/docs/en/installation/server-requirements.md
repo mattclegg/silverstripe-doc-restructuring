@@ -32,7 +32,7 @@ to be compiled into PHP, which may not be the case if you are not using [WAMP](h
     * xml
 *  Set the maximum memory to at least 48 mb.  SilverStripe can be resource hungry for some intensive operations. Note:
 You can sometimes increase the maximum memory by adding a "ini_set("memory_limit","48M");" line to sapphire/main.php
-*  Using a PHP accelerator or opcode cache //(e.g. [xcache](http://trac.lighttpd.net/xcache/))// is **strongly**
+*  Using a PHP accelerator or opcode cache (e.g. [xcache](http://trac.lighttpd.net/xcache/)) is **strongly**
 recommended to for performance reasons - SilverStripe creates large cache files as PHP code that are quite slow to open
 without an opcode cache.
 *  Gentoo Linux distribution USE-Flags ([related forum

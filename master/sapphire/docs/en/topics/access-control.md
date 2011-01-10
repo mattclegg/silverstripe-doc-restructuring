@@ -1,4 +1,4 @@
-# How page security works in Silverstripe
+# Access Control and Page Security
 
 There is a fairly comprehensive security mechanism in place for Silverstripe. If you want to add premium content to your
 site you have to figure this stuff out, and it's not entirely obvious. 
@@ -52,7 +52,7 @@ If you go to [your site]/admin -- how does that work?
 *CMSMain.init()* calls its parent which, of all things is called *LeftAndMain*. It's in *LeftAndMain* that the
 important security checks are made by calling *Permission::check*. 
 
-//Security::`[api:permissionFailure]`// is the next utility function you can use to redirect to the login form. 
+`[api:Security::permissionFailure]` is the next utility function you can use to redirect to the login form. 
 
 ### Customizing Access Checks in CMS Classes
 

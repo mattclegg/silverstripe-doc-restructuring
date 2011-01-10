@@ -1,4 +1,6 @@
-# Creating modules
+# Module Development
+
+## Introduction
 
 Creating a module is a good way to re-use abstract code and templates across multiple projects. SilverStripe already has
 certain modules included, for example "sapphire" and "cms". These three modules are the core functionality and
@@ -36,7 +38,7 @@ init() function on your module controller classes:
 
 This will use your_project/css/forum.css if it exists, otherwise it falls back to using forum/css/forum.css.
 
-## Submitting your module to silverstripe.org/modules
+## Publication
 
 If you wish to submit your module to our public directory, you take responsibility for a certain level of code quality,
 adherence to conventions, writing documentation, and releasing updates. See [contributing](/misc/contributing).

@@ -1,4 +1,4 @@
-# How to configure PHPUnit for your project
+# Configure PHPUnit for your project
 
 This guide helps you to run [PHPUnit](http://phpunit.de) tests in your SilverStripe project.
 See "[Testing](/topics/testing)" for an overview on how to create unit tests.

@@ -1,4 +1,5 @@
 # Static Publisher
+
 ## Introduction
 
 Many sites get too much traffic to justify dynamically sending every request.  Caching is needed.  The static
@@ -190,18 +191,18 @@ content in a "cache/" subdirectory, with an HTML suffix.
 	));
 
 
-Where `<rsyncuser>` is a unix account with write permissions to `<webroot>` (e.g. ''/var/www''), and
+Where `<rsyncuser>` is a unix account with write permissions to `<webroot>` (e.g. `/var/www`), and
 `<static-server1>` and `<static-server2>` are the names of your static content servers.  The number of servers is
 flexible and depends on your infrastructure and scalability needs.
 
-*  Ensure that the ''rsync'' unix tool is installed on the CMS server, and ssh access is enabled on the static content
+*  Ensure that the `rsync` unix tool is installed on the CMS server, and ssh access is enabled on the static content
 servers.
 
 *  No password can be specified for the SSH connection . The class assumes a key-based authentication without requiring
 a password for the username specified in `<rsyncuser>` (see [http://www.csua.berkeley.edu/~ranga/notes/ssh_nopass.html
 tutorial](http://www.csua.berkeley.edu/~ranga/notes/ssh_nopass.html tutorial)).
 
-*  Put the .htaccess file linked below into the webroot of each static content server (and rename it to ''.htaccess''). 
+*  Put the .htaccess file linked below into the webroot of each static content server (and rename it to `.htaccess`). 
 It will serve requests from the cache, statically, if the cache file exists.  Replace **sitedir** with the a
 subdirectory that you would like to serve the site from (for example, in your dev environment).
 
@@ -212,7 +213,7 @@ example](http://open.silverstripe.com/browser/modules/cms/trunk/code/staticpubli
 
 There is also the option to wrap some PHP logic around the static HTML content served by the content servers, which can
 greatly reduce the bandwidth required on your content servers. This code takes care of cache control through HTTP
-headers (''Cache-control'', ''If-modified-since''), meaning the files will only be delivered if they changed since the
+headers (''Cache-control'', `If-modified-since`), meaning the files will only be delivered if they changed since the
 browser client last requested them. The last modification date for each static file is controlled by the publication
 script, meaning the cache gets invalidated on each publication.
 

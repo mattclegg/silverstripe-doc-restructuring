@@ -1,4 +1,5 @@
 # Tutorial 5 - Dataobject Relationship Management
+
 ## Overview
 
 In the [second tutorial](2-extending-a-basic-site) we have learned how to add extrafields to a page type thanks
@@ -34,7 +35,7 @@ This is a table which sums up the relations between them :
  | Safari 3 Support    | Meg Risen           | Sean Harvey   | Cms, Sapphire, UsabilityMeg                   | 
 
 You can also play with the table display on the
-//[demo](http://demo.silverstripe.com/gsoc-projects)// website of Silverstripe.
+[demo](http://demo.silverstripe.com/gsoc-projects) website of Silverstripe.
 
 ## GSOC Projects
 
@@ -458,7 +459,7 @@ Let's start with the *ProjectsHolder* page created before. For this template, we
 
 ** tutorial/templates/Layout/ProjectsHolder.ss **
 
-	:::html
+	:::ss
 	<div class="typography">
 	    <% if Menu(2) %>
 	        <% include SideBar %>
@@ -536,7 +537,7 @@ Let's start with the *ProjectsHolder* page created before. For this template, we
 ** tutorial/templates/Includes/SideBar.ss **
  You might want to move the include above the typography div in your layouts to get rid of the bullets.
 
-	:::html
+	:::ss
 	<% if Menu(2) %>
 	  <ul id="Menu2">
 		<% control Menu(2) %>
@@ -556,7 +557,7 @@ We can now do the same for every *Project* page by creating its own template.
 
 ** tutorial/templates/Layout/Project.ss **
 
-	:::html
+	:::ss
 	<div class="typography">
 	    <% if Menu(2) %>
 	        <% include SideBar %>
@@ -622,7 +623,7 @@ because these two classes have the same fields ( FirstName, Surname and National
 
 ** tutorial/templates/Includes/GSOCPerson.ss **
 
-	:::html
+	:::ss
 	<p>First Name: <strong>$FirstName</strong></p>
 	<p>Lastname: <strong>$Lastname</strong></p>
 	<p>Nationality: <strong>$Nationality</strong></p>
@@ -644,7 +645,7 @@ To do so, add this code in the two classes.
 
 We can now modify the *Project* template.
 
-	:::html
+	:::ss
 	
 	    ...
 	
@@ -710,7 +711,7 @@ That's how we can use this function in the *Mentor* template.
 
 ** tutorial/templates/Layout/Mentor.ss **
 
-	:::html
+	:::ss
 	<div class="typography">
 	    <% if Menu(2) %>
 	        <% include SideBar %>

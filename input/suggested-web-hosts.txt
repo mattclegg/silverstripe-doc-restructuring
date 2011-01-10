@@ -14,9 +14,6 @@ These webhosts all run PHP5 and have had various levels of confirmation that Sil
    * Comment by <author name>: <comment>
 </code>
 
-====== SilverStripe Hosting Partners ======
-[[http://rimuhosting.com/ | Rimu Hosting]] offers VPS, and dedicated servers in Auckland, Sydney, Texas, and London. When signing up, let them know you'll be using the SilverStripe CMS, and they will install it for you.
-
 
 ====== Working webhosts ======
 **The views expressed here do not reflect the views of Silverstripe Ltd.. We do not guarantee the accuracy of information on pricing or service conditions. Any statements on functionality and availability of services are individual experiences - if you want to be sure about a host, please test yourself!**
@@ -56,6 +53,8 @@ These webhosts all run PHP5 and have had various levels of confirmation that Sil
   * [[http://www.siteground.com/silverstripe-hosting.htm|SiteGround.com: SilverStripe Hosting]] Unlimited space and traffic, Free domain name, Professional SilverStripe installation, 7 different PHP versions, MySQL, FTP, SSL, 24/7 Expert Support, for $3.95/mo
 
 == Australia ==
+  * [[http://aitsys.com.au/online/hosting/|activIT Systems]], Perth-based IT company with very flexible and reasonably priced plans. Shell access, PHP 5.2.9, MySQL 5.0.67. Full details of the server hardware and prices by following the link. Excellent customer service. //(Confirmed SS 2.1-2.4 working - DesignCity)//
+
   * [[http://www.quadrahosting.com.au/hosting/unix.html|Quadra Hosting]], Gold Coast based organisation that manages FreeBSD based servers in Sydney and the United States. Quadra will provide shell access on request. Support for PHP5 5.2.4 and MySQL5 on all new accounts. All php.ini variables can be overwritten with .htaccess. You'll need to [[https://support.quadrahosting.com/index.php?_m=knowledgebase&_a=viewarticle&kbarticleid=125|disable mod_security]] for SilverStripe function correctly. //(Confirmed compatibility with SS 2.2.1 by Tatey)//
 
 Paste the following in to your .htaccess file
@@ -74,8 +73,6 @@ php_value memory_limit 64M
 
 #### END Override
 </code>
-
-  * [[http://www.higherorbit.com.au/Services/Web/Hosting/|Higher Orbit]], Perth based IT company with very flexible and reasonably priced plans. Shell access, PHP 5.2.4, MySQL 5.0.45. Full details of the server hardware and prices by following the link. Good customer service. //(Confirmed SS 2.1 working - DesignCity)//
 
   * [[http://www.adam.com.au/product_work_hosting_gen_host.php|Adam Internet]], Adelaide based ISP, Good Support. .//(webhost-18.adam.com.au, webhost-19.adam.com.au - comfirmed SS 2.2.2 working - CodeGuerrilla)//
 
@@ -144,12 +141,12 @@ Besides, everything works great.
 
   * [[http://www.webfusion.co.uk/]] Fusion Professional Linux - Installed fine, but 32MB php limit. Very slow response times with frequent script time-outs. I found it unusable, especially when uploading and embedding images. I also found their support extremely unhelpful for basic questions. (kinkykoder)
 
-
 ====== Problematic Webhosts ======
+
 This is a list of web hosts known **not to work with SilverStripe**
   * //http://www.silverstripe.com/general-discussion/flat/1924?showPost=2056 (not sure which host...)//
   * //http://www.powweb.com/ ("Security Problems") (http://www.silverstripe.com/general-discussion/flat/1924?showPost=2165)//
-  * //http://www.omnis.com/ Omnis// - have 'onPHP' enabled which conflicts with abstract class "Query". You'll need to rename two files first (see //http://silverstripe.com/site-builders-forum/flat/169752 this forum thread). Max 2 minutes work!
+  * //http://www.omnis.com/ Omnis// - have 'onPHP' enabled which conflicts with abstract class "Query". You'll need to rename two files first (see //http://silverstripe.com/site-builders-forum/flat/169752 this forum thread). Max 2 minutes work!//
 
 == Australia ==
   * [[http://www.internode.on.net|Internode]] - Silverstripe does not work on Internode at all as they have disabled fopen due to 'security holes'. //(Confirmed after painful troubleshooting - DesignCity)//

@@ -84,10 +84,9 @@ The following scripts should no longer be used, as they were designed for an ear
 
 Note: This is only possible by SilverStripe staff.
 
-	scp -P 2222 -R <username>@doc.silverstripe.org:/sites/ss2doc/www/assets/data/pages/ input/
+	scp -P 2222 -r <username>@doc.silverstripe.org:/sites/ss2doc/www/assets/data/pages/* input/
 
 ### Convert to Markdown files
 
 	cd scripts
-	php TranslateSSDocs.php
-	
+	php TranslateSSDocs.php ../input ../output

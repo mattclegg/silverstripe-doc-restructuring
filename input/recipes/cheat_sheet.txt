@@ -26,6 +26,15 @@ class ClassA extends DataObject {
 	function getMyClassBs() {
  		return $this->getManyManyComponents('ClassBs');
 	}
+	function ManyIDs
+		$components = $this->owner->getManyManyComponents('ClassBs');
+		if($components && $components->count()) {
+			return $components->column("ID");
+		}
+		else {
+			return array();
+		}
+	}
 }
 class ClassB extends DataObject {
 	static $belongs_many= array('ClassAs' => 'ClassA');
@@ -89,12 +98,26 @@ $formattedField = $myUsefullField->Nice();
 
 
 ======saving DataObjects ======
+The following functions can be added to a DataObject:
+  * ''function validate:''  
+<code php>
+	function validate() {
+		return new ValidationResult(false, "Dont you dare to change my dataObject");
+	}
+</code>
   * ''function onBeforeWrite:'' dont forget to run parent onBeforeWrite(), if this function returns true, it does not save the dataobject [to do CHECK THIS]
   * ''function onAfterWrite''  
+<code php>
+function onAfterWrite() {
+ parent::onAfterWrite();
+ $fields = $this->getChangedFields();
+ if (isset ($fields['MyField']['before'])) {
+  die("My field used to be: ".$fields['MyField']['before']);
+ }
+}
+</code>
   * ''function requireDefaultRecords:'': do not forget to call parent::requireDefaultRecords()
   * ''function populateDefaults:'': do not forget to call parent::populateDefaults()
-
-
 
 ======adding relations ======
 <code php>
@@ -133,6 +156,22 @@ if ($liveRecord) $liveRecord->delete();
 $page->flushCache();
 </code>
 
+
+change classname:
+<code php>
+$dos = DataObject::get("OldClassName");
+if($dos) {
+	foreach($dos as $page) {
+		$page->setClassName("OldClassName"); //not sure if we need this...
+		$page = $page->newClassInstance("NewClassName");
+		$page->writeToStage("Stage");
+		$page->publish("Stage", "Live");
+		DB::alteration_message("Moving: ".$page->Title, "created");
+	}
+}
+
+</code>
+
 ======ModelAdmin======
 ===the DataObject===
 <code php>
@@ -160,10 +199,10 @@ class Carrot extends DataObject {
 	public static $plural_name = "Carrots";
 	//CRUD settings
 	static $can_create = Boolean;
-	public function canCreate() {return false;}
-	public function canView() {return false;}
-	public function canEdit() {return false;}
-	public function canDelete() {return false;}
+	public function canCreate($member = null) {return false;}
+	public function canView($member = null) {return false;}
+	public function canEdit($member = null) {return false;}
+	public function canDelete($member = null) {return false;}
 	//defaults
 	public static $default_sort = "Sort ASC, Name ASC";
 	public static $defaults = array();//use fieldName => Default Value
@@ -187,6 +226,7 @@ class MyModelAdmin extends ModelAdmin {
 	public static $menu_title = 'Your Carrots';	
 	public static $collection_controller_class = 'MyModelAdmin_CollectionController';
 	public static $record_controller_class = 'MyModelAdmin_RecordController';
+	public $showImportForm = false;
 }
 class MyModelAdmin_CollectionController extends ModelAdmin_CollectionController{
 	//manages everything to do with overall control (e.g. search form, import, etc...)
@@ -207,44 +247,66 @@ class MyModelAdmin_RecordController extends ModelAdmin_RecordController {
 </code>
 
 
+class MyPage extends Page {
+
 ======DataObject / SiteTree settings======
 <code php>
-//appearance
-static $icon = "mymodule/images/treeicons/ClassName-file.gif";
-static $breadcrumbs_delimiter = "&raquo;";
-//parents and children in sitetree
-static $allowed_children = array("Blog"); //can also be "none"; 
-static $default_child = "Blog"; 
-static $default_parent = "blogs-and-more"; // *URLSegment* of default parent node.
-static $can_be_root = false; //default is true 
-//parents and children in classes
-static $hide_ancestor = "MyUselessPage"; // 
-//CRUD settings
-static $can_create = Boolean;
-public function canCreate() {return false;}
-public function canView() {return false;}
-public function canEdit() {return false;}
-public function canDelete() {return false;}
-//database - use "fieldName" => "FieldClass"
-static $db = array();
-static $has_one = array();
-static $has_many = array();
-static $many_many = array(); 
-static $belongs_many_many = array(); 
-static $many_many_extraFields = array();
-//database related settings
-static $indexes = array(
-	"SearchFields" => "fulltext (Title, MenuTitle, Content, MetaTitle, MetaDescription, MetaKeywords)",
-	"TitleSearchFields" => "fulltext (Title)",
-	"Sort" => true,
-	"Uniques" => "Unique('URLSegment')",
-);
-static $default_sort = "Sort ASC, Name ASC";
-static $casting = array(); //adds computed fields that can also have a type (e.g. Currency)
-static $defaults = array();//use fieldName => Default Value
-function getCMSFields() {
-	$fields = parent::getCMSFields();
-	return $fields;
+class MyPage extends Page {
+	
+	//appearance
+	static $icon = "mymodule/images/treeicons/MyPage";
+	static $breadcrumbs_delimiter = "&raquo;";
+	
+	//parents and children in sitetree
+	static $allowed_children = array("Blog"); //can also be "none"; 
+	static $default_child = "Blog"; 
+	static $default_parent = "blogs-and-more"; // *URLSegment* of default parent node.
+	static $can_be_root = false; //default is true 
+	//parents and children in classes
+	static $hide_ancestor = "MyUselessPage"; // 
+	
+	//CRUD settings
+	static $can_create = Boolean;
+	public function canCreate() {return false;}
+	public function canView() {return false;}
+	public function canEdit() {return false;}
+	public function canDelete() {return false;}
+	
+	//database - use "fieldName" => "FieldClass"
+	static $db = array();
+	static $has_one = array();
+	static $has_many = array();
+	static $many_many = array(); 
+	static $belongs_many_many = array(); 
+	static $many_many_extraFields = array();
+	static $casting = array(); //adds computed fields that can also have a type (e.g. Currency)
+	
+	//database related settings
+	static $indexes = array(
+		"SearchFields" => "fulltext (Title, MenuTitle, Content, MetaTitle, MetaDescription, MetaKeywords)",
+		"TitleSearchFields" => "fulltext (Title)",
+		"Sort" => true,
+		"Uniques" => "Unique('URLSegment')",
+	);
+	
+	//defaults 
+	static $default_sort = "Sort ASC, Name ASC";
+	static $defaults = array();//use fieldName => Default Value
+	
+	//fields
+	function getCMSFields() {
+		$fields = parent::getCMSFields();
+		return $fields;
+	}
+	
+}
+
+class MyPage extends Page_Controller{
+	
+	function init() {
+		parent::init();
+	}
+
 }
 </code>
 
@@ -381,7 +443,6 @@ Here are some examples
 		$var = $request->getVars();
 		$var = $request->postVars();
 		$var = $request->requestVars();
-		$var = $request->getVar($name = "ID");
 		$var = $request->requestVar($name = "Inputter");
 		$var = $request->getURL();
 		$var = $request->allParams();
@@ -650,15 +711,68 @@ function MyCustomForm() {
 </code>
   * data Object to dropdown: 
 <code php>new DropdownField(
- 'DataObjectID',
- '-- select --',
- Dataobject::get("DataObject")->toDropdownMap("ID", "Title")
+    $name = 'DataObjectID',
+    $title = 'do the dropdown',
+    $source = Dataobject::get("DataObject")->toDropdownMap("ID", "Title",$emptyString = "--select--", $sortByTitle = true),
+    $value = 1,
 ); </code>
 
-
-=== ComplexTableField Example ===
+  * filtered multi select tree dropdown 
 <code php>
+$treeField = new TreeMultiselectField("Parent", "Shown on the following pages", "SiteTree");
+$callback = create_function('$obj', 'return $obj->class == "HomePage";');
+$treeField->setFilterFunction ( $callback );
+$fields->addFieldToTab("Root.Main",$treeField);
+ </code>
 
+  * enum to dropdown: 
+<code php>new DropdownField('Method','Payment Method',singleton($this->ClassName)->dbObject('MyEnumField')->enumValues());
+</code>
+
+
+  * make readonly: 
+<code php>
+$fields->replaceField("EmailSent", $fields->dataFieldByName("EmailSent")->performReadonlyTransformation());
+</code>
+
+  * html editor field simplifications - add to _config.php
+<code php>
+HtmlEditorConfig::get('cms')->setOption('theme_advanced_blockformats','p,h1');
+HtmlEditorConfig::get('cms')->setButtonsForLine(1,'undo, redo, separator, cut, copy, pastetext, separator, ssimage, sslink, unlink, separator, fullscreen, advcode, formatselect');
+HtmlEditorConfig::get('cms')->setButtonsForLine(2);
+HtmlEditorConfig::get('cms')->setButtonsForLine(3);
+</code>
+
+  * one folder image field
+<code php>
+class OneFolderImageField extends ImageField {
+
+	function __construct($name, $title, $value = null, $form = null, $rightTitle = null, $folderName = null) {
+		$folder = Folder::findOrMake($folderName);
+		$this->folderName = $folderName;
+		parent::__construct($name, $title, $value = null, $form = null, $rightTitle = null, $folder->Name);
+	}
+
+	public function EditFileForm() {
+		$filter = create_function(
+			'$item', '
+			$folder = Folder::findOrMake(\''.$this->folderName.'\');
+				return
+					(in_array("Image", ClassInfo::ancestry($item->ClassName)) && $item->ParentID == $folder->ID)
+					||
+					(in_array("Folder", ClassInfo::ancestry($item->ClassName)) && $item->ID == $folder->ID)
+		;');
+		$form = parent::EditFileForm();
+		$form->dataFieldByName('ExistingFile')->setFilterFunction($filter);
+		return $form;
+	}
+
+}
+</code>
+
+
+  * ComplexTableField Example
+<code php>
 $orders = DataObject::get('Order');
 		$table = new ComplexTableField(
 			$controller = $this,
@@ -685,7 +799,12 @@ $orders = DataObject::get('Order');
 		$table->setAddTitle('Example Table');
 		$table->setPermissions(array("export"));
 		return $table;
-
+</code>
+add thumbnail to DataObject:
+<code php>
+public function Thumbnail() {
+ if($this->ImageID) return $this->Image()->CMSThumbnail();
+}
 </code>
 
 
@@ -700,13 +819,6 @@ $orders = DataObject::get('Order');
   * **removing an action**, name should be action_originalName, which can be very confusing! <code php>$form->unsetActionByName($name); </code>
 
 
-===Complex Table Fields ===
-add thumbnail to DataObject:
-<code php>
-public function Thumbnail() {
- if($this->ImageID) return $this->Image()->CMSThumbnail();
-}
-</code>
 
 
 
@@ -774,6 +886,12 @@ adding widgets to non-blog pages:
   * Debug::backtrace(): prints a calls-stack
   * Debug::sendLiveErrorsTo("whynot@silverstripe.com"): On the live site, all errors will get sent to this address.
   * Email::send_all_emails_to("developer@silverstripbuilders.org");
+==useful get variables==
+  * debug_profile
+  * ajax
+  * showqueries 
+  * showtemplate
+  * flush=1 / flush=all
 
 ====== !@#$%^&*( weird errors ======
   * IF insert SQL statement for $dataobject->write() contains `0` = '0' THEN this could be due to that static $defaults declaration is like this: static $db = array("myfield"); i.e. a value only and not value/key pair.

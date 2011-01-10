@@ -1,5 +1,8 @@
 === Installing SilverStripe on an existing Nginx server ===
 
+**These instructions are also covered on the [[http://wiki.nginx.org/SilverStripe|Nginx Wiki]]**
+
+
 The prerequisite is that you have already installed Nginx and you are able to run PHP files via the FastCGI-wrapper from Nginx.
 
 Now you need to setup a virtual host in Nginx with the following configuration settings:

@@ -71,4 +71,4 @@ RSSFeed only creates feeds from your own data. We've included the [[http://simpl
   * [[modules:blog|modules:blog]]
 
 ====== API Documentation ======
-[[http://api.silverstripe.org/trunk/sapphire/RSSFeed.html|Click here for the API documentation]].
+[[http://api.silverstripe.org/2.4/sapphire/integration/RSSFeed.html|Click here for the API documentation]].

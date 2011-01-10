@@ -310,12 +310,17 @@ class DocuwikiToMarkdownExtra {
 	// Convert a docuwiki file in the input directory and called
 	// $filename, and re-created it in the output directory, translated
 	// to markdown extra.
-	function convertFile($inputFile, $outputFile) {
+	function convertFile($inputFile, $outputFile = null) {
 		$this->fileName = $inputFile;
 		$s = file_get_contents($inputFile);
 		$s = $this->convert($s);
-		if (file_put_contents($outputFile, $s) === FALSE)
-			echo "Could not write file {$outputFile}\n";
+
+		if($outputFile) {
+			if (file_put_contents($outputFile, $s) === FALSE)
+				echo "Could not write file {$outputFile}\n";
+		} 
+		
+		return $s;
 	}
 }
 

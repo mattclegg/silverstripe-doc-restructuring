@@ -29,7 +29,7 @@ mysite/_config.php
 Request for '/fastfood/order/24/cheesefries' would result in the following to the $arguments above. If needed, use
 "?flush=1" on the end of request after making any code changes to your controller.
 
-	:::html
+	:::ss
 	Array
 	(
 	    [Action] => order
@@ -69,7 +69,7 @@ The RequestHandler class will parse all rules you specify against the following 
  | **!**       | 						| **Require Variable** - Placing this after a parameter variable requires data to be present for the rule to match | 
  | **%%//%%**  | 						| **Shift Point** - Declares that only variables denoted with a $ are parsed into the $params AFTER this point in the regex | 
 
-# Examples
+## Examples
 
 See maetl's article in the Links below of a detailed explanation. 
 
