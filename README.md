@@ -89,5 +89,4 @@ Note: This is only possible by SilverStripe staff.
 ### Convert to Markdown files
 
 	cd scripts
-	php TranslateSSDocs.php
-	
+	php TranslateSSDocs.php ../input ../output
