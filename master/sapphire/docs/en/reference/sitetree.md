@@ -171,13 +171,13 @@ node appears in the tree more than once, it will be represented differently.
 
 ###  Custom Children Getters
 
-Returning custom children for a specific ''SiteTree'' subclass can be handy to influence the tree display within the
+Returning custom children for a specific `SiteTree` subclass can be handy to influence the tree display within the
 CMS. An example of custom children might be products which belong to multiple categories. One category would get its
-products from a ''$many_many'' join rather than the default relations.
+products from a `$many_many` join rather than the default relations.
 
-Children objects are generated from two functions ''stageChildren()'' and ''liveChildren()'' and the tree generation in
-the CMS is calculated from ''numChildren()''. Please keep in mind that the returned children should still be instances
-of ''SiteTree''.
+Children objects are generated from two functions `stageChildren()` and `liveChildren()` and the tree generation in
+the CMS is calculated from `numChildren()`. Please keep in mind that the returned children should still be instances
+of `SiteTree`.
 
 Example:
 

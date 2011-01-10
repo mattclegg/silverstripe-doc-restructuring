@@ -45,9 +45,9 @@ StaffPage_Image class will go into StaffPage.php.
 
 ## Adding database-fields
 
-Adding database fields is a simple process. You define them in an array of the static variable ''$db'', this array is
+Adding database fields is a simple process. You define them in an array of the static variable `$db`, this array is
 added on the object class. For example, Page or StaffPage. Every time you run db/build to recompile the manifest, it
-checks if any new entries are added to the ''$db'' array and adds any fields to the database that are missing.
+checks if any new entries are added to the `$db` array and adds any fields to the database that are missing.
 
 For example, you may want an additional field on a StaffPage class which extends Page, called Author. Author is a
 standard text field, and can be [casted](objectmodel) as a variable character object in php (VARCHAR in SQL). In the
@@ -78,7 +78,7 @@ See [form](/topics/forms) and [tutorial:2-extending-a-basic-site](tutorial/2-ext
 
 ### removeFieldFromTab()
 
-Overloading ''getCMSFields()'' you can call ''removeFieldFromTab()'' on a ''FieldSet'' object. For example, if you don't
+Overloading `getCMSFields()` you can call `removeFieldFromTab()` on a `FieldSet` object. For example, if you don't
 want the MenuTitle field to show on your page, which is inherited from SiteTree.
 
 	:::php
@@ -98,8 +98,7 @@ want the MenuTitle field to show on your page, which is inherited from SiteTree.
 
 
 ### removeByName()
-
-''removeByName()'' for normal form fields is useful for breaking inheritance where you know a field in your form isn't
+ `removeByName()` for normal form fields is useful for breaking inheritance where you know a field in your form isn't
 required on a certain page-type.
 
 	:::php

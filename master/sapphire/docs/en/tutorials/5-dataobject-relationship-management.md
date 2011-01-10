@@ -35,7 +35,7 @@ This is a table which sums up the relations between them :
  | Safari 3 Support    | Meg Risen           | Sean Harvey   | Cms, Sapphire, UsabilityMeg                   | 
 
 You can also play with the table display on the
-//[demo](http://demo.silverstripe.com/gsoc-projects)// website of Silverstripe.
+[demo](http://demo.silverstripe.com/gsoc-projects) website of Silverstripe.
 
 ## GSOC Projects
 

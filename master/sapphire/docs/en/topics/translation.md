@@ -394,7 +394,7 @@ If your locale is not present here, you can simply add it through mysite/_config
 	:::php
 	i18n::$common_locales['de_AT'] = 'Deutsch (Oestereich)';
 
-This should e.g. enable you to use ''$Locale.Nice'' in template code.
+This should e.g. enable you to use `$Locale.Nice` in template code.
 
 
 ## Related

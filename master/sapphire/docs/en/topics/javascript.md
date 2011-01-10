@@ -9,9 +9,9 @@ practices can be applied to other libraries as well.
 
 ## File Inclusion
 
-SilverStripe-driven code should use the ''Requirements'' class to manage clientside dependencies like CSS and JavaScript
+SilverStripe-driven code should use the `Requirements` class to manage clientside dependencies like CSS and JavaScript
 files, rather than including `<script>` and `<link>` tags in your templates. This has the advantage that a registry
-of requirements can be built up from different places outside of the main controller, for example included ''FormField''
+of requirements can be built up from different places outside of the main controller, for example included `FormField`
 instances.
 
 See [:Requirements](/Requirements) documentation.
@@ -25,7 +25,7 @@ For richer interactions such as drag'n'drop, and more complicated interface elem
 SilverStripe CMS uses [jQuery UI](http://ui.jquery.com) on top of jQuery.
 
 For any custom code developed with jQuery, you have four choices to structure it: Custom jQuery Code, a jQuery Plugin, a
-jQuery UI Widget, or a ''jQuery.entwine'' behaviour. We'll detail below where each solution is appropriate.
+jQuery UI Widget, or a `jQuery.entwine` behaviour. We'll detail below where each solution is appropriate.
 
 **Important**: Historically we have been using [PrototypeJS](http://prototypejs.com), which is now discouraged (see
 [legacy documentation](/javascript/prototypejs)). SilverStripe as a framework doesn't impose a choice of library. It
@@ -41,8 +41,7 @@ plugin. See "[How jQuery Works](http://docs.jquery.com/How_jQuery_Works)" for a 
 
 ### jQuery Plugins
 
-A jQuery Plugin is essentially a method call which can act on a collection of DOM elements. It is contained within the
-''jQuery.fn'' namespace, and attaches itself automatically to all jQuery collections. The basics for are outlined in the
+A jQuery Plugin is essentially a method call which can act on a collection of DOM elements. It is contained within the `jQuery.fn` namespace, and attaches itself automatically to all jQuery collections. The basics for are outlined in the
 official [jQuery Plugin Authoring](http://docs.jquery.com/Plugins/Authoring) documentation.
 
 There a certain [documented patterns](http://www.learningjquery.com/2007/10/a-plugin-development-pattern) for plugin
@@ -217,14 +216,11 @@ documentation](http://github.com/hafriedlander/jquery.entwine/tree/master) for m
 ### Keep things simple
 
 Resist the temptation to build "cathedrals" of complex interrelated components.  In general, you can get a lot done in
-jQuery with a few lines of code.  Your jQuery code will normally end up as a series of event handlers applied with
-''jQuery.live()'' or jQuery.entwine, rather than a complex object graph.
+jQuery with a few lines of code.  Your jQuery code will normally end up as a series of event handlers applied with `jQuery.live()` or jQuery.entwine, rather than a complex object graph.
 
 ### Don't claim global properties
 
-Global properties are evil. They are accesible by other scripts, might be overwritten or mis-used. A popular case is the
-''$'' shortcut in different libraries: in PrototypeJS it stands for ''document.getElementByID()'', in jQuery for
-''jQuery()''. 
+Global properties are evil. They are accesible by other scripts, might be overwritten or mis-used. A popular case is the `$` shortcut in different libraries: in PrototypeJS it stands for `document.getElementByID()`, in jQuery for `jQuery()`. 
 
 	:::javascript
 	// you can't rely on '$' being defined outside of the closure
@@ -234,13 +230,13 @@ Global properties are evil. They are accesible by other scripts, might be overwr
 	})(jQuery);
 
 
-You can run ''[jQuery.noConflict()](http://docs.jquery.com/Core/jQuery.noConflict)'' to avoid namespace clashes.
+You can run `[jQuery.noConflict()](http://docs.jquery.com/Core/jQuery.noConflict)` to avoid namespace clashes.
 NoConflict mode is enabled by default in the SilverStripe CMS javascript.
 
 ### Initialize at document.ready
 
 You have to ensure that DOM elements you want to act on are loaded before using them. jQuery provides a wrapper around
-the ''window.onload'' and ''document.ready'' events.
+the `window.onload` and `document.ready` events.
 
 	:::javascript
 	// DOM elements might not be available here
@@ -279,7 +275,7 @@ request](http://docs.jquery.com/Frequently_Asked_Questions#Why_do_my_events_stop
 ### Assume Element Collections
 
 jQuery is based around collections of DOM elements, the library functions typically handle multiple elements (where it
-makes sense). Encapsulate your code by nesting your jQuery commands inside a ''jQuery().each()'' call.
+makes sense). Encapsulate your code by nesting your jQuery commands inside a `jQuery().each()` call.
 
 Example: ComplexTableField implements a paginated table with a pop-up for displaying 
 
@@ -499,8 +495,8 @@ of closure constructs in jQuery and jQuery.entwine.
 
 To generate documentation for SilverStripe code, use [JSDoc toolkit](http://code.google.com/p/jsdoc-toolkit/) (see
 [reference of supported tags](http://code.google.com/p/jsdoc-toolkit/wiki/TagReference)). For more class-oriented
-JavaScript, take a look at the [jsdoc cookbook](http://code.google.com/p/jsdoc-toolkit/wiki/CookBook). The ''@lends''
-and ''@borrows'' properties are particularly useful for documenting jQuery-style code.
+JavaScript, take a look at the [jsdoc cookbook](http://code.google.com/p/jsdoc-toolkit/wiki/CookBook). The `@lends`
+and `@borrows` properties are particularly useful for documenting jQuery-style code.
 
 JSDoc-toolkit is a commandline utility, see [usage](http://code.google.com/p/jsdoc-toolkit/wiki/CommandlineOptions).
 

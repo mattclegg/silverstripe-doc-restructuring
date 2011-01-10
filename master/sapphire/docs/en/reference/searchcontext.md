@@ -9,7 +9,7 @@ it just receives a set of search parameters and an object class it acts on.
 The default output of a SearchContext is either a `[api:SQLQuery]` object for further refinement, or a
 `[api:DataObject]` instance.
 
-In case you need multiple contexts, consider namespacing your request parameters by using ''FieldSet->namespace()'' on
+In case you need multiple contexts, consider namespacing your request parameters by using `FieldSet->namespace()` on
 the $fields constructor parameter.
 
 SearchContext is mainly used by `[api:ModelAdmin]`, our generic data administration interface. Another
@@ -33,10 +33,9 @@ See `[api:DataObject::$searchable_fields]`.
 
 ### Customizing fields and filters
 
-In this example we're defining three attributes on our MyDataObject subclasss: ''PublicProperty'', ''HiddenProperty''
-and ''MyDate''. The attribute ''HiddenProperty'' should not be searchable, and ''MyDate'' should only search for dates
-*after* the search entry (with a ''GreaterThanFilter''). Similiar to the built-in
-''DataObject->getDefaultSearchContext()'' method, we're building our own ''getCustomSearchContext()'' variant.
+In this example we're defining three attributes on our MyDataObject subclasss: `PublicProperty`, `HiddenProperty`
+and `MyDate`. The attribute `HiddenProperty` should not be searchable, and `MyDate` should only search for dates
+*after* the search entry (with a `GreaterThanFilter`). Similiar to the built-in `DataObject->getDefaultSearchContext()` method, we're building our own `getCustomSearchContext()` variant.
 
 	:::php
 	class MyDataObject extends DataObject {
@@ -99,8 +98,8 @@ and ''MyDate''. The attribute ''HiddenProperty'' should not be searchable, and '
 
 ### Pagination
 
-For paginating records on multiple pages, you need to get the generated ''SQLQuery'' before firing off the actual
-search. This way we can set the "page limits" on the result through ''setPageLimits()'', and only retrieve a fraction of
+For paginating records on multiple pages, you need to get the generated `SQLQuery` before firing off the actual
+search. This way we can set the "page limits" on the result through `setPageLimits()`, and only retrieve a fraction of
 the whole result set.
 
 

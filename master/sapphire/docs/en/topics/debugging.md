@@ -3,7 +3,7 @@
 ## Environment Types
 
 Silverstripe knows three different environment-types (or "debug-levels"). Each of the levels gives you different tools
-and functionality. "//dev//", "//test//" and "//live//". You can either configure the environment of the site in the
+and functionality. "dev", "test" and "live". You can either configure the environment of the site in the
 mysite/_config.php file or in your [environment configuration file](/topics/environment-management).
 
 The definition of setting an environment in your mysite/_config.php looks like

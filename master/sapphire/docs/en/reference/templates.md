@@ -10,7 +10,7 @@ text-based data formats, such as XML or RTF.
 
 Here is a very simple template:
 
-	:::html
+	:::ss
 	<html>
 	<head>
 	  <% base_tag %>
@@ -28,6 +28,7 @@ Here is a very simple template:
 	  </div>
 	</body>
 	</html>
+	<%-- comment --%>
 
 
 ## Template Syntax
@@ -36,7 +37,7 @@ The following control codes are available. For a more details list see [built-in
 
 ### Variables
 
-	:::html
+	:::ss
 	$Property
 	$Property(param)
 	$Property.SubProperty

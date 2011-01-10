@@ -156,9 +156,9 @@ Datamodel for FootballTeam:
 Sample implementation of a custom loader. Assumes a CSV-file in a certain format (see below).
 
 *  Converts property names
-*  Splits a combined "Name" fields from the CSV-data into ''FirstName'' and ''Lastname'' by a custom importer method
-*  Avoids duplicate imports by a custom ''$duplicateChecks'' definition
-*  Creates ''Team'' relations automatically based on the ''Gruppe'' colum in the CSV data
+*  Splits a combined "Name" fields from the CSV-data into `FirstName` and `Lastname` by a custom importer method
+*  Avoids duplicate imports by a custom `$duplicateChecks` definition
+*  Creates `Team` relations automatically based on the `Gruppe` colum in the CSV data
 
 
 	:::php

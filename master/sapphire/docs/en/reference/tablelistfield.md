@@ -15,9 +15,9 @@ export of data as a CSV.
 	:::php
 	function getReportField() {		
 		$resultSet = new DataObjectSet();
-		$filter = '';
+		$filter = `;
 		$sort = "Member.ID ASC";
-		$join = '';
+		$join = `;
 		$instance = singleton('Member');		
 		$query = $instance->buildSQL($filter, $sort, null, $join);
 		$query->groupby[] = 'Member.ID';

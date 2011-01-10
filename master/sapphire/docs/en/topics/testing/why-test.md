@@ -7,8 +7,8 @@ all the things I'm already doing"*. Fair enough. But, maybe you're already doing
 without realizing it. Everyone tests all the time, in various ways. Even if you're just refreshing a URL in a browser to
 review the context of your changes, you're testing!
 
-First, ask yourself how much time you're already spending debugging your code. Are you inserting ''echo'', ''print_r'',
-and ''die'' statements into different parts of your program and watching the details dumping out to screen? **Yes, you
+First, ask yourself how much time you're already spending debugging your code. Are you inserting `echo`, `print_r`,
+and `die` statements into different parts of your program and watching the details dumping out to screen? **Yes, you
 know you are.** So how much time do you spend doing this? How much of your development cycle is dependent on dumping out
 the contents of variables to confirm your assumptions about what they contain?
 

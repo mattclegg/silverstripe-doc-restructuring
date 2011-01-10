@@ -115,7 +115,7 @@ First we populate an array with the data we wish to pass to the template - the s
 page. The final line is a little more complicated.
 
 When we call a function by its url (eg http://localhost/home/results), SilverStripe will look for a template with the
-name *PageType*_//function//.ss. As we are implementing the *results* function on the *Page* page type, we create our
+name `PageType_function.ss`. As we are implementing the *results* function on the *Page* page type, we create our
 results page template as *Page_results.ss*. Unfortunately this doesn't work when we are using page types that are
 children of the *Page* page type. For example, if someone used the search on the homepage, it would be rendered with
 *Homepage.ss* rather than *Page_results.ss*. SilverStripe always looks for the template from the most specific page type

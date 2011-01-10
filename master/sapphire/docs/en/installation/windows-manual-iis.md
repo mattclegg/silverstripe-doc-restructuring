@@ -33,9 +33,8 @@ version of the [SQL Server Driver for PHP1.1](http://www.microsoft.com/downloads
 
 Then it's time to install the SilverStripe installation package, and modify it to work with IIS:
 
-*  Download SilverStripe from http://www.silverstripe.org/stable-download/ and unpack it into your web-root, most likely
-''c:\inetpub\wwwroot''.
-*  Create a file called ''web.config'' in the silverstripe folder with the following content.
+*  Download SilverStripe from http://www.silverstripe.org/stable-download/ and unpack it into your web-root, most likely `c:\inetpub\wwwroot`.
+*  Create a file called `web.config` in the silverstripe folder with the following content.
 
 		:::xml
 		<?xml version="1.0" encoding="UTF-8"?>
@@ -56,8 +55,7 @@ Then it's time to install the SilverStripe installation package, and modify it t
 		</configuration>
 
 
-*  Visit the folder that you just extracted in your web browser.  For example, the URL might be
-''http://localhost/silverstripe-v2.3/''.  You will be shown the install screen.
+*  Visit the folder that you just extracted in your web browser.  For example, the URL might be `http://localhost/silverstripe-v2.3/`.  You will be shown the install screen.
 *  Enter your MySQL username and password in the boxes provided and press "re-check requirements".  You should be able
 to install now.
 *  After the installation has finished, delete the index.html and index.php files.

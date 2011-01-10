@@ -133,11 +133,11 @@ these three Requirements::themedCSS lines, and you will be free to add your own 
 Most Web page designers 10 years ago used a table-based layout to achieve a consistent look. Now, (Thankfully) there's a
 different way to achieve the same look.
 
-Using CSS and tags (including ''DIV''s) reduces markup code, speeds up page downloads, separates content from
+Using CSS and tags (including `DIV`s) reduces markup code, speeds up page downloads, separates content from
 it's visual presentation, and brings your code closer to web standards compliance--all while making your website more
 appealing to search engine spiders.
 
-For layout we tend to use ''DIV'' tags as the ''DIV'' tag defines a division/section in a document.
+For layout we tend to use `DIV` tags as the `DIV` tag defines a division/section in a document.
 
 Let's have a look at part of a Page.ss for the main layout elements defining a 2 column layout.
 
