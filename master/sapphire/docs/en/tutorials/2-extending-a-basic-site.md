@@ -15,7 +15,7 @@ Throughout this tutorial we are going to work on adding two new sections to the 
 first is a news section, with a recent news listing on the homepage and an RSS feed. The second is a staff section,
 which demonstrates more complex database structures by associating an image with each staff member.
 
-![](images/news-with-rss-small.png)![](images/einstein-small.png)
+![](_images/news-with-rss-small.png)![](_images/einstein-small.png)
 
 
 
@@ -65,7 +65,7 @@ the database, which fields can be edited in the CMS, and can use code to make ou
 A more in-depth introduction of Model-View-Controller can be found
 [here](http://www.slash7.com/articles/2005/02/22/mvc-the-most-vexing-conundrum).
 
-![](images/pagetype-inheritance.png)
+![](_images/pagetype-inheritance.png)
 
 ## Creating the news section page types
 
@@ -90,9 +90,9 @@ We'll start with the *ArticlePage* page type. First we create the model, a class
 		static $has_one = array(
 		);
 	}
-	 
+	
 	class ArticlePage_Controller extends Page_Controller {
-	 
+		
 	}
 	 
 	?>
@@ -122,7 +122,7 @@ Let's create the *ArticleHolder* page type.
 	}
 	 
 	class ArticleHolder_Controller extends Page_Controller {
-	 
+		
 	}
 	 
 	?>
@@ -204,7 +204,7 @@ Let's walk through this method.
 
 
 Firstly, we get the fields from the parent class; we want to add fields, not replace them. The *$fields* variable
-returned is a //`[api:FieldSet]`// object.
+returned is a `[api:FieldSet]` object.
 
 	:::php
 	$fields->addFieldToTab('Root.Content.Main', new DateField('Date'), 'Content');
@@ -219,13 +219,63 @@ database field, but a `[api:FormField]` documentation for more details.
 	return $fields;
 
 
-Finally, we return the fields to the CMS. If we flush the cache (by adding ?flush=1 at the end of the URL), we will be able to edit the fields in
-the CMS.
+Finally, we return the fields to the CMS. If we flush the cache (by adding ?flush=1 at the end of the URL), we will be able
+to edit the fields in the CMS.
 
 Now that we have created our page types, let's add some content. Go into the CMS and create an *ArticleHolder* page
 named "News", and create some *ArticlePage*s inside it.
 
-![](images/news-cms.png)
+![](_images/news-cms.png)
+
+##  Modifing the date field
+
+When creating your Article pages in the CMS, you are given a text box by default. This makes it confusing and doesn't give
+the user much help when adding a date. 
+
+To make the date field a bit more user friendly, you can add a dropdown calendar, set the date format and add better title.
+
+	:::php
+	<?php
+
+	class ArticlePage extends Page {
+
+	// .....
+
+	function getCMSFields() {
+		$fields = parent::getCMSFields();
+
+		$fields->addFieldToTab('Root.Content.Main', $dateField = new DateField('Date','Article Date (for example: 20/12/2010)'), 'Content');
+		$dateField->setConfig('showCalendar', true);
+		$dateField->setConfig('dateformat', 'dd/MM/YYYY');
+		
+		$fields->addFieldToTab('Root.Content.Main', new TextField('Author','Author Name'), 'Content');
+
+		return $fields;
+	}
+
+Let's walk through these changes.
+
+	:::php
+	$fields->addFieldToTab('Root.Content.Main', $dateField = new DateField('Date','Article Date (for example: 20/12/2010)'), 'Content');
+
+*$dateField* is added only to the DateField in order to change the configuration.
+
+	:::php
+	$dateField->setConfig('showCalendar', true);
+
+Set *showCalendar* to true to have a calendar appear underneath the Date field when you click on the field. 
+
+	:::php
+	$dateField->setConfig('dateformat', 'dd/MM/YYYY');
+
+*dateFormat* allows you to specify how you wish the date to be entered and displayed in the CMS field.
+
+	:::php
+	$fields->addFieldToTab('Root.Content.Main', new TextField('Author','Author Name'), 'Content');
+
+By default the first argument *'Date'* or *'Author'* is shown as the title, however this might not be that helpful so to change the title,
+add the new title as the second argument. See the `[api:DateField]` documentation for more details.
+
 
 ##  Creating the templates
 
@@ -275,13 +325,13 @@ spread across several tables in the database matched by id - e.g. *Content* is i
 *Author* are in the *Article* table. SilverStripe matches these records by their ids and collates them into the single
 data object.
 
-![](images/data-collation.png)
+![](_images/data-collation.png)
 
 Rather than using *$Date* directly, we use *$Date.Nice*. If we look in the `[api:Date]` documentation, we can see
 that the *Nice* function returns the date in *dd/mm/yyyy* format, rather than the *yyyy-mm-dd* format stored in the
 database.
 
-![](images/news.png)
+![](_images/news.png)
 
 Now we'll create a template for the article holder: we want our news section to show a list of news items, each with a
 summary.
@@ -306,7 +356,7 @@ page, which in this case is our news articles. The *$Link* variable will give th
 use to create a link, and the *FirstParagraph* function of the `[api:HTMLText]` field gives us a nice summary of the
 article.
 
-![](images/articleholder.png)
+![](_images/articleholder.png)
 
 Remember that the visual styles are not part of the CMS, they are defined in the tutorial CSS file.
 
@@ -384,7 +434,7 @@ This will change the icons for the pages in the CMS.
 > Note: that the corresponding filename to the path given for $icon will end with **-file.gif**, 
 > e.g. when you specify **news** above, the filename will be **news-file.gif**.
 
-![](images/icons2.png)
+![](_images/icons2.png)
 
 ### Allowing comments on news articles
 
@@ -392,14 +442,14 @@ A handy feature built into SilverStripe is the ability for guests to your site t
 this on for an article simply by ticking the box in the behaviour tab of a page in the CMS. Enable this for all your
 *ArticlePage*s.
 
-![](images/comments.png)
+![](_images/comments.png)
 
 We then need to include *$PageComments* in our template, which will insert the comment form as well as all comments left
 on the page.
 
 **themes/tutorial/templates/Layout/ArticlePage.ss**
 
-	:::php
+	:::html
 	...
 	<div class="newsDetails">
 		Posted on $Date.Nice by $Author
@@ -410,7 +460,7 @@ on the page.
 
 You should also prepare the *Page* template in the same manner, so comments can be enabled at a later point on any page.
 
-![](images/news-comments.png)
+![](_images/news-comments.png)
 
 It would be nice to have comments on for all articles by default. We can do this with the *$defaults* array. Add this to
 the *ArticlePage* class:
@@ -469,7 +519,7 @@ page is referenced in other pages, e.g. by page controls. A good rule of thumb i
 page currently being viewed in the controller; only if a function needs to be used in another page should you put it in
 the data object.
 
-![](images/homepage-news.png)
+![](_images/homepage-news.png)
 
 
 
@@ -494,7 +544,7 @@ that name on the controller if it exists.
 Depending on your browser, you should see something like the picture below. If your browser doesn't support RSS, you
 will most likely see the XML output instead.
 
-![](images/rss-feed.png)
+![](_images/rss-feed.png)
 
 Now all we need is to let the user know that our RSS feed exists. The `[api:RSSFeed]` in your controller, it will be
 called when the page is requested. Add this function to *ArticleHolder_Controller*:
@@ -510,7 +560,7 @@ This automatically generates a link-tag in the header of our template. The *init
 class to ensure any initialization the parent would have done if we hadn't overridden the *init* function is still
 called. In Firefox you can see the RSS feed link in the address bar:
 
-![](images/rss.png)
+![](_images/rss.png)
 
 ## Adding a staff section
 
