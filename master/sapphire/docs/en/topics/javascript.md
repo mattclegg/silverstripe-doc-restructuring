@@ -326,7 +326,7 @@ rendering a form element through the SilverStripe templating engine.
 
 Example: Restricted numeric value field
 
-	:::html
+	:::ss
 	<input type="text" class="restricted-text {min:4,max:10}" />
 
 
@@ -362,7 +362,7 @@ Example: Autocomplete input field loading page matches through AJAX
 
 Template:
 
-	:::html
+	:::ss
 	<ul>
 	<% control Results %>
 	  <li id="Result-$ID">$Title</li>
@@ -393,7 +393,7 @@ PHP:
 
 HTML
 
-	:::html
+	:::ss
 	<form action"#">
 	  <div class="autocomplete {url:'MyController/autocomplete'}">
 	    <input type="text" name="title" />

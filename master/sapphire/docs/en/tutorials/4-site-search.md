@@ -79,7 +79,7 @@ We then just need to add the search form to the template. Add *$SearchForm* to t
 
 *themes/tutorial/templates/Page.ss*
 
-	:::html
+	:::ss
 	<div id="Header">
 	  $SearchForm
 	  <h1>$Title</h1>
@@ -140,7 +140,7 @@ class.
 
 *themes/tutorial/templates/Layout/Page_results.ss*
 
-	:::html
+	:::ss
 	<div id="Content" class="searchResults">
 	  <h2>$Title</h2>
 		

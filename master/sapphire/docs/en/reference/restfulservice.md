@@ -167,7 +167,7 @@ Put something like this code in mysite/code/Page.php inside class Page_Controlle
 
 Put something like this code in mysite/templates/Layout/HomePage.ss:
 
-	:::html
+	:::ss
 	<h3>My Latest Del.icio.us Links</h3>
 	<ul>
 		$RestfulLinks(http://del.icio.us/rss/elijahlofgren) 

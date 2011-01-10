@@ -241,7 +241,7 @@ First, the template for displaying a single article:
 
 **themes/tutorial/templates/Layout/ArticlePage.ss**
 
-	:::html
+	:::ss
 	<% if Menu(2) %>
 		<ul id="Menu2">
 			<% control Menu(2) %>
@@ -289,7 +289,7 @@ summary.
 
 **themes/tutorial/templates/Layout/ArticleHolder.ss**
 
-	:::html
+	:::ss
 	<div id="Content" class="typography">		
 		$Content
 		<ul id="NewsList">
@@ -320,7 +320,7 @@ include it in our other templates. Separate the second level menu into a new fil
 
 **themes/tutorial/templates/Includes/Menu2.ss**
 
-	:::html
+	:::ss
 	<% if Menu(2) %>
 		<ul id="Menu2">
 			<% control Menu(2) %>
@@ -334,7 +334,7 @@ And then replace the second level menu with `<% include Menu2 %>` in *Page.ss* a
 
 **themes/tutorial/templates/Layout/Page.ss**, **themes/tutorial/templates/Layout/ArticlePage.ss**
 
-	:::html
+	:::ss
 	<% include Menu2 %>
 	 
 	<div id="Content" class="typography">
@@ -345,7 +345,7 @@ Do the same with the breadcrumbs:
 
 **themes/tutorial/templates/Includes/Breadcrumbs.ss**
 
-	:::html
+	:::ss
 	<% if Level(2) %>
 	  <div class="breadcrumbs">
 	    $Breadcrumbs
@@ -355,7 +355,7 @@ Do the same with the breadcrumbs:
 
 **themes/tutorial/templates/Layout/Page.ss**, **themes/tutorial/templates/Layout/ArticlePage.ss**
 
-	:::html
+	:::ss
 	...
 	<div id="Content" class="typography">
 		<% include Breadcrumbs %>
@@ -448,7 +448,7 @@ details. We can reference this function as a page control in our *HomePage* temp
 
 **themes/tutorial/templates/Layout/Homepage.ss**
 
-	:::html
+	:::ss
 	...
 	$Content
 	<ul id="NewsList">
@@ -594,7 +594,7 @@ The staff section templates aren't too difficult to create, thanks to the utilit
 
 **themes/tutorial/templates/Layout/StaffHolder.ss**
 
-	:::html
+	:::ss
 	<% include Menu2 %>
 	 
 	<div id="Content" class="typography">
@@ -623,7 +623,7 @@ The *StaffPage* template is also very straight forward.
 
 **themes/tutorial/templates/Layout/StaffPage.ss**
 
-	:::html
+	:::ss
 	<% include Menu2 %>
 
 	<div id="Content" class="typography">

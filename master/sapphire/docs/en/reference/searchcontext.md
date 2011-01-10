@@ -148,7 +148,7 @@ Results.PaginationSummary(4) defines how many pages the search will show in the 
 **Next   1 2  *3*  4  5  … 558**  
 
 
-	:::html
+	:::ss
 	<% if Results %>
 		<ul>
 			<% control Results %>

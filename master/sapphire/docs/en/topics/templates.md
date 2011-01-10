@@ -6,7 +6,7 @@ TODO Show a good cross section of built-in-page-controls.md
 
 ## Example Template
 
-	:::html
+	:::ss
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 	<head>
@@ -51,12 +51,12 @@ TODO Take abbreviated descriptions from the first tutorial
 Within SilverStripe templates we have the ability to include other templates from the Includes directory using the SS
 'include' tag. For example, the following code would include the `Incldues/SideBar.ss` code:
 
-	:::html
+	:::ss
 	<% include SideBar %>
 
 The includes tag can be particularly helpful for nested functionality. Say only include if a variable is true
 
-	:::html
+	:::ss
 	<% if CurrentMember %>
 		<% include MembersOnlyInclude %>
 	<% end_if %>
@@ -88,7 +88,7 @@ on a per-page basis. If you don’t want to include the title-tag `<title>` (for
 
 By default `$MetaTags` renders:
 
-	:::html
+	:::ss
 	<title>Title of the Page</title>
 	<meta name="generator" http-equiv="generator" content="SilverStripe 2.0" >
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" >

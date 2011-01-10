@@ -50,7 +50,7 @@ Children of Children for example.
 
 SilverStripe supports a simple set of conditional logic
 
-	:::html
+	:::ss
 	<% if Foo %>
 	// if Foo is true or an object do this
 	<% else_if Bar %>
@@ -113,13 +113,13 @@ These return different linking modes.  $LinkingMode provides the greatest contro
 A useful way of using this is in your menus. You can use the following code below to generate an class="current" or
 class="section" on your links. Take the following code
 
-	:::html
+	:::ss
 	<li><a href="$Link" class="$LinkingMode">$Title</a></li>
 
 
 When viewed on the Home page it will render like this
 
-	:::html
+	:::ss
 	<li><a href="home/" class="current">Home</a></li>
 
 
@@ -131,7 +131,7 @@ section instead.  Both of these options can simplify your CSS when you only have
 This is an alternative way to set up your menus - if you want different HTML for the current menu item, you can do
 something like this:
 
-	:::html
+	:::ss
 	<% if LinkOrCurrent = current %>
 	<strong>$Title</strong>
 	<% else %>
@@ -165,7 +165,7 @@ the main page title.
 
 This is the title of the page which displays in the browser window and usually is the title of the page.
 
-	:::html
+	:::ss
 	<h1>$Title</h1>
 
 #### $URLSegment
@@ -175,7 +175,7 @@ when doing this, watch out that it doesn't create invalid id-attributes though.)
 the body so you can target certain pages. Watch out for pages named clear or anything you might have used in your CSS
 file
 
-	:::html
+	:::ss
 	<body class="$URLSegment">
 
 
@@ -197,7 +197,7 @@ CurrentMember returns the currently logged in member, if there is one.  All of t
 controls can be called on this.  Alternately, you can use `<% if CurrentMember %>` to detect whether someone has logged
 in. To Display a welcome message you can do
 
-	:::html
+	:::ss
 	<% if CurrentMember %>
 	  Welcome Back, $CurrentMember.FirstName
 	<% end_if %>
@@ -205,7 +205,7 @@ in. To Display a welcome message you can do
 
 If the user is logged in this will print out
 
-	:::html
+	:::ss
 	Welcome Back, Admin
 
  
@@ -255,7 +255,7 @@ $TotalItems will return the number of items on this page of the datafeed, and Po
 When you're inside a control loop in your template, and want to reference methods on the current controller you're on,
 breaking out of the loop to get it, you can use $Top to do so. For example:
 
-	:::html
+	:::ss
 	$URLSegment
 	<% control News %>
 	   $URLSegment <!-- may not return anything, as you're requesting URLSegment on the News objects -->

@@ -128,14 +128,14 @@ Let's introduce two new template variables - *$Title* and *$MetaTags*.
 
 Open *themes/tutorial/templates/Page.ss* and find the following code:
 
-	:::html
+	:::ss
 	<div id="Header">
 	   <h1>&nbsp;</h1>
 	</div>
 
 and replace it with
 
-	:::html
+	:::ss
 	<div id="Header">
 	 <h1>$Title</h1>
 	</div>
@@ -146,7 +146,7 @@ editor). You can define your metatags in the meta-data tab off the content edito
 
 Add *$MetaTags* to the head so that it looks like this:
 
-	:::html
+	:::ss
 	<head>
 	   <% base_tag %>
 	   $MetaTags
@@ -171,7 +171,7 @@ a **control block**. Control blocks allow us to iterate over a data set, and ren
 
 Open up *themes/tutorial/templates/Page.ss*, and insert the following code inside `<div id="Main">`:
 
-	:::html
+	:::ss
 	<ul id="Menu1">
 	   <% control Menu(1) %>
 	      <li><a href="#">$MenuTitle</a></li>
@@ -190,7 +190,7 @@ question by using the *$Link* template variable.
 
 Replace the list item line with this one:
 
-	:::html
+	:::ss
 	<li><a href="$Link" title="Go to the &quot;{$Title}&quot; page">$MenuTitle</a></li>
 
 > $Title refers to *Page Name* in the CMS, whereas $MenuTitle refers to (the often shorter) *Navigation label*
@@ -210,7 +210,7 @@ Highlighting the current page is easy, simply assign a css class based on the va
 
 Change the list item line in *Page.ss* so it looks like this:
 
-	:::html
+	:::ss
 	<li class="$LinkingMode">
 		<a href="$Link" title="Go to the &quot;{$Title}&quot; page">$MenuTitle</a>
 	</li>
@@ -235,7 +235,7 @@ Adding a second level menu is very similar to adding the first level menu.
 
 Open up our *Page.ss* template, and find the `<div id="ContentContainer">` tag. Underneath it, add the following code:
 
-	:::html
+	:::ss
 	<ul id="Menu2">
 	  <% control Menu(2) %>
 	    <li class="$LinkingMode"><a href="$Link" title="Go to the &quot;{$Title}&quot; page">$MenuTitle</a></li>
@@ -251,7 +251,7 @@ We now have our second level menu, but we also have a problem. The menu is displ
 don't have any nested pages. We can solve this problem with an **if block**. Simply surround the menu with an if block
 like this:
 
-	:::html
+	:::ss
 	<% if Menu(2) %>
 	  <ul id="Menu2">
 	    <% control Menu(2) %>
@@ -268,7 +268,7 @@ Now that we have two levels of navigation, it would also be useful to include so
 
 Find *`<div id="Content" class="typography">`* and underneath it add:
 
-	:::html
+	:::ss
 	<div class="breadcrumbs">
 	  $Breadcrumbs
 	</div>	
@@ -276,7 +276,7 @@ Find *`<div id="Content" class="typography">`* and underneath it add:
 Breadcrumbs are only useful on pages that aren't in the top level. We can ensure that we only show them if we aren't in
 the top level with another if statement.
 
-	:::html
+	:::ss
 	<% if Level(2) %>
 	  <div class="breadcrumbs">
 	    $Breadcrumbs
@@ -361,7 +361,7 @@ To create a new template, create a copy of *Page.ss* (found in *themes/tutorial/
 
 First, remove the breadcrumbs and the secondary menu; we don't need them for the homepage. Let's replace the title with our image. Add this line above the *Content* div:
 
-	:::html
+	:::ss
 	<div id="Banner">
 	  <img src="themes/tutorial/images/welcome.png" alt="Homepage image" />
 	</div>
@@ -383,7 +383,7 @@ The files should look like this:
 
 **themes/tutorial/templates/Layout/Page.ss**
 
-	:::html
+	:::ss
 	<% if Menu(2) %>
 	  <ul id="Menu2">
 	    <% control Menu(2) %>
@@ -405,7 +405,7 @@ The files should look like this:
 
 **themes/tutorial/templates/Layout/HomePage.ss**
 
-	:::html
+	:::ss
 	<div id="Banner">
 	  <img src="themes/tutorial/images/welcome.png" alt="Homepage image" />
 	</div>
@@ -422,7 +422,7 @@ Replace the code we just copied out of *themes/tutorial/templates/Page.ss* with 
 
 **themes/tutorial/templates/Page.ss**
 
-	:::html
+	:::ss
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
 	  <head>

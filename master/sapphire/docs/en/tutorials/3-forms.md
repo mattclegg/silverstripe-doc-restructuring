@@ -118,7 +118,7 @@ Add the following code to the home page template, just before the `</div>` that 
 
 *themes/tutorial/templates/Layout/HomePage.ss*
 
-	:::html
+	:::ss
 	...
 	<div id="ContentContainer">
 	...
@@ -355,7 +355,7 @@ returned.
 The final step is to create the template to display our data. Change the 'BrowserPoll' div in
 *themes/tutorial/templates/Layout/HomePage.ss* to the below.
 
-	:::html
+	:::ss
 	<div id="BrowserPoll">
 		<h2>Browser Poll</h2>
 		<% if BrowserPollForm %>

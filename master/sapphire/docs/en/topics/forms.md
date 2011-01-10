@@ -198,7 +198,7 @@ is *MyForm*, the name of the class. If the template doesn't exist, then it falls
 *MyForm.ss* should then be placed into your *templates/Includes* directory for your project. Here is an example of
 basic customisation:
 
-	:::html
+	:::ss
 	<form $FormAttributes>
 	   <% if Message %>
 	      <p id="{$FormName}_error" class="message $MessageType">$Message</p>

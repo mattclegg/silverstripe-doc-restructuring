@@ -56,7 +56,7 @@ our theme in action. The code for mine is below.
 
 ** yourtheme/templates/Page.ss **
 
-	:::html
+	:::ss
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 	<head>
@@ -95,7 +95,7 @@ our theme in action. The code for mine is below.
 
 ** yourtheme/templates/Layout/Page.ss **
 
-	:::html
+	:::ss
 	<h1>$Title</h1>
 	$Content
 	$Form
@@ -141,7 +141,7 @@ For layout we tend to use `DIV` tags as the `DIV` tag defines a division/section
 
 Let's have a look at part of a Page.ss for the main layout elements defining a 2 column layout.
 
-	:::html
+	:::ss
 	<div id="Container">
 	 <div id="Header">
 	   <!-- Header -->
@@ -164,20 +164,20 @@ Let's have a look at part of a Page.ss for the main layout elements defining a 2
 As you can see we normally wrap the site in a container. For this we use the ID 'Container'. Then we divide the main
 template into sections.
 
-	:::html
+	:::ss
 	<div id="Header"><!-- markup goes here --></div>
 
 
 We have the Header section which includes things like any banner images/ mastheads/ logos or any stuff that belongs at
 the top of the page, This might vary on the design of the page
 
-	:::html
+	:::ss
 	<div id="Navigation"><!-- markup goes here --></div>
 
 
 Next is a division for the main navigation. This may contain something like:
 
-	:::html
+	:::ss
 	<div id="Navigation">
 	  <% if Menu(1) %>
 	  <ul>
@@ -194,7 +194,7 @@ This is the standard for creating the main Navigation. As you can see it outputs
 Before stepping into a control (a foreach loop) it's good practise to check if it exists first. This is not only
 important in manipulating SilverStripe templates, but in any programming language!
 
-	:::html
+	:::ss
 	<% if MyFunction %>
 	  <% control MyFunction %>
 	    $Title
@@ -205,7 +205,7 @@ important in manipulating SilverStripe templates, but in any programming languag
 Last and probably least is the Footer division. Here is where you put all the Footer related stuff for your website.
 Maybe even a nice link saying Website Powered by SilverStripe to show your support.
 
-	:::html
+	:::ss
 	<div id="Footer">
 	<!-- markup goes here -->
 	</div>
@@ -256,13 +256,13 @@ within the forum/ module you would create a themes/yourtheme_forum/ folder.
 
 If you want to refer to an image or other file asset in a .ss template, use $ThemeDir. For example:
 
-	:::html
+	:::ss
 	<img src="$ThemeDir/images/log.gif" />
 
 If your image is in a subtheme, you can refer to that with an argument to ThemeDir. For example, if your image was in
 mytheme_forum, you could use the following code:
 
-	:::html
+	:::ss
 	<img src="$ThemeDir(forum)/images/log.gif" />
 
 ## Conventions, standards and guidelines

@@ -60,13 +60,13 @@ Note you also cannot past a variable into a variable, so using $Property($Value)
 You can perform includes using the Requirements Class via the template controls.  See the section on [Includes in
 Templates](requirements#including_inside_template_files) for more details and examples.
 
-	:::html
+	:::ss
 	<% require themedCSS(LeftNavMenu) %>
 
 
 ###  Controls
 
-	:::html
+	:::ss
 	<% control Property %>
 	... content ...
 	<% end_control %>
@@ -87,7 +87,7 @@ string, control blocks interpret the result as an object or a array of objects. 
 
 In this example, $A and $B refer to $obj->Property()->A() and $obj->Property()->B().
 
-	:::html
+	:::ss
 	<% control Property %>
 	  <span>$A</span>
 	  <span>$B</span>
@@ -102,7 +102,7 @@ In this example, Menu(1) returns a DataObjectSet listing each top level main men
 System](http://doc.silverstripe.com/doku.php?id=tutorial:1-building-a-basic-site#making_a_navigation_system)).  The `<a>`
 tag is repeated once for each main menu item, and the $Link and $Title values for each menu item is substituted in.
 
-	:::html
+	:::ss
 	<% control Menu(1) %>
 	<a href="$Link">$Title</a>
 	<% end_control %>
@@ -111,7 +111,7 @@ tag is repeated once for each main menu item, and the $Link and $Title values fo
 
 ### If blocks
 
-	:::html
+	:::ss
 	<% if Property %>
 	... optional content ...
 	<% else_if OtherProperty %>
@@ -146,14 +146,14 @@ appropriate.
 
 Using standard HTML comments is supported. These comments will be included in the published site. 
 
-	:::html
+	:::ss
 	$EditForm <!-- Some Comment About the Edit Form -->
 
 
 However you can also use special SilverStripe comments which will be stripped out of the published site. This is useful
 for adding notes for other developers but for things you don't want published in the public html.
 
-	:::html
+	:::ss
 	$EditForm <%-- This is Located in MemberEditForm.php --%>
 
 ### Formatting Template Values
@@ -161,7 +161,7 @@ for adding notes for other developers but for things you don't want published in
 The following example takes the Title field of our object, casts it to a `[api:Varchar]` object, and then calls
 the $XML object on that Varchar object.
 
-	:::html
+	:::ss
 	<% control Title %>
 	$XML
 	<% end_control %>
@@ -169,7 +169,7 @@ the $XML object on that Varchar object.
 
 Note that this code can be more concisely represented as follows:
 
-	:::html
+	:::ss
 	$Title.XML
 
 
@@ -181,7 +181,7 @@ Sometimes you will have template tags which need to roll into one another. This 
 for a "FooBar" value rather than a "Foo" and then "Bar" value or when you have a string directly before or after the
 variable you will need to escape the specific variable. In the following example $Foo is 3.
 
-	:::html
+	:::ss
 	
 	$Foopx // returns "" (as it looks for a Foopx value)
 	{$Foo}px  // returns "3px" (CORRECT)
@@ -190,7 +190,7 @@ variable you will need to escape the specific variable. In the following example
 
 Or when having a $ sign in front of the variable
 
-	:::html
+	:::ss
 	$$Foo // returns ""
 	${$Foo} // returns "$3"
 
@@ -199,7 +199,7 @@ Or when having a $ sign in front of the variable
 
 From SilverStripe 2.4 you can specify a block to cache between requests
 
-	:::html
+	:::ss
 	<% cacheblock 'slowoperation', LastEdited %>
 	$SlowOperation
 	<% end_cacheblock %>
@@ -230,7 +230,7 @@ Page.php class.
 
 Will give you the ability to call $MyCustomValue from anywhere in your template. 
 
-	:::html
+	:::ss
 	I've got one thing to say to you: <i>$MyCustomValue</i>
 	
 	// output "I've got one thing to say to you: <i>Hi, this is my site</i>" 
@@ -248,7 +248,7 @@ Your function could return a single value as above or it could be a subclass of 
 
 And now you could call these values by using
 
-	:::html
+	:::ss
 	<% control MyCustomValues %>
 	$Hi , $Name
 	<% end_control %>
@@ -258,7 +258,7 @@ And now you could call these values by using
 
 Or by using the dot notation you would have
 
-	:::html
+	:::ss
 	$MyCustomValues.Hi , $MyCustomValues.Name
 	
 	// output "Kia Ora , John Smith"
@@ -281,7 +281,7 @@ For example, this Controller method
 
 and this template
 
-	:::html
+	:::ss
 	$Counter, $Counter, $Counter
 
 
@@ -354,7 +354,7 @@ sections of the current page.  For example, we might have this in our template.
 
 For, example, we might have this on http://www.example.com/my-long-page/
 
-	:::html
+	:::ss
 	<ul>
 	<li><a href="#section1">Section 1</a></li>
 	<li><a href="#section2">Section 2</a></li>
@@ -369,7 +369,7 @@ In order to prevent this situation, the SSViewer template renderer will automati
 doesn't specify a URL before the fragment, prefixing the URL of the current page.  For our example above, the following
 would be created:
 
-	:::html
+	:::ss
 	<ul>
 	<li><a href="my-long-page/#section1">Section 1</a></li>
 	<li><a href="my-long-page/#section2">Section 2</a></li>

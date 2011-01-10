@@ -87,7 +87,7 @@ anything but LeftAndMain has built-in support for trees.
 
 MyAdmin_left.ss
 
-	:::html
+	:::ss
 	<div class="title"><div>Functions</div></div>
 	
 	<div id="treepanes">
@@ -111,7 +111,7 @@ MyAdmin_left.ss
 
 MyAdmin_right.ss
 
-	:::html
+	:::ss
 	<div class="title"><div>My admin</div></div>
 	
 	<% if EditForm %>

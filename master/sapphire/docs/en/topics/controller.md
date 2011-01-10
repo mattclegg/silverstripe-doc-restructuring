@@ -29,7 +29,7 @@ mysite/_config.php
 Request for '/fastfood/order/24/cheesefries' would result in the following to the $arguments above. If needed, use
 "?flush=1" on the end of request after making any code changes to your controller.
 
-	:::html
+	:::ss
 	Array
 	(
 	    [Action] => order
