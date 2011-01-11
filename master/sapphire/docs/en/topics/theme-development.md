@@ -109,7 +109,7 @@ All you have to do now is tell your site to use your new theme - This is defined
 
 
 Go to yoursite.com/?flush=1 and check it out. You should be using your new theme! Not really that awesome or amazing is
-it? Next we need to add some CSS Magics!
+it? Next we need to add some CSS Magic!
 
 
 ### CSS Files
@@ -134,7 +134,7 @@ Most Web page designers 10 years ago used a table-based layout to achieve a cons
 different way to achieve the same look.
 
 Using CSS and tags (including `DIV`s) reduces markup code, speeds up page downloads, separates content from
-it's visual presentation, and brings your code closer to web standards compliance--all while making your website more
+its visual presentation, and brings your code closer to web standards compliance--all while making your website more
 appealing to search engine spiders.
 
 For layout we tend to use `DIV` tags as the `DIV` tag defines a division/section in a document.
@@ -152,7 +152,7 @@ Let's have a look at part of a Page.ss for the main layout elements defining a 2
 	 </div>
 	
 	 <div id="Layout">
-	   <!-- The whole site content Has to sit inside here! Anything you want to sub template (eg each page will be different, needs to be contained in $Layout. This calls the file /Layout/Page.ss or anyother sub page template -->
+	   <!-- The whole site content has to sit inside here! Anything you want to sub template (eg each page will be different, needs to be contained in $Layout. This calls the file /Layout/Page.ss or anyother sub page template -->
 	   $Layout
 	 </div>
 	

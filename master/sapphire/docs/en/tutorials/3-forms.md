@@ -138,8 +138,8 @@ Add the following code to the form style sheet:
 	/* BROWSER POLL */
 	#BrowserPoll {
 		float: right;
-		margin: 20px 20px 0 0;
-		width: 200px;
+		margin: 20px 10px 0 0;
+		width: 20%;
 	}
 		#BrowserPoll form fieldset {
 			border:0;

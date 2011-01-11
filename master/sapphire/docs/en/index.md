@@ -8,7 +8,7 @@ If you would like to contribute, you can [register](http://doc.silverstripe.com/
 
 ###  Getting support
 
-*  Use our [support forum](http://www.silverstripe.com/silverstripe-forum/) and [irc channel](http://silverstripe.org/irc)
+*  Use our [support forum](http://www.silverstripe.org/forums/) and [irc channel](http://silverstripe.org/irc)
 *  See [userhelp](http://userhelp.silverstripe.com) for end-user documentation
     
 
@@ -19,7 +19,7 @@ crowded market
 *  [Feature Overview](http://silverstripe.com/overview/): Find out how many capabilities hide behind the simple
 interface
 *  [Contributing](http://www.silverstripe.com/how-to-contribute/) and [Contributors](Contributors)
-*  [Changelog](changelog)
+*  [Changelog](http://open.silverstripe.org/wiki/ChangeLog)
 *  [Roadmap](http://open.silverstripe.com/roadmap)
 *  **[API documentation](http://api.silverstripe.org/current)**
 

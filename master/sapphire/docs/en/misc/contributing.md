@@ -47,7 +47,7 @@ forum]([[http///www.silverstripe.com/silverstripe-forum/) (optimally before doin
 *  Adhere to our [coding conventions](http://doc.silverstripe.com/doku.php?id=coding-conventions)
 *  Provide complete [unit test coverage](/topics/testing) - depending on the complexity of your work, this is a required
 step.
-
+*  Do not set milestones. If you think your patch should be looked at with priority, mark it as "critical".
 *  Describe specifics on how to test the effects of the patch
 *  It's better to submit multiple patches with separate bits of functionality than a big patch containing lots of
 changes

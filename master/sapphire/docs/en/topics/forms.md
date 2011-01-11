@@ -13,9 +13,9 @@ constructor takes the following arguments:
 *  `$controller`: This must be the controller that contains the form.
 *  `$name`: This must be the name of the method on that controller that is called to return the form.  The first two
 fields allow the form object to be re-created after submission.  **It's vital that they are properly set - if you ever
-have problems with form action handler not working, check that these values are correct.*
+have problems with form action handler not working, check that these values are correct.**
 *  `$fields`: A `[api:FieldSet]`s that make up the editable portion of the form.
-*  `$actions`: A `[api:FieldSet]`s that make up the control portion of the form - the butons at the bottom.
+*  `$actions`: A `[api:FieldSet]`s that make up the control portion of the form - the buttons at the bottom.
 *  `$validator`: An optional `[api:Validator]` for more information.
 
 Example: 

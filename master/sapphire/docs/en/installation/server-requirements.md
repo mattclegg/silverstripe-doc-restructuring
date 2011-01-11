@@ -40,6 +40,7 @@ topic](http://silverstripe.org/installing-silverstripe/show/281700)): `berkdb bz
 flatfile ftp gd gdbm hash iconv imap ipv6 mysql mysqli ncurses nls pcre readline reflection session simplexml snmp spell
 spl ssl threads tokenizer truetype unicode xml xmlreader xmlwriter xpm zip zlib`
 *  PHP safe mode off.
+* If you have issues with sessions and cookies ensure magic_quotes_gpc is disabled in your php.ini.
 
 If you need information on your PHP configuration, create a php file with the following content:
 

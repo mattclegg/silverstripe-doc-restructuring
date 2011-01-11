@@ -49,12 +49,13 @@ TODO Take abbreviated descriptions from the first tutorial
 ## Includes
 
 Within SilverStripe templates we have the ability to include other templates from the Includes directory using the SS
-'include' tag. For example, the following code would include the `Incldues/SideBar.ss` code:
+'include' tag. For example, the following code would include the `Includes/SideBar.ss` code:
 
 	:::ss
 	<% include SideBar %>
 
-The includes tag can be particularly helpful for nested functionality. Say only include if a variable is true
+The "include" tag can be particularly helpful for nested functionality. In this example, the include only happens if
+a variable is true
 
 	:::ss
 	<% if CurrentMember %>

@@ -146,7 +146,7 @@ DataObjects.
 	  // IMPORTANT: Needs to be set after other selects to avoid overlays
 	  'Player.ClassName AS ClassName',
 	  'Player.ClassName AS RecordClassName',
-	  'Player.ID AS ID',
+	  'Player.ID AS ID'
 	);
 	$sqlQuery->from = array(
 	  "Player",
