@@ -1,4 +1,6 @@
 <?php
+require_once('MarkdownCleanup.php');
+
 class DocuwikiToMarkdownExtra {
 	/**
 	 * Convert docuwiki syntax to markdown
@@ -127,6 +129,10 @@ class DocuwikiToMarkdownExtra {
 
 			if ($lineMode != "table") $output .= $line . "\n";
 		}
+		
+		$cleanup = new MarkdownCleanup();
+		
+		$output = $cleanup->process($output);
 
 		return $output;
 	}

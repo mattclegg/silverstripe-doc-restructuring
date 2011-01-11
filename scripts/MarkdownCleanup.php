@@ -6,9 +6,14 @@
  */
 class MarkdownCleanup {
 	
-	function process($filepath) {
-		$content = file_get_contents($filepath);
+	function processFile($filepath) {
+		$content = $this->process(file_get_contents($filepath));
+		$content = $this->relocateImages($content, $filepath);
 		
+		return $content;
+	}
+	
+	function process($content) {
 		$content = $this->convertInlineHTML($content);
 		$content = $this->convertUnbalancedHeadlines($content);
 		$content = $this->convertCodeBlocks($content);
@@ -17,7 +22,6 @@ class MarkdownCleanup {
 		$content = $this->convertApiLinks($content);
 		$content = $this->convertEmphasis($content);
 		$content = $this->fixedWidth($content);
-		$content = $this->relocateImages($content, $filepath);
 		
 		return $content;
 	}
@@ -275,24 +279,26 @@ class MarkdownCleanup {
 	
 }
 
-$inputDirectory = "../master/";
+// TODO Disabled in order to run file-by-file as class on DocuWikiToMarkdownExtra.php
 
-$cleanup = new MarkdownCleanup();
-
-$path = realpath($inputDirectory);
-
-$objects = new RecursiveIteratorIterator(
-               new RecursiveDirectoryIterator($path), 
-               RecursiveIteratorIterator::SELF_FIRST);
-
-foreach($objects as $name => $object) {
-	$filename = $object->getFilename();
-	$ext = pathinfo($filename, PATHINFO_EXTENSION);
-	if ($filename == "." || $filename == ".." || $ext != 'md') continue;
-	
-	$inputDir = $object->getPath();
-	if (is_dir($object->getPathname())) continue;
-
-	$newContent = $cleanup->process("{$inputDir}/{$filename}");
-	file_put_contents("{$inputDir}/{$filename}", $newContent);
-}
+// $inputDirectory = "../master/";
+// 
+// $cleanup = new MarkdownCleanup();
+// 
+// $path = realpath($inputDirectory);
+// 
+// $objects = new RecursiveIteratorIterator(
+//                new RecursiveDirectoryIterator($path), 
+//                RecursiveIteratorIterator::SELF_FIRST);
+// 
+// foreach($objects as $name => $object) {
+// 	$filename = $object->getFilename();
+// 	$ext = pathinfo($filename, PATHINFO_EXTENSION);
+// 	if ($filename == "." || $filename == ".." || $ext != 'md') continue;
+// 	
+// 	$inputDir = $object->getPath();
+// 	if (is_dir($object->getPathname())) continue;
+// 
+// 	$newContent = $cleanup->process("{$inputDir}/{$filename}");
+// 	file_put_contents("{$inputDir}/{$filename}", $newContent);
+// }
