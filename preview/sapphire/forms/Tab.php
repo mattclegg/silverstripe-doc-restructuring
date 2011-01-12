@@ -2,7 +2,7 @@
 /**
  * Implements a single tab in a {@link TabSet}.
  * 
- * Here is a simple implementation of a Tab. Obviously, you can include as much fields 
+ * Here is a simple implementation of a Tab. Obviously, you can include as many fields 
  * inside as you want. A tab can contain other tabs as well.
  * 
  * <code>

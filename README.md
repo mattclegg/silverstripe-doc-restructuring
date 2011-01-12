@@ -28,17 +28,35 @@ To preview changes, you will need to run a local webserver capable of running Si
  * `master`: The new markdown files - please edit in here
  * `scripts`: Helper scripts for conversion and file management
 
-### Forking the project
+### Contributing
+
+#### Forking the project into your github account
 
 You can **fork** this project within github, as described on [help.github.com](http://help.github.com/forking/).
 This fork will show up on your own github profile, and can be checked out to your local machine.
-You don't need a webserver on there, or run any project-specific scripts. Merging back *pull requests* can
+You don't need a webserver on there, or run any project-specific scripts. 
+
+#### Updating your project fork
+
+You should update your own repository every now and then from "upstream" (the original repository),
+to ensure you make any changes on the most recent version of files.
+See "[Pulling in upstream changes](http://help.github.com/forking/#pulling_in_upstream_changes)" on help.github.com.
+
+#### Committing changes back through "pull requests"
+
+See "[Pull requests](http://help.github.com/pull-requests/)" on help.github.com.
+
+#### Merging in "pull requests"
+
+This only needs to be done by maintainers of the original repository.
+Merging back *pull requests* can
 either be done [straight on github](http://github.com/chillu/silverstripe-doc-restructuring/forkqueue) (for simple cases), or through `git pull` commands (see [guide](http://github.com/guides/pull-requests)).
 
 ### Documentation Guidelines
 
-Its important to read the [documentation guidelines](http://doc.silverstripe.org/contributing#writing_documentation), in order to keep a consistent
-writing and formatting style (TODO: Adjust to Markdown). We use a customized version of [Markdown](http://daringfireball.net/projects/markdown/syntax) and [Markdown Extra](http://michelf.com/projects/php-markdown/extra/).
+Its important to read the [documentation guidelines](http://github.com/chillu/silverstripe-doc-restructuring/blob/master/master/sapphire/docs/en/misc/contributing.md), in order to keep a consistent
+writing and formatting style. 
+We use a customized version of [Markdown](http://daringfireball.net/projects/markdown/syntax) and [Markdown Extra](http://michelf.com/projects/php-markdown/extra/) called "[ss-markdown](http://github.com/chillu/silverstripe-doc-restructuring/blob/master/master/sapphire/docs/en/misc/ss-markdown.md)"
 
 ### Previewing your changes
 
@@ -66,10 +84,9 @@ The following scripts should no longer be used, as they were designed for an ear
 
 Note: This is only possible by SilverStripe staff.
 
-	scp -P 2222 -R <username>@doc.silverstripe.org:/sites/ss2doc/www/assets/data/pages/ input/
+	scp -P 2222 -r <username>@doc.silverstripe.org:/sites/ss2doc/www/assets/data/pages/* input/
 
 ### Convert to Markdown files
 
 	cd scripts
-	php TranslateSSDocs.php
-	
+	php TranslateSSDocs.php ../input ../output
