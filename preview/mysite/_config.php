@@ -32,3 +32,5 @@ DocumentationService::register("cms", realpath("../../master/cms/docs/"), '2.4')
 
 // We want this to be reviewed by the whole community
 BasicAuth::protect_entire_site(false);
+
+Security::setDefaultAdmin('user', 'pass');
