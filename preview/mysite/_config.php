@@ -27,8 +27,22 @@ Director::addRules(10, array(
 	'$Action' => 'DocumentationViewer',
 	'' => '->current/en/cms'
 ));
-DocumentationService::set_automatic_registration(false);
+DocumentationService::set_automatic_registration(true);
+
+$handle = opendir(realpath("../../master/"));
+if($handle) {
+	while( $file = readdir( $handle ) ){
+		$fullPath = ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "master" . DIRECTORY_SEPARATOR . $file;
+		if(strpos($file, '.') === false && is_dir($fullPath)) {
+			DocumentationService::register($file, realpath("../../master/{$file}/docs/"), '2.4');
+		}
+	}
+	closedir($handle);
+}
+
+
 DocumentationService::register("cms", realpath("../../master/sapphire/docs/"), '2.4');
+
 
 // We want this to be reviewed by the whole community
 BasicAuth::protect_entire_site(false);

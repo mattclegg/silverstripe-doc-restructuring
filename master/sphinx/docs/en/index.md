@@ -7,7 +7,7 @@
 * Mark Stephens
   <mark (at) silverstripe (dot) com>
 
-## Requirementsld
+## Requirements
 
 * SilverStripe 2.4 or newer
 * sphinx binary installation 0.9.9-rc2 or greater with 64-bit document id
