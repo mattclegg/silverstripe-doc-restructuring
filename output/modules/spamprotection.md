@@ -1,0 +1,104 @@
+# Spam Protection
+
+The Spam Protection module provides the core code to cover your site forms with spam protection methods such as Captcha.
+
+You will need to install an additional spam protector module to make use of this functionality. 
+
+By default Spam Protection provides protection for Page Commenting on pages and in the blog.
+
+## Requires
+
+*  SilverStripe 2.3.2
+
+
+## Download
+
+*  [Spam Protection Module homepage](http://silverstripe.org/spam-protection-module/) (Stable version)
+
+*  [Daily
+Build](http://open.silverstripe.com/changeset/latest/modules/spamprotection/trunk?old_path=/&filename=/modules/spamprotection/trunk&format=zip)
+("trunk")
+
+
+## Installation
+
+To make use of the Spam Protection module you need to complete two steps.
+
+First you will need to download and install this module, and secondly you will need to download a Spam Protector Module
+such as [Mollom](modules/mollom) to make use of it.
+
+To install this module:
+
+1. Unzip the file listed under downloads inside your SilverStripe installation directory. It should be at the same level
+as 'jsparty', 'cms' and 'sapphire' modules. (You will later need to do the same with the Spam Protector subclass such as
+[Mollom](modules/mollom).) For more information on installing a module see [installing-modules](installing-modules)
+
+2. Ensure the directory name for the module is 'spamprotection'. 
+
+3. Visit your SilverStripe site and run http://yoursite.com/dev/build
+
+5. We now need to setup some basic features to get the module up and running. Open up  'mysite/_config.php' with your
+favourite text editor.
+
+6. The MollomSpamProtector is the name of the second module you downloaded. This tells the SpamProtection module that
+you want to use 'MollomField' as a spam protection module across your site. Add this code to your _config.php
+
+	:::php
+	SpamProtectorManager::set_spam_protector('MollomSpamProtector');
+
+
+
+
+## Using Spam Protector in your Custom Forms
+
+Once you have spam protector installed then your page comments form as well as your forum signup page have the build in
+protection. If you want to add protection to your own custom form the following code needs appear after the form
+creation. 
+
+	:::php
+	// your existing form code
+	$form = new Form(....
+	
+	..
+	// add this line
+	SpamProtectorManager::update_form($form, null, array('Title', 'Content', 'Name', 'Website', 'Email'));
+	
+
+
+This code adds an instance of a 'SpamProtectorField' class specified in Installing Section (in this case
+'MollomSpamProtector'). The newly created field will have a MollomField field. The first parameter is a Form object in
+which the field will be added into and the second parameter tells SpamProtectorManager to place the new field before a
+field or not and the third is the fields to map spam checking to
+
+In the second line we tell the spam protector what fields we want covered by the protector.
+
+Other configuration options are avaliable through update_form() as well 
+
+	:::php
+	// API Reference
+	SpamProtectorManager::update_form($form, $fieldToAppearBefore, $fieldsToMap, $titleOfCaptcha, $rightTitleOfCaptcha);
+
+
+## Making Your Module Spam Protection Enabled
+
+If you are a module author and looking to provide hooks into your modules forms without requiring spam protection (eg
+its there as an enhancement) you can wrap the SpamProtector call in a class_exists() call
+
+	:::php
+	// your existing form code
+	$form = new Form(....
+	
+	// Optional Spam Protection.
+	if(class_exists('SpamProtectorManager')) {
+		SpamProtectorManager::update_form($form, null, array());
+	}
+
+
+If the user has spam protection enabled then your forms will be able to support it.
+
+## Available Spam Protectors
+
+
+*  [Mollom](modules/mollom)
+
+*  [reCaptcha](modules/recaptcha)

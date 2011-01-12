@@ -1,0 +1,12 @@
+# Virtual Page
+
+Virtual Page creates an instance of a page in another part of the site, which has the same fields that the original page
+had. In SilverStripe the fields are represented as [#readonly](#readonly) fields, but on templates, all the fields are
+available just like the original class.
+
+This class is part of the core classes which make SilverStripe's Navigation tools.
+
+
+## API Documentation
+
+[Click here for the API documentation](http://api.silverstripe.org/trunk/sapphire/VirtualPage.html). 

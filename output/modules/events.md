@@ -1,0 +1,14 @@
+# Events Module
+
+## Introduction
+
+Provides a system for displaying and booking events.
+
+The events module is in alpha status.
+
+## Feature Overview
+
+
+*  Payment
+
+

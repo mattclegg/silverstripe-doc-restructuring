@@ -1,0 +1,4 @@
+SelectionGroup represents a number of fields that are selectable by a radio button that appears at  the beginning of
+each item.  Using CSS, you can configure the field to only display its contents if  the corresponding radio button is
+selected.
+[Click here for the API documentation](http://api.silverstripe.org/trunk/sapphire/SelectionGroup.html).
