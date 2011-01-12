@@ -29,10 +29,12 @@ Director::addRules(10, array(
 ));
 DocumentationService::set_automatic_registration(true);
 
-$handle = opendir(realpath("../../master/"));
+
+$path = ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "master" . DIRECTORY_SEPARATOR;
+$handle = opendir(realpath($path));
 if($handle) {
 	while( $file = readdir( $handle ) ){
-		$fullPath = ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "master" . DIRECTORY_SEPARATOR . $file;
+		$fullPath = $path . $file;
 		if(strpos($file, '.') === false && is_dir($fullPath)) {
 			DocumentationService::register($file, realpath("../../master/{$file}/docs/"), '2.4');
 		}

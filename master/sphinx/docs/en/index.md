@@ -3,9 +3,9 @@
 ## Maintainer Contact
 
 * Hamish Friedlander
-  <hamish (at) silverstripe (dot) com>
+  <hamish@silverstripe.com>
 * Mark Stephens
-  <mark (at) silverstripe (dot) com>
+  <mark@silverstripe.com>
 
 ## Requirements
 
@@ -50,7 +50,7 @@ Ensure the sphinxd search daemon process is set up to start when the computer
 reboots, running as the same user as apache (e.g. www-data)
 
 On OS X, you'll probably need to raise the open file limit for more complex
-sites (see http://serverfault.com/questions/15564/where-are-the-default-ulimits-specified-on-os-x-10-5)
+sites (see [http://serverfault.com/questions/15564/where-are-the-default-ulimits-specified-on-os-x-10-5][])
 
 ## Install and Configure the SilverStripe Sphinx Module
 
@@ -64,11 +64,11 @@ classes that you want Sphinx to index, and set any additional options on those
 classes. See the section "Applying the Decorator" for more information on ways
 to configure indexing.
 
-If you are using MAMP:
+###If you are using MAMP:
 * Make sure you are using a TCP socket with searchd, not a unix socket - i.e. put
-  this in your _ss_environment: define('SS_SPHINX_TCP_PORT', 5000);
+  this in your _ss_environment: `define('SS_SPHINX_TCP_PORT', 5000);`
 * Make sure your database string in _ss_environment has the port number included
-  i.e. define('SS_DATABASE_SERVER', 'localhost:8889');
+  i.e. `define('SS_DATABASE_SERVER', 'localhost:8889');`
 
 ## Refresh Configuration and Reindex
 
